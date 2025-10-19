@@ -72,23 +72,3 @@
 .button-gradient {
   @apply bg-gradient-to-r from-[#3B82F6] to-[#60A5FA] hover:opacity-90 transition-opacity rounded-full;
 }
-
-.feature-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  background: hsl(var(--card));
-  backdrop-filter: blur(12px);
-  border: 1px solid hsl(var(--border));
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.section-title {
-  color: hsl(var(--foreground));
-}
-
-.perspective-1000 {
-  perspective: 1000px;
-}

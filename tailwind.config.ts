@@ -61,20 +61,10 @@ export default {
         marquee: {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-100%)' }
-        },
-        'fade-in': {
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' }
-        },
-        'card-enter': {
-          '0%': { opacity: '0', transform: 'translateY(30px) scale(0.95)' },
-          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' }
         }
       },
       animation: {
-        marquee: 'marquee 40s linear infinite',
-        'fade-in': 'fade-in 0.7s ease-out forwards',
-        'card-enter': 'card-enter 0.6s ease-out forwards'
+        marquee: 'marquee 40s linear infinite'
       }
     },
   },

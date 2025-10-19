@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Command } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import { FeaturesSection } from "@/components/features/FeaturesSection";
@@ -7,15 +7,73 @@ import { PricingSectionV2 } from "@/components/pricing/PricingSectionV2";
 import LogoCarousel from "@/components/LogoCarousel";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
-import { HeroCardsSection } from "@/components/HeroCardsSection";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-black text-foreground">
       <Navigation />
       
-      {/* Hero Section with Scrolling Cards */}
-      <HeroCardsSection />
+      {/* Hero Section */}
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="relative container px-4 pt-40 pb-20"
+      >
+        {/* Background */}
+        <div 
+          className="absolute inset-0 -z-10 bg-[#0A0A0A]"
+        />
+        
+        <div className="max-w-4xl relative z-10">
+          <h1 className="text-5xl md:text-7xl font-normal mb-4 tracking-tight text-left">
+            <span className="text-gray-200">
+              <TextGenerateEffect words="Você sempre pagou caro" />
+            </span>
+            <br />
+            <span className="text-white font-medium">
+              <TextGenerateEffect words="por algo que poderia custar menos. Muito menos." />
+            </span>
+          </h1>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl text-left"
+          >
+            Agora, com o SealClub, você acessa iPhones, Apple Watch, AirPods e até MacBooks{" "}
+            <span className="text-white">com preço de custo.</span>
+          </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="flex flex-col sm:flex-row gap-4 items-start"
+          >
+            <Button size="lg" className="button-gradient">
+              Quero ser membro
+            </Button>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="relative mx-auto max-w-5xl mt-20"
+        >
+          <div className="glass rounded-xl overflow-hidden">
+            <img
+              src="/lovable-uploads/apple-products-dark.jpg"
+              alt="SealClub - Produtos Apple com Preço de Custo"
+              className="w-full h-auto"
+            />
+          </div>
+        </motion.div>
+      </motion.section>
 
       {/* Logo Carousel */}
       <LogoCarousel />
