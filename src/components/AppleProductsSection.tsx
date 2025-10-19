@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-
 const AppleProductsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
@@ -7,7 +6,6 @@ const AppleProductsSection = () => {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const ticking = useRef(false);
   const lastScrollY = useRef(0);
-
   const cardStyle = {
     height: '60vh',
     maxHeight: '600px',
@@ -15,36 +13,28 @@ const AppleProductsSection = () => {
     transition: 'transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1)',
     willChange: 'transform, opacity'
   };
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        setIsIntersecting(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-
+    const observer = new IntersectionObserver(entries => {
+      const [entry] = entries;
+      setIsIntersecting(entry.isIntersecting);
+    }, {
+      threshold: 0.1
+    });
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-
     const handleScroll = () => {
       if (!ticking.current) {
         lastScrollY.current = window.scrollY;
-        
         window.requestAnimationFrame(() => {
           if (!sectionRef.current) return;
-          
           const sectionRect = sectionRef.current.getBoundingClientRect();
           const viewportHeight = window.innerHeight;
           const totalScrollDistance = viewportHeight * 2;
-          
           let progress = 0;
           if (sectionRect.top <= 0) {
             progress = Math.min(1, Math.max(0, Math.abs(sectionRect.top) / totalScrollDistance));
           }
-          
           if (progress >= 0.66) {
             setActiveCardIndex(2);
           } else if (progress >= 0.33) {
@@ -52,17 +42,15 @@ const AppleProductsSection = () => {
           } else {
             setActiveCardIndex(0);
           }
-          
           ticking.current = false;
         });
-        
         ticking.current = true;
       }
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, {
+      passive: true
+    });
     handleScroll();
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (sectionRef.current) {
@@ -70,22 +58,18 @@ const AppleProductsSection = () => {
       }
     };
   }, []);
-
   const isFirstCardVisible = isIntersecting;
   const isSecondCardVisible = activeCardIndex >= 1;
   const isThirdCardVisible = activeCardIndex >= 2;
-
-  return (
-    <div ref={sectionRef} className="relative" style={{ height: '300vh' }}>
-      <section className="w-full h-screen py-10 md:py-16 sticky top-0 overflow-hidden bg-black">
+  return <div ref={sectionRef} className="relative" style={{
+    height: '300vh'
+  }}>
+      <section className="w-full h-screen py-10 sticky top-0 overflow-hidden bg-black md:py-0">
         <div className="container px-6 lg:px-8 mx-auto h-full flex flex-col">
           {/* Header */}
           <div className="mb-2 md:mb-3">
             <div className="flex items-center gap-4 mb-2 md:mb-2 pt-8 sm:pt-6 md:pt-4">
-              <div className="pulse-chip opacity-0 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">01</span>
-                <span>Produtos</span>
-              </div>
+              
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 md:mb-2 text-white">
               Por que SealClub
@@ -95,59 +79,43 @@ const AppleProductsSection = () => {
           {/* Cards Container */}
           <div ref={cardsContainerRef} className="relative flex-1 perspective-1000">
             {/* Card 1 */}
-            <div 
-              className={`absolute inset-0 overflow-hidden shadow-xl ${isFirstCardVisible ? 'animate-card-enter' : ''}`} 
-              style={{
-                ...cardStyle,
-                zIndex: 10,
-                transform: `translateY(${isFirstCardVisible ? '90px' : '200px'}) scale(0.9)`,
-                opacity: isFirstCardVisible ? 0.9 : 0
-              }}
-            >
-              <div className="absolute inset-0 z-0 bg-gradient-to-b from-primary/40 to-black/80"
-                style={{
-                  backgroundImage: "url('/lovable-uploads/apple-products-hero.png')",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundBlendMode: "overlay"
-                }}
-              />
+            <div className={`absolute inset-0 overflow-hidden shadow-xl ${isFirstCardVisible ? 'animate-card-enter' : ''}`} style={{
+            ...cardStyle,
+            zIndex: 10,
+            transform: `translateY(${isFirstCardVisible ? '90px' : '200px'}) scale(0.9)`,
+            opacity: isFirstCardVisible ? 0.9 : 0
+          }}>
+              <div className="absolute inset-0 z-0 bg-gradient-to-b from-primary/40 to-black/80" style={{
+              backgroundImage: "url('/lovable-uploads/apple-products-hero.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundBlendMode: "overlay"
+            }} />
               <div className="absolute top-4 right-4 z-20">
-                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
-                  <span className="text-sm font-medium">Acesso Premium</span>
-                </div>
+                
               </div>
               <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
                 <div className="max-w-lg">
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl text-white font-bold leading-tight mb-4">
-                    Produtos Apple com <span className="text-gradient">preço de custo</span>
-                  </h3>
-                  <p className="text-gray-200 text-lg">
-                    iPhone, MacBook, AirPods e muito mais direto da fonte
-                  </p>
+                  
+                  
                 </div>
               </div>
             </div>
             
             {/* Card 2 */}
-            <div 
-              className={`absolute inset-0 overflow-hidden shadow-xl ${isSecondCardVisible ? 'animate-card-enter' : ''}`} 
-              style={{
-                ...cardStyle,
-                zIndex: 20,
-                transform: `translateY(${isSecondCardVisible ? activeCardIndex === 1 ? '55px' : '45px' : '200px'}) scale(0.95)`,
-                opacity: isSecondCardVisible ? 1 : 0,
-                pointerEvents: isSecondCardVisible ? 'auto' : 'none'
-              }}
-            >
-              <div className="absolute inset-0 z-0 bg-gradient-to-b from-primary/40 to-black/80"
-                style={{
-                  backgroundImage: "url('/lovable-uploads/apple-products-dashboard.jpg')",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundBlendMode: "overlay"
-                }}
-              />
+            <div className={`absolute inset-0 overflow-hidden shadow-xl ${isSecondCardVisible ? 'animate-card-enter' : ''}`} style={{
+            ...cardStyle,
+            zIndex: 20,
+            transform: `translateY(${isSecondCardVisible ? activeCardIndex === 1 ? '55px' : '45px' : '200px'}) scale(0.95)`,
+            opacity: isSecondCardVisible ? 1 : 0,
+            pointerEvents: isSecondCardVisible ? 'auto' : 'none'
+          }}>
+              <div className="absolute inset-0 z-0 bg-gradient-to-b from-primary/40 to-black/80" style={{
+              backgroundImage: "url('/lovable-uploads/apple-products-dashboard.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundBlendMode: "overlay"
+            }} />
               <div className="absolute top-4 right-4 z-20">
                 <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
                   <span className="text-sm font-medium">Economia Real</span>
@@ -155,56 +123,39 @@ const AppleProductsSection = () => {
               </div>
               <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
                 <div className="max-w-lg">
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl text-white font-bold leading-tight mb-4">
-                    Economize até <span className="text-gradient">40%</span> em cada compra
-                  </h3>
-                  <p className="text-gray-200 text-lg">
-                    Sem intermediários, sem margem de lucro absurda
-                  </p>
+                  
+                  
                 </div>
               </div>
             </div>
             
             {/* Card 3 */}
-            <div 
-              className={`absolute inset-0 overflow-hidden shadow-xl ${isThirdCardVisible ? 'animate-card-enter' : ''}`} 
-              style={{
-                ...cardStyle,
-                zIndex: 30,
-                transform: `translateY(${isThirdCardVisible ? activeCardIndex === 2 ? '15px' : '0' : '200px'}) scale(1)`,
-                opacity: isThirdCardVisible ? 1 : 0,
-                pointerEvents: isThirdCardVisible ? 'auto' : 'none'
-              }}
-            >
-              <div className="absolute inset-0 z-0 bg-gradient-to-b from-primary/40 to-black/80"
-                style={{
-                  backgroundImage: "url('/lovable-uploads/apple-products-dark.jpg')",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundBlendMode: "overlay"
-                }}
-              />
+            <div className={`absolute inset-0 overflow-hidden shadow-xl ${isThirdCardVisible ? 'animate-card-enter' : ''}`} style={{
+            ...cardStyle,
+            zIndex: 30,
+            transform: `translateY(${isThirdCardVisible ? activeCardIndex === 2 ? '15px' : '0' : '200px'}) scale(1)`,
+            opacity: isThirdCardVisible ? 1 : 0,
+            pointerEvents: isThirdCardVisible ? 'auto' : 'none'
+          }}>
+              <div className="absolute inset-0 z-0 bg-gradient-to-b from-primary/40 to-black/80" style={{
+              backgroundImage: "url('/lovable-uploads/apple-products-dark.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundBlendMode: "overlay"
+            }} />
               <div className="absolute top-4 right-4 z-20">
-                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
-                  <span className="text-sm font-medium">Comunidade</span>
-                </div>
+                
               </div>
               <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
                 <div className="max-w-lg">
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl text-white font-bold leading-tight mb-4">
-                    Faça parte do clube que <span className="text-gradient">está redefinindo</span> o mercado
-                  </h3>
-                  <p className="text-gray-200 text-lg">
-                    Acesso exclusivo, vantagens únicas, tecnologia acessível
-                  </p>
+                  
+                  
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default AppleProductsSection;
