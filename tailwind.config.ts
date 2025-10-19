@@ -56,15 +56,32 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        pulse: {
+          "500": "#f97316",
+          "900": "#7c2d12",
+        },
+        dark: {
+          "900": "#121212",
+        }
       },
       keyframes: {
         marquee: {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-100%)' }
+        },
+        'fade-in': {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' }
+        },
+        'card-enter': {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' }
         }
       },
       animation: {
-        marquee: 'marquee 40s linear infinite'
+        marquee: 'marquee 40s linear infinite',
+        'fade-in': 'fade-in 0.7s ease-out forwards',
+        'card-enter': 'card-enter 0.5s ease-out forwards'
       }
     },
   },
