@@ -82,8 +82,8 @@ const AppleProductsSection = () => {
             <div className={`absolute inset-0 overflow-visible shadow-xl ${isFirstCardVisible ? 'animate-card-enter' : ''}`} style={{
             ...cardStyle,
             zIndex: 10,
-            transform: `translateY(${isFirstCardVisible ? '90px' : '200px'}) scale(0.9)`,
-            opacity: isFirstCardVisible ? 0.9 : 0
+            transform: 'translateY(90px) scale(0.9)',
+            opacity: 0.9
           }}>
               <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.5))' }}>
                 <defs>
@@ -117,9 +117,9 @@ const AppleProductsSection = () => {
             <div className={`absolute inset-0 overflow-visible shadow-xl ${isSecondCardVisible ? 'animate-card-enter' : ''}`} style={{
             ...cardStyle,
             zIndex: 20,
-            transform: `translateY(${isSecondCardVisible ? activeCardIndex === 1 ? '55px' : '45px' : '200px'}) scale(0.95)`,
-            opacity: isSecondCardVisible ? 1 : 0,
-            pointerEvents: isSecondCardVisible ? 'auto' : 'none'
+            transform: 'translateY(55px) scale(0.95)',
+            opacity: 1,
+            pointerEvents: 'auto'
           }}>
               <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.5))' }}>
                 <defs>
@@ -153,9 +153,9 @@ const AppleProductsSection = () => {
             <div className={`absolute inset-0 overflow-visible shadow-xl ${isThirdCardVisible ? 'animate-card-enter' : ''}`} style={{
             ...cardStyle,
             zIndex: 30,
-            transform: `translateY(${isThirdCardVisible ? activeCardIndex === 2 ? '15px' : '0' : '200px'}) scale(1)`,
-            opacity: isThirdCardVisible ? 1 : 0,
-            pointerEvents: isThirdCardVisible ? 'auto' : 'none'
+            transform: 'translateY(15px) scale(1)',
+            opacity: 1,
+            pointerEvents: 'auto'
           }}>
               <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.5))' }}>
                 <defs>
