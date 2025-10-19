@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Command } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import Navigation from "@/components/Navigation";
 import { FeaturesSection } from "@/components/features/FeaturesSection";
 import { PricingSectionV2 } from "@/components/pricing/PricingSectionV2";
@@ -60,10 +61,19 @@ const Index = () => {
         </div>
 
         <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+          className="my-16"
+        >
+          <Separator className="bg-white/10" />
+        </motion.div>
+
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="relative mx-auto w-full mt-20 px-0"
+          transition={{ delay: 0.8 }}
+          className="relative mx-auto w-full px-0"
         >
           <div className="relative w-full">
             <img
