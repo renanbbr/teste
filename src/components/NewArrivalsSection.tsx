@@ -98,6 +98,24 @@ const newArrivals = [
     description: "Cancelamento de ruído adaptativo, Áudio Espacial personalizado e até 6 horas de reprodução. A experiência sonora definitiva da Apple.",
     image: "/lovable-uploads/apple-products-dark.jpg", 
     icon: <Headphones className="w-5 h-5 text-white" />
+  },
+  {
+    name: "MacBook Pro 16\"",
+    description: "Performance extraordinária com chips M3 Pro ou M3 Max. Tela Liquid Retina XDR e até 22 horas de bateria. Para quem não aceita limitações.",
+    image: "/lovable-uploads/86329743-ee49-4f2e-96f7-50508436273d.png",
+    icon: <Smartphone className="w-5 h-5 text-white" />
+  },
+  {
+    name: "iPad Pro 12.9\"",
+    description: "O tablet mais avançado do mundo. Chip M2, tela Liquid Retina XDR e compatibilidade com Apple Pencil e Magic Keyboard. Poder ilimitado.",
+    image: "/lovable-uploads/7335619d-58a9-41ad-a233-f7826f56f3e9.png",
+    icon: <Smartphone className="w-5 h-5 text-white" />
+  },
+  {
+    name: "AirTag Pack",
+    description: "Nunca mais perca seus pertences. Tecnologia de localização precisa integrada ao app Buscar. Pack com 4 unidades para proteção completa.",
+    image: "/lovable-uploads/b6436838-5c1a-419a-9cdc-1f9867df073d.png",
+    icon: <Smartphone className="w-5 h-5 text-white" />
   }
 ];
 
