@@ -5,12 +5,10 @@ const LogoCarousel = () => {
     "/brand-logos/amazon-logo.png",
     "/brand-logos/coswheel-logo.png",
     "/brand-logos/dji-logo.png",
-    "/brand-logos/garmin-logo.jpg",
     "/brand-logos/hollyland-logo.png",
     "/brand-logos/inow-logo.png",
     "/brand-logos/motorola-logo.png",
     "/brand-logos/playstation-logo.png",
-    "/brand-logos/polar-logo.jpg",
     "/brand-logos/stanley-logo.png",
   ];
 
@@ -45,7 +43,7 @@ const LogoCarousel = () => {
             key={`logo-${index}`}
             src={logo}
             alt={`Partner logo ${index + 1}`}
-            className="h-8 object-contain brightness-0 invert"
+            className="h-12 object-contain brightness-0 invert"
             initial={{ opacity: 0.5 }}
             whileHover={{ 
               opacity: 1,
