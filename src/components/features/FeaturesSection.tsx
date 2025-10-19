@@ -1,6 +1,3 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FeatureTab } from "./FeatureTab";
-import { FeatureContent } from "./FeatureContent";
 import { features } from "@/config/features";
 
 export const FeaturesSection = () => {
@@ -17,45 +14,25 @@ export const FeaturesSection = () => {
         </p>
       </div>
 
-      <Tabs defaultValue={features[0].title} className="w-full">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-          {/* Left side - Tab triggers */}
-          <div className="md:col-span-5 space-y-3">
-            <TabsList className="flex flex-col w-full bg-transparent h-auto p-0 space-y-3">
-              {features.map((feature) => (
-                <TabsTrigger
-                  key={feature.title}
-                  value={feature.title}
-                  className="w-full data-[state=active]:shadow-none data-[state=active]:bg-transparent"
-                >
-                  <FeatureTab
-                    title={feature.title}
-                    description={feature.description}
-                    icon={feature.icon}
-                    isActive={false}
-                  />
-                </TabsTrigger>
-              ))}
-            </TabsList>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature, index) => (
+          <div 
+            key={feature.title}
+            className="glass rounded-xl p-6 hover:glass-hover transition-all duration-300 group"
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
+            <div className="mb-4 text-primary group-hover:scale-110 transition-transform duration-300">
+              {feature.icon}
+            </div>
+            <h3 className="text-xl font-semibold mb-3 text-left">
+              {feature.title}
+            </h3>
+            <p className="text-muted-foreground text-left leading-relaxed">
+              {feature.description}
+            </p>
           </div>
-
-          {/* Right side - Tab content with images */}
-          <div className="md:col-span-7">
-            {features.map((feature) => (
-              <TabsContent
-                key={feature.title}
-                value={feature.title}
-                className="mt-0 h-full"
-              >
-                <FeatureContent
-                  image={feature.image}
-                  title={feature.title}
-                />
-              </TabsContent>
-            ))}
-          </div>
-        </div>
-      </Tabs>
+        ))}
+      </div>
     </section>
   );
 };
