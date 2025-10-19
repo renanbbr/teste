@@ -67,9 +67,11 @@ const Index = () => {
         >
           <div className="glass rounded-xl overflow-hidden">
             <img
-              src="/lovable-uploads/apple-products-dark.jpg"
-              alt="SealClub - Produtos Apple com Preço de Custo"
+              src="/lovable-uploads/apple-products-hero.png"
+              alt="SealClub - Produtos Apple: MacBook, iPad, iPhone, Apple Watch, AirPods e Apple TV"
               className="w-full h-auto"
+              loading="eager"
+              fetchPriority="high"
             />
           </div>
         </motion.div>
