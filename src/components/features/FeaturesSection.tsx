@@ -1,3 +1,4 @@
+import { FeatureTab } from "./FeatureTab";
 import { features } from "@/config/features";
 
 export const FeaturesSection = () => {
@@ -14,22 +15,15 @@ export const FeaturesSection = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {features.map((feature, index) => (
-          <div 
-            key={feature.title}
-            className="glass rounded-xl p-6 hover:glass-hover transition-all duration-300 group"
-            style={{ animationDelay: `${index * 0.1}s` }}
-          >
-            <div className="mb-4 text-primary group-hover:scale-110 transition-transform duration-300">
-              {feature.icon}
-            </div>
-            <h3 className="text-xl font-semibold mb-3 text-left">
-              {feature.title}
-            </h3>
-            <p className="text-muted-foreground text-left leading-relaxed">
-              {feature.description}
-            </p>
+      <div className="space-y-3 max-w-2xl">
+        {features.map((feature) => (
+          <div key={feature.title}>
+            <FeatureTab
+              title={feature.title}
+              description={feature.description}
+              icon={feature.icon}
+              isActive={false}
+            />
           </div>
         ))}
       </div>
