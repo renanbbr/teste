@@ -60,31 +60,6 @@ const Index = () => {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
-          className="my-16"
-        >
-          <Separator className="bg-white/10" />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="relative mx-auto w-full px-0"
-        >
-          <div className="relative w-full">
-            <img
-              src="/lovable-uploads/apple-products-hero.png"
-              alt="SealClub - Produtos Apple: MacBook, iPad, iPhone, Apple Watch, AirPods e Apple TV"
-              className="w-full h-auto object-contain"
-              loading="eager"
-              fetchPriority="high"
-            />
-          </div>
-        </motion.div>
       </motion.section>
 
       {/* Logo Carousel */}
