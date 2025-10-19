@@ -5,9 +5,11 @@ const LogoCarousel = () => {
     "/brand-logos/amazon-logo.png",
     "/brand-logos/coswheel-logo.png",
     "/brand-logos/dji-logo.png",
+    "/brand-logos/dji-logo-2.png",
     "/brand-logos/hollyland-logo.png",
     "/brand-logos/inow-logo.png",
     "/brand-logos/motorola-logo.png",
+    "/brand-logos/motorola-logo-2.png",
     "/brand-logos/playstation-logo.png",
     "/brand-logos/stanley-logo.png",
   ];
