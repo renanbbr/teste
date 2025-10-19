@@ -85,8 +85,8 @@ const AppleProductsSection = () => {
             transform: activeCardIndex === 0 
               ? 'translateY(0) scale(1)' 
               : activeCardIndex === 1 
-                ? 'translateY(120px) scale(0.95)' 
-                : 'translateY(160px) scale(0.9)',
+                ? 'translateY(-120px) scale(0.95)' 
+                : 'translateY(-160px) scale(0.9)',
             opacity: activeCardIndex === 0 ? 1 : 0.7
           }}>
               <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.5))' }}>
@@ -124,8 +124,8 @@ const AppleProductsSection = () => {
             transform: activeCardIndex === 1 
               ? 'translateY(0) scale(1)' 
               : activeCardIndex === 0 
-                ? 'translateY(60px) scale(0.95)' 
-                : 'translateY(120px) scale(0.95)',
+                ? 'translateY(-60px) scale(0.95)' 
+                : 'translateY(-120px) scale(0.95)',
             opacity: activeCardIndex === 1 ? 1 : 0.8,
             pointerEvents: 'auto'
           }}>
@@ -164,8 +164,8 @@ const AppleProductsSection = () => {
             transform: activeCardIndex === 2 
               ? 'translateY(0) scale(1)' 
               : activeCardIndex === 1 
-                ? 'translateY(60px) scale(0.98)' 
-                : 'translateY(120px) scale(0.96)',
+                ? 'translateY(-60px) scale(0.98)' 
+                : 'translateY(-120px) scale(0.96)',
             opacity: activeCardIndex === 2 ? 1 : 0.9,
             pointerEvents: 'auto'
           }}>
