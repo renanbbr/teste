@@ -2,12 +2,16 @@ import { motion } from "framer-motion";
 
 const LogoCarousel = () => {
   const logos = [
-    "/brand-logos/apple-logo.png",
+    "/brand-logos/amazon-logo.png",
+    "/brand-logos/coswheel-logo.png",
     "/brand-logos/dji-logo.png",
-    "/brand-logos/garmin-logo.png",
-    "/brand-logos/jbl-logo.png",
-    "/brand-logos/polar-logo.png",
+    "/brand-logos/garmin-logo.jpg",
     "/brand-logos/hollyland-logo.png",
+    "/brand-logos/inow-logo.png",
+    "/brand-logos/motorola-logo.png",
+    "/brand-logos/playstation-logo.png",
+    "/brand-logos/polar-logo.jpg",
+    "/brand-logos/stanley-logo.png",
   ];
 
   const extendedLogos = [...logos, ...logos, ...logos];
