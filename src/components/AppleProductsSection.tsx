@@ -79,77 +79,108 @@ const AppleProductsSection = () => {
           {/* Cards Container */}
           <div ref={cardsContainerRef} className="relative flex-1 perspective-1000">
             {/* Card 1 */}
-            <div className={`absolute inset-0 overflow-hidden shadow-xl ${isFirstCardVisible ? 'animate-card-enter' : ''}`} style={{
+            <div className={`absolute inset-0 overflow-visible shadow-xl ${isFirstCardVisible ? 'animate-card-enter' : ''}`} style={{
             ...cardStyle,
             zIndex: 10,
             transform: `translateY(${isFirstCardVisible ? '90px' : '200px'}) scale(0.9)`,
             opacity: isFirstCardVisible ? 0.9 : 0
           }}>
-              <div className="absolute inset-0 z-0 bg-gradient-to-b from-primary/40 to-black/80" style={{
-              backgroundImage: "url('/lovable-uploads/apple-products-hero.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundBlendMode: "overlay"
-            }} />
+              <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.5))' }}>
+                <defs>
+                  <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style={{ stopColor: '#4C1D95', stopOpacity: 1 }} />
+                    <stop offset="50%" style={{ stopColor: '#C2410C', stopOpacity: 1 }} />
+                    <stop offset="100%" style={{ stopColor: '#F97316', stopOpacity: 1 }} />
+                  </linearGradient>
+                </defs>
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient1)" rx="20" />
+              </svg>
+              <div className="absolute inset-[3px] z-0 bg-gradient-to-br from-purple-900 via-orange-800 to-orange-500 rounded-[18px]" />
               <div className="absolute top-4 right-4 z-20">
-                
+                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-orange-500/90 backdrop-blur-sm text-white">
+                  <span className="text-sm font-medium">Exclusivo</span>
+                </div>
               </div>
               <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
                 <div className="max-w-lg">
-                  
-                  
+                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    Acesso a preços de custo
+                  </h3>
+                  <p className="text-lg text-white/90">
+                    Produtos Apple com economia de até 40% comparado ao varejo tradicional
+                  </p>
                 </div>
               </div>
             </div>
             
             {/* Card 2 */}
-            <div className={`absolute inset-0 overflow-hidden shadow-xl ${isSecondCardVisible ? 'animate-card-enter' : ''}`} style={{
+            <div className={`absolute inset-0 overflow-visible shadow-xl ${isSecondCardVisible ? 'animate-card-enter' : ''}`} style={{
             ...cardStyle,
             zIndex: 20,
             transform: `translateY(${isSecondCardVisible ? activeCardIndex === 1 ? '55px' : '45px' : '200px'}) scale(0.95)`,
             opacity: isSecondCardVisible ? 1 : 0,
             pointerEvents: isSecondCardVisible ? 'auto' : 'none'
           }}>
-              <div className="absolute inset-0 z-0 bg-gradient-to-b from-primary/40 to-black/80" style={{
-              backgroundImage: "url('/lovable-uploads/apple-products-dashboard.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundBlendMode: "overlay"
-            }} />
+              <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.5))' }}>
+                <defs>
+                  <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style={{ stopColor: '#581C87', stopOpacity: 1 }} />
+                    <stop offset="50%" style={{ stopColor: '#EA580C', stopOpacity: 1 }} />
+                    <stop offset="100%" style={{ stopColor: '#FB923C', stopOpacity: 1 }} />
+                  </linearGradient>
+                </defs>
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient2)" rx="20" />
+              </svg>
+              <div className="absolute inset-[3px] z-0 bg-gradient-to-br from-purple-950 via-orange-700 to-orange-400 rounded-[18px]" />
               <div className="absolute top-4 right-4 z-20">
-                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white">
+                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-orange-500/90 backdrop-blur-sm text-white">
                   <span className="text-sm font-medium">Economia Real</span>
                 </div>
               </div>
               <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
                 <div className="max-w-lg">
-                  
-                  
+                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    Sem taxas escondidas
+                  </h3>
+                  <p className="text-lg text-white/90">
+                    Transparência total: você paga apenas o preço de custo + a mensalidade do clube
+                  </p>
                 </div>
               </div>
             </div>
             
             {/* Card 3 */}
-            <div className={`absolute inset-0 overflow-hidden shadow-xl ${isThirdCardVisible ? 'animate-card-enter' : ''}`} style={{
+            <div className={`absolute inset-0 overflow-visible shadow-xl ${isThirdCardVisible ? 'animate-card-enter' : ''}`} style={{
             ...cardStyle,
             zIndex: 30,
             transform: `translateY(${isThirdCardVisible ? activeCardIndex === 2 ? '15px' : '0' : '200px'}) scale(1)`,
             opacity: isThirdCardVisible ? 1 : 0,
             pointerEvents: isThirdCardVisible ? 'auto' : 'none'
           }}>
-              <div className="absolute inset-0 z-0 bg-gradient-to-b from-primary/40 to-black/80" style={{
-              backgroundImage: "url('/lovable-uploads/apple-products-dark.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundBlendMode: "overlay"
-            }} />
+              <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.5))' }}>
+                <defs>
+                  <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style={{ stopColor: '#6B21A8', stopOpacity: 1 }} />
+                    <stop offset="50%" style={{ stopColor: '#DC2626', stopOpacity: 1 }} />
+                    <stop offset="100%" style={{ stopColor: '#FBBF24', stopOpacity: 1 }} />
+                  </linearGradient>
+                </defs>
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient3)" rx="20" />
+              </svg>
+              <div className="absolute inset-[3px] z-0 bg-gradient-to-br from-purple-900 via-red-700 to-yellow-500 rounded-[18px]" />
               <div className="absolute top-4 right-4 z-20">
-                
+                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-orange-500/90 backdrop-blur-sm text-white">
+                  <span className="text-sm font-medium">Premium</span>
+                </div>
               </div>
               <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
                 <div className="max-w-lg">
-                  
-                  
+                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    Comunidade exclusiva
+                  </h3>
+                  <p className="text-lg text-white/90">
+                    Faça parte de um grupo seleto que tem acesso aos melhores produtos com os melhores preços
+                  </p>
                 </div>
               </div>
             </div>
