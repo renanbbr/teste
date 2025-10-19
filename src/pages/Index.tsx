@@ -89,6 +89,24 @@ const Index = () => {
         <FeaturesSection />
       </div>
 
+      {/* New Section */}
+      <section className="container px-4 py-20 bg-black">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center max-w-3xl mx-auto"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+            Nova Seção
+          </h2>
+          <p className="text-lg text-gray-400 mb-8">
+            Conteúdo da nova seção. Personalize conforme necessário.
+          </p>
+        </motion.div>
+      </section>
+
       {/* Pricing Section */}
       <div id="pricing" className="bg-black">
         <PricingSectionV2 />
