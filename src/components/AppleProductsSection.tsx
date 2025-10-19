@@ -83,7 +83,7 @@ const AppleProductsSection = () => {
           {/* Cards Container */}
           <div ref={cardsContainerRef} className="relative flex-1 perspective-1000">
             {/* Card 1 */}
-            <div className={`absolute inset-0 overflow-visible shadow-xl ${isFirstCardVisible ? 'animate-card-enter' : ''}`} style={{
+            <div className={`absolute inset-0 overflow-hidden rounded-[20px] shadow-2xl ${isFirstCardVisible ? 'animate-card-enter' : ''}`} style={{
             ...cardStyle,
             zIndex: activeCardIndex === 0 ? 30 : 10,
             transform: activeCardIndex === 0 
@@ -93,24 +93,24 @@ const AppleProductsSection = () => {
                 : 'translateY(-160px) scale(0.9)',
             opacity: activeCardIndex === 0 ? 1 : 0.7
           }}>
-              <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.5))' }}>
-                <defs>
-                  <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style={{ stopColor: '#4C1D95', stopOpacity: 1 }} />
-                    <stop offset="50%" style={{ stopColor: '#C2410C', stopOpacity: 1 }} />
-                    <stop offset="100%" style={{ stopColor: '#F97316', stopOpacity: 1 }} />
-                  </linearGradient>
-                </defs>
-                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient1)" rx="20" />
-              </svg>
-              <div className="absolute inset-[3px] z-0 bg-gradient-to-br from-purple-900 via-orange-800 to-orange-500 rounded-[18px]" />
+              {/* Image Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-orange-800/20 to-orange-500/20">
+                <img 
+                  src={appleDevices1} 
+                  alt="Dispositivos Apple" 
+                  className="w-full h-full object-cover opacity-90"
+                />
+              </div>
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              
               <div className="absolute top-4 right-4 z-20">
                 <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-orange-500/90 backdrop-blur-sm text-white">
                   <span className="text-sm font-medium">Exclusivo</span>
                 </div>
               </div>
-              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center justify-between gap-8">
-                <div className="max-w-lg">
+              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-end">
+                <div className="max-w-2xl">
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
                     Acesso a preços de custo
                   </h3>
@@ -118,14 +118,12 @@ const AppleProductsSection = () => {
                     Produtos Apple com economia de até 40% comparado ao varejo tradicional
                   </p>
                 </div>
-                <div className="hidden md:block flex-shrink-0">
-                  <img src={appleDevices1} alt="Dispositivos Apple" className="h-[400px] w-auto object-contain" />
-                </div>
               </div>
             </div>
             
+            
             {/* Card 2 */}
-            <div className={`absolute inset-0 overflow-visible shadow-xl ${isSecondCardVisible ? 'animate-card-enter' : ''}`} style={{
+            <div className={`absolute inset-0 overflow-hidden rounded-[20px] shadow-2xl ${isSecondCardVisible ? 'animate-card-enter' : ''}`} style={{
             ...cardStyle,
             zIndex: activeCardIndex === 1 ? 30 : activeCardIndex === 0 ? 20 : 15,
             transform: activeCardIndex === 1 
@@ -136,24 +134,24 @@ const AppleProductsSection = () => {
             opacity: activeCardIndex === 1 ? 1 : 0.8,
             pointerEvents: 'auto'
           }}>
-              <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.5))' }}>
-                <defs>
-                  <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style={{ stopColor: '#581C87', stopOpacity: 1 }} />
-                    <stop offset="50%" style={{ stopColor: '#EA580C', stopOpacity: 1 }} />
-                    <stop offset="100%" style={{ stopColor: '#FB923C', stopOpacity: 1 }} />
-                  </linearGradient>
-                </defs>
-                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient2)" rx="20" />
-              </svg>
-              <div className="absolute inset-[3px] z-0 bg-gradient-to-br from-purple-950 via-orange-700 to-orange-400 rounded-[18px]" />
+              {/* Image Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-950/20 via-orange-700/20 to-orange-400/20">
+                <img 
+                  src={appleDevices2} 
+                  alt="Produtos Apple" 
+                  className="w-full h-full object-cover opacity-90"
+                />
+              </div>
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              
               <div className="absolute top-4 right-4 z-20">
                 <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-orange-500/90 backdrop-blur-sm text-white">
                   <span className="text-sm font-medium">Economia Real</span>
                 </div>
               </div>
-              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center justify-between gap-8">
-                <div className="max-w-lg">
+              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-end">
+                <div className="max-w-2xl">
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
                     Sem taxas escondidas
                   </h3>
@@ -161,14 +159,12 @@ const AppleProductsSection = () => {
                     Transparência total: você paga apenas o preço de custo + a mensalidade do clube
                   </p>
                 </div>
-                <div className="hidden md:block flex-shrink-0">
-                  <img src={appleDevices2} alt="Produtos Apple" className="h-[400px] w-auto object-contain" />
-                </div>
               </div>
             </div>
             
+            
             {/* Card 3 */}
-            <div className={`absolute inset-0 overflow-visible shadow-xl ${isThirdCardVisible ? 'animate-card-enter' : ''}`} style={{
+            <div className={`absolute inset-0 overflow-hidden rounded-[20px] shadow-2xl ${isThirdCardVisible ? 'animate-card-enter' : ''}`} style={{
             ...cardStyle,
             zIndex: activeCardIndex === 2 ? 30 : 20,
             transform: activeCardIndex === 2 
@@ -179,33 +175,30 @@ const AppleProductsSection = () => {
             opacity: activeCardIndex === 2 ? 1 : 0.9,
             pointerEvents: 'auto'
           }}>
-              <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.5))' }}>
-                <defs>
-                  <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style={{ stopColor: '#6B21A8', stopOpacity: 1 }} />
-                    <stop offset="50%" style={{ stopColor: '#DC2626', stopOpacity: 1 }} />
-                    <stop offset="100%" style={{ stopColor: '#FBBF24', stopOpacity: 1 }} />
-                  </linearGradient>
-                </defs>
-                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient3)" rx="20" />
-              </svg>
-              <div className="absolute inset-[3px] z-0 bg-gradient-to-br from-purple-900 via-red-700 to-yellow-500 rounded-[18px]" />
+              {/* Image Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-red-700/20 to-yellow-500/20">
+                <img 
+                  src={appleDevices3} 
+                  alt="Ecossistema Apple" 
+                  className="w-full h-full object-cover opacity-90"
+                />
+              </div>
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              
               <div className="absolute top-4 right-4 z-20">
                 <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-orange-500/90 backdrop-blur-sm text-white">
                   <span className="text-sm font-medium">Premium</span>
                 </div>
               </div>
-              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center justify-between gap-8">
-                <div className="max-w-lg">
+              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-end">
+                <div className="max-w-2xl">
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
                     Comunidade exclusiva
                   </h3>
                   <p className="text-lg text-white/90">
                     Faça parte de um grupo seleto que tem acesso aos melhores produtos com os melhores preços
                   </p>
-                </div>
-                <div className="hidden md:block flex-shrink-0">
-                  <img src={appleDevices3} alt="Ecossistema Apple" className="h-[400px] w-auto object-contain" />
                 </div>
               </div>
             </div>
