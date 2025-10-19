@@ -3,7 +3,6 @@ import { ArrowRight, Command } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Navigation from "@/components/Navigation";
-import AppleProductsSection from "@/components/AppleProductsSection";
 import { FeaturesSection } from "@/components/features/FeaturesSection";
 import { PricingSectionV2 } from "@/components/pricing/PricingSectionV2";
 import LogoCarousel from "@/components/LogoCarousel";
@@ -87,9 +86,6 @@ const Index = () => {
           </div>
         </motion.div>
       </motion.section>
-
-      {/* Apple Products Section with Scroll Animation */}
-      <AppleProductsSection />
 
       {/* Logo Carousel */}
       <LogoCarousel />
