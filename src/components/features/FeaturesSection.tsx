@@ -7,14 +7,13 @@ export const FeaturesSection = () => {
   return (
     <section className="container px-4 py-24">
       {/* Header Section */}
-      <div className="max-w-2xl mb-20">
-        <h2 className="text-5xl md:text-6xl font-normal mb-6 tracking-tight text-left">
-          Transforme a forma
-          <br />
-          <span className="text-gradient font-medium">como você compra Apple no Brasil</span>
+      <div className="max-w-3xl mb-20">
+        <h2 className="text-4xl md:text-5xl font-normal mb-6 tracking-tight text-left">
+          O SealClub é o primeiro clube de compras do Brasil com acesso a Apple e marcas premium{" "}
+          <span className="text-gradient font-medium">com preço de custo.</span>
         </h2>
         <p className="text-lg md:text-xl text-gray-400 text-left">
-          Com o SealClub, você não precisa mais esperar promoção nem parcelar com juros. Aqui você tem acesso inteligente a produtos Apple com valor real de mercado.
+          Uma assinatura anual que transforma sua relação com a tecnologia. Economia inteligente, acesso privilegiado e a certeza de estar sempre um passo à frente.
         </p>
       </div>
 
