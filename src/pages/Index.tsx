@@ -54,7 +54,7 @@ const Index = () => {
             className="flex flex-col sm:flex-row gap-4 items-start"
           >
             <Button size="lg" className="button-gradient">
-              QUERO SER MEMBRO
+              Quero ser membro
             </Button>
           </motion.div>
         </div>
