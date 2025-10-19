@@ -63,13 +63,13 @@ const Index = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="relative mx-auto max-w-5xl mt-20"
+          className="relative mx-auto w-full mt-20 px-0"
         >
-          <div className="glass rounded-xl overflow-hidden">
+          <div className="relative w-full">
             <img
               src="/lovable-uploads/apple-products-hero.png"
               alt="SealClub - Produtos Apple: MacBook, iPad, iPhone, Apple Watch, AirPods e Apple TV"
-              className="w-full h-auto"
+              className="w-full h-auto object-contain"
               loading="eager"
               fetchPriority="high"
             />
