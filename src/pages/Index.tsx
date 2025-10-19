@@ -10,6 +10,7 @@ import LogoCarousel from "@/components/LogoCarousel";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import NewArrivalsSection from "@/components/NewArrivalsSection";
 const Index = () => {
   return <div className="min-h-screen bg-black text-foreground">
       <Navigation />
@@ -89,23 +90,10 @@ const Index = () => {
         <FeaturesSection />
       </div>
 
-      {/* New Section */}
-      <section className="container px-4 py-20 bg-black">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            Nova Seção
-          </h2>
-          <p className="text-lg text-gray-400 mb-8">
-            Conteúdo da nova seção. Personalize conforme necessário.
-          </p>
-        </motion.div>
-      </section>
+      {/* New Arrivals Section */}
+      <div className="bg-black">
+        <NewArrivalsSection />
+      </div>
 
       {/* Pricing Section */}
       <div id="pricing" className="bg-black">
