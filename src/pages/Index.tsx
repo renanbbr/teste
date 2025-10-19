@@ -104,8 +104,7 @@ const Index = () => {
         <div className="absolute inset-0 opacity-40" style={{
         backgroundImage: 'url("/lovable-uploads/21f3edfb-62b5-4e35-9d03-7339d803b980.png")',
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        filter: 'hue-rotate(180deg)'
+        backgroundPosition: 'center'
       }} />
         <motion.div initial={{
         opacity: 0,
