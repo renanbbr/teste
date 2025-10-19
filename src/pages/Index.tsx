@@ -54,7 +54,7 @@ const Index = () => {
             className="flex flex-col sm:flex-row gap-4 items-start"
           >
             <Button size="lg" className="button-gradient">
-              Não é promoção. É revolução.
+              QUERO SER MEMBRO
             </Button>
           </motion.div>
         </div>
