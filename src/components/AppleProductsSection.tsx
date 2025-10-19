@@ -81,9 +81,13 @@ const AppleProductsSection = () => {
             {/* Card 1 */}
             <div className={`absolute inset-0 overflow-visible shadow-xl ${isFirstCardVisible ? 'animate-card-enter' : ''}`} style={{
             ...cardStyle,
-            zIndex: 10,
-            transform: 'translateY(90px) scale(0.9)',
-            opacity: 0.9
+            zIndex: activeCardIndex === 0 ? 30 : 10,
+            transform: activeCardIndex === 0 
+              ? 'translateY(0) scale(1)' 
+              : activeCardIndex === 1 
+                ? 'translateY(120px) scale(0.95)' 
+                : 'translateY(160px) scale(0.9)',
+            opacity: activeCardIndex === 0 ? 1 : 0.7
           }}>
               <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.5))' }}>
                 <defs>
@@ -116,9 +120,13 @@ const AppleProductsSection = () => {
             {/* Card 2 */}
             <div className={`absolute inset-0 overflow-visible shadow-xl ${isSecondCardVisible ? 'animate-card-enter' : ''}`} style={{
             ...cardStyle,
-            zIndex: 20,
-            transform: 'translateY(55px) scale(0.95)',
-            opacity: 1,
+            zIndex: activeCardIndex === 1 ? 30 : activeCardIndex === 0 ? 20 : 15,
+            transform: activeCardIndex === 1 
+              ? 'translateY(0) scale(1)' 
+              : activeCardIndex === 0 
+                ? 'translateY(60px) scale(0.95)' 
+                : 'translateY(120px) scale(0.95)',
+            opacity: activeCardIndex === 1 ? 1 : 0.8,
             pointerEvents: 'auto'
           }}>
               <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.5))' }}>
@@ -152,9 +160,13 @@ const AppleProductsSection = () => {
             {/* Card 3 */}
             <div className={`absolute inset-0 overflow-visible shadow-xl ${isThirdCardVisible ? 'animate-card-enter' : ''}`} style={{
             ...cardStyle,
-            zIndex: 30,
-            transform: 'translateY(15px) scale(1)',
-            opacity: 1,
+            zIndex: activeCardIndex === 2 ? 30 : 20,
+            transform: activeCardIndex === 2 
+              ? 'translateY(0) scale(1)' 
+              : activeCardIndex === 1 
+                ? 'translateY(60px) scale(0.98)' 
+                : 'translateY(120px) scale(0.96)',
+            opacity: activeCardIndex === 2 ? 1 : 0.9,
             pointerEvents: 'auto'
           }}>
               <svg className="absolute inset-0 w-full h-full" style={{ filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.5))' }}>
