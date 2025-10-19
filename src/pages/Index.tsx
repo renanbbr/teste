@@ -26,26 +26,14 @@ const Index = () => {
           className="absolute inset-0 -z-10 bg-[#0A0A0A]"
         />
         
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="inline-block mb-4 px-4 py-1.5 rounded-full glass"
-        >
-          <span className="text-sm font-medium">
-            <Command className="w-4 h-4 inline-block mr-2" />
-            Next-gen crypto trading platform
-          </span>
-        </motion.div>
-        
         <div className="max-w-4xl relative z-10">
           <h1 className="text-5xl md:text-7xl font-normal mb-4 tracking-tight text-left">
             <span className="text-gray-200">
-              <TextGenerateEffect words="Trade crypto with" />
+              <TextGenerateEffect words="Você sempre pagou caro" />
             </span>
             <br />
             <span className="text-white font-medium">
-              <TextGenerateEffect words="confidence & security" />
+              <TextGenerateEffect words="por algo que poderia custar menos. Muito menos." />
             </span>
           </h1>
           
@@ -55,8 +43,8 @@ const Index = () => {
             transition={{ delay: 0.4 }}
             className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl text-left"
           >
-            Experience seamless cryptocurrency trading with advanced features, real-time analytics, and institutional-grade security.{" "}
-            <span className="text-white">Start trading in minutes.</span>
+            Agora, com o SealClub, você acessa iPhones, Apple Watch, AirPods e até MacBooks{" "}
+            <span className="text-white">com preço de custo.</span>
           </motion.p>
           
           <motion.div
@@ -66,10 +54,7 @@ const Index = () => {
             className="flex flex-col sm:flex-row gap-4 items-start"
           >
             <Button size="lg" className="button-gradient">
-              Start Trading Now
-            </Button>
-            <Button size="lg" variant="link" className="text-white">
-              View Markets <ArrowRight className="ml-2 w-4 h-4" />
+              Não é promoção. É revolução.
             </Button>
           </motion.div>
         </div>
@@ -83,7 +68,7 @@ const Index = () => {
           <div className="glass rounded-xl overflow-hidden">
             <img
               src="/lovable-uploads/c32c6788-5e4a-4fee-afee-604b03113c7f.png"
-              alt="CryptoTrade Dashboard"
+              alt="SealClub - Produtos Apple com Preço de Custo"
               className="w-full h-auto"
             />
           </div>
@@ -125,13 +110,13 @@ const Index = () => {
           className="bg-[#0A0A0A]/80 backdrop-blur-lg border border-white/10 rounded-2xl p-8 md:p-12 text-center relative z-10"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to start trading?
+            Pronto para Elevar Sua Experiência Tecnológica?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of traders who have already discovered the power of our platform.
+            Junte-se à comunidade que está redefinindo o acesso à tecnologia de ponta. Seu upgrade inteligente começa agora.
           </p>
           <Button size="lg" className="button-gradient">
-            Create Account
+            Quero Minha Vantagem Exclusiva
             <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
         </motion.div>

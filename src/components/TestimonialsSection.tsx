@@ -6,40 +6,40 @@ import { Card } from "./ui/card";
 
 const testimonials = [
   {
-    name: "Michael Chen",
-    role: "Professional Trader",
-    image: "https://avatars.githubusercontent.com/u/1234567?v=4",
-    content: "The real-time market data and advanced trading features have significantly improved my trading performance. The platform's security measures give me peace of mind."
+    name: "Alex P.",
+    role: "Membro Prime desde 2023",
+    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=100&h=100&fit=crop&q=80",
+    content: "Mudar para o SealClub foi a melhor decisão financeira que fiz relacionada à tecnologia. A economia é real, e o acesso aos lançamentos é surreal. Indico de olhos fechados!"
   },
   {
-    name: "Sarah Johnson",
-    role: "Crypto Fund Manager",
-    image: "https://avatars.githubusercontent.com/u/2345678?v=4",
-    content: "CryptoTrade's institutional-grade tools have transformed our trading strategy. The API integration and automated features have saved us countless hours."
+    name: "Bruna S.",
+    role: "Membro Ultra desde 2022",
+    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=100&h=100&fit=crop&q=80",
+    content: "O atendimento é outro nível! Tive uma dúvida sobre meu MacBook e o consultor resolveu na hora. Fora a economia, claro!"
   },
   {
-    name: "David Wilson",
-    role: "Early Crypto Investor",
-    image: "https://avatars.githubusercontent.com/u/3456789?v=4",
-    content: "The customer support is exceptional, and the platform's intuitive design made getting started with crypto trading seamless. A game-changer for both beginners and pros."
+    name: "Carlos M.",
+    role: "Membro Start desde 2024",
+    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=100&h=100&fit=crop&q=80",
+    content: "Finalmente consegui ter o iPhone do ano sem vender um rim! O SealClub é revolucionário."
   },
   {
-    name: "Emily Zhang",
-    role: "DeFi Developer",
-    image: "https://avatars.githubusercontent.com/u/4567890?v=4",
-    content: "We've seen remarkable improvements in our trading efficiency since switching to CryptoTrade. The smart order routing and liquidity aggregation are particularly impressive."
+    name: "Fernanda L.",
+    role: "Membro Prime desde 2023",
+    image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=100&h=100&fit=crop&q=80",
+    content: "Já indiquei pra todos os meus amigos. Acesso a produtos de ponta com preço justo e ainda com benefícios exclusivos. Não tem como ser melhor."
   },
   {
-    name: "James Rodriguez",
-    role: "Crypto Security Expert",
-    image: "https://avatars.githubusercontent.com/u/5678901?v=4",
-    content: "The security features are robust and the regular updates keep us ahead of emerging threats. It's exactly what the crypto industry needed."
+    name: "Ricardo G.",
+    role: "Membro Ultra desde 2022",
+    image: "https://images.unsplash.com/photo-1501286353178-1ec881214838?w=100&h=100&fit=crop&q=80",
+    content: "Como fotógrafo, preciso estar sempre com os melhores equipamentos. O SealClub facilitou demais minha vida e meu bolso!"
   },
   {
-    name: "Lisa Thompson",
-    role: "Portfolio Manager",
-    image: "https://avatars.githubusercontent.com/u/6789012?v=4",
-    content: "The platform's ability to handle complex trading strategies while maintaining simplicity in its interface is remarkable. It's been invaluable for our portfolio management."
+    name: "Juliana A.",
+    role: "Membro Start desde 2023",
+    image: "https://images.unsplash.com/photo-1501286353178-1ec881214838?w=100&h=100&fit=crop&q=80",
+    content: "Achei que era bom demais pra ser verdade, mas é real! Já estou no meu segundo ano e super satisfeita."
   }
 ];
 
@@ -54,9 +54,9 @@ const TestimonialsSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl font-normal mb-4">Trusted by Traders</h2>
+          <h2 className="text-5xl font-normal mb-4">O que nossos membros dizem</h2>
           <p className="text-muted-foreground text-lg">
-            Join thousands of satisfied traders on CryptoTrade
+            Milhares de brasileiros já estão economizando com o SealClub
           </p>
         </motion.div>
 

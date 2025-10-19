@@ -38,7 +38,7 @@ const PricingTier = ({
         ))}
       </ul>
       <Button className="button-gradient w-full">
-        Start Trading
+        Quero Aproveitar
       </Button>
     </div>
   </CardSpotlight>
@@ -54,8 +54,8 @@ export const PricingSection = () => {
           transition={{ duration: 0.5 }}
           className="text-5xl md:text-6xl font-normal mb-6"
         >
-          Choose Your{" "}
-          <span className="text-gradient font-medium">Trading Plan</span>
+          A diferença é tão absurda{" "}
+          <span className="text-gradient font-medium">que parece mentira</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -63,46 +63,48 @@ export const PricingSection = () => {
           transition={{ delay: 0.1, duration: 0.5 }}
           className="text-lg text-gray-400"
         >
-          Select the perfect trading plan with advanced features and competitive fees
+          Com o mesmo produto, da mesma marca, com a mesma garantia… você pode economizar centenas ou milhares de reais. Todos os anos.
         </motion.p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         <PricingTier
-          name="Basic Trader"
-          price="$0"
-          description="Perfect for beginners starting their crypto journey"
+          name="Start"
+          price="R$ 997"
+          description="Para você que quer começar a economizar agora"
           features={[
-            "Basic spot trading",
-            "Market & limit orders",
-            "Basic market analysis",
-            "Email support"
+            "Acesso a preço de custo",
+            "1 resgate por ano",
+            "Suporte exclusivo",
+            "Garantia completa",
+            "Frete grátis"
           ]}
         />
         <PricingTier
-          name="Pro Trader"
-          price="$29"
-          description="Advanced features for serious traders"
+          name="Prime"
+          price="R$ 1.497"
+          description="O plano mais popular para quem quer mais benefícios"
           features={[
-            "Advanced trading tools",
-            "Margin trading up to 10x",
-            "Advanced technical analysis",
-            "Priority support",
-            "API access"
+            "Tudo do Start",
+            "2 resgates por ano",
+            "Aparelho reserva",
+            "Desconto vitalício em acessórios",
+            "Kit de acessórios premium anual",
+            "Assistência técnica a preço de custo"
           ]}
           isPopular
         />
         <PricingTier
-          name="Institutional"
-          price="Custom"
-          description="Enterprise-grade solutions for institutions"
+          name="Ultra"
+          price="R$ 2.497"
+          description="Exclusividade máxima com benefícios ilimitados"
           features={[
-            "Custom trading solutions",
-            "Unlimited trading volume",
-            "OTC desk access",
-            "Dedicated account manager",
-            "Custom API integration",
-            "24/7 priority support"
+            "Tudo do Prime",
+            "Resgates ilimitados",
+            "Prioridade absoluta",
+            "Consultor pessoal dedicado",
+            "Acesso antecipado a lançamentos",
+            "Benefícios vitalícios"
           ]}
         />
       </div>
