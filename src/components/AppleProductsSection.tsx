@@ -1,4 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
+import appleDevices1 from "@/assets/apple-devices-1.png";
+import appleDevices2 from "@/assets/apple-devices-2.png";
+import appleDevices3 from "@/assets/apple-devices-3.png";
+
 const AppleProductsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
@@ -105,7 +109,7 @@ const AppleProductsSection = () => {
                   <span className="text-sm font-medium">Exclusivo</span>
                 </div>
               </div>
-              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
+              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center justify-between gap-8">
                 <div className="max-w-lg">
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
                     Acesso a preços de custo
@@ -113,6 +117,9 @@ const AppleProductsSection = () => {
                   <p className="text-lg text-white/90">
                     Produtos Apple com economia de até 40% comparado ao varejo tradicional
                   </p>
+                </div>
+                <div className="hidden md:block flex-shrink-0">
+                  <img src={appleDevices1} alt="Dispositivos Apple" className="h-[400px] w-auto object-contain" />
                 </div>
               </div>
             </div>
@@ -145,7 +152,7 @@ const AppleProductsSection = () => {
                   <span className="text-sm font-medium">Economia Real</span>
                 </div>
               </div>
-              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
+              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center justify-between gap-8">
                 <div className="max-w-lg">
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
                     Sem taxas escondidas
@@ -153,6 +160,9 @@ const AppleProductsSection = () => {
                   <p className="text-lg text-white/90">
                     Transparência total: você paga apenas o preço de custo + a mensalidade do clube
                   </p>
+                </div>
+                <div className="hidden md:block flex-shrink-0">
+                  <img src={appleDevices2} alt="Produtos Apple" className="h-[400px] w-auto object-contain" />
                 </div>
               </div>
             </div>
@@ -185,7 +195,7 @@ const AppleProductsSection = () => {
                   <span className="text-sm font-medium">Premium</span>
                 </div>
               </div>
-              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center">
+              <div className="relative z-10 p-5 sm:p-6 md:p-8 h-full flex items-center justify-between gap-8">
                 <div className="max-w-lg">
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
                     Comunidade exclusiva
@@ -193,6 +203,9 @@ const AppleProductsSection = () => {
                   <p className="text-lg text-white/90">
                     Faça parte de um grupo seleto que tem acesso aos melhores produtos com os melhores preços
                   </p>
+                </div>
+                <div className="hidden md:block flex-shrink-0">
+                  <img src={appleDevices3} alt="Ecossistema Apple" className="h-[400px] w-auto object-contain" />
                 </div>
               </div>
             </div>
