@@ -102,7 +102,7 @@ const newArrivals = [
   {
     name: "MacBook Pro 16\"",
     description: "Performance extraordinária com chips M3 Pro ou M3 Max. Tela Liquid Retina XDR e até 22 horas de bateria. Para quem não aceita limitações.",
-    image: "/lovable-uploads/86329743-ee49-4f2e-96f7-50508436273d.png",
+    image: "/lovable-uploads/macbook-air-hero.jpg",
     icon: <Smartphone className="w-5 h-5 text-white" />
   },
   {
