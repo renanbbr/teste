@@ -44,12 +44,12 @@ const ProductCard = ({ product, index }: { product: any; index: number }) => {
       className="group bg-gradient-to-br from-zinc-900/50 to-black/50 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-md transform hover:-translate-y-4 transition-all duration-500 hover:border-white/20 hover:shadow-2xl"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
-      <div className="aspect-square overflow-hidden relative">
+      <div className="aspect-square overflow-hidden relative bg-gradient-to-br from-zinc-800/30 to-zinc-900/30 flex items-center justify-center p-8">
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10" />
         <img 
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"
         />
         <div className="absolute top-4 left-4 z-20">
           <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md text-white text-sm font-medium rounded-full border border-white/20">
@@ -108,7 +108,7 @@ const newArrivals = [
   {
     name: "Bike Elétrica V9 Plus",
     description: "O tablet mais avançado do mundo. Chip M2, tela Liquid Retina XDR e compatibilidade com Apple Pencil e Magic Keyboard. Poder ilimitado.",
-    image: "/lovable-uploads/7335619d-58a9-41ad-a233-f7826f56f3e9.png",
+    image: "/lovable-uploads/bike-v9-plus.png",
     icon: <Smartphone className="w-5 h-5 text-white" />
   },
   {
