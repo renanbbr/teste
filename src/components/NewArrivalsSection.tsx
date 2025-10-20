@@ -108,7 +108,7 @@ const newArrivals = [
   {
     name: "Bike Elétrica V9 Plus",
     description: "O tablet mais avançado do mundo. Chip M2, tela Liquid Retina XDR e compatibilidade com Apple Pencil e Magic Keyboard. Poder ilimitado.",
-    image: "/lovable-uploads/bike-v9-logo.png",
+    image: "/lovable-uploads/bike-v9-plus.png",
     icon: <Smartphone className="w-5 h-5 text-white" />
   },
   {
