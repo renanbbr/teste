@@ -114,7 +114,7 @@ const newArrivals = [
   {
     name: "Boombox 3 Wi-fi",
     description: "Nunca mais perca seus pertences. Tecnologia de localização precisa integrada ao app Buscar. Pack com 4 unidades para proteção completa.",
-    image: "/lovable-uploads/b6436838-5c1a-419a-9cdc-1f9867df073d.png",
+    image: "/lovable-uploads/jbl-boombox-3.png",
     icon: <Smartphone className="w-5 h-5 text-white" />
   }
 ];
