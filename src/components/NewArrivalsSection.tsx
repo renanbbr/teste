@@ -84,7 +84,7 @@ const newArrivals = [
   {
     name: "iPhone 17 Pro Max 256GB",
     description: "O iPhone mais poderoso já criado. Com chip A17 Pro, sistema de câmeras profissional e design em titânio. Acesso exclusivo a preço de custo para membros.",
-    image: "/lovable-uploads/apple-products-hero.png",
+    image: "/lovable-uploads/iphone-17-pro-max.png",
     icon: <Smartphone className="w-5 h-5 text-white" />
   },
   {
