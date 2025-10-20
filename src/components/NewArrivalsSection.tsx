@@ -44,7 +44,7 @@ const ProductCard = ({ product, index }: { product: any; index: number }) => {
       className="group bg-gradient-to-br from-zinc-900/50 to-black/50 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-md transform hover:-translate-y-4 transition-all duration-500 hover:border-white/20 hover:shadow-2xl"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
-      <div className="aspect-[4/3] overflow-hidden relative">
+      <div className="aspect-square overflow-hidden relative">
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10" />
         <img 
           src={product.image}
@@ -96,7 +96,7 @@ const newArrivals = [
   {
     name: "AirPods Pro (2ª geração)",
     description: "Cancelamento de ruído adaptativo, Áudio Espacial personalizado e até 6 horas de reprodução. A experiência sonora definitiva da Apple.",
-    image: "/lovable-uploads/apple-products-dark.jpg", 
+    image: "/lovable-uploads/airpods-pro-2.jpg", 
     icon: <Headphones className="w-5 h-5 text-white" />
   },
   {
