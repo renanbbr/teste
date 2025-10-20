@@ -96,7 +96,7 @@ const newArrivals = [
   {
     name: "AirPods Pro (2ª geração)",
     description: "Cancelamento de ruído adaptativo, Áudio Espacial personalizado e até 6 horas de reprodução. A experiência sonora definitiva da Apple.",
-    image: "/lovable-uploads/airpods-pro-2.jpg", 
+    image: "/lovable-uploads/airpods-pro-2.png", 
     icon: <Headphones className="w-5 h-5 text-white" />
   },
   {
