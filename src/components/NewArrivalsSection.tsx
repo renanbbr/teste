@@ -90,7 +90,7 @@ const newArrivals = [
   {
     name: "Drone DJI Mini 4 Pro Fly More Combo (Com tela)",
     description: "O relógio mais robusto e capaz da Apple. Design resistente, bateria para aventuras extremas e funcionalidades avançadas de saúde e fitness.",
-    image: "/lovable-uploads/apple-products-dashboard.jpg",
+    image: "/lovable-uploads/dji-mini-4-pro.png",
     icon: <Watch className="w-5 h-5 text-white" />
   },
   {
