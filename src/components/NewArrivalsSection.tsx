@@ -88,7 +88,7 @@ const newArrivals = [
     icon: <Smartphone className="w-5 h-5 text-white" />
   },
   {
-    name: "Apple Watch Ultra 2",
+    name: "Drone DJI Mini 4 Pro Fly More Combo (Com tela)",
     description: "O relógio mais robusto e capaz da Apple. Design resistente, bateria para aventuras extremas e funcionalidades avançadas de saúde e fitness.",
     image: "/lovable-uploads/apple-products-dashboard.jpg",
     icon: <Watch className="w-5 h-5 text-white" />
@@ -106,13 +106,13 @@ const newArrivals = [
     icon: <Smartphone className="w-5 h-5 text-white" />
   },
   {
-    name: "iPad Pro 12.9\"",
+    name: "Bike Elétrica V9 Plus",
     description: "O tablet mais avançado do mundo. Chip M2, tela Liquid Retina XDR e compatibilidade com Apple Pencil e Magic Keyboard. Poder ilimitado.",
     image: "/lovable-uploads/7335619d-58a9-41ad-a233-f7826f56f3e9.png",
     icon: <Smartphone className="w-5 h-5 text-white" />
   },
   {
-    name: "AirTag Pack",
+    name: "Boombox 3 Wi-fi",
     description: "Nunca mais perca seus pertences. Tecnologia de localização precisa integrada ao app Buscar. Pack com 4 unidades para proteção completa.",
     image: "/lovable-uploads/b6436838-5c1a-419a-9cdc-1f9867df073d.png",
     icon: <Smartphone className="w-5 h-5 text-white" />
