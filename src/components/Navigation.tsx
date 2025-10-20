@@ -58,8 +58,8 @@ const Navigation = () => {
       <div className="mx-auto h-full px-6">
         <nav className="flex items-center justify-between h-full">
           <div className="flex items-center gap-2">
-            <img src={sealclubLogo} alt="SealClub" className="w-6 h-6" />
-            <span className="text-base text-muted-foreground">SealClub</span>
+            <img src={sealclubLogo} alt="SealClub" className="w-8 h-8" />
+            <span className="text-base text-muted-foreground font-bold">SealClub</span>
           </div>
 
           {/* Desktop Navigation */}
