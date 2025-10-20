@@ -100,7 +100,7 @@ const newArrivals = [
     icon: <Headphones className="w-5 h-5 text-white" />
   },
   {
-    name: "Bomboox 3 Wi-fi",
+    name: "MacBook Air M4 16GB 256SSD",
     description: "Performance extraordinária com chips M3 Pro ou M3 Max. Tela Liquid Retina XDR e até 22 horas de bateria. Para quem não aceita limitações.",
     image: "/lovable-uploads/macbook-air-hero.jpg",
     icon: <Smartphone className="w-5 h-5 text-white" />
