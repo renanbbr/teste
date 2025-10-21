@@ -137,29 +137,22 @@ const Index = () => {
       </div>
 
       {/* Branding Section */}
-      <section className="bg-black py-32 relative overflow-hidden">
-        {/* Radial gradient background */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.05)_0%,transparent_70%)]" />
-        
+      <section className="bg-black py-32">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="container px-4 flex items-center justify-center relative z-10"
+          className="container px-4 flex items-center justify-center"
         >
-          {/* Video container with glow effect */}
+          {/* Video container */}
           <div className="relative w-full max-w-4xl">
-            {/* Glow effect behind video */}
-            <div className="absolute inset-0 blur-3xl bg-gradient-to-r from-green-500/20 via-lime-500/20 to-green-500/20 rounded-full scale-150" />
-            
-            {/* Video */}
             <video 
               autoPlay
               loop
               muted
               playsInline
-              className="w-full h-auto relative z-10 drop-shadow-[0_0_30px_rgba(34,197,94,0.3)]"
+              className="w-full h-auto"
             >
               <source src="/lovable-uploads/sealclub-branding.mp4" type="video/mp4" />
             </video>
