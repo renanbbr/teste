@@ -12,6 +12,7 @@ import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import NewArrivalsSection from "@/components/NewArrivalsSection";
+import sealclubLogo from "@/assets/sealclub-logo.png";
 const Index = () => {
   return <div className="min-h-screen bg-black text-foreground">
       <Navigation />
@@ -134,6 +135,33 @@ const Index = () => {
       <div className="bg-black">
         <FAQSection />
       </div>
+
+      {/* Branding Section */}
+      <section className="bg-black py-32 relative overflow-hidden">
+        {/* Radial gradient background */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.05)_0%,transparent_70%)]" />
+        
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="container px-4 flex items-center justify-center relative z-10"
+        >
+          {/* Logo container with glow effect */}
+          <div className="relative">
+            {/* Glow effect behind logo */}
+            <div className="absolute inset-0 blur-3xl bg-gradient-to-r from-green-500/20 via-lime-500/20 to-green-500/20 rounded-full scale-150" />
+            
+            {/* Logo */}
+            <img 
+              src={sealclubLogo} 
+              alt="SealClub" 
+              className="w-32 h-32 md:w-40 md:h-40 relative z-10 drop-shadow-[0_0_30px_rgba(34,197,94,0.3)]"
+            />
+          </div>
+        </motion.div>
+      </section>
 
       {/* CTA Section */}
       <section className="container px-4 py-20 relative bg-black">
