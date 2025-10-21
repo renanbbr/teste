@@ -148,17 +148,21 @@ const Index = () => {
           viewport={{ once: true }}
           className="container px-4 flex items-center justify-center relative z-10"
         >
-          {/* Logo container with glow effect */}
-          <div className="relative">
-            {/* Glow effect behind logo */}
+          {/* Video container with glow effect */}
+          <div className="relative w-full max-w-4xl">
+            {/* Glow effect behind video */}
             <div className="absolute inset-0 blur-3xl bg-gradient-to-r from-green-500/20 via-lime-500/20 to-green-500/20 rounded-full scale-150" />
             
-            {/* Logo */}
-            <img 
-              src={sealclubLogo} 
-              alt="SealClub" 
-              className="w-32 h-32 md:w-40 md:h-40 relative z-10 drop-shadow-[0_0_30px_rgba(34,197,94,0.3)]"
-            />
+            {/* Video */}
+            <video 
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-auto relative z-10 drop-shadow-[0_0_30px_rgba(34,197,94,0.3)]"
+            >
+              <source src="/lovable-uploads/sealclub-branding.mp4" type="video/mp4" />
+            </video>
           </div>
         </motion.div>
       </section>
