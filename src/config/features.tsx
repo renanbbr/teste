@@ -1,4 +1,4 @@
-import { Smartphone, Trophy, Headphones, Zap, DollarSign, CreditCard, Wrench, Truck, Gift } from "lucide-react";
+import { Smartphone, Trophy, Headphones, Zap, DollarSign, CreditCard, RefreshCw, Truck, Gift } from "lucide-react";
 
 export const features = [
   {
@@ -38,9 +38,9 @@ export const features = [
     image: "/lovable-uploads/7335619d-58a9-41ad-a233-f7826f56f3e9.png"
   },
   {
-    title: "Assistência técnica a preço de custo",
-    description: "Você paga só pelas peças — sem margem de lucro extra da loja. É suporte profissional direto com o time Seal.",
-    icon: <Wrench className="w-6 h-6" />,
+    title: "Aceitamos seu usado",
+    description: "Faça upgrade e use seu aparelho atual como parte do pagamento. Valorizamos seu dispositivo e facilitamos a troca por tecnologia mais recente.",
+    icon: <RefreshCw className="w-6 h-6" />,
     image: "/lovable-uploads/b6436838-5c1a-419a-9cdc-1f9867df073d.png"
   },
   {

@@ -8,6 +8,7 @@ import { FeaturesSection } from "@/components/features/FeaturesSection";
 import { PricingSectionV2 } from "@/components/pricing/PricingSectionV2";
 import LogoCarousel from "@/components/LogoCarousel";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import NewArrivalsSection from "@/components/NewArrivalsSection";
@@ -103,6 +104,11 @@ const Index = () => {
       {/* Testimonials Section */}
       <div className="bg-black">
         <TestimonialsSection />
+      </div>
+
+      {/* FAQ Section */}
+      <div className="bg-black">
+        <FAQSection />
       </div>
 
       {/* CTA Section */}
