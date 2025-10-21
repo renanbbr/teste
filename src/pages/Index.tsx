@@ -68,20 +68,31 @@ const Index = () => {
           </motion.div>
         </div>
 
-        <motion.div initial={{
-        opacity: 0
-      }} animate={{
-        opacity: 1
-      }} transition={{
-        delay: 0.7
-      }} className="my-16">
-          <Separator className="bg-white/10" />
+        {/* Dashboard integrado na mesma seção */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+          className="mt-20 max-w-7xl mx-auto"
+        >
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            <div className="grid md:grid-cols-[280px_1fr] gap-0">
+              <img 
+                src="/lovable-uploads/painel_membro.png"
+                alt="Menu do SealClub"
+                className="w-full h-auto"
+              />
+              <img 
+                src="/lovable-uploads/painel_club.png"
+                alt="Dashboard do SealClub"
+                className="w-full h-auto"
+              />
+            </div>
+          </div>
         </motion.div>
 
       </motion.section>
 
-      {/* Apple Products Section with Scroll Animation */}
-      <AppleProductsSection />
 
       {/* Logo Carousel */}
       <LogoCarousel />
