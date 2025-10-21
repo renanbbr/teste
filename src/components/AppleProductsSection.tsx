@@ -13,19 +13,26 @@ export const AppleProductsSection = () => {
         >
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Produtos Apple em Destaque
+              Seu Dashboard de Membro
             </h2>
             <p className="text-lg text-gray-400">
-              Descubra a nova geração de dispositivos Apple
+              Gerencie seus benefícios e produtos com facilidade
             </p>
           </div>
           
           <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-            <img 
-              src="/lovable-uploads/apple-products-dashboard.jpg"
-              alt="Dashboard de Produtos Apple"
-              className="w-full h-auto"
-            />
+            <div className="grid md:grid-cols-[280px_1fr] gap-0">
+              <img 
+                src="/lovable-uploads/painel_membro.png"
+                alt="Menu do SealClub"
+                className="w-full h-auto"
+              />
+              <img 
+                src="/lovable-uploads/painel_club.png"
+                alt="Dashboard do SealClub"
+                className="w-full h-auto"
+              />
+            </div>
           </div>
         </motion.div>
       </div>
