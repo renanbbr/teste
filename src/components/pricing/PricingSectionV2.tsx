@@ -42,22 +42,24 @@ const PricingTier = ({
   <CardSpotlight className={`h-full ${isFeatured ? "border-primary" : "border-white/10"} border-2`}>
     <div className="relative h-full p-6 flex flex-col">
       {isFeatured && (
-        <span className="text-xs font-medium bg-primary/10 text-primary rounded-full px-3 py-1 w-fit mb-4">
+        <span className="absolute top-4 right-4 text-xs font-medium bg-primary/10 text-primary rounded-full px-3 py-1">
           Destaque
         </span>
       )}
-      <h3 className="text-2xl font-medium mb-2">{name}</h3>
-      <div className="mb-4">
-        {isEnterprise ? (
-          <span className="text-3xl font-bold">{price}</span>
-        ) : (
-          <>
-            <span className="text-4xl font-bold">{price}</span>
-            {period && <span className="text-muted-foreground">/{period}</span>}
-          </>
-        )}
+      <div className="h-[180px] flex flex-col">
+        <h3 className="text-2xl font-medium mb-2">{name}</h3>
+        <div className="mb-4">
+          {isEnterprise ? (
+            <span className="text-3xl font-bold">{price}</span>
+          ) : (
+            <>
+              <span className="text-4xl font-bold">{price}</span>
+              {period && <span className="text-muted-foreground">/{period}</span>}
+            </>
+          )}
+        </div>
+        <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{description}</p>
       </div>
-      <p className="text-muted-foreground mb-6 text-sm leading-relaxed">{description}</p>
       
       <div className="space-y-2 mb-8 flex-grow">
         {allFeatures.map((feature, index) => {
@@ -65,12 +67,12 @@ const PricingTier = ({
           return (
             <div 
               key={index} 
-              className="flex items-center justify-between py-2 border-b border-white/5 min-h-[40px]"
+              className="flex items-center justify-between py-3 border-b border-white/5 h-[52px]"
             >
-              <span className="text-xs text-muted-foreground font-medium">
+              <span className="text-xs text-muted-foreground font-medium leading-tight">
                 {feature.label}
               </span>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 flex-shrink-0">
                 {typeof value === "boolean" ? (
                   value ? (
                     <Check className="w-4 h-4 text-green-500" />
@@ -78,7 +80,7 @@ const PricingTier = ({
                     <X className="w-4 h-4 text-red-500/50" />
                   )
                 ) : (
-                  <span className="text-xs font-medium text-right max-w-[120px]">
+                  <span className="text-xs font-medium text-right max-w-[120px] leading-tight">
                     {value}
                   </span>
                 )}
@@ -118,7 +120,7 @@ export const PricingSectionV2 = () => {
         </motion.p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto items-start">
         <PricingTier
           name="PRO"
           price="R$ 29"
