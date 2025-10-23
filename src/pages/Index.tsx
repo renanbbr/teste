@@ -85,17 +85,12 @@ const Index = () => {
             {/* Inner container with dark gradient */}
             <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-black via-black to-green-950/30 shadow-[0_0_50px_rgba(34,197,94,0.15),0_20px_60px_rgba(0,0,0,0.8)] transition-all duration-500 hover:shadow-[0_0_80px_rgba(34,197,94,0.25),0_30px_80px_rgba(0,0,0,0.9)] hover:scale-[1.01]">
               
-              {/* Grid com as imagens dos painéis */}
-              <div className="grid md:grid-cols-[280px_1fr] gap-0 items-start max-h-[500px]">
+              {/* Dashboard Hero Image */}
+              <div className="w-full">
                 <img 
-                  src="/lovable-uploads/painel_membro.png"
-                  alt="Menu do SealClub"
-                  className="w-full h-full object-cover object-top"
-                />
-                <img 
-                  src="/lovable-uploads/painel_club.png"
+                  src="/lovable-uploads/dashboard-hero.png"
                   alt="Dashboard do SealClub"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-auto object-cover rounded-2xl"
                 />
               </div>
               
