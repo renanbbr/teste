@@ -77,13 +77,13 @@ const Index = () => {
           className="mt-20 max-w-7xl mx-auto relative"
         >
           {/* Glow effect background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 via-transparent to-lime-500/10 blur-3xl -z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-transparent to-cyan-500/10 blur-3xl -z-10" />
           
           {/* Border gradient wrapper */}
-          <div className="relative p-[2px] rounded-3xl bg-gradient-to-br from-green-500/30 via-transparent to-lime-500/30">
+          <div className="relative p-[2px] rounded-3xl bg-gradient-to-br from-blue-500/30 via-transparent to-cyan-500/30">
             
             {/* Inner container with dark gradient */}
-            <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-black via-black to-green-950/30 shadow-[0_0_50px_rgba(34,197,94,0.15),0_20px_60px_rgba(0,0,0,0.8)] transition-all duration-500 hover:shadow-[0_0_80px_rgba(34,197,94,0.25),0_30px_80px_rgba(0,0,0,0.9)] hover:scale-[1.01]">
+            <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-black via-black to-blue-950/30 shadow-[0_0_50px_rgba(59,130,246,0.15),0_20px_60px_rgba(0,0,0,0.8)] transition-all duration-500 hover:shadow-[0_0_80px_rgba(59,130,246,0.25),0_30px_80px_rgba(0,0,0,0.9)] hover:scale-[1.01]">
               
               {/* Dashboard Hero Image */}
               <div className="w-full">
