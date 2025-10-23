@@ -94,19 +94,14 @@ const Index = () => {
                 <img 
                   src="/lovable-uploads/dashboard-hero.png"
                   alt="Dashboard do SealClub"
-                  className="w-full h-auto object-cover rounded-2xl 
-                             backdrop-blur-sm 
-                             saturate-[0.85] 
-                             contrast-[0.95] 
-                             brightness-[0.92]
-                             opacity-95"
+                  className="w-full h-auto object-cover rounded-2xl"
                   style={{
                     filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3))'
                   }}
                 />
                 
-                {/* Overlay sutil para integração */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-950/10 via-transparent to-cyan-950/10 rounded-2xl pointer-events-none" />
+                {/* Filtro/Overlay apenas na parte inferior */}
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-blue-950/40 via-blue-950/20 to-transparent rounded-b-2xl backdrop-blur-md pointer-events-none" />
               </div>
               
               {/* Glass overlay para depth adicional */}
