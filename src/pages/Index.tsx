@@ -13,6 +13,7 @@ import Footer from "@/components/Footer";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import NewArrivalsSection from "@/components/NewArrivalsSection";
 import sealclubLogo from "@/assets/sealclub-logo.png";
+import { AnimatedLines } from "@/components/ui/animated-lines";
 const Index = () => {
   return <div className="min-h-screen bg-black text-foreground">
       <Navigation />
@@ -29,6 +30,9 @@ const Index = () => {
     }} className="relative container px-4 pt-40 pb-20 py-0">
         {/* Background */}
         <div className="absolute inset-0 -z-10 bg-[#0A0A0A]" />
+        
+        {/* Elemento decorativo de linhas animadas */}
+        <AnimatedLines />
         
         <div className="max-w-4xl relative z-10">
           <h1 className="text-5xl md:text-7xl font-normal mb-4 tracking-tight text-left">
@@ -83,15 +87,26 @@ const Index = () => {
           <div className="relative p-[2px] rounded-3xl bg-gradient-to-br from-blue-500/30 via-transparent to-cyan-500/30">
             
             {/* Inner container with dark gradient */}
-            <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-black via-black to-blue-950/30 shadow-[0_0_50px_rgba(59,130,246,0.15),0_20px_60px_rgba(0,0,0,0.8)] transition-all duration-500 hover:shadow-[0_0_80px_rgba(59,130,246,0.25),0_30px_80px_rgba(0,0,0,0.9)] hover:scale-[1.01]">
+            <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-black via-black to-blue-950/30 shadow-[0_0_50px_rgba(59,130,246,0.15),0_20px_60px_rgba(0,0,0,0.8)] transition-all duration-500 hover:shadow-[0_0_80px_rgba(59,130,246,0.25),0_30px_80px_rgba(0,0,0,0.9)] hover:scale-[1.01] backdrop-blur-xl">
               
-              {/* Dashboard Hero Image */}
-              <div className="w-full">
+              {/* Dashboard Hero Image com filtros */}
+              <div className="w-full relative">
                 <img 
                   src="/lovable-uploads/dashboard-hero.png"
                   alt="Dashboard do SealClub"
-                  className="w-full h-auto object-cover rounded-2xl"
+                  className="w-full h-auto object-cover rounded-2xl 
+                             backdrop-blur-sm 
+                             saturate-[0.85] 
+                             contrast-[0.95] 
+                             brightness-[0.92]
+                             opacity-95"
+                  style={{
+                    filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3))'
+                  }}
                 />
+                
+                {/* Overlay sutil para integração */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-950/10 via-transparent to-cyan-950/10 rounded-2xl pointer-events-none" />
               </div>
               
               {/* Glass overlay para depth adicional */}
