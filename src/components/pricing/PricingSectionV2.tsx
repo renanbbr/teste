@@ -1,14 +1,31 @@
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CardSpotlight } from "./CardSpotlight";
+
+const allFeatures = [
+  { label: "Produtos por ano", values: { pro: "1 Apple", tech: "2 Tech", ultra: "4 qualquer marca", enterprise: "Ilimitado" } },
+  { label: "Marcas disponíveis", values: { pro: "Apple", tech: "DJI, Garmin, JBL, Polar, Hollyland", ultra: "Apple + Tech", enterprise: "Todas" } },
+  { label: "Preço de custo", values: { pro: true, tech: true, ultra: true, enterprise: true } },
+  { label: "Frete grátis", values: { pro: false, tech: false, ultra: true, enterprise: true } },
+  { label: "Aparelho reserva", values: { pro: false, tech: false, ultra: true, enterprise: true } },
+  { label: "Transferência de dados", values: { pro: false, tech: false, ultra: true, enterprise: true } },
+  { label: "Kit anual (capa + película)", values: { pro: false, tech: false, ultra: true, enterprise: true } },
+  { label: "Desc. assistência técnica", values: { pro: "—", tech: "5%", ultra: "10%", enterprise: true } },
+  { label: "Desc. acessórios", values: { pro: "—", tech: "5%", ultra: "15%", enterprise: true } },
+  { label: "Parcerias e cupons locais", values: { pro: true, tech: true, ultra: true, enterprise: true } },
+  { label: "Acesso antecipado", values: { pro: true, tech: true, ultra: true, enterprise: true } },
+  { label: "Suporte", values: { pro: "Básico", tech: "Standard", ultra: "VIP Vitalício", enterprise: "Dedicado" } },
+  { label: "Cartão físico", values: { pro: "Digital", tech: "Premium", ultra: "Premium", enterprise: "Corporativo" } },
+  { label: "Ideal para", values: { pro: "Apple lover", tech: "Tech enthusiast", ultra: "Premium total", enterprise: "Corporativo" } }
+];
 
 const PricingTier = ({
   name,
   price,
   period,
   description,
-  features,
+  planKey,
   isFeatured,
   ctaText,
   isEnterprise,
@@ -17,7 +34,7 @@ const PricingTier = ({
   price: string;
   period?: string;
   description: string;
-  features: string[];
+  planKey: 'pro' | 'tech' | 'ultra' | 'enterprise';
   isFeatured?: boolean;
   ctaText: string;
   isEnterprise?: boolean;
@@ -40,15 +57,37 @@ const PricingTier = ({
           </>
         )}
       </div>
-      <p className="text-muted-foreground mb-6 text-sm">{description}</p>
-      <ul className="space-y-3 mb-8 flex-grow">
-        {features.map((feature, index) => (
-          <li key={index} className="flex items-start gap-2">
-            <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-            <span className="text-sm text-muted-foreground">{feature}</span>
-          </li>
-        ))}
-      </ul>
+      <p className="text-muted-foreground mb-6 text-sm leading-relaxed">{description}</p>
+      
+      <div className="space-y-2 mb-8 flex-grow">
+        {allFeatures.map((feature, index) => {
+          const value = feature.values[planKey];
+          return (
+            <div 
+              key={index} 
+              className="flex items-center justify-between py-2 border-b border-white/5 min-h-[40px]"
+            >
+              <span className="text-xs text-muted-foreground font-medium">
+                {feature.label}
+              </span>
+              <div className="flex items-center gap-1">
+                {typeof value === "boolean" ? (
+                  value ? (
+                    <Check className="w-4 h-4 text-green-500" />
+                  ) : (
+                    <X className="w-4 h-4 text-red-500/50" />
+                  )
+                ) : (
+                  <span className="text-xs font-medium text-right max-w-[120px]">
+                    {value}
+                  </span>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      
       <Button className="button-gradient w-full">
         {ctaText}
       </Button>
@@ -85,41 +124,23 @@ export const PricingSectionV2 = () => {
           price="R$ 29"
           period="mês"
           description="Ideal para quem deseja economia na compra de um único Apple por ano."
-          features={[
-            "1 produto Apple por ano",
-            "iPhone, iPad, Mac, Apple Watch, AirPods",
-            "Acesso antecipado a lançamentos",
-            "Suporte básico",
-            "Cartão digital personalizado"
-          ]}
-          ctaText="ASSINAR O START"
+          planKey="pro"
+          ctaText="ASSINAR O PRO"
         />
         <PricingTier
           name="TECH"
           price="R$ 49"
           period="mês"
           description="Produtos de marcas tech com preço de custo, até 2 por ano."
-          features={[
-            "2 produtos por ano",
-            "DJI, Garmin, JBL, Polar, Hollyland",
-            "Drones e wearables com preço de custo",
-            "Benefícios em acessórios e serviços",
-            "Cartão físico premium"
-          ]}
-          ctaText="ASSINAR O PRIME"
+          planKey="tech"
+          ctaText="ASSINAR O TECH"
         />
         <PricingTier
           name="ULTRA"
           price="R$ 79"
           period="mês"
           description="Acesso total ao clube com até 4 produtos por ano de qualquer marca."
-          features={[
-            "4 produtos por ano",
-            "Todas as marcas: Apple + Tech",
-            "Liberdade total para misturar categorias",
-            "Atendimento VIP e suporte vitalício",
-            "Benefícios acumulativos"
-          ]}
+          planKey="ultra"
           isFeatured
           ctaText="ASSINAR O ULTRA"
         />
@@ -127,13 +148,7 @@ export const PricingSectionV2 = () => {
           name="ENTERPRISE"
           price="Sob consulta"
           description="Plano corporativo para empresas."
-          features={[
-            "Produtos ilimitados por ano (negociável)",
-            "Todas as marcas disponíveis",
-            "Acesso corporativo com maior volume",
-            "Consultoria dedicada",
-            "Painel personalizado"
-          ]}
+          planKey="enterprise"
           isEnterprise
           ctaText="SABER MAIS"
         />
