@@ -7,12 +7,12 @@ const allFeatures = [
   { label: "Produtos por ano", values: { pro: "1 Apple", tech: "2 Tech", ultra: "4 qualquer marca", enterprise: "Ilimitado" } },
   { label: "Marcas disponíveis", values: { pro: "Apple", tech: "DJI, Garmin, JBL, Polar, Hollyland", ultra: "Apple + Tech", enterprise: "Todas" } },
   { label: "Preço de custo", values: { pro: true, tech: true, ultra: true, enterprise: true } },
-  { label: "Frete grátis", values: { pro: false, tech: false, ultra: true, enterprise: true } },
+  { label: "Frete grátis", values: { pro: false, tech: false, ultra: true, enterprise: false } },
   { label: "Aparelho reserva", values: { pro: false, tech: false, ultra: true, enterprise: true } },
-  { label: "Transferência de dados", values: { pro: false, tech: false, ultra: true, enterprise: true } },
+  { label: "Transferência de dados", values: { pro: false, tech: false, ultra: true, enterprise: false } },
   { label: "Kit SealClub Experience", values: { pro: false, tech: false, ultra: true, enterprise: true } },
-  { label: "Cupom Assistência Técnica", values: { pro: "5%", tech: "10%", ultra: "15%", enterprise: true } },
-  { label: "Cupom Acessórios", values: { pro: "5%", tech: "10%", ultra: "15%", enterprise: true } },
+  { label: "Cupom Assistência Técnica", values: { pro: "5%", tech: "10%", ultra: "15%", enterprise: false } },
+  { label: "Cupom Acessórios", values: { pro: "5%", tech: "10%", ultra: "15%", enterprise: false } },
   { label: "Acesso antecipado", values: { pro: true, tech: true, ultra: true, enterprise: true } },
   { label: "Suporte", values: { pro: "Premium", tech: "Vitalício", ultra: "Vitalício", enterprise: "Dedicado" } },
   { label: "Bônus SealPass", values: { pro: true, tech: true, ultra: true, enterprise: true }, isBonus: true }
@@ -32,7 +32,7 @@ const PricingTier = ({
   name: string;
   price: string;
   period?: string;
-  description: string;
+  description?: string;
   planKey: 'pro' | 'tech' | 'ultra' | 'enterprise';
   isFeatured?: boolean;
   ctaText: string;
@@ -49,15 +49,6 @@ const PricingTier = ({
       <div className="h-[180px] flex flex-col">
         <h3 className="text-2xl font-medium mb-2">{name}</h3>
         
-        {showPriceAlert && (
-          <div className="flex items-center gap-1.5 mb-3">
-            <AlertCircle className="w-3.5 h-3.5 text-orange-500" />
-            <span className="text-[11px] font-bold text-orange-500 uppercase tracking-wide">
-              Preço aumentará em breve
-            </span>
-          </div>
-        )}
-        
         <div className="mb-4">
           {isEnterprise ? (
             <span className="text-3xl font-bold">{price}</span>
@@ -68,7 +59,17 @@ const PricingTier = ({
             </>
           )}
         </div>
-        <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{description}</p>
+        
+        {showPriceAlert && (
+          <div className="flex items-center gap-1.5 mb-3">
+            <AlertCircle className="w-3.5 h-3.5 text-orange-500" />
+            <span className="text-[11px] font-bold text-orange-500 uppercase tracking-wide">
+              Preço aumentará em breve
+            </span>
+          </div>
+        )}
+        
+        {description && <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{description}</p>}
       </div>
       
       <div className="space-y-2 mb-8 flex-grow">
@@ -145,7 +146,6 @@ export const PricingSectionV2 = () => {
           name="PRO"
           price="R$ 29"
           period="mês"
-          description="Ideal para quem deseja economia na compra de um único Apple por ano."
           planKey="pro"
           ctaText="ASSINAR O PRO"
           showPriceAlert
@@ -154,7 +154,6 @@ export const PricingSectionV2 = () => {
           name="TECH"
           price="R$ 49"
           period="mês"
-          description="Produtos de marcas tech com preço de custo, até 2 por ano."
           planKey="tech"
           ctaText="ASSINAR O TECH"
           showPriceAlert
@@ -163,7 +162,6 @@ export const PricingSectionV2 = () => {
           name="ULTRA"
           price="R$ 79"
           period="mês"
-          description="Acesso total ao clube com até 4 produtos por ano de qualquer marca."
           planKey="ultra"
           isFeatured
           ctaText="ASSINAR O ULTRA"
