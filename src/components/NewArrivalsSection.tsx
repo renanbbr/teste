@@ -1,4 +1,4 @@
-import { ArrowRight, Smartphone, Watch, Headphones } from "lucide-react";
+import { Smartphone, Plane, Headphones, Laptop, Bike, Speaker } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const NewArrivalsSection = () => {
@@ -7,17 +7,18 @@ const NewArrivalsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center max-w-4xl mx-auto mb-20">
           <span className="inline-block px-4 py-2 bg-white/10 text-white rounded-full font-medium mb-6">
-            Novidades
+            O que você paga hoje VS o que pagaria como membro do SealClub
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight leading-tight">
-            Últimos Lançamentos
-            <span className="block bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">
-              Apple
+            A diferença é tão absurda que parece mentira.
+            <span className="block bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent mt-2">
+              Mas é exatamente isso que faz do SealClub algo único.
             </span>
           </h2>
           <p className="text-xl text-white/70 leading-relaxed">
-            Descubra os produtos mais recentes da Apple com preços exclusivos para membros. 
-            Tecnologia de ponta ao seu alcance.
+            Com o mesmo produto, da mesma marca, com a mesma garantia…
+            <span className="block mt-2">você pode economizar centenas ou milhares de reais.</span>
+            <span className="block font-semibold text-white/90 mt-1">Todos os anos.</span>
           </p>
         </div>
 
@@ -27,12 +28,6 @@ const NewArrivalsSection = () => {
           ))}
         </div>
 
-        <div className="text-center">
-          <Button className="bg-white text-black hover:bg-white/90 px-12 py-6 rounded-full text-xl font-semibold flex items-center gap-4 mx-auto">
-            Ver Todos os Produtos
-            <ArrowRight className="w-6 h-6" />
-          </Button>
-        </div>
       </div>
     </section>
   );
@@ -61,11 +56,13 @@ const ProductCard = ({ product, index }: { product: any; index: number }) => {
           alt={product.name}
           className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"
         />
-        <div className="absolute top-4 left-4 z-20">
-          <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md text-white text-sm font-medium rounded-full border border-white/20">
-            Novo
-          </span>
-        </div>
+        {product.isNew && (
+          <div className="absolute top-4 left-4 z-20">
+            <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md text-white text-sm font-medium rounded-full border border-white/20">
+              Novo
+            </span>
+          </div>
+        )}
       </div>
       
       <div className="p-8">
@@ -117,19 +114,21 @@ const ProductCard = ({ product, index }: { product: any; index: number }) => {
 const newArrivals = [
   {
     name: "iPhone 17 Pro Max 256GB",
-    retailPrice: "R$ 8.299",
-    sealClubPrice: "R$ 6.984,21",
-    savings: "R$ 1.314,79",
+    retailPrice: "R$ 11.249",
+    sealClubPrice: "R$ 9.498",
+    savings: "R$ 1.751",
     image: "/lovable-uploads/iphone-17-pro-max.png",
-    icon: <Smartphone className="w-5 h-5 text-white" />
+    icon: <Smartphone className="w-5 h-5 text-white" />,
+    isNew: true
   },
   {
-    name: "Drone DJI Mini 4 Pro Fly More Combo (Com tela)",
-    retailPrice: "R$ 7.499",
-    sealClubPrice: "R$ 6.324,15",
-    savings: "R$ 1.174,85",
+    name: "Drone DJI Mini 5 Pro Fly More Combo (Com tela)",
+    retailPrice: "R$ 12.390",
+    sealClubPrice: "R$ 9.321",
+    savings: "R$ 3.069",
     image: "/lovable-uploads/dji-mini-4-pro.png",
-    icon: <Watch className="w-5 h-5 text-white" />
+    icon: <Plane className="w-5 h-5 text-white" />,
+    isNew: true
   },
   {
     name: "AirPods Pro (2ª geração)",
@@ -141,27 +140,27 @@ const newArrivals = [
   },
   {
     name: "MacBook Air M4 16GB 256SDD",
-    retailPrice: "R$ 10.499",
-    sealClubPrice: "R$ 8.844,15",
-    savings: "R$ 1.654,85",
+    retailPrice: "R$ 9.498",
+    sealClubPrice: "R$ 6.598",
+    savings: "R$ 2.900",
     image: "/lovable-uploads/macbook-air-m4.png",
-    icon: <Smartphone className="w-5 h-5 text-white" />
+    icon: <Laptop className="w-5 h-5 text-white" />
   },
   {
     name: "Bike Elétrica V9 Plus",
-    retailPrice: "R$ 4.999",
-    sealClubPrice: "R$ 4.209,15",
-    savings: "R$ 789,85",
+    retailPrice: "R$ 9.800",
+    sealClubPrice: "R$ 7.563",
+    savings: "R$ 2.237",
     image: "/lovable-uploads/bike-v9-plus.png",
-    icon: <Smartphone className="w-5 h-5 text-white" />
+    icon: <Bike className="w-5 h-5 text-white" />
   },
   {
     name: "Boombox 3 Wi-fi",
-    retailPrice: "R$ 3.299",
-    sealClubPrice: "R$ 2.779,15",
-    savings: "R$ 519,85",
+    retailPrice: "R$ 2.469",
+    sealClubPrice: "R$ 1.992",
+    savings: "R$ 477",
     image: "/lovable-uploads/jbl-boombox-3.png",
-    icon: <Smartphone className="w-5 h-5 text-white" />
+    icon: <Speaker className="w-5 h-5 text-white" />
   }
 ];
 
