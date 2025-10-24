@@ -18,23 +18,6 @@ const allFeatures = [
   { label: "Bônus SealPass", values: { pro: true, tech: true, ultra: true, enterprise: true }, isBonus: true }
 ];
 
-const PriceAlert = () => (
-  <motion.div
-    initial={{ opacity: 0, y: -20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
-    className="mb-8 mx-auto max-w-7xl"
-  >
-    <div className="bg-gradient-to-r from-orange-400 via-amber-400 to-orange-400 rounded-lg px-6 py-4 flex items-center justify-center gap-3 shadow-lg">
-      <AlertCircle className="w-5 h-5 text-black flex-shrink-0" />
-      <p className="text-black font-bold text-base md:text-lg text-center">
-        Preço aumentará em breve!
-      </p>
-      <AlertCircle className="w-5 h-5 text-black flex-shrink-0" />
-    </div>
-  </motion.div>
-);
-
 const PricingTier = ({
   name,
   price,
@@ -44,6 +27,7 @@ const PricingTier = ({
   isFeatured,
   ctaText,
   isEnterprise,
+  showPriceAlert = false,
 }: {
   name: string;
   price: string;
@@ -53,6 +37,7 @@ const PricingTier = ({
   isFeatured?: boolean;
   ctaText: string;
   isEnterprise?: boolean;
+  showPriceAlert?: boolean;
 }) => (
   <CardSpotlight className={`h-full ${isFeatured ? "border-primary" : "border-white/10"} border-2`}>
     <div className="relative h-full p-6 flex flex-col">
@@ -63,6 +48,16 @@ const PricingTier = ({
       )}
       <div className="h-[180px] flex flex-col">
         <h3 className="text-2xl font-medium mb-2">{name}</h3>
+        
+        {showPriceAlert && (
+          <div className="flex items-center gap-1.5 mb-3">
+            <AlertCircle className="w-3.5 h-3.5 text-orange-500" />
+            <span className="text-[11px] font-bold text-orange-500 uppercase tracking-wide">
+              Preço aumentará em breve
+            </span>
+          </div>
+        )}
+        
         <div className="mb-4">
           {isEnterprise ? (
             <span className="text-3xl font-bold">{price}</span>
@@ -145,8 +140,6 @@ export const PricingSectionV2 = () => {
         </motion.p>
       </div>
 
-      <PriceAlert />
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto items-start">
         <PricingTier
           name="PRO"
@@ -155,6 +148,7 @@ export const PricingSectionV2 = () => {
           description="Ideal para quem deseja economia na compra de um único Apple por ano."
           planKey="pro"
           ctaText="ASSINAR O PRO"
+          showPriceAlert
         />
         <PricingTier
           name="TECH"
@@ -163,6 +157,7 @@ export const PricingSectionV2 = () => {
           description="Produtos de marcas tech com preço de custo, até 2 por ano."
           planKey="tech"
           ctaText="ASSINAR O TECH"
+          showPriceAlert
         />
         <PricingTier
           name="ULTRA"
@@ -172,6 +167,7 @@ export const PricingSectionV2 = () => {
           planKey="ultra"
           isFeatured
           ctaText="ASSINAR O ULTRA"
+          showPriceAlert
         />
         <PricingTier
           name="ENTERPRISE"
