@@ -11,11 +11,11 @@ const allFeatures = [
   { label: "Aparelho reserva", values: { pro: false, tech: false, ultra: true, enterprise: true } },
   { label: "Transferência de dados", values: { pro: false, tech: false, ultra: true, enterprise: true } },
   { label: "Kit SealClub Experience", values: { pro: false, tech: false, ultra: true, enterprise: true } },
-  { label: "Cupom Assistência Técnica", values: { pro: "—", tech: "5%", ultra: "10%", enterprise: true } },
-  { label: "Cupom Acessórios", values: { pro: "—", tech: "5%", ultra: "15%", enterprise: true } },
+  { label: "Cupom Assistência Técnica", values: { pro: "5%", tech: "10%", ultra: "15%", enterprise: true } },
+  { label: "Cupom Acessórios", values: { pro: "5%", tech: "10%", ultra: "15%", enterprise: true } },
   { label: "Acesso antecipado", values: { pro: true, tech: true, ultra: true, enterprise: true } },
-  { label: "Suporte", values: { pro: "Básico", tech: "Standard", ultra: "VIP Vitalício", enterprise: "Dedicado" } },
-  { label: "SealPass", values: { pro: true, tech: true, ultra: true, enterprise: true }, isBonus: true }
+  { label: "Suporte", values: { pro: "Premium", tech: "Vitalício", ultra: "Vitalício", enterprise: "Dedicado" } },
+  { label: "Bônus SealPass", values: { pro: true, tech: true, ultra: true, enterprise: true }, isBonus: true }
 ];
 
 const PricingTier = ({
@@ -66,20 +66,25 @@ const PricingTier = ({
           return (
             <div 
               key={index} 
-              className={`flex items-center justify-between py-3 border-b border-white/5 h-[52px] ${
-                isBonus ? 'bg-primary/5 -mx-6 px-6 border-primary/20' : ''
-              }`}
+              className="flex items-center justify-between py-3 border-b border-white/5 h-[52px]"
             >
-              <span className={`text-xs font-medium leading-tight flex items-center gap-2 ${
-                isBonus ? 'text-primary' : 'text-muted-foreground'
-              }`}>
-                {isBonus && <Gift className="w-4 h-4" />}
+              <span className="text-xs font-medium leading-tight flex items-center gap-2 text-muted-foreground">
+                {isBonus && (
+                  <>
+                    <Gift className="w-4 h-4 text-primary" />
+                    {planKey === 'ultra' && (
+                      <span className="text-[10px] font-semibold bg-primary/10 text-primary rounded px-1.5 py-0.5">
+                        DESTAQUE
+                      </span>
+                    )}
+                  </>
+                )}
                 {feature.label}
               </span>
               <div className="flex items-center gap-1 flex-shrink-0">
                 {typeof value === "boolean" ? (
                   value ? (
-                    <Check className={`w-4 h-4 ${isBonus ? 'text-primary' : 'text-green-500'}`} />
+                    <Check className="w-4 h-4 text-green-500" />
                   ) : (
                     <X className="w-4 h-4 text-red-500/50" />
                   )
