@@ -125,22 +125,6 @@ const Index = () => {
       <div className="bg-black">
         <NewArrivalsSection />
       </div>
-
-      {/* Pricing Section */}
-      <div id="pricing" className="bg-black">
-        <PricingSectionV2 />
-      </div>
-
-      {/* Testimonials Section */}
-      <div className="bg-black">
-        <TestimonialsSection />
-      </div>
-
-      {/* FAQ Section */}
-      <div className="bg-black">
-        <FAQSection />
-      </div>
-
       {/* Branding Section */}
       <section className="bg-black py-32">
         <motion.div
@@ -164,6 +148,21 @@ const Index = () => {
           </div>
         </motion.div>
       </section>
+
+      {/* Pricing Section */}
+      <div id="pricing" className="bg-black">
+        <PricingSectionV2 />
+      </div>
+
+      {/* Testimonials Section */}
+      <div className="bg-black">
+        <TestimonialsSection />
+      </div>
+
+      {/* FAQ Section */}
+      <div className="bg-black">
+        <FAQSection />
+      </div>
 
       {/* CTA Section */}
       <section className="container px-4 py-20 relative bg-black">
