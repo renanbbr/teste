@@ -5,39 +5,41 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 const faqs = [
   {
-    question: "Como funciona o SealClub?",
-    answer: "O SealClub é um clube de membros que te dá acesso a produtos Apple e tecnologia de ponta a preço de custo. Você paga uma mensalidade e pode resgatar produtos pagando apenas o custo real, sem as margens abusivas do varejo tradicional."
+    question: "A assinatura do SealClub tem fidelidade mínima?",
+    answer: "Sim. A assinatura é anual, garantindo acesso aos benefícios exclusivos durante todo o período. O compromisso mínimo é de 12 meses, vinculado ao uso dos benefícios do plano escolhido."
   },
   {
-    question: "Quais produtos estão disponíveis?",
-    answer: "Oferecemos a linha completa da Apple (iPhone, MacBook, iPad, Apple Watch, AirPods) e produtos de marcas premium como JBL, DJI, Garmin, Polar, Motorola e muito mais. Nosso catálogo está em constante atualização com os últimos lançamentos."
+    question: "Existe limite de produtos que posso comprar com preço de custo?",
+    answer: "Sim. Cada plano prevê cotas anuais por categoria. Por exemplo, você pode adquirir até 1 iPhone, 1 Apple Watch, 1 JBL, etc., por ano. Essa regra mantém o clube justo e sustentável para todos."
   },
   {
-    question: "Posso cancelar a qualquer momento?",
-    answer: "Sim! Você pode cancelar sua assinatura quando quiser, sem multas ou taxas de cancelamento. Oferecemos total flexibilidade para nossos membros."
+    question: "Quando posso começar a usar os benefícios após assinar?",
+    answer: "O acesso aos benefícios é imediato após a confirmação da assinatura. Você já pode aproveitar as vantagens sem precisar esperar carência."
   },
   {
-    question: "Como funciona o programa de trade-in?",
-    answer: "Aceitamos seu aparelho usado como parte do pagamento na compra de um novo dispositivo. Avaliamos o valor do seu aparelho de forma justa e você pode usar esse crédito para fazer upgrade de tecnologia de forma mais acessível."
+    question: "Os benefícios do clube podem ser transferidos para outra pessoa?",
+    answer: "Não. O uso dos benefícios e dos produtos adquiridos pelo clube é pessoal e intransferível. Cada membro pode incluir membros extras em seu plano, mas cada um terá sua própria cota e acesso individual."
   },
   {
-    question: "Quanto tempo demora a entrega?",
-    answer: "Trabalhamos com frete grátis para todo o Brasil. O prazo de entrega varia de acordo com sua região, mas geralmente fica entre 7 a 15 dias úteis. Você receberá o código de rastreamento assim que o produto for despachado."
+    question: "Como funciona o cancelamento dentro dos 7 dias?",
+    answer: "Você pode cancelar sua assinatura dentro de 7 dias após a contratação, de acordo com o Código de Defesa do Consumidor — caso já tenha efetuado a compra ela será cancelada também junto a assinatura. Basta solicitar o cancelamento pelo nosso canal oficial."
   },
   {
-    question: "Há garantia dos produtos?",
-    answer: "Sim! Todos os produtos possuem garantia completa do fabricante. Além disso, oferecemos suporte vitalício e aparelho reserva em caso de problemas, para que você nunca fique na mão."
+    question: "Posso cancelar depois de usar algum benefício?",
+    answer: "Após utilizar algum benefício (ex: comprar um produto com preço de custo), não é mais possível cancelar de imediato. Sua assinatura segue ativa até o fim do ciclo anual contratado, garantindo que o acesso privilegiado permaneça justo para todos os membros."
   },
   {
-    question: "Qual a diferença entre os planos?",
-    answer: "O plano Basic oferece acesso aos produtos a preço de custo. O Premium adiciona descontos em acessórios e prioridade nas novidades. O Elite inclui todos os benefícios anteriores mais kit anual de acessórios premium e acesso antecipado aos lançamentos."
+    question: "Os membros extras têm os mesmos direitos?",
+    answer: "Sim! Membros extras seguem as mesmas regras do titular: mesmos limites de cotas, benefícios e regras de uso. Tudo transparente e controlado no painel do assinante."
   },
   {
-    question: "Como faço para me tornar membro?",
-    answer: "É simples! Escolha o plano que melhor se encaixa no seu perfil, faça seu cadastro e comece a aproveitar todos os benefícios imediatamente. Você terá acesso ao catálogo completo assim que sua assinatura for confirmada."
+    question: "Como acompanho meus resgates e benefícios?",
+    answer: "Tudo é feito pelo seu Painel do Membro: você acompanha o histórico de resgates, validade da assinatura, controle de membros extras e informações do seu plano, com total transparência."
   }
 ];
 
@@ -52,12 +54,30 @@ const FAQSection = () => {
         className="max-w-3xl mx-auto"
       >
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            Perguntas Frequentes
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white leading-tight">
+            Regras do jogo.
+            <span className="block text-3xl md:text-4xl font-normal text-white/90 mt-2">
+              E é exatamente isso que torna o SealClub seguro, exclusivo e confiável.
+            </span>
           </h2>
-          <p className="text-lg text-gray-400">
-            Encontre respostas para as principais dúvidas sobre o SealClub
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            A proposta do SealClub não é vender em massa. É oferecer acesso controlado, com benefícios reais — por isso, nós levamos as regras a sério.
           </p>
+          
+          <div className="flex items-center justify-center gap-3 mt-8 mb-6">
+            <Checkbox 
+              id="faq-checkbox" 
+              defaultChecked 
+              disabled
+              className="border-white/30 data-[state=checked]:bg-white data-[state=checked]:text-black"
+            />
+            <Label 
+              htmlFor="faq-checkbox" 
+              className="text-base text-white font-medium cursor-pointer"
+            >
+              FAQ - Perguntas Frequentes
+            </Label>
+          </div>
         </div>
 
         <Accordion type="single" collapsible className="space-y-4">
