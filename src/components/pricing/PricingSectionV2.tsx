@@ -69,17 +69,16 @@ const PricingTier = ({
               className="flex items-center justify-between py-3 border-b border-white/5 h-[52px]"
             >
               <span className="text-xs font-medium leading-tight flex items-center gap-2 text-muted-foreground">
-                {isBonus && (
+                {isBonus ? (
                   <>
-                    <Gift className="w-4 h-4 text-primary" />
-                    {planKey === 'ultra' && (
-                      <span className="text-[10px] font-semibold bg-primary/10 text-primary rounded px-1.5 py-0.5">
-                        Bônus SealPass
-                      </span>
-                    )}
+                    <Gift className="w-5 h-5 text-primary" />
+                    <span className="text-sm font-semibold bg-primary/10 text-primary rounded px-2 py-1">
+                      Bônus SealPass
+                    </span>
                   </>
+                ) : (
+                  feature.label
                 )}
-                {feature.label}
               </span>
               <div className="flex items-center gap-1 flex-shrink-0">
                 {typeof value === "boolean" ? (
