@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Check, X } from "lucide-react";
+import { Check, X, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CardSpotlight } from "./CardSpotlight";
 
@@ -10,14 +10,12 @@ const allFeatures = [
   { label: "Frete grátis", values: { pro: false, tech: false, ultra: true, enterprise: true } },
   { label: "Aparelho reserva", values: { pro: false, tech: false, ultra: true, enterprise: true } },
   { label: "Transferência de dados", values: { pro: false, tech: false, ultra: true, enterprise: true } },
-  { label: "Kit anual (capa + película)", values: { pro: false, tech: false, ultra: true, enterprise: true } },
-  { label: "Desc. assistência técnica", values: { pro: "—", tech: "5%", ultra: "10%", enterprise: true } },
-  { label: "Desc. acessórios", values: { pro: "—", tech: "5%", ultra: "15%", enterprise: true } },
-  { label: "Parcerias e cupons locais", values: { pro: true, tech: true, ultra: true, enterprise: true } },
+  { label: "Kit SealClub Experience", values: { pro: false, tech: false, ultra: true, enterprise: true } },
+  { label: "Cupom Assistência Técnica", values: { pro: "—", tech: "5%", ultra: "10%", enterprise: true } },
+  { label: "Cupom Acessórios", values: { pro: "—", tech: "5%", ultra: "15%", enterprise: true } },
   { label: "Acesso antecipado", values: { pro: true, tech: true, ultra: true, enterprise: true } },
   { label: "Suporte", values: { pro: "Básico", tech: "Standard", ultra: "VIP Vitalício", enterprise: "Dedicado" } },
-  { label: "Cartão físico", values: { pro: "Digital", tech: "Premium", ultra: "Premium", enterprise: "Corporativo" } },
-  { label: "Ideal para", values: { pro: "Apple lover", tech: "Tech enthusiast", ultra: "Premium total", enterprise: "Corporativo" } }
+  { label: "SealPass", values: { pro: true, tech: true, ultra: true, enterprise: true }, isBonus: true }
 ];
 
 const PricingTier = ({
@@ -64,18 +62,24 @@ const PricingTier = ({
       <div className="space-y-2 mb-8 flex-grow">
         {allFeatures.map((feature, index) => {
           const value = feature.values[planKey];
+          const isBonus = (feature as any).isBonus;
           return (
             <div 
               key={index} 
-              className="flex items-center justify-between py-3 border-b border-white/5 h-[52px]"
+              className={`flex items-center justify-between py-3 border-b border-white/5 h-[52px] ${
+                isBonus ? 'bg-primary/5 -mx-6 px-6 border-primary/20' : ''
+              }`}
             >
-              <span className="text-xs text-muted-foreground font-medium leading-tight">
+              <span className={`text-xs font-medium leading-tight flex items-center gap-2 ${
+                isBonus ? 'text-primary' : 'text-muted-foreground'
+              }`}>
+                {isBonus && <Gift className="w-4 h-4" />}
                 {feature.label}
               </span>
               <div className="flex items-center gap-1 flex-shrink-0">
                 {typeof value === "boolean" ? (
                   value ? (
-                    <Check className="w-4 h-4 text-green-500" />
+                    <Check className={`w-4 h-4 ${isBonus ? 'text-primary' : 'text-green-500'}`} />
                   ) : (
                     <X className="w-4 h-4 text-red-500/50" />
                   )
