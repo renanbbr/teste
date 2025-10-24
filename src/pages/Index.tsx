@@ -32,7 +32,6 @@ const Index = () => {
         <div className="absolute inset-0 -z-10 bg-[#0A0A0A]" />
         
         {/* Elemento decorativo de linhas animadas */}
-        <AnimatedLines />
         
         <div className="max-w-4xl relative z-10">
           <h1 className="text-5xl md:text-7xl font-normal mb-4 tracking-tight text-left">
@@ -80,14 +79,11 @@ const Index = () => {
           transition={{ delay: 0.8 }}
           className="mt-20 max-w-7xl mx-auto relative"
         >
-          {/* Glow effect background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-transparent to-cyan-500/10 blur-3xl -z-10" />
-          
           {/* Border gradient wrapper */}
-          <div className="relative p-[2px] rounded-3xl bg-gradient-to-br from-blue-500/30 via-transparent to-cyan-500/30">
+          <div className="relative p-[2px] rounded-3xl bg-gradient-to-br from-white/10 via-transparent to-white/5">
             
             {/* Inner container with dark gradient */}
-            <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-black via-black to-blue-950/30 shadow-[0_0_50px_rgba(59,130,246,0.15),0_20px_60px_rgba(0,0,0,0.8)] transition-all duration-500 hover:shadow-[0_0_80px_rgba(59,130,246,0.25),0_30px_80px_rgba(0,0,0,0.9)] hover:scale-[1.01] backdrop-blur-xl">
+            <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-black via-black to-zinc-900/30 shadow-[0_0_50px_rgba(255,255,255,0.05),0_20px_60px_rgba(0,0,0,0.8)] transition-all duration-500 hover:shadow-[0_0_80px_rgba(255,255,255,0.08),0_30px_80px_rgba(0,0,0,0.9)] hover:scale-[1.01] backdrop-blur-xl">
               
               {/* Dashboard Hero Image com filtros */}
               <div className="w-full relative">
@@ -101,7 +97,7 @@ const Index = () => {
                 />
                 
                 {/* Filtro/Overlay apenas na parte inferior */}
-                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-blue-950/15 via-blue-950/5 to-transparent rounded-b-2xl pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/15 via-black/5 to-transparent rounded-b-2xl pointer-events-none" />
               </div>
               
               {/* Glass overlay para depth adicional */}

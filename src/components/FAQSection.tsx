@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     question: "Os benefícios do clube podem ser transferidos para outra pessoa?",
-    answer: "Não. O uso dos benefícios e dos produtos adquiridos pelo clube é pessoal e intransferível. Cada membro pode incluir membros extras em seu plano, mas cada um terá sua própria cota e acesso individual."
+    answer: "Não. O uso dos benefícios e dos produtos adquiridos pelo clube é pessoal e intransferível."
   },
   {
     question: "Como funciona o cancelamento dentro dos 7 dias?",
@@ -32,14 +32,6 @@ const faqs = [
   {
     question: "Posso cancelar depois de usar algum benefício?",
     answer: "Após utilizar algum benefício (ex: comprar um produto com preço de custo), não é mais possível cancelar de imediato. Sua assinatura segue ativa até o fim do ciclo anual contratado, garantindo que o acesso privilegiado permaneça justo para todos os membros."
-  },
-  {
-    question: "Os membros extras têm os mesmos direitos?",
-    answer: "Sim! Membros extras seguem as mesmas regras do titular: mesmos limites de cotas, benefícios e regras de uso. Tudo transparente e controlado no painel do assinante."
-  },
-  {
-    question: "Como acompanho meus resgates e benefícios?",
-    answer: "Tudo é feito pelo seu Painel do Membro: você acompanha o histórico de resgates, validade da assinatura, controle de membros extras e informações do seu plano, com total transparência."
   }
 ];
 
