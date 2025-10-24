@@ -39,6 +39,16 @@ const NewArrivalsSection = () => {
 };
 
 const ProductCard = ({ product, index }: { product: any; index: number }) => {
+  const scrollToPricing = () => {
+    const pricingSection = document.getElementById('pricing');
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }
+  };
+
   return (
     <div 
       className="group bg-gradient-to-br from-zinc-900/50 to-black/50 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-md transform hover:-translate-y-4 transition-all duration-500 hover:border-white/20 hover:shadow-2xl"
@@ -68,12 +78,36 @@ const ProductCard = ({ product, index }: { product: any; index: number }) => {
           </h3>
         </div>
         
-        <p className="text-white/70 leading-relaxed mb-6 line-clamp-3">
-          {product.description}
-        </p>
+        <div className="space-y-2 mb-6">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-white/60">Varejo</span>
+            <span className="text-base font-semibold text-white">
+              {product.retailPrice}
+            </span>
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-white/60">SealClub</span>
+            <span className="text-base font-bold text-blue-400">
+              {product.sealClubPrice}
+            </span>
+          </div>
+          
+          <div className="pt-2 border-t border-white/10">
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-white/60">Economia</span>
+              <span className="text-base font-bold text-green-400">
+                {product.savings}
+              </span>
+            </div>
+          </div>
+        </div>
         
-        <Button className="bg-white/10 text-white border border-white/20 hover:bg-white hover:text-black w-full py-3 rounded-xl transition-all duration-300">
-          Saiba Mais
+        <Button 
+          onClick={scrollToPricing}
+          className="bg-white/10 text-white border border-white/20 hover:bg-white hover:text-black w-full py-3 rounded-xl transition-all duration-300"
+        >
+          Quero Aproveitar
         </Button>
       </div>
     </div>
@@ -83,37 +117,49 @@ const ProductCard = ({ product, index }: { product: any; index: number }) => {
 const newArrivals = [
   {
     name: "iPhone 17 Pro Max 256GB",
-    description: "O iPhone mais poderoso já criado. Com chip A17 Pro, sistema de câmeras profissional e design em titânio. Acesso exclusivo a preço de custo para membros.",
+    retailPrice: "R$ 8.299",
+    sealClubPrice: "R$ 6.984,21",
+    savings: "R$ 1.314,79",
     image: "/lovable-uploads/iphone-17-pro-max.png",
     icon: <Smartphone className="w-5 h-5 text-white" />
   },
   {
     name: "Drone DJI Mini 4 Pro Fly More Combo (Com tela)",
-    description: "O relógio mais robusto e capaz da Apple. Design resistente, bateria para aventuras extremas e funcionalidades avançadas de saúde e fitness.",
+    retailPrice: "R$ 7.499",
+    sealClubPrice: "R$ 6.324,15",
+    savings: "R$ 1.174,85",
     image: "/lovable-uploads/dji-mini-4-pro.png",
     icon: <Watch className="w-5 h-5 text-white" />
   },
   {
     name: "AirPods Pro (2ª geração)",
-    description: "Cancelamento de ruído adaptativo, Áudio Espacial personalizado e até 6 horas de reprodução. A experiência sonora definitiva da Apple.",
+    retailPrice: "R$ 2.599",
+    sealClubPrice: "R$ 2.189,15",
+    savings: "R$ 409,85",
     image: "/lovable-uploads/airpods-pro-2.png", 
     icon: <Headphones className="w-5 h-5 text-white" />
   },
   {
     name: "MacBook Air M4 16GB 256SDD",
-    description: "Performance extraordinária com chips M3 Pro ou M3 Max. Tela Liquid Retina XDR e até 22 horas de bateria. Para quem não aceita limitações.",
+    retailPrice: "R$ 10.499",
+    sealClubPrice: "R$ 8.844,15",
+    savings: "R$ 1.654,85",
     image: "/lovable-uploads/macbook-air-m4.png",
     icon: <Smartphone className="w-5 h-5 text-white" />
   },
   {
     name: "Bike Elétrica V9 Plus",
-    description: "O tablet mais avançado do mundo. Chip M2, tela Liquid Retina XDR e compatibilidade com Apple Pencil e Magic Keyboard. Poder ilimitado.",
+    retailPrice: "R$ 4.999",
+    sealClubPrice: "R$ 4.209,15",
+    savings: "R$ 789,85",
     image: "/lovable-uploads/bike-v9-plus.png",
     icon: <Smartphone className="w-5 h-5 text-white" />
   },
   {
     name: "Boombox 3 Wi-fi",
-    description: "Nunca mais perca seus pertences. Tecnologia de localização precisa integrada ao app Buscar. Pack com 4 unidades para proteção completa.",
+    retailPrice: "R$ 3.299",
+    sealClubPrice: "R$ 2.779,15",
+    savings: "R$ 519,85",
     image: "/lovable-uploads/jbl-boombox-3.png",
     icon: <Smartphone className="w-5 h-5 text-white" />
   }

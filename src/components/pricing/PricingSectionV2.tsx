@@ -99,7 +99,7 @@ const PricingTier = ({
 
 export const PricingSectionV2 = () => {
   return (
-    <section className="container px-4 py-24">
+    <section id="pricing" className="container px-4 py-24">
       <div className="max-w-3xl mx-auto text-center mb-12">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
