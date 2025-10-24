@@ -74,7 +74,7 @@ const PricingTier = ({
                     <Gift className="w-4 h-4 text-primary" />
                     {planKey === 'ultra' && (
                       <span className="text-[10px] font-semibold bg-primary/10 text-primary rounded px-1.5 py-0.5">
-                        DESTAQUE
+                        Bônus SealPass
                       </span>
                     )}
                   </>
