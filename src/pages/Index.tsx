@@ -13,7 +13,7 @@ import Footer from "@/components/Footer";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import NewArrivalsSection from "@/components/NewArrivalsSection";
 import sealclubLogo from "@/assets/sealclub-logo.png";
-import { AnimatedLines } from "@/components/ui/animated-lines";
+import { AnimatedBlueRays } from "@/components/ui/animated-blue-rays";
 const Index = () => {
   return <div className="min-h-screen bg-black text-foreground">
       <Navigation />
@@ -28,10 +28,8 @@ const Index = () => {
     }} transition={{
       duration: 0.5
     }} className="relative container px-4 pt-40 pb-20 py-0">
-        {/* Background */}
-        <div className="absolute inset-0 -z-10 bg-[#0A0A0A]" />
-        
-        {/* Elemento decorativo de linhas animadas */}
+        {/* Background com raios azuis animados */}
+        <AnimatedBlueRays />
         
         <div className="max-w-4xl relative z-10">
           <h1 className="text-5xl md:text-7xl font-normal mb-4 tracking-tight text-left">
