@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Check, X, Gift } from "lucide-react";
+import { Check, X, Gift, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CardSpotlight } from "./CardSpotlight";
 
@@ -17,6 +17,23 @@ const allFeatures = [
   { label: "Suporte", values: { pro: "Premium", tech: "Vitalício", ultra: "Vitalício", enterprise: "Dedicado" } },
   { label: "Bônus SealPass", values: { pro: true, tech: true, ultra: true, enterprise: true }, isBonus: true }
 ];
+
+const PriceAlert = () => (
+  <motion.div
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    className="mb-8 mx-auto max-w-7xl"
+  >
+    <div className="bg-gradient-to-r from-orange-400 via-amber-400 to-orange-400 rounded-lg px-6 py-4 flex items-center justify-center gap-3 shadow-lg">
+      <AlertCircle className="w-5 h-5 text-black flex-shrink-0" />
+      <p className="text-black font-bold text-base md:text-lg text-center">
+        Preço aumentará em breve!
+      </p>
+      <AlertCircle className="w-5 h-5 text-black flex-shrink-0" />
+    </div>
+  </motion.div>
+);
 
 const PricingTier = ({
   name,
@@ -69,7 +86,7 @@ const PricingTier = ({
               className="flex items-center justify-between py-3 border-b border-white/5 h-[52px]"
             >
               <span className="text-xs font-medium leading-tight flex items-center gap-2 text-muted-foreground">
-                {isBonus ? (
+                {isBonus && planKey !== 'enterprise' ? (
                   <>
                     <Gift className="w-5 h-5 text-primary" />
                     <span className="text-sm font-semibold bg-primary/10 text-primary rounded px-2 py-1">
@@ -127,6 +144,8 @@ export const PricingSectionV2 = () => {
           O SealClub não é sobre gastar menos. É sobre ter mais: mais benefícios, mais poder de compra, mais vantagens. Escolha o plano que mais combina com você:
         </motion.p>
       </div>
+
+      <PriceAlert />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto items-start">
         <PricingTier
