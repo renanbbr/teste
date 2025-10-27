@@ -10,10 +10,13 @@ const allFeatures = [
   { label: "Frete grátis", values: { pro: false, tech: false, ultra: true, enterprise: false } },
   { label: "Aparelho reserva", values: { pro: false, tech: false, ultra: true, enterprise: true } },
   { label: "Transferência de dados", values: { pro: false, tech: false, ultra: true, enterprise: false } },
+  { label: "Assistência Técnica 24h", values: { pro: false, tech: false, ultra: true, enterprise: false } },
+  { label: "SealCare", values: { pro: false, tech: false, ultra: true, enterprise: false } },
   { label: "Kit SealClub Experience", values: { pro: false, tech: false, ultra: true, enterprise: true } },
-  { label: "Cupom Assistência Técnica", values: { pro: "5%", tech: "10%", ultra: "15%", enterprise: false } },
-  { label: "Cupom Acessórios", values: { pro: "5%", tech: "10%", ultra: "15%", enterprise: false } },
+  { label: "Cupom Assistência Técnica", values: { pro: "5%", tech: "10%", ultra: "20%", enterprise: false } },
+  { label: "Cashback Acessórios", values: { pro: "5%", tech: "10%", ultra: "R$ 500", enterprise: false } },
   { label: "Acesso antecipado", values: { pro: true, tech: true, ultra: true, enterprise: true } },
+  { label: "Atendimento Prioritário", values: { pro: true, tech: true, ultra: true, enterprise: true } },
   { label: "Suporte", values: { pro: "Premium", tech: "Vitalício", ultra: "Vitalício", enterprise: "Dedicado" } },
   { label: "Bônus SealPass", values: { pro: true, tech: true, ultra: true, enterprise: true }, isBonus: true }
 ];
