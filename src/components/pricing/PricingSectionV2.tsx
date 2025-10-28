@@ -14,7 +14,7 @@ const allFeatures = [
   { label: "SealCare", values: { pro: false, tech: false, ultra: true, enterprise: false } },
   { label: "Kit SealClub Experience", values: { pro: false, tech: false, ultra: true, enterprise: true } },
   { label: "Cupom Assistência Técnica", values: { pro: "5%", tech: "10%", ultra: "20%", enterprise: false } },
-  { label: "Cashback Acessórios", values: { pro: "5%", tech: "10%", ultra: "R$ 500", enterprise: false } },
+  { label: "Cashback Acessórios", labelByPlan: { pro: "Cupom de Acessórios", tech: "Cupom de Acessórios", ultra: "Cashback Acessórios", enterprise: "Cashback Acessórios" }, values: { pro: "5%", tech: "10%", ultra: "R$ 500", enterprise: false } },
   { label: "Acesso antecipado", values: { pro: true, tech: true, ultra: true, enterprise: true } },
   { label: "Atendimento Prioritário", values: { pro: true, tech: true, ultra: true, enterprise: true } },
   { label: "Suporte", values: { pro: "Premium", tech: "Vitalício", ultra: "Vitalício", enterprise: "Dedicado" } },
@@ -93,7 +93,7 @@ const PricingTier = ({
                     </span>
                   </>
                 ) : (
-                  feature.label
+                  (feature as any).labelByPlan ? (feature as any).labelByPlan[planKey] : feature.label
                 )}
               </span>
               <div className="flex items-center gap-1 flex-shrink-0">
