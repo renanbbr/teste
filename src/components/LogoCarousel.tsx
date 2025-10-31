@@ -11,7 +11,7 @@ const LogoCarousel = () => {
     "/brand-logos/motorola-logo.svg",
     "/brand-logos/inow-logo.png",
     "/brand-logos/starlink-logo.png",
-    "/brand-logos/xiaomi-logo.png",
+    "/brand-logos/xiaomi-logo.jpg",
     "/brand-logos/stanley-logo.png",
     "/brand-logos/amazon-logo.png",
   ];
@@ -47,7 +47,7 @@ const LogoCarousel = () => {
             key={`logo-${index}`}
             src={logo}
             alt={`Partner logo ${index + 1}`}
-            className="h-12 object-contain"
+            className="h-16 object-contain"
             initial={{ opacity: 0.5 }}
             whileHover={{ 
               opacity: 1,
