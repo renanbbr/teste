@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 const LogoCarousel = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [logoScales, setLogoScales] = useState<Record<string, number>>({});
+  const [isCalculated, setIsCalculated] = useState(false);
+
   const logos = [
     "/brand-logos/apple-logo.jpg",
     "/brand-logos/playstation-logo.png",
@@ -18,9 +23,67 @@ const LogoCarousel = () => {
 
   const extendedLogos = [...logos, ...logos, ...logos];
 
+  // Calcular área visual e escalas
+  const calculateLogoScales = () => {
+    if (!containerRef.current) return;
+
+    const images = containerRef.current.querySelectorAll('img');
+    const scales: Record<string, number> = {};
+    
+    // Encontrar a Starlink como referência
+    let starlinkArea = 0;
+    images.forEach((img) => {
+      if (img.src.includes('starlink-logo')) {
+        const rect = img.getBoundingClientRect();
+        starlinkArea = rect.width * rect.height;
+      }
+    });
+
+    if (starlinkArea === 0) return;
+
+    // Calcular escala para cada logo
+    images.forEach((img) => {
+      const logoPath = logos.find(logo => img.src.includes(logo.split('/').pop()!));
+      if (!logoPath || scales[logoPath]) return;
+
+      const rect = img.getBoundingClientRect();
+      const currentArea = rect.width * rect.height;
+      
+      // Fator de escala baseado na raiz quadrada da proporção de áreas
+      const scaleFactor = Math.sqrt(starlinkArea / currentArea);
+      
+      // Limitar entre 0.8x e 1.5x para evitar distorções extremas
+      scales[logoPath] = Math.min(Math.max(scaleFactor, 0.8), 1.5);
+    });
+
+    setLogoScales(scales);
+    setIsCalculated(true);
+  };
+
+  // Calcular escalas após carregamento das imagens
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      calculateLogoScales();
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Recalcular ao redimensionar
+  useEffect(() => {
+    const handleResize = () => {
+      setIsCalculated(false);
+      setTimeout(calculateLogoScales, 300);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="w-full overflow-hidden bg-black/50 backdrop-blur-sm py-12 mt-20">
       <motion.div 
+        ref={containerRef}
         className="flex space-x-16"
         initial={{ opacity: 0, x: "0%" }}
         animate={{
@@ -42,24 +105,35 @@ const LogoCarousel = () => {
           gap: "4rem"
         }}
       >
-        {extendedLogos.map((logo, index) => (
-          <motion.img
-            key={`logo-${index}`}
-            src={logo}
-            alt={`Partner logo ${index + 1}`}
-            className="h-16 object-contain"
-            initial={{ opacity: 0.5 }}
-            whileHover={{ 
-              opacity: 1,
-              scale: 1.05,
-              transition: { duration: 0.2 }
-            }}
-            onError={(e) => {
-              console.error(`Failed to load logo: ${logo}`);
-              e.currentTarget.style.display = 'none';
-            }}
-          />
-        ))}
+        {extendedLogos.map((logo, index) => {
+          const scale = logoScales[logo] || 1;
+          
+          return (
+            <motion.img
+              key={`logo-${index}`}
+              src={logo}
+              alt={`Partner logo ${index + 1}`}
+              className="h-16 object-contain transition-transform duration-300"
+              data-scale={scale}
+              initial={{ opacity: 0.5 }}
+              animate={{
+                scale: isCalculated ? scale : 1
+              }}
+              whileHover={{ 
+                opacity: 1,
+                scale: isCalculated ? scale * 1.05 : 1.05,
+                transition: { duration: 0.2 }
+              }}
+              style={{
+                transformOrigin: 'center center'
+              }}
+              onError={(e) => {
+                console.error(`Failed to load logo: ${logo}`);
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          );
+        })}
       </motion.div>
     </div>
   );
