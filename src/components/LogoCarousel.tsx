@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 
 const LogoCarousel = () => {
   const logos = [
-    "/brand-logos/apple-logo.png",
+    "/brand-logos/apple-logo.jpg",
     "/brand-logos/playstation-logo.png",
-    "/brand-logos/jbl-logo.png",
+    "/brand-logos/jbl-logo.jpg",
     "/brand-logos/garmin-logo.png",
     "/brand-logos/hollyland-logo.png",
-    "/brand-logos/polar-logo.png",
+    "/brand-logos/polar-logo.jpg",
     "/brand-logos/motorola-logo.svg",
     "/brand-logos/inow-logo.png",
     "/brand-logos/starlink-logo.png",
@@ -47,12 +47,16 @@ const LogoCarousel = () => {
             key={`logo-${index}`}
             src={logo}
             alt={`Partner logo ${index + 1}`}
-            className="h-12 object-contain brightness-0 invert"
+            className="h-12 object-contain"
             initial={{ opacity: 0.5 }}
             whileHover={{ 
               opacity: 1,
               scale: 1.05,
               transition: { duration: 0.2 }
+            }}
+            onError={(e) => {
+              console.error(`Failed to load logo: ${logo}`);
+              e.currentTarget.style.display = 'none';
             }}
           />
         ))}
