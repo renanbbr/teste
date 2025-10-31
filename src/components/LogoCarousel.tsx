@@ -5,6 +5,7 @@ const LogoCarousel = () => {
     "/brand-logos/playstation-logo.png",
     "/brand-logos/stanley-logo.png",
     "/brand-logos/amazon-logo.png",
+    "/brand-logos/hollyland-logo.png",
   ];
 
   const extendedLogos = [...logos, ...logos, ...logos];
