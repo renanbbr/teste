@@ -86,7 +86,7 @@ const Index = () => {
               {/* Dashboard Hero Image com filtros */}
               <div className="w-full relative">
                 <img 
-                  src="/lovable-uploads/dashboard-hero-v2.png"
+                  src="/lovable-uploads/dashboard-hero-v3.png"
                   alt="Dashboard do SealClub - Interface de Membros"
                   className="w-full h-auto object-cover rounded-2xl"
                   style={{
