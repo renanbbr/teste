@@ -95,7 +95,7 @@ const Index = () => {
                 />
                 
                 {/* Filtro/Overlay apenas na parte inferior */}
-                <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-black via-black/60 to-transparent rounded-b-2xl pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-black via-black/85 to-transparent rounded-b-2xl pointer-events-none" />
               </div>
               
               {/* Glass overlay para depth adicional */}
