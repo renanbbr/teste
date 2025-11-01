@@ -1,26 +1,50 @@
 import { motion } from "framer-motion";
 
 const LogoCarousel = () => {
-  const logos = [
-    "/brand-logos/apple-logo.jpg",
-    "/brand-logos/playstation-logo.png",
-    "/brand-logos/jbl-logo.jpg",
-    "/brand-logos/garmin-logo.png",
-    "/brand-logos/polar-logo.jpg",
-    "/brand-logos/motorola-logo.svg",
-    "/brand-logos/inow-logo.png",
-    "/brand-logos/starlink-logo.png",
-    "/brand-logos/xiaomi-logo.jpg",
-    "/brand-logos/stanley-logo.png",
-    "/brand-logos/amazon-logo.png",
+  // Logos principais (serão renderizadas maiores)
+  const mainLogos = [
+    { src: "/brand-logos/dji-logo-new.png", alt: "DJI", isMain: true },
+    { src: "/brand-logos/apple-logo-new.png", alt: "Apple", isMain: true },
+    { src: "/brand-logos/jbl-logo-new.png", alt: "JBL", isMain: true },
+    { src: "/brand-logos/ps5-logo-new.png", alt: "PlayStation 5", isMain: true },
   ];
 
-  const extendedLogos = [...logos, ...logos, ...logos];
+  // Logos normais (menores)
+  const normalLogos = [
+    { src: "/brand-logos/garmin-logo-new.png", alt: "Garmin", isMain: false },
+    { src: "/brand-logos/hollyland-logo-new.png", alt: "Hollyland", isMain: false },
+    { src: "/brand-logos/inow-logo-new.png", alt: "Inow", isMain: false },
+    { src: "/brand-logos/motorola-logo-new.png", alt: "Motorola", isMain: false },
+    { src: "/brand-logos/polar-logo-new.png", alt: "Polar", isMain: false },
+    { src: "/brand-logos/playstation-logo-new.png", alt: "PlayStation", isMain: false },
+  ];
+
+  // Criar padrão: PRINCIPAL → normal → normal → PRINCIPAL → normal → normal...
+  const createPattern = () => {
+    const pattern = [];
+    let normalIndex = 0;
+    
+    mainLogos.forEach((mainLogo) => {
+      // Adiciona logo principal
+      pattern.push(mainLogo);
+      
+      // Adiciona 2 logos normais
+      for (let i = 0; i < 2; i++) {
+        pattern.push(normalLogos[normalIndex % normalLogos.length]);
+        normalIndex++;
+      }
+    });
+    
+    return pattern;
+  };
+
+  const logos = createPattern();
+  const extendedLogos = [...logos, ...logos, ...logos]; // Triplicar para loop infinito
 
   return (
     <div className="w-full overflow-hidden bg-black/50 backdrop-blur-sm py-12 mt-20">
       <motion.div 
-        className="flex items-center space-x-16 h-20"
+        className="flex items-center space-x-16 h-24"
         initial={{ opacity: 0, x: "0%" }}
         animate={{
           opacity: 1,
@@ -29,7 +53,7 @@ const LogoCarousel = () => {
         transition={{
           opacity: { duration: 0.5 },
           x: {
-            duration: 15, // Reduced from 25 to 15 seconds
+            duration: 15,
             repeat: Infinity,
             ease: "linear",
             delay: 0.5
@@ -44,18 +68,19 @@ const LogoCarousel = () => {
         {extendedLogos.map((logo, index) => (
           <motion.img
             key={`logo-${index}`}
-            src={logo}
-            alt={`Partner logo ${index + 1}`}
-            className={`h-full w-auto object-contain transition-opacity duration-300 ${
-              logo.includes('inow-logo') ? 'mix-blend-multiply' : ''
+            src={logo.src}
+            alt={logo.alt}
+            className={`w-auto object-contain transition-opacity duration-300 ${
+              logo.isMain ? 'h-20' : 'h-14'
             }`}
             initial={{ opacity: 0.5 }}
             whileHover={{ 
               opacity: 1,
+              scale: logo.isMain ? 1.1 : 1.05,
               transition: { duration: 0.2 }
             }}
             onError={(e) => {
-              console.error(`Failed to load logo: ${logo}`);
+              console.error(`Failed to load logo: ${logo.src}`);
               e.currentTarget.style.display = 'none';
             }}
           />
