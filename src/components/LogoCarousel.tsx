@@ -22,11 +22,12 @@ const LogoCarousel = () => {
 
   // Multiplicadores adicionais para logos específicos
   const manualScaleMultipliers: Record<string, number> = {
-    "/brand-logos/polar-logo.jpg": 1.4,
-    "/brand-logos/garmin-logo.png": 1.4,
-    "/brand-logos/amazon-logo.png": 1.4,
-    "/brand-logos/motorola-logo.svg": 1.5,
-    "/brand-logos/apple-logo.jpg": 1.5,
+    "/brand-logos/polar-logo.jpg": 1.6,
+    "/brand-logos/garmin-logo.png": 1.6,
+    "/brand-logos/amazon-logo.png": 1.6,
+    "/brand-logos/motorola-logo.svg": 1.7,
+    "/brand-logos/apple-logo.jpg": 1.7,
+    "/brand-logos/inow-logo.png": 1.6,
   };
 
   const extendedLogos = [...logos, ...logos, ...logos];
