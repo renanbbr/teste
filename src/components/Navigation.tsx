@@ -1,9 +1,18 @@
 import { useState, useEffect } from "react";
 import sealclubLogo from "@/assets/sealclub-logo.png";
 import { Button } from "./ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "./ui/dropdown-menu";
+import { Menu } from "lucide-react";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,29 +69,79 @@ const Navigation = () => {
           </div>
 
           {/* Navigation */}
-          <div className="flex items-center gap-3 sm:gap-6">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (item.onClick) {
-                    item.onClick();
-                  }
-                }}
-                className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-all duration-300"
+          <div className="flex items-center gap-3">
+            {/* Mobile: Dropdown Menu */}
+            <div className="md:hidden">
+              <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    <Menu className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                
+                <DropdownMenuContent 
+                  align="end" 
+                  className="w-48 bg-[#1B1B1B] border-white/10 z-[60]"
+                  sideOffset={8}
+                >
+                  {navItems.map((item) => (
+                    <DropdownMenuItem
+                      key={item.name}
+                      onClick={() => {
+                        item.onClick();
+                        setIsMenuOpen(false);
+                      }}
+                      className="cursor-pointer text-muted-foreground hover:text-foreground hover:bg-white/5"
+                    >
+                      {item.name}
+                    </DropdownMenuItem>
+                  ))}
+                  
+                  <DropdownMenuSeparator className="bg-white/10" />
+                  
+                  <DropdownMenuItem
+                    onClick={() => {
+                      scrollToSection('cta');
+                      setIsMenuOpen(false);
+                    }}
+                    className="cursor-pointer font-semibold text-primary hover:bg-primary/10"
+                  >
+                    Já sou membro
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            {/* Desktop: Links diretos */}
+            <div className="hidden md:flex items-center gap-6">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (item.onClick) {
+                      item.onClick();
+                    }
+                  }}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-all duration-300"
+                >
+                  {item.name}
+                </a>
+              ))}
+              
+              <Button 
+                onClick={() => scrollToSection('cta')}
+                size="sm"
+                className="button-gradient text-sm"
               >
-                {item.name}
-              </a>
-            ))}
-            <Button 
-              onClick={() => scrollToSection('cta')}
-              size="sm"
-              className="button-gradient text-xs sm:text-sm"
-            >
-              Já sou membro
-            </Button>
+                Já sou membro
+              </Button>
+            </div>
           </div>
         </nav>
       </div>
