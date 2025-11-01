@@ -8,10 +8,10 @@ const SealPassSection = () => {
     { src: "/brand-logos/apple-logo-new.png", alt: "Parceiro Apple" },
     { src: "/brand-logos/dji-logo-new.png", alt: "Parceiro DJI" },
     { src: "/brand-logos/motorola-logo-new.png", alt: "Parceiro Motorola" },
-    { src: "/brand-logos/jbl-logo-new.png", alt: "Parceiro JBL" },
-    { src: "/brand-logos/garmin-logo-new.png", alt: "Parceiro Garmin" },
-    { src: "/brand-logos/playstation-logo-new.png", alt: "Parceiro PlayStation" },
-    { src: "/brand-logos/polar-logo-new.png", alt: "Parceiro Polar" },
+    { src: "/brand-logos/jbl-logo.jpg", alt: "Parceiro JBL" },
+    { src: "/brand-logos/garmin-logo.png", alt: "Parceiro Garmin" },
+    { src: "/brand-logos/playstation-logo.png", alt: "Parceiro PlayStation" },
+    { src: "/brand-logos/polar-logo.png", alt: "Parceiro Polar" },
     { src: "/brand-logos/hollyland-logo-new.png", alt: "Parceiro Hollyland" },
   ];
 
@@ -123,18 +123,19 @@ const SealPassSection = () => {
               <img
                 src={sealclubLogo}
                 alt="SealClub Logo"
-                className="w-32 h-32 md:w-48 md:h-48 object-contain drop-shadow-[0_0_40px_rgba(59,130,246,0.5)]"
+                className="w-48 h-48 md:w-64 md:h-64 object-contain opacity-70 drop-shadow-2xl 
+                           drop-shadow-[0_0_60px_rgba(59,130,246,0.4)]"
               />
             </motion.div>
 
-            {/* Carrossel de logos dos parceiros */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 md:gap-16 pointer-events-none">
+            {/* Carrossel de logos dos parceiros em containers glass */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-12 md:gap-20">
               {/* Linha superior de logos */}
               <div className="w-full overflow-hidden">
                 <motion.div
-                  className="flex items-center gap-8 md:gap-16"
+                  className="flex items-center justify-center gap-6 md:gap-12"
                   animate={{
-                    x: [0, -1600],
+                    x: [0, -1200],
                   }}
                   transition={{
                     duration: 40,
@@ -143,19 +144,43 @@ const SealPassSection = () => {
                   }}
                   style={{ width: "fit-content" }}
                 >
-                  {[...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos].map((logo, index) => (
-                    <div
+                  {[...partnerLogos, ...partnerLogos, ...partnerLogos].map((logo, index) => (
+                    <motion.div
                       key={`top-${index}`}
-                      className="flex-shrink-0 pointer-events-auto"
+                      className="flex-shrink-0 pointer-events-auto group"
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      <img
-                        src={logo.src}
-                        alt={logo.alt}
-                        className="h-10 md:h-14 w-auto object-contain opacity-30 hover:opacity-100 
-                                 brightness-0 invert blur-[0.5px] hover:blur-0
-                                 transition-all duration-300 hover:scale-110"
-                      />
-                    </div>
+                      {/* Container Glass */}
+                      <div className="relative w-20 h-20 md:w-24 md:h-24 
+                                     bg-black/40 backdrop-blur-lg 
+                                     border border-white/10 
+                                     rounded-2xl md:rounded-3xl 
+                                     shadow-xl shadow-black/50
+                                     flex items-center justify-center
+                                     overflow-hidden
+                                     transition-all duration-300
+                                     group-hover:border-white/30
+                                     group-hover:bg-black/60
+                                     group-hover:shadow-2xl
+                                     group-hover:shadow-blue-500/20">
+                        
+                        {/* Brilho interno no hover */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 
+                                       group-hover:from-blue-500/10 group-hover:to-cyan-500/10 
+                                       transition-all duration-300" />
+                        
+                        {/* Logo */}
+                        <img
+                          src={logo.src}
+                          alt={logo.alt}
+                          className="relative z-10 w-10 h-10 md:w-12 md:h-12 object-contain
+                                   brightness-90 contrast-110
+                                   transition-all duration-300
+                                   group-hover:brightness-110 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
                   ))}
                 </motion.div>
               </div>
@@ -163,9 +188,9 @@ const SealPassSection = () => {
               {/* Linha inferior de logos (direção oposta) */}
               <div className="w-full overflow-hidden">
                 <motion.div
-                  className="flex items-center gap-8 md:gap-16"
+                  className="flex items-center justify-center gap-6 md:gap-12"
                   animate={{
-                    x: [-1600, 0],
+                    x: [-1200, 0],
                   }}
                   transition={{
                     duration: 40,
@@ -174,19 +199,43 @@ const SealPassSection = () => {
                   }}
                   style={{ width: "fit-content" }}
                 >
-                  {[...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos].map((logo, index) => (
-                    <div
+                  {[...partnerLogos, ...partnerLogos, ...partnerLogos].map((logo, index) => (
+                    <motion.div
                       key={`bottom-${index}`}
-                      className="flex-shrink-0 pointer-events-auto"
+                      className="flex-shrink-0 pointer-events-auto group"
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      <img
-                        src={logo.src}
-                        alt={logo.alt}
-                        className="h-10 md:h-14 w-auto object-contain opacity-30 hover:opacity-100 
-                                 brightness-0 invert blur-[0.5px] hover:blur-0
-                                 transition-all duration-300 hover:scale-110"
-                      />
-                    </div>
+                      {/* Container Glass */}
+                      <div className="relative w-20 h-20 md:w-24 md:h-24 
+                                     bg-black/40 backdrop-blur-lg 
+                                     border border-white/10 
+                                     rounded-2xl md:rounded-3xl 
+                                     shadow-xl shadow-black/50
+                                     flex items-center justify-center
+                                     overflow-hidden
+                                     transition-all duration-300
+                                     group-hover:border-white/30
+                                     group-hover:bg-black/60
+                                     group-hover:shadow-2xl
+                                     group-hover:shadow-blue-500/20">
+                        
+                        {/* Brilho interno no hover */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 
+                                       group-hover:from-blue-500/10 group-hover:to-cyan-500/10 
+                                       transition-all duration-300" />
+                        
+                        {/* Logo */}
+                        <img
+                          src={logo.src}
+                          alt={logo.alt}
+                          className="relative z-10 w-10 h-10 md:w-12 md:h-12 object-contain
+                                   brightness-90 contrast-110
+                                   transition-all duration-300
+                                   group-hover:brightness-110 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
                   ))}
                 </motion.div>
               </div>
