@@ -86,7 +86,7 @@ const Index = () => {
               {/* Dashboard Hero Image com filtros */}
               <div className="w-full relative">
                 <img 
-                  src="/lovable-uploads/dashboard-hero-v3.png"
+                  src="/lovable-uploads/dashboard-hero-v4.png"
                   alt="Dashboard do SealClub - Interface de Membros"
                   className="w-full h-auto object-cover rounded-2xl"
                   style={{
@@ -95,7 +95,7 @@ const Index = () => {
                 />
                 
                 {/* Filtro/Overlay apenas na parte inferior */}
-                <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-black via-black/85 to-transparent rounded-b-2xl pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-[15%] bg-gradient-to-t from-black/70 via-black/40 to-transparent rounded-b-2xl pointer-events-none" />
               </div>
               
               {/* Glass overlay para depth adicional */}
