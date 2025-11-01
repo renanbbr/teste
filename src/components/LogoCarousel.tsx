@@ -1,45 +1,20 @@
 import { motion } from "framer-motion";
 
 const LogoCarousel = () => {
-  // Logos principais (serão renderizadas maiores)
-  const mainLogos = [
-    { src: "/brand-logos/dji-logo-new.png", alt: "DJI", isMain: true },
-    { src: "/brand-logos/apple-logo-new.png", alt: "Apple", isMain: true },
-    { src: "/brand-logos/jbl-logo-new.png", alt: "JBL", isMain: true },
-    { src: "/brand-logos/ps5-logo-new.png", alt: "PlayStation 5", isMain: true },
+  const logos = [
+    { src: "/brand-logos/dji-logo-new.png", alt: "DJI" },
+    { src: "/brand-logos/apple-logo-new.png", alt: "Apple" },
+    { src: "/brand-logos/garmin-logo-new.png", alt: "Garmin" },
+    { src: "/brand-logos/jbl-logo-new.png", alt: "JBL" },
+    { src: "/brand-logos/hollyland-logo-new.png", alt: "Hollyland" },
+    { src: "/brand-logos/inow-logo-new.png", alt: "Inow" },
+    { src: "/brand-logos/motorola-logo-new.png", alt: "Motorola" },
+    { src: "/brand-logos/ps5-logo-new.png", alt: "PlayStation 5" },
+    { src: "/brand-logos/polar-logo-new.png", alt: "Polar" },
+    { src: "/brand-logos/playstation-logo-new.png", alt: "PlayStation" },
   ];
 
-  // Logos normais (menores)
-  const normalLogos = [
-    { src: "/brand-logos/garmin-logo-new.png", alt: "Garmin", isMain: false },
-    { src: "/brand-logos/hollyland-logo-new.png", alt: "Hollyland", isMain: false },
-    { src: "/brand-logos/inow-logo-new.png", alt: "Inow", isMain: false },
-    { src: "/brand-logos/motorola-logo-new.png", alt: "Motorola", isMain: false },
-    { src: "/brand-logos/polar-logo-new.png", alt: "Polar", isMain: false },
-    { src: "/brand-logos/playstation-logo-new.png", alt: "PlayStation", isMain: false },
-  ];
-
-  // Criar padrão: PRINCIPAL → normal → normal → PRINCIPAL → normal → normal...
-  const createPattern = () => {
-    const pattern = [];
-    let normalIndex = 0;
-    
-    mainLogos.forEach((mainLogo) => {
-      // Adiciona logo principal
-      pattern.push(mainLogo);
-      
-      // Adiciona 2 logos normais
-      for (let i = 0; i < 2; i++) {
-        pattern.push(normalLogos[normalIndex % normalLogos.length]);
-        normalIndex++;
-      }
-    });
-    
-    return pattern;
-  };
-
-  const logos = createPattern();
-  const extendedLogos = [...logos, ...logos, ...logos]; // Triplicar para loop infinito
+  const extendedLogos = [...logos, ...logos, ...logos];
 
   return (
     <div className="w-full overflow-hidden bg-black/50 backdrop-blur-sm py-12 mt-20">
@@ -48,12 +23,12 @@ const LogoCarousel = () => {
         initial={{ opacity: 0, x: "0%" }}
         animate={{
           opacity: 1,
-          x: "-50%"
+          x: "-33.33%"
         }}
         transition={{
           opacity: { duration: 0.5 },
           x: {
-            duration: 15,
+            duration: 20,
             repeat: Infinity,
             ease: "linear",
             delay: 0.5
@@ -70,13 +45,11 @@ const LogoCarousel = () => {
             key={`logo-${index}`}
             src={logo.src}
             alt={logo.alt}
-            className={`w-auto object-contain transition-opacity duration-300 ${
-              logo.isMain ? 'h-20' : 'h-14'
-            }`}
-            initial={{ opacity: 0.5 }}
+            className="h-20 w-auto object-contain brightness-0 invert transition-opacity duration-300"
+            initial={{ opacity: 0.6 }}
             whileHover={{ 
               opacity: 1,
-              scale: logo.isMain ? 1.1 : 1.05,
+              scale: 1.05,
               transition: { duration: 0.2 }
             }}
             onError={(e) => {
