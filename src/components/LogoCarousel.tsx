@@ -11,7 +11,6 @@ const LogoCarousel = () => {
     "/brand-logos/playstation-logo.png",
     "/brand-logos/jbl-logo.jpg",
     "/brand-logos/garmin-logo.png",
-    "/brand-logos/hollyland-logo.png",
     "/brand-logos/polar-logo.jpg",
     "/brand-logos/motorola-logo.svg",
     "/brand-logos/inow-logo.png",
@@ -20,6 +19,15 @@ const LogoCarousel = () => {
     "/brand-logos/stanley-logo.png",
     "/brand-logos/amazon-logo.png",
   ];
+
+  // Multiplicadores adicionais para logos específicos
+  const manualScaleMultipliers: Record<string, number> = {
+    "/brand-logos/polar-logo.jpg": 1.4,
+    "/brand-logos/garmin-logo.png": 1.4,
+    "/brand-logos/amazon-logo.png": 1.4,
+    "/brand-logos/motorola-logo.svg": 1.5,
+    "/brand-logos/apple-logo.jpg": 1.5,
+  };
 
   const extendedLogos = [...logos, ...logos, ...logos];
 
@@ -50,10 +58,14 @@ const LogoCarousel = () => {
       const currentArea = rect.width * rect.height;
       
       // Fator de escala baseado na raiz quadrada da proporção de áreas
-      const scaleFactor = Math.sqrt(starlinkArea / currentArea);
+      let scaleFactor = Math.sqrt(starlinkArea / currentArea);
       
-      // Limitar entre 0.8x e 1.5x para evitar distorções extremas
-      scales[logoPath] = Math.min(Math.max(scaleFactor, 0.8), 1.5);
+      // Aplicar multiplicador manual se existir
+      const manualMultiplier = manualScaleMultipliers[logoPath] || 1;
+      scaleFactor *= manualMultiplier;
+      
+      // Limitar entre 0.8x e 2.0x para evitar distorções extremas
+      scales[logoPath] = Math.min(Math.max(scaleFactor, 0.8), 2.0);
     });
 
     setLogoScales(scales);
@@ -113,7 +125,9 @@ const LogoCarousel = () => {
               key={`logo-${index}`}
               src={logo}
               alt={`Partner logo ${index + 1}`}
-              className="h-16 object-contain transition-transform duration-300"
+              className={`h-16 object-contain transition-transform duration-300 ${
+                logo.includes('inow-logo') ? 'mix-blend-multiply' : ''
+              }`}
               data-scale={scale}
               initial={{ opacity: 0.5 }}
               animate={{
