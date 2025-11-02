@@ -122,7 +122,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,black_100%)]" />
         
         {/* Título e Subtítulo da Section */}
-        <div className="container px-4 relative z-10 mb-12">
+        <div className="container px-4 relative z-10 mb-8">
           {/* Badge */}
           <motion.div initial={{
           opacity: 0,
@@ -183,7 +183,7 @@ const Index = () => {
           duration: 0.6
         }} viewport={{
           once: true
-        }} className="flex items-center justify-center mb-12">
+        }} className="flex items-center justify-center mb-8">
             <div className="relative w-full max-w-[104rem]">
                 <video autoPlay loop muted playsInline className="w-full h-auto min-h-[600px] md:min-h-[800px]">
                   <source src="/lovable-uploads/sealclub-branding.mp4" type="video/mp4" />
@@ -316,21 +316,6 @@ const Index = () => {
             </div>
           </motion.div>
 
-          {/* Container central com logo e carrossel */}
-          <motion.div initial={{
-          opacity: 0,
-          scale: 0.9
-        }} whileInView={{
-          opacity: 1,
-          scale: 1
-        }} viewport={{
-          once: true
-        }} transition={{
-          duration: 0.6
-        }} className="relative max-w-6xl mx-auto mb-12">
-            {/* Logo central com aura energética */}
-            
-          </motion.div>
 
           {/* CTA */}
           <motion.div initial={{
