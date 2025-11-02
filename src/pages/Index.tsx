@@ -188,7 +188,7 @@ const Index = () => {
         }} viewport={{
           once: true
         }} className="flex items-center justify-center mb-20">
-            <div className="relative w-full max-w-5xl">
+            <div className="relative w-full max-w-6xl">
               <video autoPlay loop muted playsInline className="w-full h-auto">
                 <source src="/lovable-uploads/sealclub-branding.mp4" type="video/mp4" />
               </video>
