@@ -63,17 +63,17 @@ const PricingTier = ({
           )}
         </div>
         
+        {showPriceAlert && (
+          <div className="flex items-center justify-center gap-1.5 mb-2">
+            <AlertCircle className="w-3.5 h-3.5 text-orange-500" />
+            <span className="text-[11px] font-bold text-orange-500 uppercase tracking-wide">
+              Preço aumentará em breve
+            </span>
+          </div>
+        )}
+        
         {description && <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{description}</p>}
       </div>
-      
-      {showPriceAlert && (
-        <div className="flex items-center justify-center gap-1.5 mb-3">
-          <AlertCircle className="w-3.5 h-3.5 text-orange-500" />
-          <span className="text-[11px] font-bold text-orange-500 uppercase tracking-wide">
-            Preço aumentará em breve
-          </span>
-        </div>
-      )}
       
       <Button className="button-gradient w-full mb-6">
         {ctaText}
