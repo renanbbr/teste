@@ -33,14 +33,14 @@ const Index = () => {
           <video autoPlay loop muted playsInline className="w-full h-full object-cover">
             <source src="https://framerusercontent.com/assets/Bax1SXv4b9QI33bMvkicABKnI.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/30" />
         </div>
 
         {/* Background Gradiente para Mobile */}
         <div className="absolute inset-0 md:hidden bg-gradient-to-br from-black via-black/80 to-black" />
         
         {/* Overlay escuro universal (mobile e desktop) */}
-        <div className="absolute inset-0 bg-black/50 z-[1]" />
+        <div className="absolute inset-0 bg-black/20 z-[1]" />
         
         {/* Sombra de transição na parte inferior */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black/50 to-transparent z-[5]" />
