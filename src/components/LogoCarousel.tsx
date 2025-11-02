@@ -44,7 +44,7 @@ const LogoCarousel = ({ className }: LogoCarouselProps) => {
               imageRendering: 'crisp-edges',
               backfaceVisibility: 'hidden',
               transform: 'translateZ(0)',
-              filter: 'brightness(0) invert(1)'
+              filter: 'saturate(0) invert(1) brightness(1.2)'
             }}
           />
           {/* Segunda instância para loop contínuo */}
@@ -56,7 +56,7 @@ const LogoCarousel = ({ className }: LogoCarouselProps) => {
               imageRendering: 'crisp-edges',
               backfaceVisibility: 'hidden',
               transform: 'translateZ(0)',
-              filter: 'brightness(0) invert(1)'
+              filter: 'saturate(0) invert(1) brightness(1.2)'
             }}
           />
         </motion.div>
