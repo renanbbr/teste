@@ -39,22 +39,24 @@ const LogoCarousel = ({ className }: LogoCarouselProps) => {
           <img
             src="/brand-logos/logo-strip.png"
             alt="Brand Logos"
-            className="h-24 w-auto object-contain invert"
+            className="h-24 w-auto object-contain"
             style={{ 
               imageRendering: 'crisp-edges',
               backfaceVisibility: 'hidden',
-              transform: 'translateZ(0)'
+              transform: 'translateZ(0)',
+              filter: 'brightness(0) invert(1)'
             }}
           />
           {/* Segunda instância para loop contínuo */}
           <img
             src="/brand-logos/logo-strip.png"
             alt="Brand Logos"
-            className="h-24 w-auto object-contain invert"
+            className="h-24 w-auto object-contain"
             style={{ 
               imageRendering: 'crisp-edges',
               backfaceVisibility: 'hidden',
-              transform: 'translateZ(0)'
+              transform: 'translateZ(0)',
+              filter: 'brightness(0) invert(1)'
             }}
           />
         </motion.div>
