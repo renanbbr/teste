@@ -89,23 +89,7 @@ const Index = () => {
         delay: 0.8
       }} className="mt-20 max-w-7xl mx-auto relative">
           {/* Border gradient wrapper */}
-          <div className="relative p-[2px] rounded-3xl bg-gradient-to-br from-white/10 via-transparent to-white/5">
-            
-            {/* Inner container with dark gradient */}
-            <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-black via-black to-zinc-900/30 shadow-[0_0_50px_rgba(255,255,255,0.05),0_20px_60px_rgba(0,0,0,0.8)] transition-all duration-500 hover:shadow-[0_0_80px_rgba(255,255,255,0.08),0_30px_80px_rgba(0,0,0,0.9)] hover:scale-[1.01] backdrop-blur-xl">
-              
-              {/* Dashboard Hero Image com filtros */}
-              <div className="w-full relative">
-                
-                
-                {/* Filtro/Overlay apenas na parte inferior */}
-                <div className="absolute inset-x-0 bottom-0 h-[15%] bg-gradient-to-t from-black/70 via-black/40 to-transparent rounded-b-2xl pointer-events-none" />
-              </div>
-              
-              {/* Glass overlay para depth adicional */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-            </div>
-          </div>
+          
         </motion.div>
 
       </motion.section>
