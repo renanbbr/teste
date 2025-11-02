@@ -336,7 +336,7 @@ const Index = () => {
 
       {/* Pricing Section */}
       <div id="pricing" className="bg-black">
-        <PricingSectionV2 />
+        <PricingSectionV2 className="py-px" />
       </div>
 
       {/* Testimonials Section */}
