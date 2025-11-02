@@ -39,6 +39,9 @@ const Index = () => {
         {/* Background Gradiente para Mobile */}
         <div className="absolute inset-0 md:hidden bg-gradient-to-br from-black via-black/80 to-black" />
         
+        {/* Sombra de transição na parte inferior */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black/50 to-transparent z-[5]" />
+        
         <div className="max-w-4xl relative z-10">
           <h1 className="text-5xl md:text-7xl font-normal mb-4 tracking-tight text-left">
             <span className="text-gray-200">
