@@ -119,7 +119,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-950/10 to-black" />
         
         {/* Vignette effect */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,black_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,black_100%)] mx-0 py-0 my-[220px]" />
         
         {/* Título e Subtítulo da Section */}
         <div className="container px-4 relative z-10 mb-8">
