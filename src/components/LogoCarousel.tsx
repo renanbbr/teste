@@ -39,7 +39,7 @@ const LogoCarousel = ({ className }: LogoCarouselProps) => {
           <img
             src="/brand-logos/logo-strip.png"
             alt="Brand Logos"
-            className="h-24 w-auto object-contain brightness-0 invert"
+            className="h-24 w-auto object-contain invert"
             style={{ 
               imageRendering: 'crisp-edges',
               backfaceVisibility: 'hidden',
@@ -50,7 +50,7 @@ const LogoCarousel = ({ className }: LogoCarouselProps) => {
           <img
             src="/brand-logos/logo-strip.png"
             alt="Brand Logos"
-            className="h-24 w-auto object-contain brightness-0 invert"
+            className="h-24 w-auto object-contain invert"
             style={{ 
               imageRendering: 'crisp-edges',
               backfaceVisibility: 'hidden',
