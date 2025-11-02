@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import sealclubLogo from "@/assets/sealclub-logo.png";
 import { Button } from "./ui/button";
+import { ButtonHard } from "./ui/button-hard";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -134,13 +135,12 @@ const Navigation = () => {
                 </a>
               ))}
               
-              <Button 
+              <ButtonHard 
                 onClick={() => scrollToSection('cta')}
-                size="sm"
-                className="button-gradient text-sm"
+                className="text-sm"
               >
                 Já sou membro
-              </Button>
+              </ButtonHard>
             </div>
           </div>
         </nav>
