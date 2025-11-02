@@ -14,7 +14,7 @@ import Footer from "@/components/Footer";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import NewArrivalsSection from "@/components/NewArrivalsSection";
 import sealclubLogo from "@/assets/sealclub-logo.png";
-import { AnimatedBlueRays } from "@/components/ui/animated-blue-rays";
+
 const Index = () => {
   return <div className="min-h-screen bg-black text-foreground">
       <Navigation />
@@ -29,8 +29,25 @@ const Index = () => {
     }} transition={{
       duration: 0.5
     }} className="relative container px-4 pt-40 pb-20 py-0">
-        {/* Background com raios azuis animados */}
-        <AnimatedBlueRays />
+        {/* Background Video para Desktop */}
+        <div className="absolute inset-0 hidden md:block">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source
+              src="https://framerusercontent.com/assets/Bax1SXv4b9QI33bMvkicABKnI.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+
+        {/* Background Gradiente para Mobile */}
+        <div className="absolute inset-0 md:hidden bg-gradient-to-br from-black via-black/80 to-black" />
         
         <div className="max-w-4xl relative z-10">
           <h1 className="text-5xl md:text-7xl font-normal mb-4 tracking-tight text-left">
