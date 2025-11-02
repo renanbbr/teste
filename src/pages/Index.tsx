@@ -71,12 +71,15 @@ const Index = () => {
         </div>
 
         {/* Dashboard integrado na mesma seção */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="mt-20 max-w-7xl mx-auto relative"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 20
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        delay: 0.8
+      }} className="mt-20 max-w-7xl mx-auto relative">
           {/* Border gradient wrapper */}
           <div className="relative p-[2px] rounded-3xl bg-gradient-to-br from-white/10 via-transparent to-white/5">
             
@@ -85,14 +88,9 @@ const Index = () => {
               
               {/* Dashboard Hero Image com filtros */}
               <div className="w-full relative">
-                <img 
-                  src="/lovable-uploads/dashboard-hero-v4.png"
-                  alt="Dashboard do SealClub - Interface de Membros"
-                  className="w-full h-auto object-cover rounded-2xl"
-                  style={{
-                    filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3))'
-                  }}
-                />
+                <img src="/lovable-uploads/dashboard-hero-v4.png" alt="Dashboard do SealClub - Interface de Membros" className="w-full h-auto object-cover rounded-2xl" style={{
+                filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3))'
+              }} />
                 
                 {/* Filtro/Overlay apenas na parte inferior */}
                 <div className="absolute inset-x-0 bottom-0 h-[15%] bg-gradient-to-t from-black/70 via-black/40 to-transparent rounded-b-2xl pointer-events-none" />
@@ -130,12 +128,15 @@ const Index = () => {
         {/* Título e Subtítulo da Section */}
         <div className="container px-4 relative z-10 mb-16">
           {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex justify-center mb-8"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} className="flex justify-center mb-8">
             <span className="inline-flex items-center px-6 py-2 rounded-full 
                            bg-gradient-to-r from-blue-500/10 to-cyan-500/10 
                            border border-blue-500/20 text-sm font-medium text-blue-400">
@@ -144,24 +145,31 @@ const Index = () => {
           </motion.div>
 
           {/* Título */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-center mb-4"
-          >
+          <motion.h2 initial={{
+          opacity: 0,
+          y: 20
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} className="text-4xl md:text-5xl font-bold text-center mb-4">
             SealPass: conecte-se ao{" "}
             <span className="text-gradient">ecossistema</span>
           </motion.h2>
 
           {/* Subtítulo */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-muted-foreground text-center max-w-3xl mx-auto"
-          >
+          <motion.p initial={{
+          opacity: 0,
+          y: 20
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} transition={{
+          delay: 0.1
+        }} className="text-lg text-muted-foreground text-center max-w-3xl mx-auto">
             Descontos e experiências exclusivas com marcas que fazem parte da comunidade Seal.
             Cada parceria foi escolhida a dedo para oferecer vantagens reais ao membro SealClub.
           </motion.p>
@@ -169,141 +177,169 @@ const Index = () => {
 
         <div className="container px-4 relative z-10">
           {/* Video do SealClub */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="flex items-center justify-center mb-20"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          scale: 0.9
+        }} whileInView={{
+          opacity: 1,
+          scale: 1
+        }} transition={{
+          duration: 0.6
+        }} viewport={{
+          once: true
+        }} className="flex items-center justify-center mb-20">
             <div className="relative w-full max-w-5xl">
-              <video 
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-auto"
-              >
+              <video autoPlay loop muted playsInline className="w-full h-auto">
                 <source src="/lovable-uploads/sealclub-branding.mp4" type="video/mp4" />
               </video>
             </div>
           </motion.div>
 
           {/* Container central com logo e carrossel */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative max-w-6xl mx-auto mb-12"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          scale: 0.9
+        }} whileInView={{
+          opacity: 1,
+          scale: 1
+        }} viewport={{
+          once: true
+        }} transition={{
+          duration: 0.6
+        }} className="relative max-w-6xl mx-auto mb-12">
             {/* Logo central com aura energética */}
             <div className="relative flex items-center justify-center min-h-[500px] md:min-h-[600px]">
               {/* Aura animada principal (azul) */}
-              <motion.div
-                className="absolute inset-0 flex items-center justify-center"
-                animate={{
-                  scale: [1, 1.15, 1],
-                  opacity: [0.3, 0.6, 0.3],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
+              <motion.div className="absolute inset-0 flex items-center justify-center" animate={{
+              scale: [1, 1.15, 1],
+              opacity: [0.3, 0.6, 0.3]
+            }} transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}>
                 <div className="w-[350px] h-[350px] md:w-[480px] md:h-[480px] rounded-full 
                               bg-gradient-radial from-blue-500/40 via-cyan-500/20 to-transparent
                               blur-3xl" />
               </motion.div>
 
               {/* Segunda camada de aura (laranja/vermelha) */}
-              <motion.div
-                className="absolute inset-0 flex items-center justify-center"
-                animate={{
-                  scale: [1.1, 1, 1.1],
-                  opacity: [0.2, 0.5, 0.2],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 2,
-                }}
-              >
+              <motion.div className="absolute inset-0 flex items-center justify-center" animate={{
+              scale: [1.1, 1, 1.1],
+              opacity: [0.2, 0.5, 0.2]
+            }} transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}>
                 <div className="w-[330px] h-[330px] md:w-[460px] md:h-[460px] rounded-full 
                               bg-gradient-radial from-orange-500/30 via-red-500/15 to-transparent
                               blur-2xl" />
               </motion.div>
 
               {/* Logo da Seal */}
-              <motion.div
-                className="relative z-20 flex items-center justify-center"
-                animate={{
-                  y: [0, -15, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <img
-                  src={sealclubLogo}
-                  alt="SealClub Logo"
-                  className="w-56 h-56 md:w-80 md:h-80 object-contain opacity-70 drop-shadow-2xl 
-                             drop-shadow-[0_0_60px_rgba(59,130,246,0.4)]"
-                />
+              <motion.div className="relative z-20 flex items-center justify-center" animate={{
+              y: [0, -15, 0]
+            }} transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}>
+                
               </motion.div>
 
               {/* Carrossel de logos dos parceiros em containers glass */}
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-12 md:gap-20">
                 {/* Linha superior de logos */}
                 <div className="w-full overflow-hidden">
-                  <motion.div
-                    className="flex items-center justify-center gap-6 md:gap-12"
-                    animate={{
-                      x: [0, -1200],
-                    }}
-                    transition={{
-                      duration: 40,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                    style={{ width: "fit-content" }}
-                  >
-                    {[
-                      { src: "/brand-logos/apple-logo-new.png", alt: "Parceiro Apple" },
-                      { src: "/brand-logos/dji-logo-new.png", alt: "Parceiro DJI" },
-                      { src: "/brand-logos/motorola-logo-new.png", alt: "Parceiro Motorola" },
-                      { src: "/brand-logos/jbl-logo.jpg", alt: "Parceiro JBL" },
-                      { src: "/brand-logos/garmin-logo.png", alt: "Parceiro Garmin" },
-                      { src: "/brand-logos/playstation-logo.png", alt: "Parceiro PlayStation" },
-                      { src: "/brand-logos/polar-logo.png", alt: "Parceiro Polar" },
-                      { src: "/brand-logos/hollyland-logo-new.png", alt: "Parceiro Hollyland" },
-                      { src: "/brand-logos/apple-logo-new.png", alt: "Parceiro Apple" },
-                      { src: "/brand-logos/dji-logo-new.png", alt: "Parceiro DJI" },
-                      { src: "/brand-logos/motorola-logo-new.png", alt: "Parceiro Motorola" },
-                      { src: "/brand-logos/jbl-logo.jpg", alt: "Parceiro JBL" },
-                      { src: "/brand-logos/garmin-logo.png", alt: "Parceiro Garmin" },
-                      { src: "/brand-logos/playstation-logo.png", alt: "Parceiro PlayStation" },
-                      { src: "/brand-logos/polar-logo.png", alt: "Parceiro Polar" },
-                      { src: "/brand-logos/hollyland-logo-new.png", alt: "Parceiro Hollyland" },
-                      { src: "/brand-logos/apple-logo-new.png", alt: "Parceiro Apple" },
-                      { src: "/brand-logos/dji-logo-new.png", alt: "Parceiro DJI" },
-                      { src: "/brand-logos/motorola-logo-new.png", alt: "Parceiro Motorola" },
-                      { src: "/brand-logos/jbl-logo.jpg", alt: "Parceiro JBL" },
-                      { src: "/brand-logos/garmin-logo.png", alt: "Parceiro Garmin" },
-                      { src: "/brand-logos/playstation-logo.png", alt: "Parceiro PlayStation" },
-                      { src: "/brand-logos/polar-logo.png", alt: "Parceiro Polar" },
-                      { src: "/brand-logos/hollyland-logo-new.png", alt: "Parceiro Hollyland" },
-                    ].map((logo, index) => (
-                      <motion.div
-                        key={`top-${index}`}
-                        className="flex-shrink-0 pointer-events-auto group"
-                        whileHover={{ scale: 1.05, y: -5 }}
-                        transition={{ duration: 0.3 }}
-                      >
+                  <motion.div className="flex items-center justify-center gap-6 md:gap-12" animate={{
+                  x: [0, -1200]
+                }} transition={{
+                  duration: 40,
+                  repeat: Infinity,
+                  ease: "linear"
+                }} style={{
+                  width: "fit-content"
+                }}>
+                    {[{
+                    src: "/brand-logos/apple-logo-new.png",
+                    alt: "Parceiro Apple"
+                  }, {
+                    src: "/brand-logos/dji-logo-new.png",
+                    alt: "Parceiro DJI"
+                  }, {
+                    src: "/brand-logos/motorola-logo-new.png",
+                    alt: "Parceiro Motorola"
+                  }, {
+                    src: "/brand-logos/jbl-logo.jpg",
+                    alt: "Parceiro JBL"
+                  }, {
+                    src: "/brand-logos/garmin-logo.png",
+                    alt: "Parceiro Garmin"
+                  }, {
+                    src: "/brand-logos/playstation-logo.png",
+                    alt: "Parceiro PlayStation"
+                  }, {
+                    src: "/brand-logos/polar-logo.png",
+                    alt: "Parceiro Polar"
+                  }, {
+                    src: "/brand-logos/hollyland-logo-new.png",
+                    alt: "Parceiro Hollyland"
+                  }, {
+                    src: "/brand-logos/apple-logo-new.png",
+                    alt: "Parceiro Apple"
+                  }, {
+                    src: "/brand-logos/dji-logo-new.png",
+                    alt: "Parceiro DJI"
+                  }, {
+                    src: "/brand-logos/motorola-logo-new.png",
+                    alt: "Parceiro Motorola"
+                  }, {
+                    src: "/brand-logos/jbl-logo.jpg",
+                    alt: "Parceiro JBL"
+                  }, {
+                    src: "/brand-logos/garmin-logo.png",
+                    alt: "Parceiro Garmin"
+                  }, {
+                    src: "/brand-logos/playstation-logo.png",
+                    alt: "Parceiro PlayStation"
+                  }, {
+                    src: "/brand-logos/polar-logo.png",
+                    alt: "Parceiro Polar"
+                  }, {
+                    src: "/brand-logos/hollyland-logo-new.png",
+                    alt: "Parceiro Hollyland"
+                  }, {
+                    src: "/brand-logos/apple-logo-new.png",
+                    alt: "Parceiro Apple"
+                  }, {
+                    src: "/brand-logos/dji-logo-new.png",
+                    alt: "Parceiro DJI"
+                  }, {
+                    src: "/brand-logos/motorola-logo-new.png",
+                    alt: "Parceiro Motorola"
+                  }, {
+                    src: "/brand-logos/jbl-logo.jpg",
+                    alt: "Parceiro JBL"
+                  }, {
+                    src: "/brand-logos/garmin-logo.png",
+                    alt: "Parceiro Garmin"
+                  }, {
+                    src: "/brand-logos/playstation-logo.png",
+                    alt: "Parceiro PlayStation"
+                  }, {
+                    src: "/brand-logos/polar-logo.png",
+                    alt: "Parceiro Polar"
+                  }, {
+                    src: "/brand-logos/hollyland-logo-new.png",
+                    alt: "Parceiro Hollyland"
+                  }].map((logo, index) => <motion.div key={`top-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
+                    scale: 1.05,
+                    y: -5
+                  }} transition={{
+                    duration: 0.3
+                  }}>
                         {/* Container Glass */}
                         <div className="relative w-16 h-16 md:w-20 md:h-20 
                                        bg-black/40 backdrop-blur-lg 
@@ -324,66 +360,104 @@ const Index = () => {
                                          transition-all duration-300" />
                           
                           {/* Logo */}
-                          <img
-                            src={logo.src}
-                            alt={logo.alt}
-                            className="relative z-10 w-8 h-8 md:w-10 md:h-10 object-contain
+                          <img src={logo.src} alt={logo.alt} className="relative z-10 w-8 h-8 md:w-10 md:h-10 object-contain
                                      brightness-90 contrast-110
                                      transition-all duration-300
-                                     group-hover:brightness-110 group-hover:scale-110"
-                          />
+                                     group-hover:brightness-110 group-hover:scale-110" />
                         </div>
-                      </motion.div>
-                    ))}
+                      </motion.div>)}
                   </motion.div>
                 </div>
 
                 {/* Linha inferior de logos (direção oposta) */}
                 <div className="w-full overflow-hidden">
-                  <motion.div
-                    className="flex items-center justify-center gap-6 md:gap-12"
-                    animate={{
-                      x: [-1200, 0],
-                    }}
-                    transition={{
-                      duration: 40,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                    style={{ width: "fit-content" }}
-                  >
-                    {[
-                      { src: "/brand-logos/apple-logo-new.png", alt: "Parceiro Apple" },
-                      { src: "/brand-logos/dji-logo-new.png", alt: "Parceiro DJI" },
-                      { src: "/brand-logos/motorola-logo-new.png", alt: "Parceiro Motorola" },
-                      { src: "/brand-logos/jbl-logo.jpg", alt: "Parceiro JBL" },
-                      { src: "/brand-logos/garmin-logo.png", alt: "Parceiro Garmin" },
-                      { src: "/brand-logos/playstation-logo.png", alt: "Parceiro PlayStation" },
-                      { src: "/brand-logos/polar-logo.png", alt: "Parceiro Polar" },
-                      { src: "/brand-logos/hollyland-logo-new.png", alt: "Parceiro Hollyland" },
-                      { src: "/brand-logos/apple-logo-new.png", alt: "Parceiro Apple" },
-                      { src: "/brand-logos/dji-logo-new.png", alt: "Parceiro DJI" },
-                      { src: "/brand-logos/motorola-logo-new.png", alt: "Parceiro Motorola" },
-                      { src: "/brand-logos/jbl-logo.jpg", alt: "Parceiro JBL" },
-                      { src: "/brand-logos/garmin-logo.png", alt: "Parceiro Garmin" },
-                      { src: "/brand-logos/playstation-logo.png", alt: "Parceiro PlayStation" },
-                      { src: "/brand-logos/polar-logo.png", alt: "Parceiro Polar" },
-                      { src: "/brand-logos/hollyland-logo-new.png", alt: "Parceiro Hollyland" },
-                      { src: "/brand-logos/apple-logo-new.png", alt: "Parceiro Apple" },
-                      { src: "/brand-logos/dji-logo-new.png", alt: "Parceiro DJI" },
-                      { src: "/brand-logos/motorola-logo-new.png", alt: "Parceiro Motorola" },
-                      { src: "/brand-logos/jbl-logo.jpg", alt: "Parceiro JBL" },
-                      { src: "/brand-logos/garmin-logo.png", alt: "Parceiro Garmin" },
-                      { src: "/brand-logos/playstation-logo.png", alt: "Parceiro PlayStation" },
-                      { src: "/brand-logos/polar-logo.png", alt: "Parceiro Polar" },
-                      { src: "/brand-logos/hollyland-logo-new.png", alt: "Parceiro Hollyland" },
-                    ].map((logo, index) => (
-                      <motion.div
-                        key={`bottom-${index}`}
-                        className="flex-shrink-0 pointer-events-auto group"
-                        whileHover={{ scale: 1.05, y: -5 }}
-                        transition={{ duration: 0.3 }}
-                      >
+                  <motion.div className="flex items-center justify-center gap-6 md:gap-12" animate={{
+                  x: [-1200, 0]
+                }} transition={{
+                  duration: 40,
+                  repeat: Infinity,
+                  ease: "linear"
+                }} style={{
+                  width: "fit-content"
+                }}>
+                    {[{
+                    src: "/brand-logos/apple-logo-new.png",
+                    alt: "Parceiro Apple"
+                  }, {
+                    src: "/brand-logos/dji-logo-new.png",
+                    alt: "Parceiro DJI"
+                  }, {
+                    src: "/brand-logos/motorola-logo-new.png",
+                    alt: "Parceiro Motorola"
+                  }, {
+                    src: "/brand-logos/jbl-logo.jpg",
+                    alt: "Parceiro JBL"
+                  }, {
+                    src: "/brand-logos/garmin-logo.png",
+                    alt: "Parceiro Garmin"
+                  }, {
+                    src: "/brand-logos/playstation-logo.png",
+                    alt: "Parceiro PlayStation"
+                  }, {
+                    src: "/brand-logos/polar-logo.png",
+                    alt: "Parceiro Polar"
+                  }, {
+                    src: "/brand-logos/hollyland-logo-new.png",
+                    alt: "Parceiro Hollyland"
+                  }, {
+                    src: "/brand-logos/apple-logo-new.png",
+                    alt: "Parceiro Apple"
+                  }, {
+                    src: "/brand-logos/dji-logo-new.png",
+                    alt: "Parceiro DJI"
+                  }, {
+                    src: "/brand-logos/motorola-logo-new.png",
+                    alt: "Parceiro Motorola"
+                  }, {
+                    src: "/brand-logos/jbl-logo.jpg",
+                    alt: "Parceiro JBL"
+                  }, {
+                    src: "/brand-logos/garmin-logo.png",
+                    alt: "Parceiro Garmin"
+                  }, {
+                    src: "/brand-logos/playstation-logo.png",
+                    alt: "Parceiro PlayStation"
+                  }, {
+                    src: "/brand-logos/polar-logo.png",
+                    alt: "Parceiro Polar"
+                  }, {
+                    src: "/brand-logos/hollyland-logo-new.png",
+                    alt: "Parceiro Hollyland"
+                  }, {
+                    src: "/brand-logos/apple-logo-new.png",
+                    alt: "Parceiro Apple"
+                  }, {
+                    src: "/brand-logos/dji-logo-new.png",
+                    alt: "Parceiro DJI"
+                  }, {
+                    src: "/brand-logos/motorola-logo-new.png",
+                    alt: "Parceiro Motorola"
+                  }, {
+                    src: "/brand-logos/jbl-logo.jpg",
+                    alt: "Parceiro JBL"
+                  }, {
+                    src: "/brand-logos/garmin-logo.png",
+                    alt: "Parceiro Garmin"
+                  }, {
+                    src: "/brand-logos/playstation-logo.png",
+                    alt: "Parceiro PlayStation"
+                  }, {
+                    src: "/brand-logos/polar-logo.png",
+                    alt: "Parceiro Polar"
+                  }, {
+                    src: "/brand-logos/hollyland-logo-new.png",
+                    alt: "Parceiro Hollyland"
+                  }].map((logo, index) => <motion.div key={`bottom-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
+                    scale: 1.05,
+                    y: -5
+                  }} transition={{
+                    duration: 0.3
+                  }}>
                         {/* Container Glass */}
                         <div className="relative w-16 h-16 md:w-20 md:h-20 
                                        bg-black/40 backdrop-blur-lg 
@@ -404,17 +478,12 @@ const Index = () => {
                                          transition-all duration-300" />
                           
                           {/* Logo */}
-                          <img
-                            src={logo.src}
-                            alt={logo.alt}
-                            className="relative z-10 w-8 h-8 md:w-10 md:h-10 object-contain
+                          <img src={logo.src} alt={logo.alt} className="relative z-10 w-8 h-8 md:w-10 md:h-10 object-contain
                                      brightness-90 contrast-110
                                      transition-all duration-300
-                                     group-hover:brightness-110 group-hover:scale-110"
-                          />
+                                     group-hover:brightness-110 group-hover:scale-110" />
                         </div>
-                      </motion.div>
-                    ))}
+                      </motion.div>)}
                   </motion.div>
                 </div>
               </div>
@@ -422,13 +491,17 @@ const Index = () => {
           </motion.div>
 
           {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="flex justify-center"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} transition={{
+          delay: 0.2
+        }} className="flex justify-center">
             <Button size="lg" className="button-gradient">
               🪩 Ver todos os parceiros do Seal Pass
             </Button>
