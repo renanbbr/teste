@@ -114,7 +114,7 @@ const Index = () => {
         <NewArrivalsSection />
       </div>
       {/* Branding Section / SealPass Section */}
-      <section className="relative bg-black pt-20 pb-8 overflow-hidden">
+      <section className="relative bg-black pt-20 pb-8 overflow-hidden my-0 py-[8px]">
         {/* Background com gradiente */}
         <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-950/10 to-black py-0 my-[220px]" />
         
@@ -171,7 +171,7 @@ const Index = () => {
           </motion.p>
         </div>
 
-        <div className="container px-4 relative z-10">
+        <div className="container px-4 relative z-10 my-0 py-0">
           {/* Video do SealClub */}
           <motion.div initial={{
           opacity: 0,
