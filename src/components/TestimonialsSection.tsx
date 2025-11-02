@@ -7,38 +7,38 @@ import { Card } from "./ui/card";
 const testimonials = [
   {
     name: "Alex P.",
-    role: "Membro Prime desde 2023",
-    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=100&h=100&fit=crop&q=80",
+    role: "Membro Tech desde 2025",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80",
     content: "Mudar para o SealClub foi a melhor decisão financeira que fiz relacionada à tecnologia. A economia é real, e o acesso aos lançamentos é surreal. Indico de olhos fechados!"
   },
   {
     name: "Bruna S.",
-    role: "Membro Ultra desde 2022",
-    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=100&h=100&fit=crop&q=80",
+    role: "Membro Ultra desde 2025",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&q=80",
     content: "O atendimento é outro nível! Tive uma dúvida sobre meu MacBook e o consultor resolveu na hora. Fora a economia, claro!"
   },
   {
     name: "Carlos M.",
-    role: "Membro Start desde 2024",
-    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=100&h=100&fit=crop&q=80",
+    role: "Membro Pro desde 2025",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&q=80",
     content: "Finalmente consegui ter o iPhone do ano sem vender um rim! O SealClub é revolucionário."
   },
   {
     name: "Fernanda L.",
-    role: "Membro Prime desde 2023",
-    image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=100&h=100&fit=crop&q=80",
+    role: "Membro Tech desde 2025",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&q=80",
     content: "Já indiquei pra todos os meus amigos. Acesso a produtos de ponta com preço justo e ainda com benefícios exclusivos. Não tem como ser melhor."
   },
   {
     name: "Ricardo G.",
-    role: "Membro Ultra desde 2022",
-    image: "https://images.unsplash.com/photo-1501286353178-1ec881214838?w=100&h=100&fit=crop&q=80",
+    role: "Membro Ultra desde 2025",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&q=80",
     content: "Como fotógrafo, preciso estar sempre com os melhores equipamentos. O SealClub facilitou demais minha vida e meu bolso!"
   },
   {
     name: "Juliana A.",
-    role: "Membro Start desde 2023",
-    image: "https://images.unsplash.com/photo-1501286353178-1ec881214838?w=100&h=100&fit=crop&q=80",
+    role: "Membro Pro desde 2025",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&q=80",
     content: "Achei que era bom demais pra ser verdade, mas é real! Já estou no meu segundo ano e super satisfeita."
   }
 ];
