@@ -114,7 +114,7 @@ const Index = () => {
         <NewArrivalsSection />
       </div>
       {/* Branding Section / SealPass Section */}
-      <section className="relative bg-black py-32 overflow-hidden">
+      <section className="relative bg-black py-20 overflow-hidden">
         {/* Background com gradiente */}
         <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-950/10 to-black" />
         
@@ -122,7 +122,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,black_100%)]" />
         
         {/* Título e Subtítulo da Section */}
-        <div className="container px-4 relative z-10 mb-16">
+        <div className="container px-4 relative z-10 mb-12">
           {/* Badge */}
           <motion.div initial={{
           opacity: 0,
@@ -183,7 +183,7 @@ const Index = () => {
           duration: 0.6
         }} viewport={{
           once: true
-        }} className="flex items-center justify-center mb-20">
+        }} className="flex items-center justify-center mb-12">
             <div className="relative w-full max-w-[104rem]">
                 <video autoPlay loop muted playsInline className="w-full h-auto min-h-[600px] md:min-h-[800px]">
                   <source src="/lovable-uploads/sealclub-branding.mp4" type="video/mp4" />
