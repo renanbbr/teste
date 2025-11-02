@@ -14,7 +14,6 @@ import Footer from "@/components/Footer";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import NewArrivalsSection from "@/components/NewArrivalsSection";
 import sealclubLogo from "@/assets/sealclub-logo.png";
-
 const Index = () => {
   return <div className="min-h-screen bg-black text-foreground">
       <Navigation />
@@ -31,17 +30,8 @@ const Index = () => {
     }} className="relative container px-4 pt-40 pb-20 py-0">
         {/* Background Video para Desktop */}
         <div className="absolute inset-0 hidden md:block">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          >
-            <source
-              src="https://framerusercontent.com/assets/Bax1SXv4b9QI33bMvkicABKnI.mp4"
-              type="video/mp4"
-            />
+          <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+            <source src="https://framerusercontent.com/assets/Bax1SXv4b9QI33bMvkicABKnI.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/50" />
         </div>
@@ -106,9 +96,7 @@ const Index = () => {
               
               {/* Dashboard Hero Image com filtros */}
               <div className="w-full relative">
-                <img src="/lovable-uploads/dashboard-hero-v4.png" alt="Dashboard do SealClub - Interface de Membros" className="w-full h-auto object-cover rounded-2xl" style={{
-                filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3))'
-              }} />
+                
                 
                 {/* Filtro/Overlay apenas na parte inferior */}
                 <div className="absolute inset-x-0 bottom-0 h-[15%] bg-gradient-to-t from-black/70 via-black/40 to-transparent rounded-b-2xl pointer-events-none" />
@@ -215,30 +203,34 @@ const Index = () => {
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 pointer-events-none py-8">
                 {/* Linha superior - move para direita */}
                 <div className="w-full overflow-hidden">
-                  <motion.div 
-                    className="flex items-center gap-8"
-                    animate={{ x: [-1500, 0] }}
-                    transition={{
-                      duration: 50,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                    style={{ width: "fit-content" }}
-                  >
-                    {[...Array(6)].map((_, setIndex) => (
-                      <React.Fragment key={`top-${setIndex}`}>
-                        {[
-                          { src: "/brand-logos/apple-logo-new.png", alt: "Apple" },
-                          { src: "/brand-logos/dji-logo-new.png", alt: "DJI" },
-                          { src: "/brand-logos/motorola-logo-new.png", alt: "Motorola" },
-                          { src: "/brand-logos/jbl-logo-new.png", alt: "JBL" }
-                        ].map((logo, index) => (
-                          <motion.div
-                            key={`top-${setIndex}-${index}`}
-                            className="flex-shrink-0 pointer-events-auto group"
-                            whileHover={{ scale: 1.05, y: -5 }}
-                            transition={{ duration: 0.3 }}
-                          >
+                  <motion.div className="flex items-center gap-8" animate={{
+                  x: [-1500, 0]
+                }} transition={{
+                  duration: 50,
+                  repeat: Infinity,
+                  ease: "linear"
+                }} style={{
+                  width: "fit-content"
+                }}>
+                    {[...Array(6)].map((_, setIndex) => <React.Fragment key={`top-${setIndex}`}>
+                        {[{
+                      src: "/brand-logos/apple-logo-new.png",
+                      alt: "Apple"
+                    }, {
+                      src: "/brand-logos/dji-logo-new.png",
+                      alt: "DJI"
+                    }, {
+                      src: "/brand-logos/motorola-logo-new.png",
+                      alt: "Motorola"
+                    }, {
+                      src: "/brand-logos/jbl-logo-new.png",
+                      alt: "JBL"
+                    }].map((logo, index) => <motion.div key={`top-${setIndex}-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
+                      scale: 1.05,
+                      y: -5
+                    }} transition={{
+                      duration: 0.3
+                    }}>
                             <div className="relative w-14 h-14 md:w-16 md:h-16 
                                          bg-black/60 backdrop-blur-md 
                                          border border-white/10 
@@ -258,50 +250,48 @@ const Index = () => {
                                            group-hover:to-cyan-500/20 
                                            transition-all duration-300" />
                               
-                              <img 
-                                src={logo.src} 
-                                alt={logo.alt}
-                                className="relative z-10 w-8 h-8 md:w-10 md:h-10 
+                              <img src={logo.src} alt={logo.alt} className="relative z-10 w-8 h-8 md:w-10 md:h-10 
                                          object-contain
                                          brightness-90 contrast-110
                                          transition-all duration-300
                                          group-hover:brightness-110 
-                                         group-hover:scale-110"
-                              />
+                                         group-hover:scale-110" />
                             </div>
-                          </motion.div>
-                        ))}
-                      </React.Fragment>
-                    ))}
+                          </motion.div>)}
+                      </React.Fragment>)}
                   </motion.div>
                 </div>
 
                 {/* Linha inferior - move para esquerda */}
                 <div className="w-full overflow-hidden">
-                  <motion.div 
-                    className="flex items-center gap-8"
-                    animate={{ x: [0, -1500] }}
-                    transition={{
-                      duration: 50,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                    style={{ width: "fit-content" }}
-                  >
-                    {[...Array(6)].map((_, setIndex) => (
-                      <React.Fragment key={`bottom-${setIndex}`}>
-                        {[
-                          { src: "/brand-logos/garmin-logo-new.png", alt: "Garmin" },
-                          { src: "/brand-logos/playstation-logo-new.png", alt: "PlayStation" },
-                          { src: "/brand-logos/polar-logo-new.png", alt: "Polar" },
-                          { src: "/brand-logos/hollyland-logo-new.png", alt: "Hollyland" }
-                        ].map((logo, index) => (
-                          <motion.div
-                            key={`bottom-${setIndex}-${index}`}
-                            className="flex-shrink-0 pointer-events-auto group"
-                            whileHover={{ scale: 1.05, y: -5 }}
-                            transition={{ duration: 0.3 }}
-                          >
+                  <motion.div className="flex items-center gap-8" animate={{
+                  x: [0, -1500]
+                }} transition={{
+                  duration: 50,
+                  repeat: Infinity,
+                  ease: "linear"
+                }} style={{
+                  width: "fit-content"
+                }}>
+                    {[...Array(6)].map((_, setIndex) => <React.Fragment key={`bottom-${setIndex}`}>
+                        {[{
+                      src: "/brand-logos/garmin-logo-new.png",
+                      alt: "Garmin"
+                    }, {
+                      src: "/brand-logos/playstation-logo-new.png",
+                      alt: "PlayStation"
+                    }, {
+                      src: "/brand-logos/polar-logo-new.png",
+                      alt: "Polar"
+                    }, {
+                      src: "/brand-logos/hollyland-logo-new.png",
+                      alt: "Hollyland"
+                    }].map((logo, index) => <motion.div key={`bottom-${setIndex}-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
+                      scale: 1.05,
+                      y: -5
+                    }} transition={{
+                      duration: 0.3
+                    }}>
                             <div className="relative w-14 h-14 md:w-16 md:h-16 
                                          bg-black/60 backdrop-blur-md 
                                          border border-white/10 
@@ -321,21 +311,15 @@ const Index = () => {
                                            group-hover:to-cyan-500/20 
                                            transition-all duration-300" />
                               
-                              <img 
-                                src={logo.src} 
-                                alt={logo.alt}
-                                className="relative z-10 w-8 h-8 md:w-10 md:h-10 
+                              <img src={logo.src} alt={logo.alt} className="relative z-10 w-8 h-8 md:w-10 md:h-10 
                                          object-contain
                                          brightness-90 contrast-110
                                          transition-all duration-300
                                          group-hover:brightness-110 
-                                         group-hover:scale-110"
-                              />
+                                         group-hover:scale-110" />
                             </div>
-                          </motion.div>
-                        ))}
-                      </React.Fragment>
-                    ))}
+                          </motion.div>)}
+                      </React.Fragment>)}
                   </motion.div>
                 </div>
               </div>
