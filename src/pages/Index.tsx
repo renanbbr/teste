@@ -102,7 +102,7 @@ const Index = () => {
 
 
       {/* Logo Carousel */}
-      <LogoCarousel />
+      <LogoCarousel className="my-0 py-[2px]" />
 
       {/* Features Section */}
       <div id="features" className="bg-black">
