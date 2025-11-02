@@ -185,9 +185,12 @@ const Index = () => {
           once: true
         }} className="flex items-center justify-center mb-8">
             <div className="relative w-full max-w-[104rem]">
-                <video autoPlay loop muted playsInline className="w-full h-auto min-h-[600px] md:min-h-[800px]">
+                <video autoPlay loop muted playsInline className="w-full h-full aspect-video object-cover">
                   <source src="/lovable-uploads/sealclub-branding.mp4" type="video/mp4" />
                 </video>
+              
+              {/* Overlay de opacidade sobre o vídeo */}
+              <div className="absolute inset-0 bg-black/40 pointer-events-none" />
               
               {/* Carrossel horizontal de logos sobreposto - 2 linhas */}
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 pointer-events-none py-8">
@@ -222,8 +225,8 @@ const Index = () => {
                       duration: 0.3
                     }}>
                             <div className="relative w-14 h-14 md:w-16 md:h-16 
-                                         bg-black/60 backdrop-blur-md 
-                                         border border-white/10 
+                                         bg-black/80 backdrop-blur-lg 
+                                         border border-white/10
                                          rounded-xl 
                                          shadow-xl shadow-black/50
                                          flex items-center justify-center
@@ -283,7 +286,7 @@ const Index = () => {
                       duration: 0.3
                     }}>
                             <div className="relative w-14 h-14 md:w-16 md:h-16 
-                                         bg-black/60 backdrop-blur-md 
+                                         bg-black/80 backdrop-blur-lg 
                                          border border-white/10 
                                          rounded-xl 
                                          shadow-xl shadow-black/50
