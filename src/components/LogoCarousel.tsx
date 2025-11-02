@@ -17,48 +17,56 @@ const LogoCarousel = () => {
   const extendedLogos = [...logos, ...logos, ...logos];
 
   return (
-    <div className="w-full overflow-hidden bg-black/50 backdrop-blur-sm py-12 mt-20">
-      <motion.div 
-        className="flex items-center space-x-16 h-24"
-        initial={{ opacity: 0, x: "0%" }}
-        animate={{
-          opacity: 1,
-          x: "-33.33%"
-        }}
-        transition={{
-          opacity: { duration: 0.5 },
-          x: {
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-            delay: 0.5
-          }
-        }}
-        style={{
-          width: "fit-content",
-          display: "flex",
-          gap: "4rem"
-        }}
-      >
-        {extendedLogos.map((logo, index) => (
-          <motion.img
-            key={`logo-${index}`}
-            src={logo.src}
-            alt={logo.alt}
-            className="h-20 w-auto object-contain brightness-0 invert transition-opacity duration-300"
-            initial={{ opacity: 0.6 }}
-            whileHover={{ 
-              opacity: 1,
-              scale: 1.05,
-              transition: { duration: 0.2 }
-            }}
-            onError={(e) => {
-              console.error(`Failed to load logo: ${logo.src}`);
-              e.currentTarget.style.display = 'none';
-            }}
-          />
-        ))}
-      </motion.div>
+    <div className="w-full bg-black/50 backdrop-blur-sm py-12 mt-20">
+      <div className="container mx-auto px-4 relative overflow-hidden">
+        {/* Sombra esquerda - fade in */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black via-black/80 to-transparent z-10 pointer-events-none" />
+        
+        {/* Sombra direita - fade out */}
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none" />
+        
+        <motion.div 
+          className="flex items-center space-x-16 h-24"
+          initial={{ opacity: 0, x: "0%" }}
+          animate={{
+            opacity: 1,
+            x: "-33.33%"
+          }}
+          transition={{
+            opacity: { duration: 0.5 },
+            x: {
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear",
+              delay: 0.5
+            }
+          }}
+          style={{
+            width: "fit-content",
+            display: "flex",
+            gap: "4rem"
+          }}
+        >
+          {extendedLogos.map((logo, index) => (
+            <motion.img
+              key={`logo-${index}`}
+              src={logo.src}
+              alt={logo.alt}
+              className="h-20 w-auto object-contain brightness-0 invert transition-opacity duration-300"
+              initial={{ opacity: 0.6 }}
+              whileHover={{ 
+                opacity: 1,
+                scale: 1.05,
+                transition: { duration: 0.2 }
+              }}
+              onError={(e) => {
+                console.error(`Failed to load logo: ${logo.src}`);
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 };
