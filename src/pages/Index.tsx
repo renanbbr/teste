@@ -114,7 +114,7 @@ const Index = () => {
         <NewArrivalsSection />
       </div>
       {/* Branding Section / SealPass Section */}
-      <section className="relative bg-black py-20 overflow-hidden">
+      <section className="relative bg-black pt-20 pb-8 overflow-hidden">
         {/* Background com gradiente */}
         <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-950/10 to-black" />
         
