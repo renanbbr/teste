@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -35,20 +35,29 @@ export function HoverBorderGradient({
   };
 
   const movingMap: Record<Direction, string> = {
-    TOP: "radial-gradient(20.7% 50% at 50% 0%, hsl(var(--primary)) 0%, rgba(255, 255, 255, 0) 100%)",
-    LEFT: "radial-gradient(16.6% 43.1% at 0% 50%, hsl(var(--primary)) 0%, rgba(255, 255, 255, 0) 100%)",
+    TOP: "radial-gradient(20.7% 50% at 50% 0%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
+    LEFT: "radial-gradient(16.6% 43.1% at 0% 50%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
     BOTTOM:
-      "radial-gradient(20.7% 50% at 50% 100%, hsl(var(--primary)) 0%, rgba(255, 255, 255, 0) 100%)",
+      "radial-gradient(20.7% 50% at 50% 100%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
     RIGHT:
-      "radial-gradient(16.2% 41.199999999999996% at 100% 50%, hsl(var(--primary)) 0%, rgba(255, 255, 255, 0) 100%)",
+      "radial-gradient(16.2% 41.199999999999996% at 100% 50%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
   };
 
   const highlight =
-    "radial-gradient(75% 181.15942028985506% at 50% 50%, hsl(var(--primary)/0.3) 0%, rgba(255, 255, 255, 0) 100%)";
+    "radial-gradient(75% 181.15942028985506% at 50% 50%, #3275F8 0%, rgba(255, 255, 255, 0) 100%)";
+
+  useEffect(() => {
+    if (!hovered) {
+      const interval = setInterval(() => {
+        setDirection((prevState) => rotateDirection(prevState));
+      }, duration * 1000);
+      return () => clearInterval(interval);
+    }
+  }, [hovered, duration]);
 
   return (
     <Tag
-      onMouseEnter={() => {
+      onMouseEnter={(event: React.MouseEvent<HTMLDivElement>) => {
         setHovered(true);
       }}
       onMouseLeave={() => setHovered(false)}
@@ -60,7 +69,7 @@ export function HoverBorderGradient({
     >
       <div
         className={cn(
-          "w-auto text-white z-10 bg-background px-4 py-2 rounded-[inherit]",
+          "w-auto text-white z-10 bg-black px-4 py-2 rounded-[inherit]",
           className
         )}
       >
@@ -84,7 +93,7 @@ export function HoverBorderGradient({
         }}
         transition={{ ease: "linear", duration: duration ?? 1 }}
       />
-      <div className="bg-background absolute z-1 flex-none inset-[2px] rounded-[100px]" />
+      <div className="bg-black absolute z-1 flex-none inset-[2px] rounded-[100px]" />
     </Tag>
   );
 }
