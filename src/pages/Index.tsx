@@ -136,7 +136,7 @@ const Index = () => {
             viewport={{ once: true }}
             className="flex items-center justify-center mb-20"
           >
-            <div className="relative w-full max-w-4xl">
+            <div className="relative w-full max-w-5xl">
               <video 
                 autoPlay
                 loop
@@ -209,7 +209,7 @@ const Index = () => {
                   ease: "easeInOut",
                 }}
               >
-                <div className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full 
+                <div className="w-[350px] h-[350px] md:w-[480px] md:h-[480px] rounded-full 
                               bg-gradient-radial from-blue-500/40 via-cyan-500/20 to-transparent
                               blur-3xl" />
               </motion.div>
@@ -228,7 +228,7 @@ const Index = () => {
                   delay: 2,
                 }}
               >
-                <div className="w-[280px] h-[280px] md:w-[380px] md:h-[380px] rounded-full 
+                <div className="w-[330px] h-[330px] md:w-[460px] md:h-[460px] rounded-full 
                               bg-gradient-radial from-orange-500/30 via-red-500/15 to-transparent
                               blur-2xl" />
               </motion.div>
@@ -248,7 +248,7 @@ const Index = () => {
                 <img
                   src={sealclubLogo}
                   alt="SealClub Logo"
-                  className="w-48 h-48 md:w-64 md:h-64 object-contain opacity-70 drop-shadow-2xl 
+                  className="w-56 h-56 md:w-80 md:h-80 object-contain opacity-70 drop-shadow-2xl 
                              drop-shadow-[0_0_60px_rgba(59,130,246,0.4)]"
                 />
               </motion.div>
@@ -302,7 +302,7 @@ const Index = () => {
                         transition={{ duration: 0.3 }}
                       >
                         {/* Container Glass */}
-                        <div className="relative w-20 h-20 md:w-24 md:h-24 
+                        <div className="relative w-16 h-16 md:w-20 md:h-20 
                                        bg-black/40 backdrop-blur-lg 
                                        border border-white/10 
                                        rounded-2xl md:rounded-3xl 
@@ -324,7 +324,7 @@ const Index = () => {
                           <img
                             src={logo.src}
                             alt={logo.alt}
-                            className="relative z-10 w-10 h-10 md:w-12 md:h-12 object-contain
+                            className="relative z-10 w-8 h-8 md:w-10 md:h-10 object-contain
                                      brightness-90 contrast-110
                                      transition-all duration-300
                                      group-hover:brightness-110 group-hover:scale-110"
@@ -382,7 +382,7 @@ const Index = () => {
                         transition={{ duration: 0.3 }}
                       >
                         {/* Container Glass */}
-                        <div className="relative w-20 h-20 md:w-24 md:h-24 
+                        <div className="relative w-16 h-16 md:w-20 md:h-20 
                                        bg-black/40 backdrop-blur-lg 
                                        border border-white/10 
                                        rounded-2xl md:rounded-3xl 
@@ -404,7 +404,7 @@ const Index = () => {
                           <img
                             src={logo.src}
                             alt={logo.alt}
-                            className="relative z-10 w-10 h-10 md:w-12 md:h-12 object-contain
+                            className="relative z-10 w-8 h-8 md:w-10 md:h-10 object-contain
                                      brightness-90 contrast-110
                                      transition-all duration-300
                                      group-hover:brightness-110 group-hover:scale-110"
