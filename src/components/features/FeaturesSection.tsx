@@ -5,8 +5,8 @@ export const FeaturesSection = () => {
       {/* Header Section */}
       <div className="max-w-3xl mb-20">
         <h2 className="text-4xl md:text-5xl font-normal mb-6 tracking-tight text-left">
-          O SealClub é o primeiro clube de compras do Brasil com acesso a Apple e marcas premium{" "}
-          <span className="text-gradient font-medium">com preço de custo</span>
+          O SealClub é o primeiro clube de compras do Brasil com acesso as maiores marcas mundo{" "}
+          <span className="text-gradient font-medium">com preço de fábrica</span>
         </h2>
         <p className="text-lg md:text-xl text-gray-400 text-left">Uma assinatura anual que transforma sua forma de comprar. Economia inteligente, acesso privilegiado e a certeza de estar sempre um passo à frente.</p>
       </div>

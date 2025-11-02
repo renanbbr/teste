@@ -12,7 +12,7 @@ const allFeatures = [
   { label: "Transferência de dados", values: { pro: false, tech: false, ultra: true, enterprise: false } },
   { label: "Assistência Técnica 24h", values: { pro: false, tech: false, ultra: true, enterprise: false } },
   { label: "SealCare", values: { pro: false, tech: false, ultra: true, enterprise: false } },
-  { label: "Kit SealClub Experience", values: { pro: false, tech: false, ultra: true, enterprise: true } },
+  
   { label: "Cupom Assistência Técnica", values: { pro: "5%", tech: "10%", ultra: "20%", enterprise: false } },
   { label: "Cashback Acessórios", labelByPlan: { pro: "Cupom de Acessórios", tech: "Cupom de Acessórios", ultra: "Cashback Acessórios", enterprise: "Cashback Acessórios" }, values: { pro: "5%", tech: "10%", ultra: "R$ 500", enterprise: false } },
   { label: "Acesso antecipado", values: { pro: true, tech: true, ultra: true, enterprise: true } },
@@ -63,19 +63,10 @@ const PricingTier = ({
           )}
         </div>
         
-        {showPriceAlert && (
-          <div className="flex items-center gap-1.5 mb-3">
-            <AlertCircle className="w-3.5 h-3.5 text-orange-500" />
-            <span className="text-[11px] font-bold text-orange-500 uppercase tracking-wide">
-              Preço aumentará em breve
-            </span>
-          </div>
-        )}
-        
         {description && <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{description}</p>}
       </div>
       
-      <div className="space-y-2 mb-8 flex-grow">
+      <div className="space-y-2 mb-6 flex-grow">
         {allFeatures.map((feature, index) => {
           const value = feature.values[planKey];
           const isBonus = (feature as any).isBonus;
@@ -113,6 +104,15 @@ const PricingTier = ({
           );
         })}
       </div>
+      
+      {showPriceAlert && (
+        <div className="flex items-center justify-center gap-1.5 mb-3">
+          <AlertCircle className="w-3.5 h-3.5 text-orange-500" />
+          <span className="text-[11px] font-bold text-orange-500 uppercase tracking-wide">
+            Preço aumentará em breve
+          </span>
+        </div>
+      )}
       
       <Button className="button-gradient w-full">
         {ctaText}

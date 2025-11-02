@@ -2,8 +2,8 @@ import { Smartphone, Trophy, Headphones, Zap, DollarSign, CreditCard, RefreshCw,
 
 export const features = [
   {
-    title: "Preço de Custo Real",
-    description: "Acesso direto aos produtos mais desejados sem as margens abusivas do varejo.",
+    title: "Preço de Fábrica Real",
+    description: "Acesso direto aos produtos mais desejados com preço de fornecedor.",
     icon: <DollarSign className="w-6 h-6" />,
     image: "/lovable-uploads/86329743-ee49-4f2e-96f7-50508436273d.png"
   },
