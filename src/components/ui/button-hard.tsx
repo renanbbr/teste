@@ -22,7 +22,7 @@ export const ButtonHard = ({
       containerClassName={cn("rounded-full", containerClassName)}
       as="button"
       className={cn(
-        "dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 px-6 py-3 font-medium",
+        "bg-background text-foreground flex items-center space-x-2 px-6 py-3 font-medium",
         className
       )}
       {...props}
