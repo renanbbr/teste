@@ -127,28 +127,8 @@ const Index = () => {
         {/* Vignette effect */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,black_100%)]" />
         
-        <div className="container px-4 relative z-10">
-          {/* Video do SealClub */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="flex items-center justify-center mb-20"
-          >
-            <div className="relative w-full max-w-5xl">
-              <video 
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-auto"
-              >
-                <source src="/lovable-uploads/sealclub-branding.mp4" type="video/mp4" />
-              </video>
-            </div>
-          </motion.div>
-
+        {/* Título e Subtítulo da Section */}
+        <div className="container px-4 relative z-10 mb-16">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -171,7 +151,7 @@ const Index = () => {
             className="text-4xl md:text-5xl font-bold text-center mb-4"
           >
             SealPass: conecte-se ao{" "}
-            <span className="text-gradient">ecossistema local</span>
+            <span className="text-gradient">ecossistema</span>
           </motion.h2>
 
           {/* Subtítulo */}
@@ -180,11 +160,34 @@ const Index = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16"
+            className="text-lg text-muted-foreground text-center max-w-3xl mx-auto"
           >
             Descontos e experiências exclusivas com marcas que fazem parte da comunidade Seal.
             Cada parceria foi escolhida a dedo para oferecer vantagens reais ao membro SealClub.
           </motion.p>
+        </div>
+
+        <div className="container px-4 relative z-10">
+          {/* Video do SealClub */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="flex items-center justify-center mb-20"
+          >
+            <div className="relative w-full max-w-5xl">
+              <video 
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-auto"
+              >
+                <source src="/lovable-uploads/sealclub-branding.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </motion.div>
 
           {/* Container central com logo e carrossel */}
           <motion.div
