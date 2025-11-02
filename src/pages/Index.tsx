@@ -39,6 +39,9 @@ const Index = () => {
         {/* Background Gradiente para Mobile */}
         <div className="absolute inset-0 md:hidden bg-gradient-to-br from-black via-black/80 to-black" />
         
+        {/* Overlay escuro universal (mobile e desktop) */}
+        <div className="absolute inset-0 bg-black/50 z-[1]" />
+        
         {/* Sombra de transição na parte inferior */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black/50 to-transparent z-[5]" />
         
