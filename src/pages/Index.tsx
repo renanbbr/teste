@@ -116,7 +116,7 @@ const Index = () => {
       {/* Branding Section / SealPass Section */}
       <section className="relative bg-black pt-20 pb-8 overflow-hidden">
         {/* Background com gradiente */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-950/10 to-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-950/10 to-black py-0 my-[220px]" />
         
         {/* Vignette effect */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,black_100%)] mx-0 py-0 my-[220px]" />
