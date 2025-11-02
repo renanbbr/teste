@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import { ArrowRight, Command } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ButtonHard } from "@/components/ui/button-hard";
 import { Separator } from "@/components/ui/separator";
 import Navigation from "@/components/Navigation";
 import AppleProductsSection from "@/components/AppleProductsSection";
@@ -78,9 +79,9 @@ const Index = () => {
         }} transition={{
           delay: 0.5
         }} className="flex flex-col sm:flex-row gap-4 items-start">
-            <Button size="lg" className="button-gradient">
+            <ButtonHard className="text-base">
               Quero ser membro
-            </Button>
+            </ButtonHard>
           </motion.div>
         </div>
 
