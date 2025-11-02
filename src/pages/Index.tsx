@@ -199,7 +199,7 @@ const Index = () => {
                 {/* Linha superior - move para direita */}
                 <div className="w-full overflow-hidden">
                   <motion.div 
-                    className="flex items-center justify-center gap-8"
+                    className="flex items-center gap-8"
                     animate={{ x: [-1500, 0] }}
                     transition={{
                       duration: 50,
@@ -208,7 +208,7 @@ const Index = () => {
                     }}
                     style={{ width: "fit-content" }}
                   >
-                    {[...Array(3)].map((_, setIndex) => (
+                    {[...Array(6)].map((_, setIndex) => (
                       <React.Fragment key={`top-${setIndex}`}>
                         {[
                           { src: "/brand-logos/apple-logo-new.png", alt: "Apple" },
@@ -262,7 +262,7 @@ const Index = () => {
                 {/* Linha inferior - move para esquerda */}
                 <div className="w-full overflow-hidden">
                   <motion.div 
-                    className="flex items-center justify-center gap-8"
+                    className="flex items-center gap-8"
                     animate={{ x: [0, -1500] }}
                     transition={{
                       duration: 50,
@@ -271,7 +271,7 @@ const Index = () => {
                     }}
                     style={{ width: "fit-content" }}
                   >
-                    {[...Array(3)].map((_, setIndex) => (
+                    {[...Array(6)].map((_, setIndex) => (
                       <React.Fragment key={`bottom-${setIndex}`}>
                         {[
                           { src: "/brand-logos/garmin-logo-new.png", alt: "Garmin" },
