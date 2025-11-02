@@ -190,9 +190,9 @@ const Index = () => {
           once: true
         }} className="flex items-center justify-center mb-20">
             <div className="relative w-full max-w-[104rem]">
-              <video autoPlay loop muted playsInline className="w-full h-auto">
-                <source src="/lovable-uploads/sealclub-branding.mp4" type="video/mp4" />
-              </video>
+                <video autoPlay loop muted playsInline className="w-full h-auto min-h-[600px] md:min-h-[800px]">
+                  <source src="/lovable-uploads/sealclub-branding.mp4" type="video/mp4" />
+                </video>
               
               {/* Carrossel horizontal de logos sobreposto - 2 linhas */}
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 pointer-events-none py-8">
