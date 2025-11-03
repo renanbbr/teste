@@ -69,9 +69,12 @@ export function HoverBorderGradient({
     >
       <div
         className={cn(
-          "w-auto text-white z-10 bg-background px-4 py-2 rounded-[inherit]",
+          "w-auto text-white z-10 px-4 py-2 rounded-[inherit]",
           className
         )}
+        style={{
+          background: "radial-gradient(ellipse at bottom, #1E3A5F 0%, #0F2744 45%, #0A1929 100%)",
+        }}
       >
         {children}
       </div>
