@@ -25,8 +25,8 @@ export const ButtonGradient = ({
         className
       )}
       style={{
-        boxShadow: "inset 0 0 0 1px rgba(59, 130, 246, 0.3)",
-        background: "radial-gradient(ellipse at bottom, rgba(37, 99, 235, 1) 0%, rgba(29, 78, 216, 1) 50%, rgba(30, 58, 138, 1) 100%)",
+        boxShadow: "inset 0 0 0 1px rgba(255, 255, 255, 0.1)",
+        background: "radial-gradient(ellipse at bottom, #1E3A5F 0%, #0F2744 45%, #0A1929 100%)",
       }}
       {...props}
     >
