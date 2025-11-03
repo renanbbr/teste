@@ -17,6 +17,8 @@ const brands = [
   { src: "/brand-logos/coswheel-logo.png", alt: "Coswheel" },
   { src: "/brand-logos/starlink-logo.png", alt: "Starlink" },
   { src: "/brand-logos/stanley-logo.png", alt: "Stanley" },
+  { src: "/brand-logos/xiaomi-logo.png", alt: "Xiaomi" },
+  { src: "/brand-logos/xbox-logo.png", alt: "Xbox" },
 ];
 
 const LogoCarousel = ({ className }: LogoCarouselProps) => {
