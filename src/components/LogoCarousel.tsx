@@ -35,14 +35,14 @@ const LogoCarousel = ({ className }: LogoCarouselProps) => {
           {brands.map((brand, index) => (
             <div
               key={`brand-1-${index}`}
-              className="group flex-shrink-0 w-48 h-20 flex items-center justify-center transition-all duration-300"
+              className="group flex-shrink-0 w-48 h-16 flex items-center justify-center transition-all duration-300"
             >
               <img
                 src={brand.src}
                 alt={brand.alt}
                 loading="lazy"
                 decoding="async"
-                className="max-h-20 max-w-[200px] w-auto h-auto object-contain opacity-90 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+                className="h-16 max-w-[200px] w-auto object-contain opacity-90 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
                 style={{
                   filter: 'saturate(0) invert(1) brightness(0.9) contrast(1.1)',
                   mixBlendMode: 'screen',
@@ -59,14 +59,14 @@ const LogoCarousel = ({ className }: LogoCarouselProps) => {
           {brands.map((brand, index) => (
             <div
               key={`brand-2-${index}`}
-              className="group flex-shrink-0 w-48 h-20 flex items-center justify-center transition-all duration-300"
+              className="group flex-shrink-0 w-48 h-16 flex items-center justify-center transition-all duration-300"
             >
               <img
                 src={brand.src}
                 alt={brand.alt}
                 loading="lazy"
                 decoding="async"
-                className="max-h-20 max-w-[200px] w-auto h-auto object-contain opacity-90 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+                className="h-16 max-w-[200px] w-auto object-contain opacity-90 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
                 style={{
                   filter: 'saturate(0) invert(1) brightness(0.9) contrast(1.1)',
                   mixBlendMode: 'screen',
