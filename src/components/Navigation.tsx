@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import sealclubLogo from "@/assets/sealclub-logo.png";
 import { Button } from "./ui/button";
-import { ButtonHard } from "./ui/button-hard";
+import { ButtonArrow } from "./ui/button-arrow";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -135,12 +135,12 @@ const Navigation = () => {
                 </a>
               ))}
               
-              <ButtonHard 
+              <ButtonArrow 
                 onClick={() => scrollToSection('cta')}
                 className="text-sm"
               >
                 Já sou membro
-              </ButtonHard>
+              </ButtonArrow>
             </div>
           </div>
         </nav>
