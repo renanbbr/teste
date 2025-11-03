@@ -4,6 +4,7 @@ interface SealPassSectionProps {
   title: string;
   titleHighlight: string;
   subtitle: string;
+  videoSrc?: string;
 }
 
 const allLogos = [
@@ -20,10 +21,31 @@ const allLogos = [
 export const SealPassSection = ({ 
   title, 
   titleHighlight, 
-  subtitle
+  subtitle,
+  videoSrc
 }: SealPassSectionProps) => {
   return (
     <section className="relative bg-black pt-20 pb-8 overflow-hidden my-0 py-[8px]">
+      
+      {/* Background Video - Condicional */}
+      {videoSrc && (
+        <div className="absolute inset-0">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="w-full h-full object-cover"
+            style={{
+              objectFit: 'cover',
+              zIndex: 0
+            }}
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/50 z-[1]" />
+        </div>
+      )}
 
       {/* Overlay escuro universal (mobile e desktop) */}
       <div className="absolute inset-0 bg-black/30 z-[1]" />
@@ -77,7 +99,7 @@ export const SealPassSection = ({
                       whileHover={{ scale: 1.05, y: -5 }} 
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="relative w-28 h-28 md:w-32 md:h-32 
+                      <div className="relative w-32 h-32 md:w-36 md:h-36 
                                 bg-[#1B1B1B]/40 backdrop-blur-xl 
                                 border border-white/10
                                 rounded-2xl 
@@ -91,13 +113,13 @@ export const SealPassSection = ({
                         <img 
                           src={logo.src} 
                           alt={logo.alt} 
-                          className="relative z-10 w-20 h-20 md:w-24 md:h-24 
+                          className="relative z-10 w-24 h-24 md:w-28 md:h-28 
                                     object-contain
                                     filter brightness-100 contrast-100
                                     drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]
                                     transition-all duration-300
                                     group-hover:scale-105"
-                          style={{ mixBlendMode: 'normal' }}
+                          style={{ mixBlendMode: 'normal', objectPosition: 'center' }}
                         />
                       </div>
                     </motion.div>
@@ -111,7 +133,7 @@ export const SealPassSection = ({
                       whileHover={{ scale: 1.05, y: -5 }} 
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="relative w-24 h-24 md:w-28 md:h-28 
+                      <div className="relative w-32 h-32 md:w-36 md:h-36 
                                     bg-[#1B1B1B]/40 backdrop-blur-xl 
                                     border border-white/10
                                     rounded-2xl 
@@ -125,12 +147,12 @@ export const SealPassSection = ({
                         <img 
                           src={logo.src} 
                           alt={logo.alt} 
-                          className="relative z-10 w-16 h-16 md:w-20 md:h-20 
+                          className="relative z-10 w-24 h-24 md:w-28 md:h-28 
                                     object-contain
                                     filter brightness-95 contrast-105
                                     transition-all duration-300
                                     group-hover:scale-105"
-                          style={{ mixBlendMode: 'normal' }}
+                          style={{ mixBlendMode: 'normal', objectPosition: 'center' }}
                         />
                       </div>
                     </motion.div>
@@ -150,7 +172,7 @@ export const SealPassSection = ({
                       whileHover={{ scale: 1.05, y: -5 }} 
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="relative w-24 h-24 md:w-28 md:h-28 
+                      <div className="relative w-32 h-32 md:w-36 md:h-36 
                                     bg-[#1B1B1B]/40 backdrop-blur-xl 
                                     border border-white/10 
                                     rounded-2xl 
@@ -164,12 +186,12 @@ export const SealPassSection = ({
                         <img 
                           src={logo.src} 
                           alt={logo.alt} 
-                          className="relative z-10 w-16 h-16 md:w-20 md:h-20 
+                          className="relative z-10 w-24 h-24 md:w-28 md:h-28 
                                     object-contain
                                     filter brightness-95 contrast-105
                                     transition-all duration-300
                                     group-hover:scale-105"
-                          style={{ mixBlendMode: 'normal' }}
+                          style={{ mixBlendMode: 'normal', objectPosition: 'center' }}
                         />
                       </div>
                     </motion.div>
@@ -183,7 +205,7 @@ export const SealPassSection = ({
                       whileHover={{ scale: 1.05, y: -5 }} 
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="relative w-24 h-24 md:w-28 md:h-28 
+                      <div className="relative w-32 h-32 md:w-36 md:h-36 
                                     bg-[#1B1B1B]/40 backdrop-blur-xl 
                                     border border-white/10 
                                     rounded-2xl 
@@ -197,12 +219,12 @@ export const SealPassSection = ({
                         <img 
                           src={logo.src} 
                           alt={logo.alt} 
-                          className="relative z-10 w-16 h-16 md:w-20 md:h-20 
+                          className="relative z-10 w-24 h-24 md:w-28 md:h-28 
                                     object-contain
                                     filter brightness-95 contrast-105
                                     transition-all duration-300
                                     group-hover:scale-105"
-                          style={{ mixBlendMode: 'normal' }}
+                          style={{ mixBlendMode: 'normal', objectPosition: 'center' }}
                         />
                       </div>
                     </motion.div>
