@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Check, X, Gift, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CardSpotlight } from "./CardSpotlight";
+import { cn } from "@/lib/utils";
 
 const allFeatures = [
   { label: "Produtos por ano", values: { pro: "1 Apple", tech: "2 Tech", ultra: "4 qualquer marca", enterprise: "Ilimitado" } },
@@ -31,6 +32,7 @@ const PricingTier = ({
   ctaText,
   isEnterprise,
   showPriceAlert = false,
+  isMetallic = false,
 }: {
   name: string;
   price: string;
@@ -41,8 +43,16 @@ const PricingTier = ({
   ctaText: string;
   isEnterprise?: boolean;
   showPriceAlert?: boolean;
+  isMetallic?: boolean;
 }) => (
-  <CardSpotlight className={`h-full ${isFeatured ? "border-primary" : "border-white/10"} border-2`}>
+  <CardSpotlight 
+    className={cn(
+      "h-full border-2",
+      isFeatured && "border-primary",
+      isMetallic && "border-[#C0C0C0] shadow-[0_0_20px_rgba(192,192,192,0.3)]",
+      !isFeatured && !isMetallic && "border-white/10"
+    )}
+  >
     <div className="relative h-full p-6 flex flex-col">
       {isFeatured && (
         <span className="absolute top-4 right-4 text-xs font-medium bg-primary/10 text-primary rounded-full px-3 py-1">
@@ -176,6 +186,7 @@ export const PricingSectionV2 = () => {
           description="Plano corporativo para empresas."
           planKey="enterprise"
           isEnterprise
+          isMetallic
           ctaText="SABER MAIS"
         />
       </div>

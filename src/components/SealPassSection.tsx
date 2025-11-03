@@ -123,176 +123,87 @@ const SealPassSection = () => {
             </motion.div>
 
             {/* Carrossel de logos dos parceiros em containers glass */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-12 md:gap-20">
-              {/* Linha superior de logos */}
-              <div className="w-full overflow-hidden">
-                <div className="flex items-stretch gap-6 md:gap-12">
-                  <div className="animate-marquee flex min-w-full shrink-0 items-stretch gap-6 md:gap-12">
-                    {partnerLogos.map((logo, index) => (
-                      <motion.div
-                        key={`top-${index}`}
-                        className="flex-shrink-0 pointer-events-auto group"
-                        whileHover={{ scale: 1.05, y: -5 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {/* Container Glass */}
-                        <div className="relative w-20 h-20 md:w-24 md:h-24 
-                                       bg-black/40 backdrop-blur-lg 
-                                       border border-white/10 
-                                       rounded-2xl md:rounded-3xl 
-                                       shadow-xl shadow-black/50
-                                       flex items-center justify-center
-                                       overflow-hidden
-                                       transition-all duration-300
-                                       group-hover:border-white/30
-                                       group-hover:bg-black/60
-                                       group-hover:shadow-2xl
-                                       group-hover:shadow-blue-500/20">
-                          
-                          {/* Brilho interno no hover */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 
-                                         group-hover:from-blue-500/10 group-hover:to-cyan-500/10 
-                                         transition-all duration-300" />
-                          
-                          {/* Logo */}
-                          <img
-                            src={logo.src}
-                            alt={logo.alt}
-                            className="relative z-10 w-10 h-10 md:w-12 md:h-12 object-contain
-                                       brightness-90 contrast-110
-                                       transition-all duration-300
-                                       group-hover:brightness-110 group-hover:scale-110"
-                          />
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                  <div className="animate-marquee flex min-w-full shrink-0 items-stretch gap-6 md:gap-12">
-                    {partnerLogos.map((logo, index) => (
-                      <motion.div
-                        key={`top-duplicate-${index}`}
-                        className="flex-shrink-0 pointer-events-auto group"
-                        whileHover={{ scale: 1.05, y: -5 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {/* Container Glass */}
-                        <div className="relative w-20 h-20 md:w-24 md:h-24 
-                                       bg-black/40 backdrop-blur-lg 
-                                       border border-white/10 
-                                       rounded-2xl md:rounded-3xl 
-                                       shadow-xl shadow-black/50
-                                       flex items-center justify-center
-                                       overflow-hidden
-                                       transition-all duration-300
-                                       group-hover:border-white/30
-                                       group-hover:bg-black/60
-                                       group-hover:shadow-2xl
-                                       group-hover:shadow-blue-500/20">
-                          
-                          {/* Brilho interno no hover */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 
-                                         group-hover:from-blue-500/10 group-hover:to-cyan-500/10 
-                                         transition-all duration-300" />
-                          
-                          {/* Logo */}
-                          <img
-                            src={logo.src}
-                            alt={logo.alt}
-                            className="relative z-10 w-10 h-10 md:w-12 md:h-12 object-contain
-                                       brightness-90 contrast-110
-                                       transition-all duration-300
-                                       group-hover:brightness-110 group-hover:scale-110"
-                          />
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative flex overflow-hidden py-4 w-full">
+                <div className="animate-marquee flex min-w-full shrink-0 items-center gap-8">
+                  {partnerLogos.map((logo, index) => (
+                    <motion.div
+                      key={`${index}-1`}
+                      className="flex-shrink-0 pointer-events-auto group"
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {/* Container Glass */}
+                      <div className="relative w-28 h-28 md:w-32 md:h-32 
+                                     bg-black/40 backdrop-blur-lg 
+                                     border border-white/10 
+                                     rounded-2xl md:rounded-3xl 
+                                     shadow-xl shadow-black/50
+                                     flex items-center justify-center
+                                     overflow-hidden
+                                     transition-all duration-300
+                                     group-hover:border-white/30
+                                     group-hover:bg-black/60
+                                     group-hover:shadow-2xl
+                                     group-hover:shadow-blue-500/20">
+                        
+                        {/* Brilho interno no hover */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 
+                                       group-hover:from-blue-500/10 group-hover:to-cyan-500/10 
+                                       transition-all duration-300" />
+                        
+                        {/* Logo */}
+                        <img
+                          src={logo.src}
+                          alt={logo.alt}
+                          className="relative z-10 w-16 h-16 md:w-20 md:h-20 object-contain
+                                     brightness-90 contrast-110
+                                     transition-all duration-300
+                                     group-hover:brightness-110 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
-              </div>
-
-              {/* Linha inferior de logos (direção oposta) */}
-              <div className="w-full overflow-hidden">
-                <div className="flex items-stretch gap-6 md:gap-12">
-                  <div className="animate-marquee flex min-w-full shrink-0 items-stretch gap-6 md:gap-12">
-                    {partnerLogos.map((logo, index) => (
-                      <motion.div
-                        key={`bottom-${index}`}
-                        className="flex-shrink-0 pointer-events-auto group"
-                        whileHover={{ scale: 1.05, y: -5 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {/* Container Glass */}
-                        <div className="relative w-20 h-20 md:w-24 md:h-24 
-                                       bg-black/40 backdrop-blur-lg 
-                                       border border-white/10 
-                                       rounded-2xl md:rounded-3xl 
-                                       shadow-xl shadow-black/50
-                                       flex items-center justify-center
-                                       overflow-hidden
-                                       transition-all duration-300
-                                       group-hover:border-white/30
-                                       group-hover:bg-black/60
-                                       group-hover:shadow-2xl
-                                       group-hover:shadow-blue-500/20">
-                          
-                          {/* Brilho interno no hover */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 
-                                         group-hover:from-blue-500/10 group-hover:to-cyan-500/10 
-                                         transition-all duration-300" />
-                          
-                          {/* Logo */}
-                          <img
-                            src={logo.src}
-                            alt={logo.alt}
-                            className="relative z-10 w-10 h-10 md:w-12 md:h-12 object-contain
-                                       brightness-90 contrast-110
-                                       transition-all duration-300
-                                       group-hover:brightness-110 group-hover:scale-110"
-                          />
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                  <div className="animate-marquee flex min-w-full shrink-0 items-stretch gap-6 md:gap-12">
-                    {partnerLogos.map((logo, index) => (
-                      <motion.div
-                        key={`bottom-duplicate-${index}`}
-                        className="flex-shrink-0 pointer-events-auto group"
-                        whileHover={{ scale: 1.05, y: -5 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {/* Container Glass */}
-                        <div className="relative w-20 h-20 md:w-24 md:h-24 
-                                       bg-black/40 backdrop-blur-lg 
-                                       border border-white/10 
-                                       rounded-2xl md:rounded-3xl 
-                                       shadow-xl shadow-black/50
-                                       flex items-center justify-center
-                                       overflow-hidden
-                                       transition-all duration-300
-                                       group-hover:border-white/30
-                                       group-hover:bg-black/60
-                                       group-hover:shadow-2xl
-                                       group-hover:shadow-blue-500/20">
-                          
-                          {/* Brilho interno no hover */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 
-                                         group-hover:from-blue-500/10 group-hover:to-cyan-500/10 
-                                         transition-all duration-300" />
-                          
-                          {/* Logo */}
-                          <img
-                            src={logo.src}
-                            alt={logo.alt}
-                            className="relative z-10 w-10 h-10 md:w-12 md:h-12 object-contain
-                                       brightness-90 contrast-110
-                                       transition-all duration-300
-                                       group-hover:brightness-110 group-hover:scale-110"
-                          />
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
+                <div className="animate-marquee flex min-w-full shrink-0 items-center gap-8">
+                  {partnerLogos.map((logo, index) => (
+                    <motion.div
+                      key={`${index}-2`}
+                      className="flex-shrink-0 pointer-events-auto group"
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {/* Container Glass */}
+                      <div className="relative w-28 h-28 md:w-32 md:h-32 
+                                     bg-black/40 backdrop-blur-lg 
+                                     border border-white/10 
+                                     rounded-2xl md:rounded-3xl 
+                                     shadow-xl shadow-black/50
+                                     flex items-center justify-center
+                                     overflow-hidden
+                                     transition-all duration-300
+                                     group-hover:border-white/30
+                                     group-hover:bg-black/60
+                                     group-hover:shadow-2xl
+                                     group-hover:shadow-blue-500/20">
+                        
+                        {/* Brilho interno no hover */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 
+                                       group-hover:from-blue-500/10 group-hover:to-cyan-500/10 
+                                       transition-all duration-300" />
+                        
+                        {/* Logo */}
+                        <img
+                          src={logo.src}
+                          alt={logo.alt}
+                          className="relative z-10 w-16 h-16 md:w-20 md:h-20 object-contain
+                                     brightness-90 contrast-110
+                                     transition-all duration-300
+                                     group-hover:brightness-110 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
             </div>
