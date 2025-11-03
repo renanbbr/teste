@@ -16,21 +16,32 @@ import Footer from "@/components/Footer";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import NewArrivalsSection from "@/components/NewArrivalsSection";
 import sealclubLogo from "@/assets/sealclub-logo.png";
-
-const topLogos = [
-  { src: "/brand-logos/apple-logo-new.png", alt: "Apple" },
-  { src: "/brand-logos/dji-logo-new.png", alt: "DJI" },
-  { src: "/brand-logos/motorola-logo-new.png", alt: "Motorola" },
-  { src: "/brand-logos/jbl-logo-new.png", alt: "JBL" }
-];
-
-const bottomLogos = [
-  { src: "/brand-logos/garmin-logo-new.png", alt: "Garmin" },
-  { src: "/brand-logos/playstation-logo-new.png", alt: "PlayStation" },
-  { src: "/brand-logos/polar-logo-new.png", alt: "Polar" },
-  { src: "/brand-logos/hollyland-logo-new.png", alt: "Hollyland" }
-];
-
+const topLogos = [{
+  src: "/brand-logos/apple-logo-new.png",
+  alt: "Apple"
+}, {
+  src: "/brand-logos/dji-logo-new.png",
+  alt: "DJI"
+}, {
+  src: "/brand-logos/motorola-logo-new.png",
+  alt: "Motorola"
+}, {
+  src: "/brand-logos/jbl-logo-new.png",
+  alt: "JBL"
+}];
+const bottomLogos = [{
+  src: "/brand-logos/garmin-logo-new.png",
+  alt: "Garmin"
+}, {
+  src: "/brand-logos/playstation-logo-new.png",
+  alt: "PlayStation"
+}, {
+  src: "/brand-logos/polar-logo-new.png",
+  alt: "Polar"
+}, {
+  src: "/brand-logos/hollyland-logo-new.png",
+  alt: "Hollyland"
+}];
 const Index = () => {
   return <div className="min-h-screen bg-black text-foreground">
       <Navigation />
@@ -163,9 +174,9 @@ const Index = () => {
           y: 0
         }} viewport={{
           once: true
-        }} className="text-4xl md:text-5xl font-normal mb-6 tracking-tight text-center">
+        }} className="text-4xl md:text-5xl font-bold text-center mb-4">
             SealPass: faça parte da nossa{" "}
-            <span className="text-gradient font-medium">comunidade e economize todos os dias</span>
+            <span className="text-gradient">comunidade e economize todos os dias</span>
           </motion.h2>
 
           {/* Subtítulo */}
@@ -179,10 +190,7 @@ const Index = () => {
           once: true
         }} transition={{
           delay: 0.1
-        }} className="text-lg md:text-xl text-gray-400 text-center max-w-3xl mx-auto">
-            Descontos e experiências exclusivas com marcas que fazem parte da comunidade Seal.
-            Cada parceria foi escolhida a dedo para oferecer vantagens reais ao membro SealClub.
-          </motion.p>
+        }} className="text-lg text-muted-foreground text-center max-w-3xl mx-auto">Descontos e vantagens reais com marcas parceiras que fazem você economizar todos os dias.</motion.p>
         </div>
 
         <div className="container px-4 relative z-10 my-0 py-0">
@@ -203,18 +211,12 @@ const Index = () => {
               <div className="w-full overflow-hidden">
                 <div className="flex">
                   <div className="animate-marquee flex min-w-full shrink-0 items-center gap-8">
-                    {topLogos.map((logo, index) => (
-                      <motion.div
-                        key={`top-1-${index}`}
-                        className="flex-shrink-0 pointer-events-auto group"
-                        whileHover={{
-                          scale: 1.05,
-                          y: -5
-                        }}
-                        transition={{
-                          duration: 0.3
-                        }}
-                      >
+                    {topLogos.map((logo, index) => <motion.div key={`top-1-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
+                    scale: 1.05,
+                    y: -5
+                  }} transition={{
+                    duration: 0.3
+                  }}>
                         <div className="relative w-20 h-20 md:w-24 md:h-24 
                                       bg-black/80 backdrop-blur-lg 
                                       border border-white/10
@@ -234,33 +236,22 @@ const Index = () => {
                                         group-hover:to-cyan-500/20 
                                         transition-all duration-300" />
                           
-                          <img
-                            src={logo.src}
-                            alt={logo.alt}
-                            className="relative z-10 w-12 h-12 md:w-16 md:h-16 
+                          <img src={logo.src} alt={logo.alt} className="relative z-10 w-12 h-12 md:w-16 md:h-16 
                                       object-contain
                                       brightness-90 contrast-110
                                       transition-all duration-300
                                       group-hover:brightness-110 
-                                      group-hover:scale-110"
-                          />
+                                      group-hover:scale-110" />
                         </div>
-                      </motion.div>
-                    ))}
+                      </motion.div>)}
                   </div>
                   <div className="animate-marquee flex min-w-full shrink-0 items-center gap-8">
-                    {topLogos.map((logo, index) => (
-                      <motion.div
-                        key={`top-2-${index}`}
-                        className="flex-shrink-0 pointer-events-auto group"
-                        whileHover={{
-                          scale: 1.05,
-                          y: -5
-                        }}
-                        transition={{
-                          duration: 0.3
-                        }}
-                      >
+                    {topLogos.map((logo, index) => <motion.div key={`top-2-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
+                    scale: 1.05,
+                    y: -5
+                  }} transition={{
+                    duration: 0.3
+                  }}>
                         <div className="relative w-20 h-20 md:w-24 md:h-24 
                                       bg-black/80 backdrop-blur-lg 
                                       border border-white/10
@@ -280,19 +271,14 @@ const Index = () => {
                                         group-hover:to-cyan-500/20 
                                         transition-all duration-300" />
                           
-                          <img
-                            src={logo.src}
-                            alt={logo.alt}
-                            className="relative z-10 w-12 h-12 md:w-16 md:h-16 
+                          <img src={logo.src} alt={logo.alt} className="relative z-10 w-12 h-12 md:w-16 md:h-16 
                                       object-contain
                                       brightness-90 contrast-110
                                       transition-all duration-300
                                       group-hover:brightness-110 
-                                      group-hover:scale-110"
-                          />
+                                      group-hover:scale-110" />
                         </div>
-                      </motion.div>
-                    ))}
+                      </motion.div>)}
                   </div>
                 </div>
               </div>
@@ -301,18 +287,12 @@ const Index = () => {
               <div className="w-full overflow-hidden">
                 <div className="flex">
                   <div className="animate-marquee-reverse flex min-w-full shrink-0 items-center gap-8">
-                    {bottomLogos.map((logo, index) => (
-                      <motion.div
-                        key={`bottom-1-${index}`}
-                        className="flex-shrink-0 pointer-events-auto group"
-                        whileHover={{
-                          scale: 1.05,
-                          y: -5
-                        }}
-                        transition={{
-                          duration: 0.3
-                        }}
-                      >
+                    {bottomLogos.map((logo, index) => <motion.div key={`bottom-1-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
+                    scale: 1.05,
+                    y: -5
+                  }} transition={{
+                    duration: 0.3
+                  }}>
                         <div className="relative w-20 h-20 md:w-24 md:h-24 
                                       bg-black/80 backdrop-blur-lg 
                                       border border-white/10 
@@ -332,33 +312,22 @@ const Index = () => {
                                         group-hover:to-cyan-500/20 
                                         transition-all duration-300" />
                           
-                          <img
-                            src={logo.src}
-                            alt={logo.alt}
-                            className="relative z-10 w-12 h-12 md:w-16 md:h-16 
+                          <img src={logo.src} alt={logo.alt} className="relative z-10 w-12 h-12 md:w-16 md:h-16 
                                       object-contain
                                       brightness-90 contrast-110
                                       transition-all duration-300
                                       group-hover:brightness-110 
-                                      group-hover:scale-110"
-                          />
+                                      group-hover:scale-110" />
                         </div>
-                      </motion.div>
-                    ))}
+                      </motion.div>)}
                   </div>
                   <div className="animate-marquee-reverse flex min-w-full shrink-0 items-center gap-8">
-                    {bottomLogos.map((logo, index) => (
-                      <motion.div
-                        key={`bottom-2-${index}`}
-                        className="flex-shrink-0 pointer-events-auto group"
-                        whileHover={{
-                          scale: 1.05,
-                          y: -5
-                        }}
-                        transition={{
-                          duration: 0.3
-                        }}
-                      >
+                    {bottomLogos.map((logo, index) => <motion.div key={`bottom-2-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
+                    scale: 1.05,
+                    y: -5
+                  }} transition={{
+                    duration: 0.3
+                  }}>
                         <div className="relative w-20 h-20 md:w-24 md:h-24 
                                       bg-black/80 backdrop-blur-lg 
                                       border border-white/10 
@@ -378,19 +347,14 @@ const Index = () => {
                                         group-hover:to-cyan-500/20 
                                         transition-all duration-300" />
                           
-                          <img
-                            src={logo.src}
-                            alt={logo.alt}
-                            className="relative z-10 w-12 h-12 md:w-16 md:h-16 
+                          <img src={logo.src} alt={logo.alt} className="relative z-10 w-12 h-12 md:w-16 md:h-16 
                                       object-contain
                                       brightness-90 contrast-110
                                       transition-all duration-300
                                       group-hover:brightness-110 
-                                      group-hover:scale-110"
-                          />
+                                      group-hover:scale-110" />
                         </div>
-                      </motion.div>
-                    ))}
+                      </motion.div>)}
                   </div>
                 </div>
               </div>
