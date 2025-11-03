@@ -31,17 +31,10 @@ const Index = () => {
     }} className="relative container px-4 pt-40 pb-20 py-0">
         {/* Background Video */}
         <div className="absolute inset-0">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
-            className="w-full h-full object-cover"
-            style={{ 
-              objectFit: 'cover',
-              zIndex: 0
-            }}
-          >
+          <video autoPlay loop muted playsInline className="w-full h-full object-cover" style={{
+          objectFit: 'cover',
+          zIndex: 0
+        }}>
             <source src="https://framerusercontent.com/assets/Bax1SXv4b9QI33bMvkicABKnI.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/30 z-[1]" />
@@ -125,17 +118,10 @@ const Index = () => {
       <section className="relative bg-black pt-20 pb-8 overflow-hidden my-0 py-[8px]">
         {/* Background Video */}
         <div className="absolute inset-0">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
-            className="w-full h-full object-cover"
-            style={{ 
-              objectFit: 'cover',
-              zIndex: 0
-            }}
-          >
+          <video autoPlay loop muted playsInline className="w-full h-full object-cover" style={{
+          objectFit: 'cover',
+          zIndex: 0
+        }}>
             <source src="/lovable-uploads/sealclub-branding.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/50 z-[1]" />
@@ -150,19 +136,7 @@ const Index = () => {
         {/* Título e Subtítulo da Section */}
         <div className="container px-4 relative z-10 mb-8">
           {/* Badge */}
-        <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} viewport={{
-          once: true
-        }} className="flex justify-center mb-4">
-          <ButtonHard className="text-sm bg-transparent text-white font-bold">
-            SEALPASS
-          </ButtonHard>
-        </motion.div>
+        
 
           {/* Título */}
           <motion.h2 initial={{
@@ -197,13 +171,17 @@ const Index = () => {
 
         <div className="container px-4 relative z-10 my-0 py-0">
           {/* Carrossel de logos sobreposto */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="relative z-10"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          scale: 0.9
+        }} whileInView={{
+          opacity: 1,
+          scale: 1
+        }} transition={{
+          duration: 0.6
+        }} viewport={{
+          once: true
+        }} className="relative z-10">
             <div className="flex flex-col items-center justify-center gap-8 py-8">
               {/* Linha superior - move para direita */}
               <div className="w-full overflow-hidden">
