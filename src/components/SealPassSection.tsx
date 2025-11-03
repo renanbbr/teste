@@ -4,7 +4,6 @@ interface SealPassSectionProps {
   title: string;
   titleHighlight: string;
   subtitle: string;
-  videoSrc: string;
 }
 
 const allLogos = [
@@ -21,21 +20,10 @@ const allLogos = [
 export const SealPassSection = ({ 
   title, 
   titleHighlight, 
-  subtitle, 
-  videoSrc 
+  subtitle
 }: SealPassSectionProps) => {
   return (
     <section className="relative bg-black pt-20 pb-8 overflow-hidden my-0 py-[8px]">
-      {/* Background Video */}
-      <div className="absolute inset-0">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover" style={{
-          objectFit: 'cover',
-          zIndex: 0
-        }}>
-          <source src={videoSrc} type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-black/50 z-[1]" />
-      </div>
 
       {/* Overlay escuro universal (mobile e desktop) */}
       <div className="absolute inset-0 bg-black/30 z-[1]" />

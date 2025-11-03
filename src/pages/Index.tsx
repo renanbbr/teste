@@ -118,12 +118,11 @@ const Index = () => {
         <NewArrivalsSection />
       </div>
       {/* Branding Section / SealPass Section */}
-      <SealPassSection 
-        title="SealPass: faça parte da nossa"
-        titleHighlight="comunidade e economize todos os dias"
-        subtitle="Descontos e vantagens reais com marcas parceiras que fazem você economizar todos os dias."
-        videoSrc="/lovable-uploads/sealclub-branding.mp4"
-      />
+        <SealPassSection 
+          title="SealPass: faça parte da nossa"
+          titleHighlight="comunidade e economize todos os dias"
+          subtitle="Descontos e vantagens reais com marcas parceiras que fazem você economizar todos os dias."
+        />
 
       {/* Pricing Section */}
       <div id="pricing" className="bg-black">
@@ -136,12 +135,11 @@ const Index = () => {
       </div>
 
       {/* Segunda Seção SealPass */}
-      <SealPassSection 
-        title="Mais vantagens exclusivas"
-        titleHighlight="para membros SealClub"
-        subtitle="Continue economizando com nossos parceiros premium."
-        videoSrc="/lovable-uploads/sealclub-branding.mp4"
-      />
+        <SealPassSection 
+          title="Mais vantagens exclusivas"
+          titleHighlight="para membros SealClub"
+          subtitle="Continue economizando com nossos parceiros premium."
+        />
 
       {/* FAQ Section */}
       <div className="bg-black">
