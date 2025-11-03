@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Check, X, Gift, AlertCircle } from "lucide-react";
-import { ButtonGradient } from "@/components/ui/button-gradient";
+import { Button } from "@/components/ui/button";
 import { CardSpotlight } from "./CardSpotlight";
 
 const allFeatures = [
@@ -75,9 +75,9 @@ const PricingTier = ({
         {description && <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{description}</p>}
       </div>
       
-      <ButtonGradient className="w-full mb-6">
+      <Button className="button-gradient w-full mb-6">
         {ctaText}
-      </ButtonGradient>
+      </Button>
       
       <div className="space-y-2 flex-grow">
         {allFeatures.map((feature, index) => {
