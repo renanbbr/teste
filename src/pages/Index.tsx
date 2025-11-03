@@ -206,15 +206,23 @@ const Index = () => {
                     duration: 0.3
                   }}>
                       <div className="relative w-28 h-28 md:w-32 md:h-32 
-                                bg-white 
-                                border border-gray-200
+                                bg-black/95 backdrop-blur-xl 
+                                border border-white/10
                                 rounded-2xl 
-                                shadow-lg shadow-black/10
+                                shadow-2xl shadow-black/40
                                 flex items-center justify-center
                                 overflow-hidden
                                 transition-all duration-300
-                                group-hover:shadow-xl
-                                group-hover:shadow-black/20">
+                                group-hover:border-blue-400/50
+                                group-hover:bg-black/90
+                                group-hover:shadow-2xl
+                                group-hover:shadow-blue-400/60">
+                          
+                          <div className="absolute inset-0 bg-gradient-to-br 
+                                        from-blue-500/0 to-cyan-500/0 
+                                        group-hover:from-blue-500/20 
+                                        group-hover:to-cyan-500/20 
+                                        transition-all duration-300" />
                           
                         <img 
                           src={logo.src} 
@@ -222,8 +230,11 @@ const Index = () => {
                           className="relative z-10 w-20 h-20 md:w-24 md:h-24 
                                     object-contain
                                     filter brightness-100 contrast-100
+                                    drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]
                                     transition-all duration-300
-                                    group-hover:scale-105"
+                                    group-hover:brightness-110 
+                                    group-hover:scale-110
+                                    group-hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.6)]"
                           style={{ mixBlendMode: 'normal' }}
                         />
                         </div>
@@ -236,25 +247,35 @@ const Index = () => {
                   }} transition={{
                     duration: 0.3
                   }}>
-                        <div className="relative w-28 h-28 md:w-32 md:h-32 
-                                      bg-white 
-                                      border border-gray-200
+                        <div className="relative w-24 h-24 md:w-28 md:h-28 
+                                      bg-black/90 backdrop-blur-xl 
+                                      border border-white/20
                                       rounded-2xl 
-                                      shadow-lg shadow-black/10
+                                      shadow-2xl shadow-black/60
                                       flex items-center justify-center
                                       overflow-hidden
                                       transition-all duration-300
-                                      group-hover:shadow-xl
-                                      group-hover:shadow-black/20">
+                                      group-hover:border-blue-400/40
+                                      group-hover:bg-black/80
+                                      group-hover:shadow-2xl
+                                      group-hover:shadow-blue-400/50">
+                          
+                          <div className="absolute inset-0 bg-gradient-to-br 
+                                        from-blue-500/0 to-cyan-500/0 
+                                        group-hover:from-blue-500/20 
+                                        group-hover:to-cyan-500/20 
+                                        transition-all duration-300" />
                           
                           <img 
                             src={logo.src} 
                             alt={logo.alt} 
-                            className="relative z-10 w-20 h-20 md:w-24 md:h-24 
+                            className="relative z-10 w-16 h-16 md:w-20 md:h-20 
                                       object-contain
-                                      filter brightness-100 contrast-100
+                                      filter brightness-95 contrast-105
                                       transition-all duration-300
-                                      group-hover:scale-105"
+                                      group-hover:brightness-110 
+                                      group-hover:scale-110
+                                      group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
                             style={{ mixBlendMode: 'normal' }}
                           />
                         </div>
@@ -273,25 +294,35 @@ const Index = () => {
                   }} transition={{
                     duration: 0.3
                   }}>
-                        <div className="relative w-28 h-28 md:w-32 md:h-32 
-                                      bg-white 
-                                      border border-gray-200
+                        <div className="relative w-24 h-24 md:w-28 md:h-28 
+                                      bg-black/90 backdrop-blur-xl 
+                                      border border-white/20 
                                       rounded-2xl 
-                                      shadow-lg shadow-black/10
+                                      shadow-2xl shadow-black/60
                                       flex items-center justify-center
                                       overflow-hidden
                                       transition-all duration-300
-                                      group-hover:shadow-xl
-                                      group-hover:shadow-black/20">
+                                      group-hover:border-blue-400/40
+                                      group-hover:bg-black/80
+                                      group-hover:shadow-2xl
+                                      group-hover:shadow-blue-400/50">
+                          
+                          <div className="absolute inset-0 bg-gradient-to-br 
+                                        from-blue-500/0 to-cyan-500/0 
+                                        group-hover:from-blue-500/20 
+                                        group-hover:to-cyan-500/20 
+                                        transition-all duration-300" />
                           
                           <img 
                             src={logo.src} 
                             alt={logo.alt} 
-                            className="relative z-10 w-20 h-20 md:w-24 md:h-24 
+                            className="relative z-10 w-16 h-16 md:w-20 md:h-20 
                                       object-contain
-                                      filter brightness-100 contrast-100
+                                      filter brightness-95 contrast-105
                                       transition-all duration-300
-                                      group-hover:scale-105"
+                                      group-hover:brightness-110 
+                                      group-hover:scale-110
+                                      group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
                             style={{ mixBlendMode: 'normal' }}
                           />
                         </div>
@@ -304,25 +335,35 @@ const Index = () => {
                   }} transition={{
                     duration: 0.3
                   }}>
-                        <div className="relative w-28 h-28 md:w-32 md:h-32 
-                                      bg-white 
-                                      border border-gray-200
+                        <div className="relative w-24 h-24 md:w-28 md:h-28 
+                                      bg-black/90 backdrop-blur-xl 
+                                      border border-white/20 
                                       rounded-2xl 
-                                      shadow-lg shadow-black/10
+                                      shadow-2xl shadow-black/60
                                       flex items-center justify-center
                                       overflow-hidden
                                       transition-all duration-300
-                                      group-hover:shadow-xl
-                                      group-hover:shadow-black/20">
+                                      group-hover:border-blue-400/40
+                                      group-hover:bg-black/80
+                                      group-hover:shadow-2xl
+                                      group-hover:shadow-blue-400/50">
+                          
+                          <div className="absolute inset-0 bg-gradient-to-br 
+                                        from-blue-500/0 to-cyan-500/0 
+                                        group-hover:from-blue-500/20 
+                                        group-hover:to-cyan-500/20 
+                                        transition-all duration-300" />
                           
                           <img 
                             src={logo.src} 
                             alt={logo.alt} 
-                            className="relative z-10 w-20 h-20 md:w-24 md:h-24 
+                            className="relative z-10 w-16 h-16 md:w-20 md:h-20 
                                       object-contain
-                                      filter brightness-100 contrast-100
+                                      filter brightness-95 contrast-105
                                       transition-all duration-300
-                                      group-hover:scale-105"
+                                      group-hover:brightness-110 
+                                      group-hover:scale-110
+                                      group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
                             style={{ mixBlendMode: 'normal' }}
                           />
                         </div>
