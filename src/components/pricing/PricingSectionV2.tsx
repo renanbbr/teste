@@ -139,7 +139,7 @@ export const PricingSectionV2 = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-5xl font-normal mb-6"
+          className="text-4xl md:text-5xl font-normal mb-6 tracking-tight"
         >
           Quatro níveis. Um único objetivo:{" "}
           <span className="text-gradient font-medium">Te dar acesso ao que ninguém mais tem.</span>
@@ -148,7 +148,7 @@ export const PricingSectionV2 = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.5 }}
-          className="text-lg text-muted-foreground"
+          className="text-lg md:text-xl text-gray-400"
         >
           O SealClub não é sobre gastar menos. É sobre ter mais: mais benefícios, mais poder de compra, mais vantagens. Escolha o plano que mais combina com você:
         </motion.p>

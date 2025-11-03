@@ -163,9 +163,9 @@ const Index = () => {
           y: 0
         }} viewport={{
           once: true
-        }} className="text-4xl md:text-5xl font-bold text-center mb-4">
+        }} className="text-4xl md:text-5xl font-normal mb-6 tracking-tight text-center">
             SealPass: faça parte da nossa{" "}
-            <span className="text-gradient">comunidade e economize todos os dias</span>
+            <span className="text-gradient font-medium">comunidade e economize todos os dias</span>
           </motion.h2>
 
           {/* Subtítulo */}
@@ -179,7 +179,7 @@ const Index = () => {
           once: true
         }} transition={{
           delay: 0.1
-        }} className="text-lg text-muted-foreground text-center max-w-3xl mx-auto">
+        }} className="text-lg md:text-xl text-gray-400 text-center max-w-3xl mx-auto">
             Descontos e experiências exclusivas com marcas que fazem parte da comunidade Seal.
             Cada parceria foi escolhida a dedo para oferecer vantagens reais ao membro SealClub.
           </motion.p>

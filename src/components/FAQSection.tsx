@@ -35,15 +35,12 @@ const FAQSection = () => {
       once: true
     }} className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white leading-tight">
+          <h2 className="text-4xl md:text-5xl font-normal mb-6 tracking-tight text-center">
             Regras do jogo.
-            <span className="block text-3xl md:text-4xl font-normal text-white/90 mt-2">
-              E é exatamente isso que torna o SealClub seguro, exclusivo e confiável.
-            </span>
           </h2>
-          
-          
-          
+          <p className="text-lg md:text-xl text-gray-400 text-center">
+            E é exatamente isso que torna o SealClub seguro, exclusivo e confiável.
+          </p>
         </div>
 
         <Accordion type="single" collapsible className="space-y-4">
