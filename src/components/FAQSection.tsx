@@ -41,9 +41,7 @@ const FAQSection = () => {
               E é exatamente isso que torna o SealClub seguro, exclusivo e confiável.
             </span>
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            A proposta do SealClub não é vender em massa. É oferecer acesso controlado, com benefícios reais — por isso, nós levamos as regras a sério.
-          </p>
+          
           
           
         </div>
