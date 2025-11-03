@@ -149,8 +149,8 @@ const Index = () => {
         }} viewport={{
           once: true
         }} className="text-4xl md:text-5xl font-bold text-center mb-4">
-            SealPass: conecte-se ao{" "}
-            <span className="text-gradient">ecossistema</span>
+            SealPass: faça parte da nossa{" "}
+            <span className="text-gradient">comunidade e economize todos os dias</span>
           </motion.h2>
 
           {/* Subtítulo */}
@@ -183,127 +183,102 @@ const Index = () => {
         }} viewport={{
           once: true
         }} className="relative z-10">
-            <div className="flex flex-col items-center justify-center gap-8 py-8">
-              {/* Linha superior - move para direita */}
-              <div className="w-full overflow-hidden">
-                <motion.div className="flex items-center gap-8" animate={{
-                x: [-1500, 0]
-              }} transition={{
-                duration: 50,
-                repeat: Infinity,
-                ease: "linear"
-              }} style={{
-                width: "fit-content"
-              }}>
-                  {[...Array(6)].map((_, setIndex) => <React.Fragment key={`top-${setIndex}`}>
-                      {[{
-                    src: "/brand-logos/apple-logo-new.png",
-                    alt: "Apple"
-                  }, {
-                    src: "/brand-logos/dji-logo-new.png",
-                    alt: "DJI"
-                  }, {
-                    src: "/brand-logos/motorola-logo-new.png",
-                    alt: "Motorola"
-                  }, {
-                    src: "/brand-logos/jbl-logo-new.png",
-                    alt: "JBL"
-                  }].map((logo, index) => <motion.div key={`top-${setIndex}-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
-                    scale: 1.05,
-                    y: -5
-                  }} transition={{
-                    duration: 0.3
-                  }}>
-                          <div className="relative w-14 h-14 md:w-16 md:h-16 
-                                       bg-black/80 backdrop-blur-lg 
-                                       border border-white/10
-                                       rounded-xl 
-                                       shadow-xl shadow-black/50
-                                       flex items-center justify-center
-                                       overflow-hidden
-                                       transition-all duration-300
-                                       group-hover:border-blue-500/30
-                                       group-hover:bg-black/70
-                                       group-hover:shadow-2xl
-                                       group-hover:shadow-blue-500/30">
-                            
-                            <div className="absolute inset-0 bg-gradient-to-br 
-                                         from-blue-500/0 to-cyan-500/0 
-                                         group-hover:from-blue-500/20 
-                                         group-hover:to-cyan-500/20 
-                                         transition-all duration-300" />
-                            
-                            <img src={logo.src} alt={logo.alt} className="relative z-10 w-8 h-8 md:w-10 md:h-10 
-                                       object-contain
-                                       brightness-90 contrast-110
-                                       transition-all duration-300
-                                       group-hover:brightness-110 
-                                       group-hover:scale-110" />
-                          </div>
-                        </motion.div>)}
-                    </React.Fragment>)}
-                </motion.div>
+            <div className="relative flex overflow-hidden py-12 md:py-16 w-full">
+              <div className="animate-marquee flex min-w-full shrink-0 items-center gap-8">
+                {[
+                  { src: "/brand-logos/apple-logo-new.png", alt: "Apple" },
+                  { src: "/brand-logos/dji-logo-new.png", alt: "DJI" },
+                  { src: "/brand-logos/motorola-logo-new.png", alt: "Motorola" },
+                  { src: "/brand-logos/jbl-logo-new.png", alt: "JBL" },
+                  { src: "/brand-logos/garmin-logo-new.png", alt: "Garmin" },
+                  { src: "/brand-logos/playstation-logo-new.png", alt: "PlayStation" },
+                  { src: "/brand-logos/polar-logo-new.png", alt: "Polar" },
+                  { src: "/brand-logos/hollyland-logo-new.png", alt: "Hollyland" }
+                ].map((logo, index) => (
+                  <motion.div
+                    key={`${index}-1`}
+                    className="flex-shrink-0 pointer-events-auto group"
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="relative w-32 h-32 md:w-36 md:h-36 
+                                   bg-black/40 backdrop-blur-lg 
+                                   border border-white/10 
+                                   rounded-2xl md:rounded-3xl 
+                                   shadow-xl shadow-black/50
+                                   flex items-center justify-center
+                                   overflow-hidden
+                                   transition-all duration-300
+                                   group-hover:border-blue-500/30
+                                   group-hover:bg-black/70
+                                   group-hover:shadow-2xl
+                                   group-hover:shadow-blue-500/30">
+                      
+                      <div className="absolute inset-0 bg-gradient-to-br 
+                                   from-blue-500/0 to-cyan-500/0 
+                                   group-hover:from-blue-500/20 
+                                   group-hover:to-cyan-500/20 
+                                   transition-all duration-300" />
+                      
+                      <img
+                        src={logo.src}
+                        alt={logo.alt}
+                        className="relative z-10 w-20 h-20 md:w-24 md:h-24 object-contain
+                                   brightness-90 contrast-110
+                                   transition-all duration-300
+                                   group-hover:brightness-110 group-hover:scale-110"
+                      />
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-
-              {/* Linha inferior - move para esquerda */}
-              <div className="w-full overflow-hidden">
-                <motion.div className="flex items-center gap-8" animate={{
-                x: [0, -1500]
-              }} transition={{
-                duration: 50,
-                repeat: Infinity,
-                ease: "linear"
-              }} style={{
-                width: "fit-content"
-              }}>
-                  {[...Array(6)].map((_, setIndex) => <React.Fragment key={`bottom-${setIndex}`}>
-                      {[{
-                    src: "/brand-logos/garmin-logo-new.png",
-                    alt: "Garmin"
-                  }, {
-                    src: "/brand-logos/playstation-logo-new.png",
-                    alt: "PlayStation"
-                  }, {
-                    src: "/brand-logos/polar-logo-new.png",
-                    alt: "Polar"
-                  }, {
-                    src: "/brand-logos/hollyland-logo-new.png",
-                    alt: "Hollyland"
-                  }].map((logo, index) => <motion.div key={`bottom-${setIndex}-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
-                    scale: 1.05,
-                    y: -5
-                  }} transition={{
-                    duration: 0.3
-                  }}>
-                          <div className="relative w-14 h-14 md:w-16 md:h-16 
-                                       bg-black/80 backdrop-blur-lg 
-                                       border border-white/10 
-                                       rounded-xl 
-                                       shadow-xl shadow-black/50
-                                       flex items-center justify-center
-                                       overflow-hidden
-                                       transition-all duration-300
-                                       group-hover:border-blue-500/30
-                                       group-hover:bg-black/70
-                                       group-hover:shadow-2xl
-                                       group-hover:shadow-blue-500/30">
-                            
-                            <div className="absolute inset-0 bg-gradient-to-br 
-                                         from-blue-500/0 to-cyan-500/0 
-                                         group-hover:from-blue-500/20 
-                                         group-hover:to-cyan-500/20 
-                                         transition-all duration-300" />
-                            
-                            <img src={logo.src} alt={logo.alt} className="relative z-10 w-8 h-8 md:w-10 md:h-10 
-                                       object-contain
-                                       brightness-90 contrast-110
-                                       transition-all duration-300
-                                       group-hover:brightness-110 
-                                       group-hover:scale-110" />
-                          </div>
-                        </motion.div>)}
-                    </React.Fragment>)}
-                </motion.div>
+              <div className="animate-marquee flex min-w-full shrink-0 items-center gap-8">
+                {[
+                  { src: "/brand-logos/apple-logo-new.png", alt: "Apple" },
+                  { src: "/brand-logos/dji-logo-new.png", alt: "DJI" },
+                  { src: "/brand-logos/motorola-logo-new.png", alt: "Motorola" },
+                  { src: "/brand-logos/jbl-logo-new.png", alt: "JBL" },
+                  { src: "/brand-logos/garmin-logo-new.png", alt: "Garmin" },
+                  { src: "/brand-logos/playstation-logo-new.png", alt: "PlayStation" },
+                  { src: "/brand-logos/polar-logo-new.png", alt: "Polar" },
+                  { src: "/brand-logos/hollyland-logo-new.png", alt: "Hollyland" }
+                ].map((logo, index) => (
+                  <motion.div
+                    key={`${index}-2`}
+                    className="flex-shrink-0 pointer-events-auto group"
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="relative w-32 h-32 md:w-36 md:h-36 
+                                   bg-black/40 backdrop-blur-lg 
+                                   border border-white/10 
+                                   rounded-2xl md:rounded-3xl 
+                                   shadow-xl shadow-black/50
+                                   flex items-center justify-center
+                                   overflow-hidden
+                                   transition-all duration-300
+                                   group-hover:border-blue-500/30
+                                   group-hover:bg-black/70
+                                   group-hover:shadow-2xl
+                                   group-hover:shadow-blue-500/30">
+                      
+                      <div className="absolute inset-0 bg-gradient-to-br 
+                                   from-blue-500/0 to-cyan-500/0 
+                                   group-hover:from-blue-500/20 
+                                   group-hover:to-cyan-500/20 
+                                   transition-all duration-300" />
+                      
+                      <img
+                        src={logo.src}
+                        alt={logo.alt}
+                        className="relative z-10 w-20 h-20 md:w-24 md:h-24 object-contain
+                                   brightness-90 contrast-110
+                                   transition-all duration-300
+                                   group-hover:brightness-110 group-hover:scale-110"
+                      />
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </motion.div>
