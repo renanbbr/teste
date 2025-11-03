@@ -16,32 +16,20 @@ import Footer from "@/components/Footer";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import NewArrivalsSection from "@/components/NewArrivalsSection";
 import sealclubLogo from "@/assets/sealclub-logo.png";
-const topLogos = [{
-  src: "/brand-logos/apple-logo-new.png",
-  alt: "Apple"
-}, {
-  src: "/brand-logos/dji-logo-new.png",
-  alt: "DJI"
-}, {
-  src: "/brand-logos/motorola-logo-new.png",
-  alt: "Motorola"
-}, {
-  src: "/brand-logos/jbl-logo-new.png",
-  alt: "JBL"
-}];
-const bottomLogos = [{
-  src: "/brand-logos/garmin-logo-new.png",
-  alt: "Garmin"
-}, {
-  src: "/brand-logos/playstation-logo-new.png",
-  alt: "PlayStation"
-}, {
-  src: "/brand-logos/polar-logo-new.png",
-  alt: "Polar"
-}, {
-  src: "/brand-logos/hollyland-logo-new.png",
-  alt: "Hollyland"
-}];
+const topLogos = [
+  { src: "/partner-logos/italo-caldeira.png", alt: "Ítalo Caldeira Nutricionista" },
+  { src: "/partner-logos/yellow-brownie.png", alt: "Yellow Brownie" },
+  { src: "/partner-logos/q-caroline-fit.png", alt: "Q Caroline Fit" },
+  { src: "/partner-logos/heinze-excursoes.png", alt: "Heinze Excursões" },
+  { src: "/partner-logos/lancheria-pelotense.png", alt: "Lancheria Pelotense Bar" }
+];
+
+const bottomLogos = [
+  { src: "/partner-logos/nina-doces.png", alt: "Nina Doces de Palotas" },
+  { src: "/partner-logos/nina-fit.png", alt: "Nina Fit Doces Proteicos" },
+  { src: "/partner-logos/ubuntu.svg", alt: "Ubuntu" },
+  { src: "/partner-logos/paula-azambuya.png", alt: "Paula Azambuya Beauty" }
+];
 const Index = () => {
   return <div className="min-h-screen bg-black text-foreground">
       <Navigation />
@@ -174,9 +162,9 @@ const Index = () => {
           y: 0
         }} viewport={{
           once: true
-        }} className="text-4xl md:text-5xl font-bold text-center mb-4">
+        }} className="text-4xl md:text-5xl font-normal mb-6 tracking-tight text-center">
             SealPass: faça parte da nossa{" "}
-            <span className="text-gradient">comunidade e economize todos os dias</span>
+            <span className="text-gradient font-medium">comunidade e economize todos os dias</span>
           </motion.h2>
 
           {/* Subtítulo */}
@@ -217,18 +205,18 @@ const Index = () => {
                   }} transition={{
                     duration: 0.3
                   }}>
-                        <div className="relative w-20 h-20 md:w-24 md:h-24 
-                                      bg-black/80 backdrop-blur-lg 
-                                      border border-white/10
-                                      rounded-xl 
-                                      shadow-xl shadow-black/50
+                        <div className="relative w-24 h-24 md:w-28 md:h-28 
+                                      bg-black/90 backdrop-blur-xl 
+                                      border border-white/20
+                                      rounded-2xl 
+                                      shadow-2xl shadow-black/60
                                       flex items-center justify-center
                                       overflow-hidden
                                       transition-all duration-300
-                                      group-hover:border-blue-500/30
-                                      group-hover:bg-black/70
+                                      group-hover:border-blue-400/40
+                                      group-hover:bg-black/80
                                       group-hover:shadow-2xl
-                                      group-hover:shadow-blue-500/30">
+                                      group-hover:shadow-blue-400/50">
                           
                           <div className="absolute inset-0 bg-gradient-to-br 
                                         from-blue-500/0 to-cyan-500/0 
@@ -236,12 +224,18 @@ const Index = () => {
                                         group-hover:to-cyan-500/20 
                                         transition-all duration-300" />
                           
-                          <img src={logo.src} alt={logo.alt} className="relative z-10 w-12 h-12 md:w-16 md:h-16 
+                          <img 
+                            src={logo.src} 
+                            alt={logo.alt} 
+                            className="relative z-10 w-16 h-16 md:w-20 md:h-20 
                                       object-contain
-                                      brightness-90 contrast-110
+                                      filter brightness-95 contrast-105
                                       transition-all duration-300
                                       group-hover:brightness-110 
-                                      group-hover:scale-110" />
+                                      group-hover:scale-110
+                                      group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+                            style={{ mixBlendMode: 'normal' }}
+                          />
                         </div>
                       </motion.div>)}
                   </div>
@@ -252,18 +246,18 @@ const Index = () => {
                   }} transition={{
                     duration: 0.3
                   }}>
-                        <div className="relative w-20 h-20 md:w-24 md:h-24 
-                                      bg-black/80 backdrop-blur-lg 
-                                      border border-white/10
-                                      rounded-xl 
-                                      shadow-xl shadow-black/50
+                        <div className="relative w-24 h-24 md:w-28 md:h-28 
+                                      bg-black/90 backdrop-blur-xl 
+                                      border border-white/20
+                                      rounded-2xl 
+                                      shadow-2xl shadow-black/60
                                       flex items-center justify-center
                                       overflow-hidden
                                       transition-all duration-300
-                                      group-hover:border-blue-500/30
-                                      group-hover:bg-black/70
+                                      group-hover:border-blue-400/40
+                                      group-hover:bg-black/80
                                       group-hover:shadow-2xl
-                                      group-hover:shadow-blue-500/30">
+                                      group-hover:shadow-blue-400/50">
                           
                           <div className="absolute inset-0 bg-gradient-to-br 
                                         from-blue-500/0 to-cyan-500/0 
@@ -271,12 +265,18 @@ const Index = () => {
                                         group-hover:to-cyan-500/20 
                                         transition-all duration-300" />
                           
-                          <img src={logo.src} alt={logo.alt} className="relative z-10 w-12 h-12 md:w-16 md:h-16 
+                          <img 
+                            src={logo.src} 
+                            alt={logo.alt} 
+                            className="relative z-10 w-16 h-16 md:w-20 md:h-20 
                                       object-contain
-                                      brightness-90 contrast-110
+                                      filter brightness-95 contrast-105
                                       transition-all duration-300
                                       group-hover:brightness-110 
-                                      group-hover:scale-110" />
+                                      group-hover:scale-110
+                                      group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+                            style={{ mixBlendMode: 'normal' }}
+                          />
                         </div>
                       </motion.div>)}
                   </div>
@@ -293,18 +293,18 @@ const Index = () => {
                   }} transition={{
                     duration: 0.3
                   }}>
-                        <div className="relative w-20 h-20 md:w-24 md:h-24 
-                                      bg-black/80 backdrop-blur-lg 
-                                      border border-white/10 
-                                      rounded-xl 
-                                      shadow-xl shadow-black/50
+                        <div className="relative w-24 h-24 md:w-28 md:h-28 
+                                      bg-black/90 backdrop-blur-xl 
+                                      border border-white/20 
+                                      rounded-2xl 
+                                      shadow-2xl shadow-black/60
                                       flex items-center justify-center
                                       overflow-hidden
                                       transition-all duration-300
-                                      group-hover:border-blue-500/30
-                                      group-hover:bg-black/70
+                                      group-hover:border-blue-400/40
+                                      group-hover:bg-black/80
                                       group-hover:shadow-2xl
-                                      group-hover:shadow-blue-500/30">
+                                      group-hover:shadow-blue-400/50">
                           
                           <div className="absolute inset-0 bg-gradient-to-br 
                                         from-blue-500/0 to-cyan-500/0 
@@ -312,12 +312,18 @@ const Index = () => {
                                         group-hover:to-cyan-500/20 
                                         transition-all duration-300" />
                           
-                          <img src={logo.src} alt={logo.alt} className="relative z-10 w-12 h-12 md:w-16 md:h-16 
+                          <img 
+                            src={logo.src} 
+                            alt={logo.alt} 
+                            className="relative z-10 w-16 h-16 md:w-20 md:h-20 
                                       object-contain
-                                      brightness-90 contrast-110
+                                      filter brightness-95 contrast-105
                                       transition-all duration-300
                                       group-hover:brightness-110 
-                                      group-hover:scale-110" />
+                                      group-hover:scale-110
+                                      group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+                            style={{ mixBlendMode: 'normal' }}
+                          />
                         </div>
                       </motion.div>)}
                   </div>
@@ -328,18 +334,18 @@ const Index = () => {
                   }} transition={{
                     duration: 0.3
                   }}>
-                        <div className="relative w-20 h-20 md:w-24 md:h-24 
-                                      bg-black/80 backdrop-blur-lg 
-                                      border border-white/10 
-                                      rounded-xl 
-                                      shadow-xl shadow-black/50
+                        <div className="relative w-24 h-24 md:w-28 md:h-28 
+                                      bg-black/90 backdrop-blur-xl 
+                                      border border-white/20 
+                                      rounded-2xl 
+                                      shadow-2xl shadow-black/60
                                       flex items-center justify-center
                                       overflow-hidden
                                       transition-all duration-300
-                                      group-hover:border-blue-500/30
-                                      group-hover:bg-black/70
+                                      group-hover:border-blue-400/40
+                                      group-hover:bg-black/80
                                       group-hover:shadow-2xl
-                                      group-hover:shadow-blue-500/30">
+                                      group-hover:shadow-blue-400/50">
                           
                           <div className="absolute inset-0 bg-gradient-to-br 
                                         from-blue-500/0 to-cyan-500/0 
@@ -347,12 +353,18 @@ const Index = () => {
                                         group-hover:to-cyan-500/20 
                                         transition-all duration-300" />
                           
-                          <img src={logo.src} alt={logo.alt} className="relative z-10 w-12 h-12 md:w-16 md:h-16 
+                          <img 
+                            src={logo.src} 
+                            alt={logo.alt} 
+                            className="relative z-10 w-16 h-16 md:w-20 md:h-20 
                                       object-contain
-                                      brightness-90 contrast-110
+                                      filter brightness-95 contrast-105
                                       transition-all duration-300
                                       group-hover:brightness-110 
-                                      group-hover:scale-110" />
+                                      group-hover:scale-110
+                                      group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+                            style={{ mixBlendMode: 'normal' }}
+                          />
                         </div>
                       </motion.div>)}
                   </div>
