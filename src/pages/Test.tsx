@@ -12,7 +12,7 @@ import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import NewArrivalsSection from "@/components/NewArrivalsSection";
-import SealPassSection from "@/components/SealPassSection";
+import { SealPassSection } from "@/components/SealPassSection";
 import sealclubLogo from "@/assets/sealclub-logo.png";
 import { AnimatedBlueRays } from "@/components/ui/animated-blue-rays";
 
@@ -123,9 +123,12 @@ const Test = () => {
       </div>
 
       {/* SealPass Section */}
-      <div className="bg-black">
-        <SealPassSection />
-      </div>
+      <SealPassSection 
+        title="SealPass: faça parte da nossa"
+        titleHighlight="comunidade e economize todos os dias"
+        subtitle="Descontos e vantagens reais com marcas parceiras que fazem você economizar todos os dias."
+        videoSrc="/lovable-uploads/sealclub-branding.mp4"
+      />
 
       {/* Pricing Section */}
       <div id="pricing" className="bg-black">
