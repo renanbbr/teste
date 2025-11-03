@@ -2,8 +2,8 @@ import { Smartphone, Trophy, Headphones, Zap, CreditCard, RefreshCw, Truck, Cloc
 
 export const features = [
   {
-    title: "Tecnologia de Ponta",
-    description: "Esteja sempre à frente. Tenha acesso antecipado aos últimos lançamentos e inovações das maiores marcas do mundo.",
+    title: "Preço de Fábrica",
+    description: "Acesso direto aos produtos mais desejados, sem as margens abusivas do varejo. Compre como uma empresa, mesmo sendo pessoa física.",
     icon: <Smartphone className="w-6 h-6" />,
     image: "/lovable-uploads/7335619d-58a9-41ad-a233-f7826f56f3e9.png"
   },
