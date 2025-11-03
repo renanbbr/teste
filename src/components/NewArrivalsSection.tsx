@@ -5,9 +5,11 @@ const NewArrivalsSection = () => {
   return <section className="py-12 md:py-20 lg:py-24 bg-black">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-4xl mx-auto mb-20">
-          <ButtonHard className="mb-6">
-            O que você paga hoje VS o que pagaria como membro do SealClub
-          </ButtonHard>
+          <div className="flex justify-center mb-6">
+            <ButtonHard className="text-sm px-4 py-2 bg-transparent">
+              O que você paga hoje VS o que pagaria como membro do SealClub
+            </ButtonHard>
+          </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-white mb-8 tracking-tight leading-tight">
             A diferença é tão absurda que parece mentira.
             
