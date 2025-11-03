@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import { ArrowRight, Command } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ButtonHard } from "@/components/ui/button-hard";
+import { ButtonHard2 } from "@/components/ui/button-hard2";
 import { ButtonGradient } from "@/components/ui/button-gradient";
 import { Separator } from "@/components/ui/separator";
 import Navigation from "@/components/Navigation";
@@ -80,9 +80,9 @@ const Index = () => {
         }} transition={{
           delay: 0.5
         }} className="flex flex-col sm:flex-row gap-4 items-start">
-            <ButtonHard className="text-base">
+            <ButtonHard2 className="text-base">
               Quero ser membro
-            </ButtonHard>
+            </ButtonHard2>
           </motion.div>
         </div>
 
