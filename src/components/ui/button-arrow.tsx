@@ -21,7 +21,7 @@ export const ButtonArrow = ({
       {...props}
     >
       {/* Texto com underline animado */}
-      <span className="relative pb-2 text-sm uppercase tracking-[4px] text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+      <span className="relative pb-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
         {children}
         {/* Underline animado */}
         <span className="absolute bottom-0 left-0 w-full h-[2px] bg-primary scale-x-0 origin-bottom-right transition-transform duration-300 ease-out group-hover:scale-x-100 group-hover:origin-bottom-left" />
