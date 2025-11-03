@@ -80,9 +80,9 @@ const Index = () => {
         }} transition={{
           delay: 0.5
         }} className="flex flex-col sm:flex-row gap-4 items-start">
-            <ButtonGradient className="text-base">
+            <ButtonHard className="text-base">
               Quero ser membro
-            </ButtonGradient>
+            </ButtonHard>
           </motion.div>
         </div>
 
