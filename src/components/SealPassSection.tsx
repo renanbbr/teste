@@ -85,14 +85,14 @@ const SealPassSection = () => {
           className="relative max-w-6xl mx-auto mb-12"
         >
           {/* Logo central com aura energética */}
-          <div className="relative flex items-center justify-center min-h-[500px] md:min-h-[600px]">
+          <div className="relative flex flex-col items-center justify-center min-h-[400px] md:min-h-[600px]">
             {/* Aura animada principal (azul) */}
             <motion.div
               className="absolute inset-0 flex items-center justify-center"
               animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.6, 0.3] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
-              <div className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full 
+              <div className="w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-full 
                             bg-gradient-radial from-blue-500/40 via-cyan-500/20 to-transparent
                             blur-3xl" />
             </motion.div>
@@ -123,9 +123,8 @@ const SealPassSection = () => {
             </motion.div>
 
             {/* Carrossel de logos dos parceiros em containers glass */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative flex overflow-hidden py-4 w-full">
-                <div className="animate-marquee flex min-w-full shrink-0 items-center gap-8">
+            <div className="relative flex overflow-hidden py-4 w-full mt-12 md:mt-0">
+              <div className="animate-marquee flex min-w-full shrink-0 items-center gap-8">
                   {partnerLogos.map((logo, index) => (
                     <motion.div
                       key={`${index}-1`}
@@ -134,7 +133,7 @@ const SealPassSection = () => {
                       transition={{ duration: 0.3 }}
                     >
                       {/* Container Glass */}
-                      <div className="relative w-28 h-28 md:w-32 md:h-32 
+                      <div className="relative w-32 h-32 md:w-36 md:h-36 
                                      bg-black/40 backdrop-blur-lg 
                                      border border-white/10 
                                      rounded-2xl md:rounded-3xl 
@@ -156,7 +155,7 @@ const SealPassSection = () => {
                         <img
                           src={logo.src}
                           alt={logo.alt}
-                          className="relative z-10 w-16 h-16 md:w-20 md:h-20 object-contain
+                          className="relative z-10 w-20 h-20 md:w-24 md:h-24 object-contain
                                      brightness-90 contrast-110
                                      transition-all duration-300
                                      group-hover:brightness-110 group-hover:scale-110"
@@ -174,7 +173,7 @@ const SealPassSection = () => {
                       transition={{ duration: 0.3 }}
                     >
                       {/* Container Glass */}
-                      <div className="relative w-28 h-28 md:w-32 md:h-32 
+                      <div className="relative w-32 h-32 md:w-36 md:h-36 
                                      bg-black/40 backdrop-blur-lg 
                                      border border-white/10 
                                      rounded-2xl md:rounded-3xl 
@@ -196,7 +195,7 @@ const SealPassSection = () => {
                         <img
                           src={logo.src}
                           alt={logo.alt}
-                          className="relative z-10 w-16 h-16 md:w-20 md:h-20 object-contain
+                          className="relative z-10 w-20 h-20 md:w-24 md:h-24 object-contain
                                      brightness-90 contrast-110
                                      transition-all duration-300
                                      group-hover:brightness-110 group-hover:scale-110"
@@ -207,7 +206,6 @@ const SealPassSection = () => {
                 </div>
               </div>
             </div>
-          </div>
         </motion.div>
 
         {/* CTA */}
