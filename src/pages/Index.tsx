@@ -178,7 +178,7 @@ const Index = () => {
           once: true
         }} transition={{
           delay: 0.1
-        }} className="text-lg text-muted-foreground text-center max-w-3xl mx-auto">Descontos e vantagens reais com marcas parceiras que fazem você economizar todos os dias.</motion.p>
+        }} className="text-lg md:text-xl text-gray-400 text-center max-w-3xl mx-auto">Descontos e vantagens reais com marcas parceiras que fazem você economizar todos os dias.</motion.p>
         </div>
 
         <div className="container px-4 relative z-10 my-0 py-0">
@@ -196,27 +196,27 @@ const Index = () => {
         }} className="relative z-10">
             <div className="flex flex-col items-center justify-center gap-8 py-8">
               {/* Linha superior - move para direita */}
-              <div className="w-full overflow-hidden">
-                <div className="flex">
-                  <div className="animate-marquee flex min-w-full shrink-0 items-center gap-8">
+            <div className="w-full overflow-hidden">
+              <div className="relative flex">
+                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-10">
                     {topLogos.map((logo, index) => <motion.div key={`top-1-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                     scale: 1.05,
                     y: -5
                   }} transition={{
                     duration: 0.3
                   }}>
-                        <div className="relative w-24 h-24 md:w-28 md:h-28 
-                                      bg-black/90 backdrop-blur-xl 
-                                      border border-white/20
-                                      rounded-2xl 
-                                      shadow-2xl shadow-black/60
-                                      flex items-center justify-center
-                                      overflow-hidden
-                                      transition-all duration-300
-                                      group-hover:border-blue-400/40
-                                      group-hover:bg-black/80
-                                      group-hover:shadow-2xl
-                                      group-hover:shadow-blue-400/50">
+                      <div className="relative w-28 h-28 md:w-32 md:h-32 
+                                bg-black/95 backdrop-blur-xl 
+                                border border-white/10
+                                rounded-2xl 
+                                shadow-2xl shadow-black/40
+                                flex items-center justify-center
+                                overflow-hidden
+                                transition-all duration-300
+                                group-hover:border-blue-400/50
+                                group-hover:bg-black/90
+                                group-hover:shadow-2xl
+                                group-hover:shadow-blue-400/60">
                           
                           <div className="absolute inset-0 bg-gradient-to-br 
                                         from-blue-500/0 to-cyan-500/0 
@@ -224,22 +224,23 @@ const Index = () => {
                                         group-hover:to-cyan-500/20 
                                         transition-all duration-300" />
                           
-                          <img 
-                            src={logo.src} 
-                            alt={logo.alt} 
-                            className="relative z-10 w-16 h-16 md:w-20 md:h-20 
-                                      object-contain
-                                      filter brightness-95 contrast-105
-                                      transition-all duration-300
-                                      group-hover:brightness-110 
-                                      group-hover:scale-110
-                                      group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
-                            style={{ mixBlendMode: 'normal' }}
-                          />
+                        <img 
+                          src={logo.src} 
+                          alt={logo.alt} 
+                          className="relative z-10 w-20 h-20 md:w-24 md:h-24 
+                                    object-contain
+                                    filter brightness-100 contrast-100
+                                    drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]
+                                    transition-all duration-300
+                                    group-hover:brightness-110 
+                                    group-hover:scale-110
+                                    group-hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.6)]"
+                          style={{ mixBlendMode: 'normal' }}
+                        />
                         </div>
                       </motion.div>)}
                   </div>
-                  <div className="animate-marquee flex min-w-full shrink-0 items-center gap-8">
+                  <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-10">
                     {topLogos.map((logo, index) => <motion.div key={`top-2-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                     scale: 1.05,
                     y: -5
@@ -285,8 +286,8 @@ const Index = () => {
 
               {/* Linha inferior - move para esquerda */}
               <div className="w-full overflow-hidden">
-                <div className="flex">
-                  <div className="animate-marquee-reverse flex min-w-full shrink-0 items-center gap-8">
+              <div className="relative flex">
+                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-10">
                     {bottomLogos.map((logo, index) => <motion.div key={`bottom-1-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                     scale: 1.05,
                     y: -5
@@ -327,7 +328,7 @@ const Index = () => {
                         </div>
                       </motion.div>)}
                   </div>
-                  <div className="animate-marquee-reverse flex min-w-full shrink-0 items-center gap-8">
+                  <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-10">
                     {bottomLogos.map((logo, index) => <motion.div key={`bottom-2-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                     scale: 1.05,
                     y: -5

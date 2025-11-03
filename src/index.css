@@ -298,4 +298,31 @@
       transform: translateX(0%);
     }
   }
+
+  /* Marquee Animation for Partners - Faster */
+  @keyframes marquee-partners {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes marquee-partners-reverse {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  .animate-marquee-partners {
+    animation: marquee-partners 25s linear infinite;
+  }
+
+  .animate-marquee-partners-reverse {
+    animation: marquee-partners-reverse 25s linear infinite;
+  }
 }
