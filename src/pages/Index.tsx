@@ -16,19 +16,15 @@ import Footer from "@/components/Footer";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import NewArrivalsSection from "@/components/NewArrivalsSection";
 import sealclubLogo from "@/assets/sealclub-logo.png";
-const topLogos = [
-  { src: "/partner-logos/italo-caldeira.png", alt: "Ítalo Caldeira Nutricionista" },
-  { src: "/partner-logos/yellow-brownie.png", alt: "Yellow Brownie" },
+const allLogos = [
   { src: "/partner-logos/q-caroline-fit.png", alt: "Q Caroline Fit" },
   { src: "/partner-logos/heinze-excursoes.png", alt: "Heinze Excursões" },
-  { src: "/partner-logos/lancheria-pelotense.png", alt: "Lancheria Pelotense Bar" }
-];
-
-const bottomLogos = [
-  { src: "/partner-logos/nina-doces.png", alt: "Nina Doces de Palotas" },
+  { src: "/partner-logos/italo-caldeira.png", alt: "Ítalo Caldeira Nutricionista" },
+  { src: "/partner-logos/lancheria-pelotense.png", alt: "Lancheria Pelotense Bar" },
+  { src: "/partner-logos/nina-doces.png", alt: "Nina Doces de Pelotas" },
   { src: "/partner-logos/nina-fit.png", alt: "Nina Fit Doces Proteicos" },
   { src: "/partner-logos/ubuntu.svg", alt: "Ubuntu" },
-  { src: "/partner-logos/paula-azambuya.png", alt: "Paula Azambuya Beauty" }
+  { src: "/partner-logos/yellow-brownie.png", alt: "I'low Yellow Brownie" }
 ];
 const Index = () => {
   return <div className="min-h-screen bg-black text-foreground">
@@ -199,7 +195,7 @@ const Index = () => {
             <div className="w-full overflow-hidden">
               <div className="relative flex">
                 <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-10">
-                    {topLogos.map((logo, index) => <motion.div key={`top-1-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
+                    {allLogos.map((logo, index) => <motion.div key={`top-1-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                     scale: 1.05,
                     y: -5
                   }} transition={{
@@ -231,7 +227,7 @@ const Index = () => {
                       </motion.div>)}
                   </div>
                   <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-10">
-                    {topLogos.map((logo, index) => <motion.div key={`top-2-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
+                    {allLogos.map((logo, index) => <motion.div key={`top-2-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                     scale: 1.05,
                     y: -5
                   }} transition={{
@@ -268,7 +264,7 @@ const Index = () => {
               <div className="w-full overflow-hidden">
               <div className="relative flex">
                 <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-10">
-                    {bottomLogos.map((logo, index) => <motion.div key={`bottom-1-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
+                    {allLogos.map((logo, index) => <motion.div key={`bottom-1-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                     scale: 1.05,
                     y: -5
                   }} transition={{
@@ -299,7 +295,7 @@ const Index = () => {
                       </motion.div>)}
                   </div>
                   <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-10">
-                    {bottomLogos.map((logo, index) => <motion.div key={`bottom-2-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
+                    {allLogos.map((logo, index) => <motion.div key={`bottom-2-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                     scale: 1.05,
                     y: -5
                   }} transition={{
