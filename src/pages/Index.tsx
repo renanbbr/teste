@@ -136,7 +136,7 @@ const Index = () => {
         {/* Título e Subtítulo da Section */}
         <div className="container px-4 relative z-10 mb-8">
           {/* Badge */}
-          <motion.div initial={{
+        <motion.div initial={{
           opacity: 0,
           y: 20
         }} whileInView={{
@@ -144,11 +144,11 @@ const Index = () => {
           y: 0
         }} viewport={{
           once: true
-        }} className="flex justify-center mb-8">
-            <ButtonHard className="text-sm px-4 py-2 bg-transparent text-blue-400">
-              SEAL PASS
-            </ButtonHard>
-          </motion.div>
+        }} className="flex justify-center mb-4">
+          <ButtonHard className="text-sm bg-transparent text-white font-bold">
+            SEALPASS
+          </ButtonHard>
+        </motion.div>
 
           {/* Título */}
           <motion.h2 initial={{
