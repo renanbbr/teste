@@ -3,6 +3,7 @@ import React from "react";
 import { ArrowRight, Command } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ButtonHard } from "@/components/ui/button-hard";
+import { ButtonGradient } from "@/components/ui/button-gradient";
 import { Separator } from "@/components/ui/separator";
 import Navigation from "@/components/Navigation";
 import AppleProductsSection from "@/components/AppleProductsSection";
@@ -79,9 +80,9 @@ const Index = () => {
         }} transition={{
           delay: 0.5
         }} className="flex flex-col sm:flex-row gap-4 items-start">
-            <ButtonHard className="text-base">
+            <ButtonGradient className="text-base">
               Quero ser membro
-            </ButtonHard>
+            </ButtonGradient>
           </motion.div>
         </div>
 

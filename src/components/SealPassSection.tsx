@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import sealclubLogo from "@/assets/sealclub-logo.png";
+
 const SealPassSection = () => {
   // Array de logos dos parceiros (usando logos existentes como placeholders)
   const partnerLogos = [{
@@ -28,7 +29,9 @@ const SealPassSection = () => {
     src: "/brand-logos/hollyland-logo-new.png",
     alt: "Parceiro Hollyland"
   }];
-  return <section className="relative bg-black py-32 overflow-hidden">
+
+  return (
+    <section className="relative bg-black py-32 overflow-hidden">
       {/* Background com gradiente */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-950/10 to-black" />
       
@@ -37,15 +40,12 @@ const SealPassSection = () => {
       
       <div className="container px-4 relative z-10">
         {/* Badge */}
-        <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} whileInView={{
-        opacity: 1,
-        y: 0
-      }} viewport={{
-        once: true
-      }} className="flex justify-center mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex justify-center mb-8"
+        >
           <span className="inline-flex items-center px-6 py-2 rounded-full 
                          bg-gradient-to-r from-blue-500/10 to-cyan-500/10 
                          border border-blue-500/20 text-sm font-medium text-blue-400">
@@ -54,204 +54,266 @@ const SealPassSection = () => {
         </motion.div>
 
         {/* Título */}
-        <motion.h2 initial={{
-        opacity: 0,
-        y: 20
-      }} whileInView={{
-        opacity: 1,
-        y: 0
-      }} viewport={{
-        once: true
-      }} className="text-4xl md:text-5xl font-bold text-center mb-4">
-          SealPass: conecte-se ao{" "}
-          <span className="text-gradient">ecossistema </span>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl font-bold text-center mb-4"
+        >
+          SealPass: faça parte da nossa{" "}
+          <span className="text-gradient">comunidade e economize todos os dias</span>
         </motion.h2>
 
         {/* Subtítulo */}
-        <motion.p initial={{
-        opacity: 0,
-        y: 20
-      }} whileInView={{
-        opacity: 1,
-        y: 0
-      }} viewport={{
-        once: true
-      }} transition={{
-        delay: 0.1
-      }} className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16"
+        >
           Descontos e experiências exclusivas com marcas que fazem parte da comunidade Seal.
           Cada parceria foi escolhida a dedo para oferecer vantagens reais ao membro SealClub.
         </motion.p>
 
         {/* Container central com logo e carrossel */}
-        <motion.div initial={{
-        opacity: 0,
-        scale: 0.9
-      }} whileInView={{
-        opacity: 1,
-        scale: 1
-      }} viewport={{
-        once: true
-      }} transition={{
-        duration: 0.6
-      }} className="relative max-w-6xl mx-auto mb-12">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative max-w-6xl mx-auto mb-12"
+        >
           {/* Logo central com aura energética */}
           <div className="relative flex items-center justify-center min-h-[500px] md:min-h-[600px]">
             {/* Aura animada principal (azul) */}
-            <motion.div className="absolute inset-0 flex items-center justify-center" animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.3, 0.6, 0.3]
-          }} transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}>
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center"
+              animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
               <div className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full 
                             bg-gradient-radial from-blue-500/40 via-cyan-500/20 to-transparent
                             blur-3xl" />
             </motion.div>
 
             {/* Segunda camada de aura (laranja/vermelha) */}
-            <motion.div className="absolute inset-0 flex items-center justify-center" animate={{
-            scale: [1.1, 1, 1.1],
-            opacity: [0.2, 0.5, 0.2]
-          }} transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}>
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center"
+              animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.5, 0.2] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            >
               <div className="w-[280px] h-[280px] md:w-[380px] md:h-[380px] rounded-full 
                             bg-gradient-radial from-orange-500/30 via-red-500/15 to-transparent
                             blur-2xl" />
             </motion.div>
 
             {/* Logo da Seal */}
-            <motion.div className="relative z-20 flex items-center justify-center" animate={{
-            y: [0, -15, 0]
-          }} transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}>
-              <img src={sealclubLogo} alt="SealClub Logo" className="w-48 h-48 md:w-64 md:h-64 object-contain opacity-70 drop-shadow-2xl 
-                           drop-shadow-[0_0_60px_rgba(59,130,246,0.4)]" />
+            <motion.div
+              className="relative z-20 flex items-center justify-center"
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <img
+                src={sealclubLogo}
+                alt="SealClub Logo"
+                className="w-48 h-48 md:w-64 md:h-64 object-contain opacity-70 drop-shadow-2xl 
+                           drop-shadow-[0_0_60px_rgba(59,130,246,0.4)]"
+              />
             </motion.div>
 
             {/* Carrossel de logos dos parceiros em containers glass */}
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-12 md:gap-20">
               {/* Linha superior de logos */}
               <div className="w-full overflow-hidden">
-                <motion.div className="flex items-center justify-center gap-6 md:gap-12" animate={{
-                x: [0, -1200]
-              }} transition={{
-                duration: 40,
-                repeat: Infinity,
-                ease: "linear"
-              }} style={{
-                width: "fit-content"
-              }}>
-                  {[...partnerLogos, ...partnerLogos, ...partnerLogos].map((logo, index) => <motion.div key={`top-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
-                  scale: 1.05,
-                  y: -5
-                }} transition={{
-                  duration: 0.3
-                }}>
-                      {/* Container Glass */}
-                      <div className="relative w-20 h-20 md:w-24 md:h-24 
-                                     bg-black/40 backdrop-blur-lg 
-                                     border border-white/10 
-                                     rounded-2xl md:rounded-3xl 
-                                     shadow-xl shadow-black/50
-                                     flex items-center justify-center
-                                     overflow-hidden
-                                     transition-all duration-300
-                                     group-hover:border-white/30
-                                     group-hover:bg-black/60
-                                     group-hover:shadow-2xl
-                                     group-hover:shadow-blue-500/20">
-                        
-                        {/* Brilho interno no hover */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 
-                                       group-hover:from-blue-500/10 group-hover:to-cyan-500/10 
-                                       transition-all duration-300" />
-                        
-                        {/* Logo */}
-                        <img src={logo.src} alt={logo.alt} className="relative z-10 w-10 h-10 md:w-12 md:h-12 object-contain
-                                   brightness-90 contrast-110
-                                   transition-all duration-300
-                                   group-hover:brightness-110 group-hover:scale-110" />
-                      </div>
-                    </motion.div>)}
-                </motion.div>
+                <div className="flex items-stretch gap-6 md:gap-12">
+                  <div className="animate-marquee flex min-w-full shrink-0 items-stretch gap-6 md:gap-12">
+                    {partnerLogos.map((logo, index) => (
+                      <motion.div
+                        key={`top-${index}`}
+                        className="flex-shrink-0 pointer-events-auto group"
+                        whileHover={{ scale: 1.05, y: -5 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {/* Container Glass */}
+                        <div className="relative w-20 h-20 md:w-24 md:h-24 
+                                       bg-black/40 backdrop-blur-lg 
+                                       border border-white/10 
+                                       rounded-2xl md:rounded-3xl 
+                                       shadow-xl shadow-black/50
+                                       flex items-center justify-center
+                                       overflow-hidden
+                                       transition-all duration-300
+                                       group-hover:border-white/30
+                                       group-hover:bg-black/60
+                                       group-hover:shadow-2xl
+                                       group-hover:shadow-blue-500/20">
+                          
+                          {/* Brilho interno no hover */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 
+                                         group-hover:from-blue-500/10 group-hover:to-cyan-500/10 
+                                         transition-all duration-300" />
+                          
+                          {/* Logo */}
+                          <img
+                            src={logo.src}
+                            alt={logo.alt}
+                            className="relative z-10 w-10 h-10 md:w-12 md:h-12 object-contain
+                                       brightness-90 contrast-110
+                                       transition-all duration-300
+                                       group-hover:brightness-110 group-hover:scale-110"
+                          />
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                  <div className="animate-marquee flex min-w-full shrink-0 items-stretch gap-6 md:gap-12">
+                    {partnerLogos.map((logo, index) => (
+                      <motion.div
+                        key={`top-duplicate-${index}`}
+                        className="flex-shrink-0 pointer-events-auto group"
+                        whileHover={{ scale: 1.05, y: -5 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {/* Container Glass */}
+                        <div className="relative w-20 h-20 md:w-24 md:h-24 
+                                       bg-black/40 backdrop-blur-lg 
+                                       border border-white/10 
+                                       rounded-2xl md:rounded-3xl 
+                                       shadow-xl shadow-black/50
+                                       flex items-center justify-center
+                                       overflow-hidden
+                                       transition-all duration-300
+                                       group-hover:border-white/30
+                                       group-hover:bg-black/60
+                                       group-hover:shadow-2xl
+                                       group-hover:shadow-blue-500/20">
+                          
+                          {/* Brilho interno no hover */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 
+                                         group-hover:from-blue-500/10 group-hover:to-cyan-500/10 
+                                         transition-all duration-300" />
+                          
+                          {/* Logo */}
+                          <img
+                            src={logo.src}
+                            alt={logo.alt}
+                            className="relative z-10 w-10 h-10 md:w-12 md:h-12 object-contain
+                                       brightness-90 contrast-110
+                                       transition-all duration-300
+                                       group-hover:brightness-110 group-hover:scale-110"
+                          />
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               {/* Linha inferior de logos (direção oposta) */}
               <div className="w-full overflow-hidden">
-                <motion.div className="flex items-center justify-center gap-6 md:gap-12" animate={{
-                x: [-1200, 0]
-              }} transition={{
-                duration: 40,
-                repeat: Infinity,
-                ease: "linear"
-              }} style={{
-                width: "fit-content"
-              }}>
-                  {[...partnerLogos, ...partnerLogos, ...partnerLogos].map((logo, index) => <motion.div key={`bottom-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
-                  scale: 1.05,
-                  y: -5
-                }} transition={{
-                  duration: 0.3
-                }}>
-                      {/* Container Glass */}
-                      <div className="relative w-20 h-20 md:w-24 md:h-24 
-                                     bg-black/40 backdrop-blur-lg 
-                                     border border-white/10 
-                                     rounded-2xl md:rounded-3xl 
-                                     shadow-xl shadow-black/50
-                                     flex items-center justify-center
-                                     overflow-hidden
-                                     transition-all duration-300
-                                     group-hover:border-white/30
-                                     group-hover:bg-black/60
-                                     group-hover:shadow-2xl
-                                     group-hover:shadow-blue-500/20">
-                        
-                        {/* Brilho interno no hover */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 
-                                       group-hover:from-blue-500/10 group-hover:to-cyan-500/10 
-                                       transition-all duration-300" />
-                        
-                        {/* Logo */}
-                        <img src={logo.src} alt={logo.alt} className="relative z-10 w-10 h-10 md:w-12 md:h-12 object-contain
-                                   brightness-90 contrast-110
-                                   transition-all duration-300
-                                   group-hover:brightness-110 group-hover:scale-110" />
-                      </div>
-                    </motion.div>)}
-                </motion.div>
+                <div className="flex items-stretch gap-6 md:gap-12">
+                  <div className="animate-marquee flex min-w-full shrink-0 items-stretch gap-6 md:gap-12">
+                    {partnerLogos.map((logo, index) => (
+                      <motion.div
+                        key={`bottom-${index}`}
+                        className="flex-shrink-0 pointer-events-auto group"
+                        whileHover={{ scale: 1.05, y: -5 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {/* Container Glass */}
+                        <div className="relative w-20 h-20 md:w-24 md:h-24 
+                                       bg-black/40 backdrop-blur-lg 
+                                       border border-white/10 
+                                       rounded-2xl md:rounded-3xl 
+                                       shadow-xl shadow-black/50
+                                       flex items-center justify-center
+                                       overflow-hidden
+                                       transition-all duration-300
+                                       group-hover:border-white/30
+                                       group-hover:bg-black/60
+                                       group-hover:shadow-2xl
+                                       group-hover:shadow-blue-500/20">
+                          
+                          {/* Brilho interno no hover */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 
+                                         group-hover:from-blue-500/10 group-hover:to-cyan-500/10 
+                                         transition-all duration-300" />
+                          
+                          {/* Logo */}
+                          <img
+                            src={logo.src}
+                            alt={logo.alt}
+                            className="relative z-10 w-10 h-10 md:w-12 md:h-12 object-contain
+                                       brightness-90 contrast-110
+                                       transition-all duration-300
+                                       group-hover:brightness-110 group-hover:scale-110"
+                          />
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                  <div className="animate-marquee flex min-w-full shrink-0 items-stretch gap-6 md:gap-12">
+                    {partnerLogos.map((logo, index) => (
+                      <motion.div
+                        key={`bottom-duplicate-${index}`}
+                        className="flex-shrink-0 pointer-events-auto group"
+                        whileHover={{ scale: 1.05, y: -5 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {/* Container Glass */}
+                        <div className="relative w-20 h-20 md:w-24 md:h-24 
+                                       bg-black/40 backdrop-blur-lg 
+                                       border border-white/10 
+                                       rounded-2xl md:rounded-3xl 
+                                       shadow-xl shadow-black/50
+                                       flex items-center justify-center
+                                       overflow-hidden
+                                       transition-all duration-300
+                                       group-hover:border-white/30
+                                       group-hover:bg-black/60
+                                       group-hover:shadow-2xl
+                                       group-hover:shadow-blue-500/20">
+                          
+                          {/* Brilho interno no hover */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 
+                                         group-hover:from-blue-500/10 group-hover:to-cyan-500/10 
+                                         transition-all duration-300" />
+                          
+                          {/* Logo */}
+                          <img
+                            src={logo.src}
+                            alt={logo.alt}
+                            className="relative z-10 w-10 h-10 md:w-12 md:h-12 object-contain
+                                       brightness-90 contrast-110
+                                       transition-all duration-300
+                                       group-hover:brightness-110 group-hover:scale-110"
+                          />
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </motion.div>
 
         {/* CTA */}
-        <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} whileInView={{
-        opacity: 1,
-        y: 0
-      }} viewport={{
-        once: true
-      }} transition={{
-        delay: 0.2
-      }} className="flex justify-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="flex justify-center"
+        >
           <Button size="lg" className="button-gradient">
             🪩 Ver todos os parceiros do Seal Pass
           </Button>
         </motion.div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default SealPassSection;
