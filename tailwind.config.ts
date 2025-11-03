@@ -82,7 +82,7 @@ export default {
         }
       },
       animation: {
-        marquee: 'marquee 40s linear infinite',
+        marquee: 'marquee 30s linear infinite',
         'fade-in': 'fade-in 0.7s ease-out forwards',
         'card-enter': 'card-enter 0.5s ease-out forwards'
       }

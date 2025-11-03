@@ -29,16 +29,23 @@ const Index = () => {
     }} transition={{
       duration: 0.5
     }} className="relative container px-4 pt-40 pb-20 py-0">
-        {/* Background Video para Desktop */}
-        <div className="absolute inset-0 hidden md:block">
-          <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+        {/* Background Video */}
+        <div className="absolute inset-0">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="w-full h-full object-cover"
+            style={{ 
+              objectFit: 'cover',
+              zIndex: 0
+            }}
+          >
             <source src="https://framerusercontent.com/assets/Bax1SXv4b9QI33bMvkicABKnI.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-black/30 z-[1]" />
         </div>
-
-        {/* Background Gradiente para Mobile */}
-        <div className="absolute inset-0 md:hidden bg-gradient-to-br from-black via-black/80 to-black" />
         
         {/* Overlay escuro universal (mobile e desktop) */}
         <div className="absolute inset-0 bg-black/20 z-[1]" />
@@ -116,16 +123,23 @@ const Index = () => {
       </div>
       {/* Branding Section / SealPass Section */}
       <section className="relative bg-black pt-20 pb-8 overflow-hidden my-0 py-[8px]">
-        {/* Background Video para Desktop */}
-        <div className="absolute inset-0 hidden md:block">
-          <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+        {/* Background Video */}
+        <div className="absolute inset-0">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="w-full h-full object-cover"
+            style={{ 
+              objectFit: 'cover',
+              zIndex: 0
+            }}
+          >
             <source src="/lovable-uploads/sealclub-branding.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/50 z-[1]" />
         </div>
-
-        {/* Background Gradiente para Mobile */}
-        <div className="absolute inset-0 md:hidden bg-gradient-to-b from-black via-blue-950/20 to-black" />
 
         {/* Overlay escuro universal (mobile e desktop) */}
         <div className="absolute inset-0 bg-black/30 z-[1]" />
