@@ -145,11 +145,9 @@ const Index = () => {
         }} viewport={{
           once: true
         }} className="flex justify-center mb-8">
-            <span className="inline-flex items-center px-6 py-2 rounded-full 
-                           bg-gradient-to-r from-blue-500/10 to-cyan-500/10 
-                           border border-blue-500/20 text-sm font-medium text-blue-400">
+            <ButtonHard className="text-sm px-4 py-2 bg-transparent text-blue-400">
               SEAL PASS
-            </span>
+            </ButtonHard>
           </motion.div>
 
           {/* Título */}
