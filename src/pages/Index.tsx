@@ -122,7 +122,6 @@ const Index = () => {
           title="SealPass: faça parte da nossa"
           titleHighlight="comunidade e economize todos os dias"
           subtitle="Descontos e vantagens reais com marcas parceiras que fazem você economizar todos os dias."
-          videoSrc="/lovable-uploads/sealclub-branding.mp4"
         />
 
       {/* Pricing Section */}

@@ -87,11 +87,11 @@ export const SealPassSection = ({
           viewport={{ once: true }} 
           className="relative z-10"
         >
-          <div className="flex flex-col items-center justify-center gap-8 py-8">
+          <div className="flex flex-col items-center justify-center gap-6 py-8">
             {/* Linha superior - move para direita */}
             <div className="w-full overflow-hidden">
               <div className="relative flex">
-                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-10">
+                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-6">
                   {allLogos.map((logo, index) => (
                     <motion.div 
                       key={`top-1-${index}`} 
@@ -99,7 +99,7 @@ export const SealPassSection = ({
                       whileHover={{ scale: 1.05, y: -5 }} 
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="relative w-32 h-32 md:w-36 md:h-36 
+                      <div className="relative w-24 h-24 md:w-28 md:h-28 
                                 bg-[#1B1B1B]/40 backdrop-blur-xl 
                                 border border-white/10
                                 rounded-2xl 
@@ -113,7 +113,7 @@ export const SealPassSection = ({
                         <img 
                           src={logo.src} 
                           alt={logo.alt} 
-                          className="relative z-10 w-24 h-24 md:w-28 md:h-28 
+                          className="relative z-10 w-16 h-16 md:w-20 md:h-20 
                                     object-contain
                                     filter brightness-100 contrast-100
                                     drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]
@@ -125,7 +125,7 @@ export const SealPassSection = ({
                     </motion.div>
                   ))}
                 </div>
-                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-10">
+                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-6">
                   {allLogos.map((logo, index) => (
                     <motion.div 
                       key={`top-2-${index}`} 
@@ -133,7 +133,7 @@ export const SealPassSection = ({
                       whileHover={{ scale: 1.05, y: -5 }} 
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="relative w-32 h-32 md:w-36 md:h-36 
+                      <div className="relative w-24 h-24 md:w-28 md:h-28 
                                     bg-[#1B1B1B]/40 backdrop-blur-xl 
                                     border border-white/10
                                     rounded-2xl 
@@ -147,7 +147,7 @@ export const SealPassSection = ({
                         <img 
                           src={logo.src} 
                           alt={logo.alt} 
-                          className="relative z-10 w-24 h-24 md:w-28 md:h-28 
+                          className="relative z-10 w-16 h-16 md:w-20 md:h-20 
                                     object-contain
                                     filter brightness-95 contrast-105
                                     transition-all duration-300
@@ -164,7 +164,7 @@ export const SealPassSection = ({
             {/* Linha inferior - move para esquerda */}
             <div className="w-full overflow-hidden">
               <div className="relative flex">
-                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-10">
+                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-6">
                   {allLogos.map((logo, index) => (
                     <motion.div 
                       key={`bottom-1-${index}`} 
@@ -172,7 +172,7 @@ export const SealPassSection = ({
                       whileHover={{ scale: 1.05, y: -5 }} 
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="relative w-32 h-32 md:w-36 md:h-36 
+                      <div className="relative w-24 h-24 md:w-28 md:h-28 
                                     bg-[#1B1B1B]/40 backdrop-blur-xl 
                                     border border-white/10 
                                     rounded-2xl 
@@ -186,7 +186,7 @@ export const SealPassSection = ({
                         <img 
                           src={logo.src} 
                           alt={logo.alt} 
-                          className="relative z-10 w-24 h-24 md:w-28 md:h-28 
+                          className="relative z-10 w-16 h-16 md:w-20 md:h-20 
                                     object-contain
                                     filter brightness-95 contrast-105
                                     transition-all duration-300
@@ -197,7 +197,7 @@ export const SealPassSection = ({
                     </motion.div>
                   ))}
                 </div>
-                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-10">
+                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-6">
                   {allLogos.map((logo, index) => (
                     <motion.div 
                       key={`bottom-2-${index}`} 
@@ -205,7 +205,7 @@ export const SealPassSection = ({
                       whileHover={{ scale: 1.05, y: -5 }} 
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="relative w-32 h-32 md:w-36 md:h-36 
+                      <div className="relative w-24 h-24 md:w-28 md:h-28 
                                     bg-[#1B1B1B]/40 backdrop-blur-xl 
                                     border border-white/10 
                                     rounded-2xl 
@@ -219,7 +219,7 @@ export const SealPassSection = ({
                         <img 
                           src={logo.src} 
                           alt={logo.alt} 
-                          className="relative z-10 w-24 h-24 md:w-28 md:h-28 
+                          className="relative z-10 w-16 h-16 md:w-20 md:h-20 
                                     object-contain
                                     filter brightness-95 contrast-105
                                     transition-all duration-300
