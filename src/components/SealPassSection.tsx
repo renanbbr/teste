@@ -6,14 +6,17 @@ interface SealPassSectionProps {
   videoSrc?: string;
 }
 const allLogos = [{
-  src: "/partner-logos/q-caroline-fit.png",
+  src: "/partner-logos/q-caroline-fit-new.png",
   alt: "Q Caroline Fit"
 }, {
   src: "/partner-logos/heinze-excursoes.png",
   alt: "Heinze Excursões"
 }, {
-  src: "/partner-logos/italo-caldeira.png",
+  src: "/partner-logos/italo-caldeira-new.png",
   alt: "Ítalo Caldeira Nutricionista"
+}, {
+  src: "/partner-logos/estudio-migra.png",
+  alt: "Estúdio Migra"
 }, {
   src: "/partner-logos/lancheria-pelotense.png",
   alt: "Lancheria Pelotense Bar"
@@ -111,7 +114,7 @@ export const SealPassSection = ({
                 }} transition={{
                   duration: 0.3
                 }}>
-                      <div className="relative w-20 h-20 md:w-24 md:h-24 
+                      <div className="relative w-16 h-16 md:w-20 md:h-20 
                                 bg-[#1B1B1B]/40 backdrop-blur-xl 
                                 border border-white/10
                                 rounded-2xl 
@@ -122,12 +125,12 @@ export const SealPassSection = ({
                                 group-hover:border-white/20
                                 group-hover:bg-[#1B1B1B]/60">
                         
-                        <img src={logo.src} alt={logo.alt} className="relative z-10 w-14 h-14 md:w-16 md:h-16 
+                        <img src={logo.src} alt={logo.alt} className={`relative z-10 ${logo.alt === "Ítalo Caldeira Nutricionista" ? "w-14 h-14 md:w-16 md:h-16" : "w-12 h-12 md:w-14 md:h-14"}
                                     object-contain
                                     filter brightness-100 contrast-100
                                     drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]
                                     transition-all duration-300
-                                    group-hover:scale-105" style={{
+                                    group-hover:scale-105`} style={{
                       mixBlendMode: 'normal',
                       objectPosition: 'center'
                     }} />
@@ -141,7 +144,7 @@ export const SealPassSection = ({
                 }} transition={{
                   duration: 0.3
                 }}>
-                      <div className="relative w-20 h-20 md:w-24 md:h-24 
+                      <div className="relative w-16 h-16 md:w-20 md:h-20 
                                     bg-[#1B1B1B]/40 backdrop-blur-xl 
                                     border border-white/10
                                     rounded-2xl 
@@ -152,11 +155,11 @@ export const SealPassSection = ({
                                     group-hover:border-white/20
                                     group-hover:bg-[#1B1B1B]/60">
                         
-                        <img src={logo.src} alt={logo.alt} className="relative z-10 w-14 h-14 md:w-16 md:h-16 
+                        <img src={logo.src} alt={logo.alt} className={`relative z-10 ${logo.alt === "Ítalo Caldeira Nutricionista" ? "w-14 h-14 md:w-16 md:h-16" : "w-12 h-12 md:w-14 md:h-14"}
                                     object-contain
                                     filter brightness-95 contrast-105
                                     transition-all duration-300
-                                    group-hover:scale-105" style={{
+                                    group-hover:scale-105`} style={{
                       mixBlendMode: 'normal',
                       objectPosition: 'center'
                     }} />
@@ -176,7 +179,7 @@ export const SealPassSection = ({
                 }} transition={{
                   duration: 0.3
                 }}>
-                      <div className="relative w-20 h-20 md:w-24 md:h-24 
+                      <div className="relative w-16 h-16 md:w-20 md:h-20 
                                     bg-[#1B1B1B]/40 backdrop-blur-xl 
                                     border border-white/10 
                                     rounded-2xl 
@@ -187,11 +190,11 @@ export const SealPassSection = ({
                                     group-hover:border-white/20
                                     group-hover:bg-[#1B1B1B]/60">
                         
-                        <img src={logo.src} alt={logo.alt} className="relative z-10 w-14 h-14 md:w-16 md:h-16 
+                        <img src={logo.src} alt={logo.alt} className={`relative z-10 ${logo.alt === "Ítalo Caldeira Nutricionista" ? "w-14 h-14 md:w-16 md:h-16" : "w-12 h-12 md:w-14 md:h-14"}
                                     object-contain
                                     filter brightness-95 contrast-105
                                     transition-all duration-300
-                                    group-hover:scale-105" style={{
+                                    group-hover:scale-105`} style={{
                       mixBlendMode: 'normal',
                       objectPosition: 'center'
                     }} />
@@ -205,7 +208,7 @@ export const SealPassSection = ({
                 }} transition={{
                   duration: 0.3
                 }}>
-                      <div className="relative w-20 h-20 md:w-24 md:h-24 
+                      <div className="relative w-16 h-16 md:w-20 md:h-20 
                                     bg-[#1B1B1B]/40 backdrop-blur-xl 
                                     border border-white/10 
                                     rounded-2xl 
@@ -216,11 +219,11 @@ export const SealPassSection = ({
                                     group-hover:border-white/20
                                     group-hover:bg-[#1B1B1B]/60">
                         
-                        <img src={logo.src} alt={logo.alt} className="relative z-10 w-14 h-14 md:w-16 md:h-16 
+                        <img src={logo.src} alt={logo.alt} className={`relative z-10 ${logo.alt === "Ítalo Caldeira Nutricionista" ? "w-14 h-14 md:w-16 md:h-16" : "w-12 h-12 md:w-14 md:h-14"}
                                     object-contain
                                     filter brightness-95 contrast-105
                                     transition-all duration-300
-                                    group-hover:scale-105" style={{
+                                    group-hover:scale-105`} style={{
                       mixBlendMode: 'normal',
                       objectPosition: 'center'
                     }} />
