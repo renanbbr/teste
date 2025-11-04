@@ -107,7 +107,7 @@ export const SealPassSection = ({
             {/* Linha superior - move para direita */}
             <div className="w-full overflow-hidden">
               <div className="relative flex">
-                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-4">
+                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-1.5">
                   {allLogos.map((logo, index) => <motion.div key={`top-1-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                   scale: 1.05,
                   y: -5
@@ -137,8 +137,37 @@ export const SealPassSection = ({
                       </div>
                     </motion.div>)}
                 </div>
-                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-4">
+                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-1.5">
                   {allLogos.map((logo, index) => <motion.div key={`top-2-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
+                  scale: 1.05,
+                  y: -5
+                }} transition={{
+                  duration: 0.3
+                }}>
+                      <div className="relative w-16 h-16 md:w-20 md:h-20 
+                                    bg-[#1B1B1B]/40 backdrop-blur-xl 
+                                    border border-white/10
+                                    rounded-2xl 
+                                    shadow-2xl shadow-black/60
+                                    flex items-center justify-center
+                                    overflow-hidden
+                                    transition-all duration-300
+                                    group-hover:border-white/20
+                                    group-hover:bg-[#1B1B1B]/60">
+                        
+                        <img src={logo.src} alt={logo.alt} className={`relative z-10 ${logo.alt === "Ítalo Caldeira Nutricionista" ? "w-14 h-14 md:w-16 md:h-16" : "w-12 h-12 md:w-14 md:h-14"}
+                                    object-contain
+                                    filter brightness-95 contrast-105
+                                    transition-all duration-300
+                                    group-hover:scale-105`} style={{
+                      mixBlendMode: 'normal',
+                      objectPosition: 'center'
+                    }} />
+                      </div>
+                    </motion.div>)}
+                </div>
+                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-1.5">
+                  {allLogos.map((logo, index) => <motion.div key={`top-3-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                   scale: 1.05,
                   y: -5
                 }} transition={{
@@ -172,7 +201,7 @@ export const SealPassSection = ({
             {/* Linha inferior - move para esquerda */}
             <div className="w-full overflow-hidden">
               <div className="relative flex">
-                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-4">
+                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-1.5">
                   {allLogos.map((logo, index) => <motion.div key={`bottom-1-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                   scale: 1.05,
                   y: -5
@@ -201,8 +230,37 @@ export const SealPassSection = ({
                       </div>
                     </motion.div>)}
                 </div>
-                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-4">
+                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-1.5">
                   {allLogos.map((logo, index) => <motion.div key={`bottom-2-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
+                  scale: 1.05,
+                  y: -5
+                }} transition={{
+                  duration: 0.3
+                }}>
+                      <div className="relative w-16 h-16 md:w-20 md:h-20 
+                                    bg-[#1B1B1B]/40 backdrop-blur-xl 
+                                    border border-white/10 
+                                    rounded-2xl 
+                                    shadow-2xl shadow-black/60
+                                    flex items-center justify-center
+                                    overflow-hidden
+                                    transition-all duration-300
+                                    group-hover:border-white/20
+                                    group-hover:bg-[#1B1B1B]/60">
+                        
+                        <img src={logo.src} alt={logo.alt} className={`relative z-10 ${logo.alt === "Ítalo Caldeira Nutricionista" ? "w-14 h-14 md:w-16 md:h-16" : "w-12 h-12 md:w-14 md:h-14"}
+                                    object-contain
+                                    filter brightness-95 contrast-105
+                                    transition-all duration-300
+                                    group-hover:scale-105`} style={{
+                      mixBlendMode: 'normal',
+                      objectPosition: 'center'
+                    }} />
+                      </div>
+                    </motion.div>)}
+                </div>
+                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-1.5">
+                  {allLogos.map((logo, index) => <motion.div key={`bottom-3-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                   scale: 1.05,
                   y: -5
                 }} transition={{

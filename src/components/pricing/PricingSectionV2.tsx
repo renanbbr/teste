@@ -268,7 +268,7 @@ export const PricingSectionV2 = () => {
           isEnterprise
           isMetallic
           ctaText="Falar com um consultor"
-          ctaLink="https://wa.me/53991963971?text=Quero%20saber%20mais%20do%20Plano%20Enterprise.%F0%9F%98%80"
+          ctaLink="https://wa.me/53991963971"
         />
       </div>
     </section>
