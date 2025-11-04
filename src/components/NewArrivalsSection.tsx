@@ -16,8 +16,8 @@ const NewArrivalsSection = () => {
           </h2>
           <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto">
             Com o mesmo produto, da mesma marca, com a mesma garantia…
-            <span className="block mt-3">você pode economizar centenas ou milhares de reais.</span>
-            <span className="block font-semibold text-white/90 mt-2">Todos os anos.</span>
+            <span className="block mt-1.5">você pode economizar centenas ou milhares de reais.</span>
+            <span className="block font-semibold text-white/90 mt-1.5">Todos os anos.</span>
           </p>
         </div>
 

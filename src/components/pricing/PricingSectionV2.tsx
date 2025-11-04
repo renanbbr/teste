@@ -61,7 +61,7 @@ const allFeatures = [
   { label: "Suporte", values: { pro: "Premium", tech: "Vitalício", ultra: "Vitalício", enterprise: "Sob consulta" } },
   { 
     label: "Fone Dunx Bluetooth incluso", 
-    values: { pro: false, tech: false, ultra: true, enterprise: "Sob consulta" },
+    values: { pro: false, tech: false, ultra: true, enterprise: false },
     isBonus: true,
     bonusLabel: "Bônus Fone Bluetooth Dunx"
   },
@@ -109,7 +109,7 @@ const PricingTier = ({
     <div className="relative h-full p-6 flex flex-col">
       {isFeatured && (
         <span className="absolute top-4 right-4 text-xs font-medium bg-primary/10 text-primary rounded-full px-3 py-1">
-          Destaque
+          Popular
         </span>
       )}
       <div className="h-[180px] flex flex-col">
