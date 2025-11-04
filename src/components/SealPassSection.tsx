@@ -106,8 +106,8 @@ export const SealPassSection = ({
           <div className="flex flex-col items-center justify-center gap-6 py-8">
             {/* Linha superior - move para direita */}
             <div className="w-full overflow-hidden">
-              <div className="relative flex">
-                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-1.5">
+              <div className="relative flex gap-3">
+                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-3">
                   {allLogos.map((logo, index) => <motion.div key={`top-1-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                   scale: 1.05,
                   y: -5
@@ -137,7 +137,7 @@ export const SealPassSection = ({
                       </div>
                     </motion.div>)}
                 </div>
-                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-1.5">
+                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-3">
                   {allLogos.map((logo, index) => <motion.div key={`top-2-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                   scale: 1.05,
                   y: -5
@@ -166,7 +166,7 @@ export const SealPassSection = ({
                       </div>
                     </motion.div>)}
                 </div>
-                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-1.5">
+                <div className="animate-marquee-partners flex min-w-full shrink-0 items-center gap-3">
                   {allLogos.map((logo, index) => <motion.div key={`top-3-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                   scale: 1.05,
                   y: -5
@@ -200,8 +200,8 @@ export const SealPassSection = ({
 
             {/* Linha inferior - move para esquerda */}
             <div className="w-full overflow-hidden">
-              <div className="relative flex">
-                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-1.5">
+              <div className="relative flex gap-3">
+                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-3">
                   {allLogos.map((logo, index) => <motion.div key={`bottom-1-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                   scale: 1.05,
                   y: -5
@@ -230,7 +230,7 @@ export const SealPassSection = ({
                       </div>
                     </motion.div>)}
                 </div>
-                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-1.5">
+                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-3">
                   {allLogos.map((logo, index) => <motion.div key={`bottom-2-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                   scale: 1.05,
                   y: -5
@@ -259,7 +259,7 @@ export const SealPassSection = ({
                       </div>
                     </motion.div>)}
                 </div>
-                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-1.5">
+                <div className="animate-marquee-partners-reverse flex min-w-full shrink-0 items-center gap-3">
                   {allLogos.map((logo, index) => <motion.div key={`bottom-3-${index}`} className="flex-shrink-0 pointer-events-auto group" whileHover={{
                   scale: 1.05,
                   y: -5

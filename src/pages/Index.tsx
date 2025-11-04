@@ -17,6 +17,7 @@ import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import NewArrivalsSection from "@/components/NewArrivalsSection";
 import sealclubLogo from "@/assets/sealclub-logo.png";
 import { SealPassSection } from "@/components/SealPassSection";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 const Index = () => {
   return <div className="min-h-screen bg-black text-foreground">
       <Navigation />
@@ -170,6 +171,9 @@ const Index = () => {
       <div className="bg-black">
         <Footer />
       </div>
+
+      {/* WhatsApp Button */}
+      <WhatsAppButton />
     </div>;
 };
 export default Index;
