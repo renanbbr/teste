@@ -9,20 +9,19 @@ const allFeatures = [
   { 
     label: "Produtos por ano", 
     values: { 
-      pro: "1 Apple", 
-      tech: "2 qualquer marca", 
-      ultra: "3 qualquer marca", 
+      pro: "1", 
+      tech: "2", 
+      ultra: "3", 
       enterprise: "Ilimitado" 
-    },
-    exclusive: { tech: true, ultra: true }
+    }
   },
   { 
     label: "Marcas disponíveis", 
     values: { 
-      pro: "Apple", 
-      tech: "Todas", 
-      ultra: "Todas", 
-      enterprise: "Todas" 
+      pro: "Apple, JBL, DJI, Hollyland, Garmin, Polar e muito mais.", 
+      tech: "Apple, JBL, DJI, Hollyland, Garmin, Polar e muito mais.", 
+      ultra: "Apple, JBL, DJI, Hollyland, Garmin, Polar e muito mais.", 
+      enterprise: "Apple, JBL, DJI, Hollyland, Garmin, Polar e muito mais." 
     } 
   },
   { label: "Preço de custo", values: { pro: true, tech: true, ultra: true, enterprise: true } },
@@ -32,18 +31,16 @@ const allFeatures = [
   },
   { 
     label: "Aparelho reserva", 
-    values: { pro: false, tech: true, ultra: true, enterprise: true },
-    exclusive: { tech: true }
+    values: { pro: false, tech: true, ultra: true, enterprise: true }
   },
   { 
     label: "Transferência de dados", 
-    values: { pro: false, tech: true, ultra: true, enterprise: false },
-    exclusive: { tech: true }
+    values: { pro: false, tech: true, ultra: true, enterprise: false }
   },
   { 
     label: "Fone Dunx Bluetooth incluso", 
     values: { pro: false, tech: false, ultra: true, enterprise: false },
-    exclusive: { ultra: true }
+    isBonus: true
   },
   { 
     label: "Preço congelado por 1 ano", 
@@ -185,11 +182,11 @@ const PricingTier = ({
                   ) : (
                     <X className="w-4 h-4 text-red-500/50" />
                   )
-                ) : (
-                  <span className="text-xs font-medium text-right max-w-[120px] leading-tight">
-                    {value}
-                  </span>
-                )}
+                 ) : (
+                   <span className="text-xs font-medium text-right max-w-[180px] leading-tight">
+                     {value}
+                   </span>
+                 )}
               </div>
               
               {isExclusive && !isBonus && (

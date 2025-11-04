@@ -14,16 +14,20 @@ const NewArrivalsSection = () => {
             A diferença é tão absurda que parece mentira.
             
           </h2>
-          <p className="text-xl text-white/70 leading-relaxed">
+          <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto">
             Com o mesmo produto, da mesma marca, com a mesma garantia…
-            <span className="block mt-2">você pode economizar centenas ou milhares de reais.</span>
-            <span className="block font-semibold text-white/90 mt-1">Todos os anos.</span>
+            <span className="block mt-3">você pode economizar centenas ou milhares de reais.</span>
+            <span className="block font-semibold text-white/90 mt-2">Todos os anos.</span>
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {newArrivals.map((product, index) => <ProductCard key={index} product={product} index={index} />)}
         </div>
+
+        <p className="text-center text-xs text-white/50 mt-8 max-w-2xl mx-auto">
+          Valores sujeitos a alteração. Consulte sempre o preço atualizado antes do resgate.
+        </p>
 
       </div>
     </section>;

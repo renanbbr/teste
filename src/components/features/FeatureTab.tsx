@@ -30,7 +30,7 @@ export const FeatureTab = ({ icon, title, description, isActive }: FeatureTabPro
         />
       )}
       <div className="flex items-start gap-4 min-w-0">
-        <div className={`${isActive ? 'text-primary' : 'text-muted-foreground'}`}>
+        <div className={`flex-shrink-0 ${isActive ? 'text-primary' : 'text-muted-foreground'}`}>
           {icon}
         </div>
         <div className="text-left min-w-0">
