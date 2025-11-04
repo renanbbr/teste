@@ -12,7 +12,7 @@ const allFeatures = [
       pro: "1", 
       tech: "2", 
       ultra: "3", 
-      enterprise: "Ilimitado" 
+      enterprise: "Sob consulta" 
     }
   },
   { 
@@ -21,36 +21,37 @@ const allFeatures = [
       pro: "Apple, JBL, DJI, Hollyland, Garmin, Polar e muito mais.", 
       tech: "Apple, JBL, DJI, Hollyland, Garmin, Polar e muito mais.", 
       ultra: "Apple, JBL, DJI, Hollyland, Garmin, Polar e muito mais.", 
-      enterprise: "Apple, JBL, DJI, Hollyland, Garmin, Polar e muito mais." 
+      enterprise: "Sob consulta" 
     } 
   },
-  { label: "Preço de custo", values: { pro: true, tech: true, ultra: true, enterprise: true } },
+  { label: "Preço de custo", values: { pro: true, tech: true, ultra: true, enterprise: "Sob consulta" } },
   { 
     label: "Frete grátis", 
-    values: { pro: false, tech: false, ultra: true, enterprise: false } 
+    values: { pro: false, tech: false, ultra: true, enterprise: "Sob consulta" } 
   },
   { 
     label: "Aparelho reserva", 
-    values: { pro: false, tech: true, ultra: true, enterprise: true }
+    values: { pro: false, tech: true, ultra: true, enterprise: "Sob consulta" }
   },
   { 
     label: "Transferência de dados", 
-    values: { pro: false, tech: true, ultra: true, enterprise: false }
+    values: { pro: false, tech: true, ultra: true, enterprise: "Sob consulta" }
   },
   { 
     label: "Fone Dunx Bluetooth incluso", 
-    values: { pro: false, tech: false, ultra: true, enterprise: false },
-    isBonus: true
+    values: { pro: false, tech: false, ultra: true, enterprise: "Sob consulta" },
+    isBonus: true,
+    bonusLabel: "Bônus Fone Bluetooth Dunx"
   },
   { 
     label: "Preço congelado por 1 ano", 
-    values: { pro: false, tech: false, ultra: true, enterprise: false },
+    values: { pro: false, tech: false, ultra: true, enterprise: "Sob consulta" },
     exclusive: { ultra: true }
   },
-  { label: "Assistência Técnica 24h", values: { pro: false, tech: false, ultra: true, enterprise: false } },
-  { label: "SealCare", values: { pro: false, tech: false, ultra: true, enterprise: false } },
+  { label: "Assistência Técnica 24h", values: { pro: false, tech: false, ultra: true, enterprise: "Sob consulta" } },
+  { label: "SealCare", values: { pro: false, tech: false, ultra: true, enterprise: "Sob consulta" } },
   
-  { label: "Cupom Assistência Técnica", values: { pro: "5%", tech: "10%", ultra: "20%", enterprise: false } },
+  { label: "Cupom Assistência Técnica", values: { pro: "5%", tech: "10%", ultra: "20%", enterprise: "Sob consulta" } },
   { 
     label: "Cashback Acessórios", 
     labelByPlan: { 
@@ -59,12 +60,11 @@ const allFeatures = [
       ultra: "Cashback Acessórios", 
       enterprise: "Cashback Acessórios" 
     }, 
-    values: { pro: "5%", tech: "10%", ultra: "R$ 500", enterprise: false } 
+    values: { pro: "5%", tech: "10%", ultra: "R$ 500", enterprise: "Sob consulta" } 
   },
-  { label: "Acesso antecipado", values: { pro: true, tech: true, ultra: true, enterprise: true } },
-  { label: "Atendimento Prioritário", values: { pro: true, tech: true, ultra: true, enterprise: true } },
-  { label: "Suporte", values: { pro: "Premium", tech: "Vitalício", ultra: "Vitalício", enterprise: "Dedicado" } },
-  { label: "Bônus SealPass", values: { pro: true, tech: true, ultra: true, enterprise: true }, isBonus: true }
+  { label: "Acesso antecipado", values: { pro: true, tech: true, ultra: true, enterprise: "Sob consulta" } },
+  { label: "Atendimento Prioritário", values: { pro: true, tech: true, ultra: true, enterprise: "Sob consulta" } },
+  { label: "Suporte", values: { pro: "Premium", tech: "Vitalício", ultra: "Vitalício", enterprise: "Sob consulta" } }
 ];
 
 const PricingTier = ({
@@ -154,11 +154,11 @@ const PricingTier = ({
               className="flex items-center justify-between py-3 border-b border-white/5 min-h-[52px]"
             >
               <span className="text-xs font-medium leading-tight flex items-center gap-2 text-muted-foreground flex-wrap">
-                {isBonus && planKey !== 'enterprise' ? (
+                {isBonus && value ? (
                   <>
                     <Gift className="w-5 h-5 text-primary" />
                     <span className="text-sm font-semibold bg-primary/10 text-primary rounded px-2 py-1">
-                      Bônus SealPass
+                      {(feature as any).bonusLabel || feature.label}
                     </span>
                   </>
                 ) : (
@@ -240,6 +240,7 @@ export const PricingSectionV2 = () => {
           price="R$ 49"
           period="mês"
           planKey="tech"
+          isFeatured
           ctaText="ASSINAR O TECH"
           ctaLink="https://lastlink.com/p/C9236DD3C/checkout-payment/"
           showPriceAlert
@@ -249,7 +250,6 @@ export const PricingSectionV2 = () => {
           price="R$ 79"
           period="mês"
           planKey="ultra"
-          isFeatured
           ctaText="ASSINAR O ULTRA"
           ctaLink="https://lastlink.com/p/C8B2B72CA/checkout-payment/"
           showPriceAlert
