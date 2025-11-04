@@ -140,6 +140,7 @@ const Index = () => {
           title="Mais vantagens exclusivas"
           titleHighlight="para membros SealClub"
           subtitle="Continue economizando com nossos parceiros premium."
+          videoSrc="/lovable-uploads/sealclub-branding.mp4"
         />
 
       {/* FAQ Section */}
