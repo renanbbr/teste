@@ -17,7 +17,6 @@ import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import NewArrivalsSection from "@/components/NewArrivalsSection";
 import sealclubLogo from "@/assets/sealclub-logo.png";
 import { SealPassSection } from "@/components/SealPassSection";
-
 const Index = () => {
   return <div className="min-h-screen bg-black text-foreground">
       <Navigation />
@@ -118,11 +117,7 @@ const Index = () => {
         <NewArrivalsSection />
       </div>
       {/* Branding Section / SealPass Section */}
-        <SealPassSection 
-          title="SealPass: faça parte da nossa"
-          titleHighlight="comunidade e economize todos os dias"
-          subtitle="Descontos e vantagens reais com marcas parceiras que fazem você economizar todos os dias."
-        />
+        <SealPassSection title="SealPass: faça parte da nossa" titleHighlight="comunidade e economize todos os dias" subtitle="Descontos e vantagens reais com marcas parceiras que fazem você economizar todos os dias." />
 
       {/* Pricing Section */}
       <div id="pricing" className="bg-black">
@@ -135,12 +130,7 @@ const Index = () => {
       </div>
 
       {/* Segunda Seção SealPass */}
-        <SealPassSection 
-          title="Mais vantagens exclusivas"
-          titleHighlight="para membros SealClub"
-          subtitle="Continue economizando com nossos parceiros premium."
-          videoSrc="/lovable-uploads/sealclub-branding.mp4"
-        />
+        
 
       {/* FAQ Section */}
       <div className="bg-black">
