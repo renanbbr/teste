@@ -30,8 +30,14 @@ const allLogos = [{
   src: "/partner-logos/ubuntu.svg",
   alt: "Ubuntu"
 }, {
-  src: "/partner-logos/yellow-brownie.png",
-  alt: "I'low Yellow Brownie"
+  src: "/partner-logos/u-delivery.png",
+  alt: "U Delivery"
+}, {
+  src: "/partner-logos/pizza-engenheiro.png",
+  alt: "Pizza do Engenheiro"
+}, {
+  src: "/partner-logos/whatsapp-logo.png",
+  alt: "WhatsApp"
 }];
 export const SealPassSection = ({
   title,
