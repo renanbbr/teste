@@ -3,19 +3,67 @@ import { Check, X, Gift, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CardSpotlight } from "./CardSpotlight";
 import { cn } from "@/lib/utils";
+import { BadgeExclusive } from "@/components/ui/badge-exclusive";
 
 const allFeatures = [
-  { label: "Produtos por ano", values: { pro: "1 Apple", tech: "2 Tech", ultra: "4 qualquer marca", enterprise: "Ilimitado" } },
-  { label: "Marcas disponíveis", values: { pro: "Apple", tech: "DJI, Garmin, JBL, Polar, Hollyland", ultra: "Apple + Tech", enterprise: "Todas" } },
+  { 
+    label: "Produtos por ano", 
+    values: { 
+      pro: "1 Apple", 
+      tech: "2 qualquer marca", 
+      ultra: "3 qualquer marca", 
+      enterprise: "Ilimitado" 
+    },
+    exclusive: { tech: true, ultra: true }
+  },
+  { 
+    label: "Marcas disponíveis", 
+    values: { 
+      pro: "Apple", 
+      tech: "Todas", 
+      ultra: "Todas", 
+      enterprise: "Todas" 
+    } 
+  },
   { label: "Preço de custo", values: { pro: true, tech: true, ultra: true, enterprise: true } },
-  { label: "Frete grátis", values: { pro: false, tech: false, ultra: true, enterprise: false } },
-  { label: "Aparelho reserva", values: { pro: false, tech: false, ultra: true, enterprise: true } },
-  { label: "Transferência de dados", values: { pro: false, tech: false, ultra: true, enterprise: false } },
+  { 
+    label: "Frete grátis", 
+    values: { pro: false, tech: false, ultra: true, enterprise: false } 
+  },
+  { 
+    label: "Aparelho reserva", 
+    values: { pro: false, tech: true, ultra: true, enterprise: true },
+    exclusive: { tech: true }
+  },
+  { 
+    label: "Transferência de dados", 
+    values: { pro: false, tech: true, ultra: true, enterprise: false },
+    exclusive: { tech: true }
+  },
+  { 
+    label: "Fone Dunx Bluetooth incluso", 
+    values: { pro: false, tech: false, ultra: true, enterprise: false },
+    exclusive: { ultra: true }
+  },
+  { 
+    label: "Preço congelado por 1 ano", 
+    values: { pro: false, tech: false, ultra: true, enterprise: false },
+    exclusive: { ultra: true }
+  },
   { label: "Assistência Técnica 24h", values: { pro: false, tech: false, ultra: true, enterprise: false } },
   { label: "SealCare", values: { pro: false, tech: false, ultra: true, enterprise: false } },
   
   { label: "Cupom Assistência Técnica", values: { pro: "5%", tech: "10%", ultra: "20%", enterprise: false } },
-  { label: "Cashback Acessórios", labelByPlan: { pro: "Cupom de Acessórios", tech: "Cupom de Acessórios", ultra: "Cashback Acessórios", enterprise: "Cashback Acessórios" }, values: { pro: "5%", tech: "10%", ultra: "R$ 500", enterprise: false } },
+  { 
+    label: "Cashback Acessórios", 
+    labelByPlan: { 
+      pro: "Cupom de Acessórios", 
+      tech: "Cupom de Acessórios", 
+      ultra: "Cashback Acessórios", 
+      enterprise: "Cashback Acessórios" 
+    }, 
+    values: { pro: "5%", tech: "10%", ultra: "R$ 500", enterprise: false } 
+  },
   { label: "Acesso antecipado", values: { pro: true, tech: true, ultra: true, enterprise: true } },
   { label: "Atendimento Prioritário", values: { pro: true, tech: true, ultra: true, enterprise: true } },
   { label: "Suporte", values: { pro: "Premium", tech: "Vitalício", ultra: "Vitalício", enterprise: "Dedicado" } },
@@ -30,6 +78,7 @@ const PricingTier = ({
   planKey,
   isFeatured,
   ctaText,
+  ctaLink,
   isEnterprise,
   showPriceAlert = false,
   isMetallic = false,
@@ -41,6 +90,7 @@ const PricingTier = ({
   planKey: 'pro' | 'tech' | 'ultra' | 'enterprise';
   isFeatured?: boolean;
   ctaText: string;
+  ctaLink: string;
   isEnterprise?: boolean;
   showPriceAlert?: boolean;
   isMetallic?: boolean;
@@ -85,20 +135,28 @@ const PricingTier = ({
         {description && <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{description}</p>}
       </div>
       
-      <Button className="button-gradient w-full mb-6">
-        {ctaText}
+      <Button 
+        className="button-gradient w-full mb-6"
+        onClick={() => window.open(ctaLink, '_blank')}
+        asChild
+      >
+        <a href={ctaLink} target="_blank" rel="noopener noreferrer">
+          {ctaText}
+        </a>
       </Button>
       
       <div className="space-y-2 flex-grow">
         {allFeatures.map((feature, index) => {
           const value = feature.values[planKey];
           const isBonus = (feature as any).isBonus;
+          const isExclusive = (feature as any).exclusive?.[planKey];
+          
           return (
             <div 
               key={index} 
-              className="flex items-center justify-between py-3 border-b border-white/5 h-[52px]"
+              className="flex items-center justify-between py-3 border-b border-white/5 min-h-[52px]"
             >
-              <span className="text-xs font-medium leading-tight flex items-center gap-2 text-muted-foreground">
+              <span className="text-xs font-medium leading-tight flex items-center gap-2 text-muted-foreground flex-wrap">
                 {isBonus && planKey !== 'enterprise' ? (
                   <>
                     <Gift className="w-5 h-5 text-primary" />
@@ -107,9 +165,19 @@ const PricingTier = ({
                     </span>
                   </>
                 ) : (
-                  (feature as any).labelByPlan ? (feature as any).labelByPlan[planKey] : feature.label
+                  <>
+                    <span>
+                      {(feature as any).labelByPlan 
+                        ? (feature as any).labelByPlan[planKey] 
+                        : feature.label}
+                    </span>
+                    {isExclusive && (
+                      <BadgeExclusive className="md:inline-flex hidden" />
+                    )}
+                  </>
                 )}
               </span>
+              
               <div className="flex items-center gap-1 flex-shrink-0">
                 {typeof value === "boolean" ? (
                   value ? (
@@ -123,6 +191,12 @@ const PricingTier = ({
                   </span>
                 )}
               </div>
+              
+              {isExclusive && !isBonus && (
+                <div className="md:hidden w-full mt-1">
+                  <BadgeExclusive className="opacity-80" />
+                </div>
+              )}
             </div>
           );
         })}
@@ -161,6 +235,7 @@ export const PricingSectionV2 = () => {
           period="mês"
           planKey="pro"
           ctaText="ASSINAR O PRO"
+          ctaLink="https://lastlink.com/p/CF53C574F/checkout-payment/"
           showPriceAlert
         />
         <PricingTier
@@ -169,6 +244,7 @@ export const PricingSectionV2 = () => {
           period="mês"
           planKey="tech"
           ctaText="ASSINAR O TECH"
+          ctaLink="https://lastlink.com/p/C9236DD3C/checkout-payment/"
           showPriceAlert
         />
         <PricingTier
@@ -178,6 +254,7 @@ export const PricingSectionV2 = () => {
           planKey="ultra"
           isFeatured
           ctaText="ASSINAR O ULTRA"
+          ctaLink="https://lastlink.com/p/C8B2B72CA/checkout-payment/"
           showPriceAlert
         />
         <PricingTier
@@ -187,7 +264,8 @@ export const PricingSectionV2 = () => {
           planKey="enterprise"
           isEnterprise
           isMetallic
-          ctaText="SABER MAIS"
+          ctaText="Falar com um consultor"
+          ctaLink="https://wa.me/53991963971?text=Quero%20saber%20mais%20do%20Plano%20Enterprise.%F0%9F%98%80"
         />
       </div>
     </section>
