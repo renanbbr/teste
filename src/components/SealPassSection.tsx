@@ -35,9 +35,6 @@ const allLogos = [{
 }, {
   src: "/partner-logos/pizza-engenheiro.png",
   alt: "Pizza do Engenheiro"
-}, {
-  src: "/partner-logos/whatsapp-logo.png",
-  alt: "WhatsApp"
 }];
 export const SealPassSection = ({
   title,
