@@ -38,12 +38,6 @@ const allFeatures = [
     values: { pro: false, tech: true, ultra: true, enterprise: "Sob consulta" }
   },
   { 
-    label: "Fone Dunx Bluetooth incluso", 
-    values: { pro: false, tech: false, ultra: true, enterprise: "Sob consulta" },
-    isBonus: true,
-    bonusLabel: "Bônus Fone Bluetooth Dunx"
-  },
-  { 
     label: "Preço congelado por 1 ano", 
     values: { pro: false, tech: false, ultra: true, enterprise: "Sob consulta" },
     exclusive: { ultra: true }
@@ -64,7 +58,19 @@ const allFeatures = [
   },
   { label: "Acesso antecipado", values: { pro: true, tech: true, ultra: true, enterprise: "Sob consulta" } },
   { label: "Atendimento Prioritário", values: { pro: true, tech: true, ultra: true, enterprise: "Sob consulta" } },
-  { label: "Suporte", values: { pro: "Premium", tech: "Vitalício", ultra: "Vitalício", enterprise: "Sob consulta" } }
+  { label: "Suporte", values: { pro: "Premium", tech: "Vitalício", ultra: "Vitalício", enterprise: "Sob consulta" } },
+  { 
+    label: "Fone Dunx Bluetooth incluso", 
+    values: { pro: false, tech: false, ultra: true, enterprise: "Sob consulta" },
+    isBonus: true,
+    bonusLabel: "Bônus Fone Bluetooth Dunx"
+  },
+  { 
+    label: "SealPass", 
+    values: { pro: true, tech: true, ultra: true, enterprise: true },
+    isBonus: true,
+    bonusLabel: "Bônus SealPass"
+  }
 ];
 
 const PricingTier = ({
