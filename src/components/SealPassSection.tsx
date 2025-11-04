@@ -46,7 +46,7 @@ export const SealPassSection = ({
       }}>
             <source src={videoSrc} type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-black/50 z-[1]" />
+          
         </div>}
 
       {/* Overlay escuro universal (mobile e desktop) */}
