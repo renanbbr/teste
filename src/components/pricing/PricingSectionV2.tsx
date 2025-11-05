@@ -171,29 +171,31 @@ const PricingTier = ({
           return (
             <div 
               key={index} 
-              className="flex items-center justify-between py-3 border-b border-white/5 min-h-[52px]"
+              className="flex items-start justify-between py-3 border-b border-white/5 min-h-[52px]"
             >
-              <span className="text-xs font-medium leading-tight flex items-center gap-2 text-muted-foreground flex-wrap">
-                {isBonus && value ? (
-                  <>
-                    <Gift className="w-5 h-5 text-primary" />
-                    <span className="text-sm font-semibold bg-primary/10 text-primary rounded px-2 py-1">
-                      {(feature as any).bonusLabel || feature.label}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <span>
-                      {(feature as any).labelByPlan 
-                        ? (feature as any).labelByPlan[planKey] 
-                        : feature.label}
-                    </span>
-                    {isExclusive && (
-                      <BadgeExclusive className="md:inline-flex hidden" />
-                    )}
-                  </>
-                )}
-              </span>
+              <div className="flex-1 pr-2">
+                <span className="text-xs font-medium leading-tight flex items-center gap-2 text-muted-foreground flex-wrap">
+                  {isBonus && value ? (
+                    <>
+                      <Gift className="w-5 h-5 text-primary" />
+                      <span className="text-sm font-semibold bg-primary/10 text-primary rounded px-2 py-1">
+                        {(feature as any).bonusLabel || feature.label}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span>
+                        {(feature as any).labelByPlan 
+                          ? (feature as any).labelByPlan[planKey] 
+                          : feature.label}
+                      </span>
+                      {isExclusive && (
+                        <BadgeExclusive className="ml-1" />
+                      )}
+                    </>
+                  )}
+                </span>
+              </div>
               
               <div className="flex items-center gap-1 flex-shrink-0">
                 {typeof value === "boolean" ? (
@@ -208,12 +210,6 @@ const PricingTier = ({
                    </span>
                  )}
               </div>
-              
-              {isExclusive && !isBonus && (
-                <div className="md:hidden w-full mt-1">
-                  <BadgeExclusive className="opacity-80" />
-                </div>
-              )}
             </div>
           );
         })}
