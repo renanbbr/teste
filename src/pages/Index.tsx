@@ -18,7 +18,12 @@ import NewArrivalsSection from "@/components/NewArrivalsSection";
 import sealclubLogo from "@/assets/sealclub-logo.png";
 import { SealPassSection } from "@/components/SealPassSection";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { useSectionTracking } from "@/hooks/useSectionTracking";
+
 const Index = () => {
+  // Ativar tracking de scroll por seção
+  useSectionTracking();
+
   return <div className="min-h-screen bg-black text-foreground">
       <Navigation />
       
@@ -124,24 +129,26 @@ const Index = () => {
       <LogoCarousel />
 
       {/* Features Section */}
-      <div id="features" className="bg-black">
+      <div id="features" className="bg-black" data-track-section="features">
         <FeaturesSection />
       </div>
 
       {/* New Arrivals Section */}
-      <div className="bg-black">
+      <div id="new-arrivals" className="bg-black" data-track-section="new_arrivals">
         <NewArrivalsSection />
       </div>
       {/* Branding Section / SealPass Section */}
+      <div id="sealpass" data-track-section="sealpass">
         <SealPassSection title="SealPass: faça parte da nossa" titleHighlight="comunidade e economize todos os dias" subtitle="Descontos e vantagens reais com marcas parceiras que fazem você economizar todos os dias." />
+      </div>
 
       {/* Pricing Section */}
-      <div id="pricing" className="bg-black">
+      <div id="pricing" className="bg-black" data-track-section="pricing">
         <PricingSectionV2 />
       </div>
 
       {/* Testimonials Section */}
-      <div className="bg-black">
+      <div id="testimonials" className="bg-black" data-track-section="testimonials">
         <TestimonialsSection />
       </div>
 
@@ -149,7 +156,7 @@ const Index = () => {
         
 
       {/* FAQ Section */}
-      <div className="bg-black">
+      <div id="faq" className="bg-black" data-track-section="faq">
         <FAQSection />
       </div>
 
