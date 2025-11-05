@@ -35,9 +35,9 @@ export const WhatsAppButton = () => {
       whileTap={{ scale: 0.9 }}
     >
       <img 
-        src="/icons/whatsapp.png" 
+        src="/partner-logos/whatsapp-logo.png" 
         alt="WhatsApp" 
-        className="w-9 h-9 md:w-11 md:h-11 group-hover:scale-110 transition-transform"
+        className="w-8 h-8 md:w-10 md:h-10 group-hover:scale-110 transition-transform"
       />
       
       {/* Pulse animation */}
