@@ -140,12 +140,26 @@ const PricingTier = ({
       
       <Button 
         className="button-gradient w-full mb-6"
-        onClick={() => window.open(ctaLink, '_blank')}
-        asChild
+        onClick={(e) => {
+          e.preventDefault();
+          
+          (window as any).dataLayer = (window as any).dataLayer || [];
+          (window as any).dataLayer.push({
+            event: isEnterprise ? 'whatsapp_click' : 'checkout_click',
+            plan_name: name,
+            plan_price: price,
+            button_text: ctaText,
+            button_location: 'pricing_section',
+            page_url: window.location.href,
+            click_url: ctaLink
+          });
+          
+          setTimeout(() => {
+            window.open(ctaLink, '_blank');
+          }, 300);
+        }}
       >
-        <a href={ctaLink} target="_blank" rel="noopener noreferrer">
-          {ctaText}
-        </a>
+        {ctaText}
       </Button>
       
       <div className="space-y-2 flex-grow">

@@ -6,7 +6,16 @@ export const WhatsAppButton = () => {
       href="https://wa.me/53991963971"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 
+      onClick={() => {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: 'whatsapp_click',
+          button_location: 'floating_button',
+          click_url: 'https://wa.me/53991963971',
+          page_url: window.location.href
+        });
+      }}
+      className="fixed bottom-6 right-6 z-50
                  bg-[#25D366] hover:bg-[#20BA5A] 
                  text-white rounded-full 
                  w-14 h-14 md:w-16 md:h-16

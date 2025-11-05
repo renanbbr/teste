@@ -106,6 +106,13 @@ const Navigation = () => {
                   
                   <DropdownMenuItem
                     onClick={() => {
+                      (window as any).dataLayer = (window as any).dataLayer || [];
+                      (window as any).dataLayer.push({
+                        event: 'cta_click',
+                        button_text: 'Já sou membro',
+                        button_location: 'navigation_mobile',
+                        page_url: window.location.href
+                      });
                       scrollToSection('cta');
                       setIsMenuOpen(false);
                     }}
@@ -136,7 +143,16 @@ const Navigation = () => {
               ))}
               
               <ButtonArrow 
-                onClick={() => scrollToSection('cta')}
+                onClick={() => {
+                  (window as any).dataLayer = (window as any).dataLayer || [];
+                  (window as any).dataLayer.push({
+                    event: 'cta_click',
+                    button_text: 'Já sou membro',
+                    button_location: 'navigation_desktop',
+                    page_url: window.location.href
+                  });
+                  scrollToSection('cta');
+                }}
                 className="text-sm"
               >
                 Já sou membro

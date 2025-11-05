@@ -82,7 +82,22 @@ const Index = () => {
         }} transition={{
           delay: 0.5
         }} className="flex flex-col sm:flex-row gap-4 items-start">
-            <ButtonHard className="text-base">
+            <ButtonHard 
+              className="text-base"
+              onClick={() => {
+                (window as any).dataLayer = (window as any).dataLayer || [];
+                (window as any).dataLayer.push({
+                  event: 'cta_click',
+                  button_text: 'Quero ser membro',
+                  button_location: 'hero_section',
+                  page_url: window.location.href
+                });
+                const pricingSection = document.getElementById('pricing');
+                if (pricingSection) {
+                  pricingSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
               Quero ser membro
             </ButtonHard>
           </motion.div>
@@ -160,7 +175,23 @@ const Index = () => {
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             Junte-se à comunidade que está redefinindo o acesso à tecnologia de ponta. Seu upgrade inteligente começa agora.
           </p>
-          <Button size="lg" className="button-gradient">
+          <Button 
+            size="lg" 
+            className="button-gradient"
+            onClick={() => {
+              (window as any).dataLayer = (window as any).dataLayer || [];
+              (window as any).dataLayer.push({
+                event: 'cta_click',
+                button_text: 'Quero Minha Vantagem Exclusiva',
+                button_location: 'final_cta_section',
+                page_url: window.location.href
+              });
+              const pricingSection = document.getElementById('pricing');
+              if (pricingSection) {
+                pricingSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+          >
             Quero Minha Vantagem Exclusiva
             <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
