@@ -1,4 +1,4 @@
-import { Instagram } from "lucide-react";
+import { Instagram, MessageCircle } from "lucide-react";
 import { Button } from "./ui/button";
 
 const Footer = () => {
@@ -45,8 +45,9 @@ const Footer = () => {
                     });
                     window.open('https://wa.me/53991963971', '_blank');
                   }}
+                  className="hover:text-[#25D366]"
                 >
-                  <img src="/icons/whatsapp.png" alt="WhatsApp" className="w-4 h-4" />
+                  <MessageCircle className="w-5 h-5" />
                 </Button>
               </div>
             </div>
