@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { MessageCircle } from "lucide-react";
 
 export const WhatsAppButton = () => {
   return (
@@ -34,10 +35,9 @@ export const WhatsAppButton = () => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
     >
-      <img 
-        src="/icons/whatsapp.png" 
-        alt="WhatsApp" 
-        className="w-7 h-7 md:w-9 md:h-9 group-hover:scale-110 transition-transform"
+      <MessageCircle 
+        className="w-7 h-7 md:w-9 md:h-9 group-hover:scale-110 transition-transform" 
+        strokeWidth={2}
       />
       
       {/* Pulse animation */}
