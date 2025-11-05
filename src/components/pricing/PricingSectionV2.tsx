@@ -61,13 +61,13 @@ const allFeatures = [
   { label: "Suporte", values: { pro: "Premium", tech: "Vitalício", ultra: "Vitalício", enterprise: "Sob consulta" } },
   { 
     label: "Fone Dunx Bluetooth incluso", 
-    values: { pro: false, tech: false, ultra: true, enterprise: false },
+    values: { pro: false, tech: false, ultra: true, enterprise: "Sob consulta" },
     isBonus: true,
     bonusLabel: "Bônus Fone Bluetooth Dunx"
   },
   { 
     label: "SealPass", 
-    values: { pro: true, tech: true, ultra: true, enterprise: true },
+    values: { pro: true, tech: true, ultra: true, enterprise: "Sob consulta" },
     isBonus: true,
     bonusLabel: "Bônus SealPass"
   }
