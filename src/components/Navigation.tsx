@@ -49,7 +49,6 @@ const Navigation = () => {
 
   const navItems = [
     { name: "O Que É", href: "#features", onClick: () => scrollToSection('features') },
-    { name: "Marcas", href: "#logo-carousel", onClick: () => scrollToSection('logo-carousel') },
     { name: "Planos", href: "#pricing", onClick: () => scrollToSection('pricing') },
     { name: "Regras", href: "#footer", onClick: () => scrollToSection('footer') },
   ];

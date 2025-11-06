@@ -171,7 +171,10 @@ const PricingTier = ({
           return (
             <div 
               key={index} 
-              className="flex items-start justify-between py-3 border-b border-white/5 min-h-[52px]"
+              className={cn(
+                "flex justify-between py-3 border-b border-white/5 min-h-[52px]",
+                isBonus && value ? "items-center" : "items-start"
+              )}
             >
               <div className="flex-1 pr-2">
                 <span className="text-xs font-medium leading-tight flex items-center gap-2 text-muted-foreground flex-wrap">
