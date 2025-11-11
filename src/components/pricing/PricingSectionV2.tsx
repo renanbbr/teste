@@ -60,10 +60,10 @@ const allFeatures = [
   { label: "Atendimento Prioritário", values: { pro: true, tech: true, ultra: true, enterprise: "Sob consulta" } },
   { label: "Suporte", values: { pro: "Premium", tech: "Vitalício", ultra: "Vitalício", enterprise: "Sob consulta" } },
   { 
-    label: "Fone Dunx Bluetooth incluso", 
+    label: "Fone Danx Bluetooth incluso", 
     values: { pro: false, tech: false, ultra: true, enterprise: "Sob consulta" },
     isBonus: true,
-    bonusLabel: "Bônus Fone Bluetooth Dunx"
+    bonusLabel: "Bônus Fone Bluetooth Danx (R$ 299)"
   },
   { 
     label: "SealPass", 
