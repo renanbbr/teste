@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, X, Gift, AlertCircle } from "lucide-react";
+import { Check, X, Gift, AlertCircle, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CardSpotlight } from "./CardSpotlight";
 import { cn } from "@/lib/utils";
 import { BadgeExclusive } from "@/components/ui/badge-exclusive";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 const allFeatures = [
   { 
@@ -97,7 +99,14 @@ const PricingTier = ({
   isEnterprise?: boolean;
   showPriceAlert?: boolean;
   isMetallic?: boolean;
-}) => (
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  // Dividir features: 0-3 sempre visíveis, 4-15 colapsáveis
+  const visibleFeatures = allFeatures.slice(0, 4);
+  const collapsibleFeatures = allFeatures.slice(4);
+  
+  return (
   <CardSpotlight 
     className={cn(
       "h-full border-2",
@@ -163,7 +172,7 @@ const PricingTier = ({
       </Button>
       
       <div className="space-y-2 flex-grow">
-        {allFeatures.map((feature, index) => {
+        {visibleFeatures.map((feature, index) => {
           const value = feature.values[planKey];
           const isBonus = (feature as any).isBonus;
           const isExclusive = (feature as any).exclusive?.[planKey];
@@ -216,10 +225,76 @@ const PricingTier = ({
             </div>
           );
         })}
+        
+        <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+          <CollapsibleTrigger asChild>
+            <button className="flex items-center justify-center gap-2 w-full py-3 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+              <span>{isOpen ? "Ver menos" : "Ver mais"}</span>
+              <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", isOpen && "rotate-180")} />
+            </button>
+          </CollapsibleTrigger>
+          
+          <CollapsibleContent className="data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+            {collapsibleFeatures.map((feature, index) => {
+              const value = feature.values[planKey];
+              const isBonus = (feature as any).isBonus;
+              const isExclusive = (feature as any).exclusive?.[planKey];
+              
+              return (
+                <div 
+                  key={index + 4} 
+                  className={cn(
+                    "flex justify-between py-3 border-b border-white/5 min-h-[52px]",
+                    isBonus && value ? "items-center" : "items-start"
+                  )}
+                >
+                  <div className="flex-1 pr-2">
+                    <span className="text-xs font-medium leading-tight flex items-center gap-2 text-muted-foreground flex-wrap">
+                      {isBonus && value ? (
+                        <>
+                          <Gift className="w-5 h-5 text-primary" />
+                          <span className="text-sm font-semibold bg-primary/10 text-primary rounded px-2 py-1">
+                            {(feature as any).bonusLabel || feature.label}
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <span>
+                            {(feature as any).labelByPlan 
+                              ? (feature as any).labelByPlan[planKey] 
+                              : feature.label}
+                          </span>
+                          {isExclusive && (
+                            <BadgeExclusive className="ml-1" />
+                          )}
+                        </>
+                      )}
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center gap-1 flex-shrink-0">
+                    {typeof value === "boolean" ? (
+                      value ? (
+                        <Check className="w-4 h-4 text-green-500" />
+                      ) : (
+                        <X className="w-4 h-4 text-red-500/50" />
+                      )
+                     ) : (
+                       <span className="text-xs font-medium text-right max-w-[180px] leading-tight">
+                         {value}
+                       </span>
+                     )}
+                  </div>
+                </div>
+              );
+            })}
+          </CollapsibleContent>
+        </Collapsible>
       </div>
     </div>
   </CardSpotlight>
-);
+  );
+};
 
 export const PricingSectionV2 = () => {
   return (
