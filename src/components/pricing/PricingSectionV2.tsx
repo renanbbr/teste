@@ -6,6 +6,7 @@ import { CardSpotlight } from "./CardSpotlight";
 import { cn } from "@/lib/utils";
 import { BadgeExclusive } from "@/components/ui/badge-exclusive";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { useNavigate } from "react-router-dom";
 
 const allFeatures = [
   { 
@@ -87,6 +88,7 @@ const PricingTier = ({
   isEnterprise,
   showPriceAlert = false,
   isMetallic = false,
+  navigate,
 }: {
   name: string;
   price: string;
@@ -99,6 +101,7 @@ const PricingTier = ({
   isEnterprise?: boolean;
   showPriceAlert?: boolean;
   isMetallic?: boolean;
+  navigate?: (path: string) => void;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   
@@ -163,9 +166,19 @@ const PricingTier = ({
             click_url: ctaLink
           });
           
-          setTimeout(() => {
-            window.open(ctaLink, '_blank');
-          }, 300);
+          if (isEnterprise || ctaLink.startsWith('http')) {
+            // Link externo (WhatsApp ou link antigo)
+            setTimeout(() => {
+              window.open(ctaLink, '_blank');
+            }, 300);
+          } else {
+            // Navegação interna para checkout
+            if (navigate) {
+              navigate(ctaLink);
+            } else {
+              window.location.href = ctaLink;
+            }
+          }
         }}
       >
         {ctaText}
@@ -357,6 +370,8 @@ const PricingTier = ({
 };
 
 export const PricingSectionV2 = () => {
+  const navigate = useNavigate();
+  
   return (
     <section id="pricing" className="container px-4 py-24">
       <div className="max-w-3xl mx-auto text-center mb-12">
@@ -386,8 +401,9 @@ export const PricingSectionV2 = () => {
           period="mês"
           planKey="pro"
           ctaText="ASSINAR O PRO"
-          ctaLink="https://lastlink.com/p/CF53C574F/checkout-payment/"
+          ctaLink="/checkout?plan=pro"
           showPriceAlert
+          navigate={navigate}
         />
         <PricingTier
           name="TECH"
@@ -396,8 +412,9 @@ export const PricingSectionV2 = () => {
           planKey="tech"
           isFeatured
           ctaText="ASSINAR O TECH"
-          ctaLink="https://lastlink.com/p/C9236DD3C/checkout-payment/"
+          ctaLink="/checkout?plan=tech"
           showPriceAlert
+          navigate={navigate}
         />
         <PricingTier
           name="ULTRA"
@@ -405,8 +422,9 @@ export const PricingSectionV2 = () => {
           period="mês"
           planKey="ultra"
           ctaText="ASSINAR O ULTRA"
-          ctaLink="https://lastlink.com/p/C8B2B72CA/checkout-payment/"
+          ctaLink="/checkout?plan=ultra"
           showPriceAlert
+          navigate={navigate}
         />
         <PricingTier
           name="ENTERPRISE"
@@ -417,6 +435,7 @@ export const PricingSectionV2 = () => {
           isMetallic
           ctaText="Falar com um consultor"
           ctaLink="https://wa.me/53991963971"
+          navigate={navigate}
         />
       </div>
     </section>
