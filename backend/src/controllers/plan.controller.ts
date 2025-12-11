@@ -50,10 +50,10 @@ export const createPlan = async (req: Request, res: Response) => {
     
     res.json({
       success: true,
-      plan_id: response.id,
+      plan_id: (response as any).id,
       plan_name: plan.name,
       plan_price: plan.price,
-      init_point: response.init_point
+      init_point: (response as any).init_point
     });
   } catch (error: any) {
     console.error("Erro ao criar plano:", error);
@@ -85,7 +85,7 @@ export const listPlans = async (req: Request, res: Response) => {
 export const getPlan = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const response = await preApprovalPlan.get({ id });
+    const response = await (preApprovalPlan as any).get({ id });
     res.json({
       success: true,
       plan: response

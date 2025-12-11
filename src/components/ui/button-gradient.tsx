@@ -16,11 +16,11 @@ export const ButtonGradient = ({
       className={cn(
         "relative min-w-[120px] px-[17px] py-3 rounded-[7px]",
         "border-0 cursor-pointer",
-        "text-white/66 transition-all duration-1000 ease-[cubic-bezier(0.15,0.83,0.66,1)]",
+        "text-white/66 transition-all duration-1000 ease-&lsqb;cubic-bezier(0.15,0.83,0.66,1)&rsqb;",
         "hover:text-white hover:scale-110 hover:-translate-y-[3px]",
         "before:content-[''] before:absolute before:bottom-0 before:left-[15%] before:w-[70%] before:h-[1px]",
         "before:bg-gradient-to-r before:from-transparent before:via-white before:to-transparent",
-        "before:opacity-20 before:transition-all before:duration-1000 before:ease-[cubic-bezier(0.15,0.83,0.66,1)]",
+        "before:opacity-20 before:transition-all before:duration-1000 before:ease-&lsqb;cubic-bezier(0.15,0.83,0.66,1)&rsqb;",
         "hover:before:opacity-100",
         className
       )}
