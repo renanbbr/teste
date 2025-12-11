@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Test from "./pages/Test";
 import Analytics from "./pages/Analytics";
 import Checkout from "./pages/Checkout";
+import Success from "./pages/Success";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/test" element={<Test />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout/success" element={<Success />} />
           </Routes>
         </BrowserRouter>
       </div>
