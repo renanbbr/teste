@@ -12,14 +12,15 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 
 const PLANS = {
-  pro: { name: "PRO", price: 29, period: "mês", description: "Plano básico com acesso a produtos por preço de custo" },
-  tech: { name: "TECH", price: 49, period: "mês", description: "Plano intermediário com mais benefícios" },
-  ultra: { name: "ULTRA", price: 79, period: "mês", description: "Plano completo com todos os benefícios" }
+  pro: { name: "PRO", price: 348, period: "único", description: "Plano básico com acesso a produtos por preço de custo (12 meses)" },
+  tech: { name: "TECH", price: 588, period: "único", description: "Plano intermediário com mais benefícios (12 meses)" },
+  ultra: { name: "ULTRA", price: 948, period: "único", description: "Plano completo com todos os benefícios (12 meses)" }
 };
 
-const API_URL = "http://localhost:3001/api";
+// Usar variável de ambiente com fallback para desenvolvimento
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001/api";
 
-const MP_PUBLIC_KEY = import.meta.env.VITE_MERCADOPAGO_PUBLIC_KEY || "TEST-b61e523a-6703-4703-ab01-10914216d28f";
+const MP_PUBLIC_KEY = import.meta.env.VITE_MERCADOPAGO_PUBLIC_KEY || "TEST-a558b17c-1cec-45c6-8990-99b1dda73bbc";
 initMercadoPago(MP_PUBLIC_KEY, { locale: "pt-BR" });
 
 const Checkout = () => {
@@ -116,38 +117,48 @@ const Checkout = () => {
 
   // Processamento Cartão
   const handleCardPayment = async (formData: any) => {
+    console.log("Card token:", formData.token);
     if (!selectedPlan) return;
     setErrorMessage(null);
 
-    const payload = {
-        ...formData,
-        transaction_amount: finalPrice, // Envia o valor já com desconto
-        payer: {
+    return new Promise<void>(async (resolve, reject) => {
+      try {
+        // Criar pagamento único no backend
+        const payload = {
+          transaction_amount: finalPrice,
+          token: formData.token,
+          description: `Pagamento ${selectedPlan.name}`,
+          installments: 1,
+          payer: {
             email: customerData.email,
-            identification: { type: "CPF", number: customerData.cpf.replace(/\D/g, "") },
             first_name: customerData.name.split(" ")[0],
-            last_name: customerData.name.split(" ").slice(1).join(" ") || "Cliente"
-        },
-        description: `Assinatura ${selectedPlan.name} (Cupom: ${isCouponApplied ? couponCode : 'Nenhum'})`
-    };
+            last_name: customerData.name.split(" ").slice(1).join(" ") || "Cliente",
+            identification: {
+              type: "CPF",
+              number: customerData.cpf.replace(/\D/g, "")
+            }
+          },
+          name: customerData.name,
+          plan_name: selectedPlan.name,
+          email: customerData.email
+        };
 
-    return new Promise<void>((resolve, reject) => {
-      fetch(`${API_URL}/card`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.error) throw new Error(data.details || "Erro no pagamento");
-        toast({ title: "Pagamento Aprovado!", className: "bg-green-600 text-white" });
+        const res = await fetch(`${API_URL}/card`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        if (!res.ok || data.error) throw new Error(data.error || "Erro no pagamento");
+
+        toast({ title: "Pagamento aprovado!", className: "bg-green-600 text-white" });
         navigate("/checkout/success");
         resolve();
-      })
-      .catch(error => {
-        setErrorMessage(error.message);
+      } catch (error: any) {
+        setErrorMessage(error.message || "Erro ao processar pagamento");
         reject();
-      });
+      }
     });
   };
 
@@ -159,7 +170,7 @@ const Checkout = () => {
 
     try {
         const payload = {
-            title: `Assinatura ${selectedPlan.name}`,
+            title: `Pagamento ${selectedPlan.name}`,
             price: finalPrice, // Valor com desconto
             email: customerData.email,
             identification: { type: "CPF", number: customerData.cpf.replace(/\D/g, "") }
@@ -370,7 +381,14 @@ const Checkout = () => {
                     <CardContent className="space-y-4">
                         <div className="flex justify-between text-sm">
                             <span className="text-muted-foreground">Plano {selectedPlan.name}</span>
-                            <span>R$ {selectedPlan.price.toFixed(2).replace('.', ',')}</span>
+                            <div className="text-right">
+                                <div className="text-sm">
+                                    12x de R$ {(selectedPlan.price / 12).toFixed(2).replace('.', ',')}
+                                </div>
+                                <div className="text-xs text-muted-foreground">
+                                    ou à vista de R$ {selectedPlan.price.toFixed(2).replace('.', ',')}
+                                </div>
+                            </div>
                         </div>
                         
                         {isCouponApplied && (
@@ -383,10 +401,6 @@ const Checkout = () => {
                         <div className="pt-4 border-t border-white/10 flex justify-between text-xl font-bold">
                             <span>Total</span>
                             <span>R$ {finalPrice.toFixed(2).replace('.', ',')}</span>
-                        </div>
-                        
-                        <div className="pt-2 text-xs text-muted-foreground">
-                            Cobrança recorrente a cada {selectedPlan.period}.
                         </div>
                     </CardContent>
                 </Card>

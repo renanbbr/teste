@@ -8,4 +8,6 @@
         "esModuleInterop": true,
         "strict": false
     }
+    ,
+    "exclude": ["test-connections.ts"]
 }

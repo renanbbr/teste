@@ -30,7 +30,7 @@ export const ButtonGenerate = ({
           "bg-[#101010] rounded-[24px]",
           "border border-white/10",
           "cursor-pointer select-none",
-          "transition-all duration-[400ms]",
+          "transition-all duration-&lsqb;400ms&rsqb;",
           className
         )}
         style={{
