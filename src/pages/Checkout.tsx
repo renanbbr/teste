@@ -1,12 +1,12 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Check, Lock, Loader2, MapPin, Copy, AlertCircle } from "lucide-react";
+import { ArrowLeft, Check, Lock, Loader2, Copy, AlertCircle, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { initMercadoPago, CardPayment } from "@mercadopago/sdk-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
@@ -17,7 +17,6 @@ const PLANS = {
   ultra: { name: "ULTRA", price: 79, period: "mês", description: "Plano completo com todos os benefícios" }
 };
 
-// URL DO BACKEND - Confirme se a porta é 3001
 const API_URL = "http://localhost:3001/api";
 
 const MP_PUBLIC_KEY = import.meta.env.VITE_MERCADOPAGO_PUBLIC_KEY || "TEST-b61e523a-6703-4703-ab01-10914216d28f";
@@ -30,22 +29,15 @@ const Checkout = () => {
   const planKey = searchParams.get("plan") as keyof typeof PLANS;
   const selectedPlan = planKey && PLANS[planKey] ? PLANS[planKey] : null;
 
+  // 1. ESTADO LIMPO (Apenas dados essenciais)
   const [customerData, setCustomerData] = useState({
     name: "",
     email: "",
     phone: "",
-    cpf: "",
-    zipCode: "",
-    street: "",
-    number: "",
-    complement: "",
-    neighborhood: "",
-    city: "",
-    state: ""
+    cpf: ""
   });
 
   const [paymentMethod, setPaymentMethod] = useState<"card" | "pix">("card");
-  const [isLoadingCep, setIsLoadingCep] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
   
   // Estados do PIX
@@ -53,26 +45,28 @@ const Checkout = () => {
   const [pixCopyPaste, setPixCopyPaste] = useState<string | null>(null);
   const [isPixLoading, setIsPixLoading] = useState(false);
   
-  // Estados de Erro
+  // Estados do Cupom
+  const [couponCode, setCouponCode] = useState("");
+  const [discount, setDiscount] = useState(0); // Valor do desconto em R$
+  const [isCouponApplied, setIsCouponApplied] = useState(false);
+  
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  const lastSearchedCep = useRef<string>("");
 
   useEffect(() => {
     if (!selectedPlan) navigate("/#pricing");
   }, [selectedPlan, navigate]);
 
-  // Validação do Formulário
+  // 2. VALIDAÇÃO SIMPLIFICADA (Nome, Email, Phone, CPF)
   useEffect(() => {
     const requiredFields = [
-      customerData.name, customerData.email, customerData.phone, customerData.cpf,
-      customerData.zipCode, customerData.street, customerData.number, 
-      customerData.neighborhood, customerData.city, customerData.state
+      customerData.name, 
+      customerData.email, 
+      customerData.phone, 
+      customerData.cpf
     ];
     setIsFormValid(requiredFields.every(field => field && field.trim() !== ""));
   }, [customerData]);
 
-  // Resetar estados ao mudar método
   useEffect(() => {
     setErrorMessage(null);
     if (paymentMethod !== "pix") {
@@ -81,67 +75,60 @@ const Checkout = () => {
     }
   }, [paymentMethod]);
 
-  // --- COLE ISSO AQUI (Antes do handleInputChange) ---
-
+  // Formatações (CPF e Telefone)
   const formatCPF = (value: string) => {
     return value
-      .replace(/\D/g, "") // Remove tudo que não é dígito
-      .replace(/(\d{3})(\d)/, "$1.$2") // Coloca ponto após o 3º digito
-      .replace(/(\d{3})(\d)/, "$1.$2") // Coloca ponto após o 6º digito
-      .replace(/(\d{3})(\d{1,2})/, "$1-$2") // Coloca traço após o 9º digito
-      .replace(/(-\d{2})\d+?$/, "$1"); // Limita tamanho
+      .replace(/\D/g, "")
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d{1,2})/, "$1-$2")
+      .replace(/(-\d{2})\d+?$/, "$1");
   };
 
   const formatPhone = (value: string) => {
     const numbers = value.replace(/\D/g, "");
     return numbers
-      .replace(/(\d{2})(\d)/, "($1) $2") // Coloca parênteses no DDD
-      .replace(/(\d{5})(\d)/, "$1-$2") // Coloca hífen depois do 5º dígito
-      .replace(/(-\d{4})\d+?$/, "$1"); // Limita tamanho
+      .replace(/(\d{2})(\d)/, "($1) $2")
+      .replace(/(\d{5})(\d)/, "$1-$2")
+      .replace(/(-\d{4})\d+?$/, "$1");
   };
-
-  // ---------------------------------------------------
 
   const handleInputChange = (field: string, value: string) => {
     setCustomerData(prev => ({ ...prev, [field]: value }));
   };
 
-  const fetchAddressByCep = async (cep: string) => {
-    const cleanCep = cep.replace(/\D/g, "");
-    if (cleanCep.length !== 8 || cleanCep === lastSearchedCep.current) return;
-    
-    lastSearchedCep.current = cleanCep;
-    setIsLoadingCep(true);
-    try {
-      const res = await fetch(`https://viacep.com.br/ws/${cleanCep}/json/`);
-      const data = await res.json();
-      if (!data.erro) {
-        setCustomerData(prev => ({
-          ...prev,
-          street: data.logradouro || "",
-          neighborhood: data.bairro || "",
-          city: data.localidade || "",
-          state: data.uf || "",
-        }));
-        toast({ title: "Endereço encontrado!" });
-      }
-    } catch (e) { console.error(e); } 
-    finally { setIsLoadingCep(false); }
+  // Lógica do Cupom (Front-end mock)
+  const handleApplyCoupon = () => {
+    if (couponCode.toUpperCase() === "SEAL10") {
+        const discountValue = selectedPlan ? selectedPlan.price * 0.10 : 0; // 10%
+        setDiscount(discountValue);
+        setIsCouponApplied(true);
+        toast({ title: "Cupom aplicado!", description: "Desconto de 10% concedido." });
+    } else {
+        setDiscount(0);
+        setIsCouponApplied(false);
+        toast({ title: "Cupom inválido", variant: "destructive" });
+    }
   };
 
+  // Valor final com desconto
+  const finalPrice = selectedPlan ? (selectedPlan.price - discount) : 0;
+
+  // Processamento Cartão
   const handleCardPayment = async (formData: any) => {
     if (!selectedPlan) return;
     setErrorMessage(null);
 
     const payload = {
         ...formData,
+        transaction_amount: finalPrice, // Envia o valor já com desconto
         payer: {
             email: customerData.email,
             identification: { type: "CPF", number: customerData.cpf.replace(/\D/g, "") },
             first_name: customerData.name.split(" ")[0],
             last_name: customerData.name.split(" ").slice(1).join(" ") || "Cliente"
         },
-        description: `Assinatura ${selectedPlan.name}`
+        description: `Assinatura ${selectedPlan.name} (Cupom: ${isCouponApplied ? couponCode : 'Nenhum'})`
     };
 
     return new Promise<void>((resolve, reject) => {
@@ -164,6 +151,7 @@ const Checkout = () => {
     });
   };
 
+  // Processamento PIX
   const handlePixPayment = async () => {
     if (!selectedPlan) return;
     setIsPixLoading(true);
@@ -172,7 +160,7 @@ const Checkout = () => {
     try {
         const payload = {
             title: `Assinatura ${selectedPlan.name}`,
-            price: selectedPlan.price,
+            price: finalPrice, // Valor com desconto
             email: customerData.email,
             identification: { type: "CPF", number: customerData.cpf.replace(/\D/g, "") }
         };
@@ -212,105 +200,106 @@ const Checkout = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-6">
               
-              {/* DADOS PESSOAIS */}
+              {/* 1. DADOS PESSOAIS (Limpo e Organizado) */}
               <Card className="bg-[#0A0A0A] border-white/10">
-                  <CardHeader><CardTitle>Dados Pessoais</CardTitle></CardHeader>
-                  <CardContent className="grid md:grid-cols-2 gap-4">
-                      {/* ... Nome e Email continuam iguais ... */}
-                      <div className="space-y-2">
-                          <Label>Nome completo *</Label>
-                          <Input value={customerData.name} onChange={e => handleInputChange("name", e.target.value)} className="bg-[#1A1A1A] border-white/10" />
-                      </div>
-                      <div className="space-y-2">
-                          <Label>Email *</Label>
-                          <Input value={customerData.email} onChange={e => handleInputChange("email", e.target.value)} className="bg-[#1A1A1A] border-white/10" />
-                      </div>
-
-                      {/* --- SUBSTITUA O INPUT DO CPF AQUI --- */}
-                      <div className="space-y-2">
-                          <Label>CPF *</Label>
-                          <Input 
-                            value={customerData.cpf} 
-                            // A MÁGICA ACONTECE AQUI:
-                            onChange={e => handleInputChange("cpf", formatCPF(e.target.value))} 
-                            maxLength={14} 
-                            className="bg-[#1A1A1A] border-white/10" 
-                            placeholder="000.000.000-00"
-                          />
-                      </div>
-
-                      {/* --- SUBSTITUA O INPUT DO TELEFONE AQUI --- */}
-                      <div className="space-y-2">
-                          <Label>Telefone *</Label>
-                          <Input 
-                            value={customerData.phone} 
-                            // E AQUI TAMBÉM:
-                            onChange={e => handleInputChange("phone", formatPhone(e.target.value))} 
-                            maxLength={15} 
-                            className="bg-[#1A1A1A] border-white/10" 
-                            placeholder="(00) 90000-0000"
-                          />
-                      </div>
-                  </CardContent>
-              </Card>
-
-              {/* ENDEREÇO (TODOS OS CAMPOS) */}
-              <Card className="bg-[#0A0A0A] border-white/10">
-                  <CardHeader><CardTitle>Endereço</CardTitle></CardHeader>
+                  <CardHeader>
+                    <CardTitle>Dados Pessoais</CardTitle>
+                    <CardDescription>Informe seus dados para contato e nota fiscal</CardDescription>
+                  </CardHeader>
                   <CardContent className="space-y-4">
-                      <div className="grid md:grid-cols-3 gap-4">
+                      {/* Linha 1: Nome e Email */}
+                      <div className="grid md:grid-cols-2 gap-4">
                           <div className="space-y-2">
-                              <Label>CEP *</Label>
+                              <Label>Nome Completo / Razão Social *</Label>
+                              <Input 
+                                value={customerData.name} 
+                                onChange={e => handleInputChange("name", e.target.value)} 
+                                className="bg-[#1A1A1A] border-white/10 h-11" 
+                                placeholder="Nome completo"
+                              />
+                          </div>
+                          <div className="space-y-2">
+                              <Label>E-mail *</Label>
+                              <Input 
+                                value={customerData.email} 
+                                onChange={e => handleInputChange("email", e.target.value)} 
+                                className="bg-[#1A1A1A] border-white/10 h-11" 
+                                placeholder="seu@email.com"
+                              />
+                          </div>
+                      </div>
+
+                      {/* Linha 2: Celular e CPF */}
+                      <div className="grid md:grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                              <Label>Celular com DDD *</Label>
                               <div className="relative">
-                                  <Input value={customerData.zipCode} onChange={e => {
-                                      handleInputChange("zipCode", e.target.value);
-                                      if(e.target.value.replace(/\D/g, "").length === 8) fetchAddressByCep(e.target.value);
-                                  }} className="bg-[#1A1A1A] border-white/10" maxLength={9}/>
-                                  {isLoadingCep && <Loader2 className="absolute right-3 top-3 w-4 h-4 animate-spin"/>}
+                                {/* Simulando prefixo visualmente */}
+                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">🇧🇷 +55</span>
+                                <Input 
+                                    value={customerData.phone} 
+                                    onChange={e => handleInputChange("phone", formatPhone(e.target.value))} 
+                                    maxLength={15} 
+                                    className="bg-[#1A1A1A] border-white/10 pl-20 h-11" 
+                                    placeholder="(00) 00000-0000"
+                                />
                               </div>
                           </div>
-                          <div className="md:col-span-2 space-y-2">
-                              <Label>Rua *</Label>
-                              <Input value={customerData.street} onChange={e => handleInputChange("street", e.target.value)} className="bg-[#1A1A1A] border-white/10" />
-                          </div>
-                      </div>
-                      <div className="grid md:grid-cols-3 gap-4">
                           <div className="space-y-2">
-                              <Label>Número *</Label>
-                              <Input value={customerData.number} onChange={e => handleInputChange("number", e.target.value)} className="bg-[#1A1A1A] border-white/10" />
+                              <Label>CPF/CNPJ *</Label>
+                              <Input 
+                                value={customerData.cpf} 
+                                onChange={e => handleInputChange("cpf", formatCPF(e.target.value))} 
+                                maxLength={14} 
+                                className="bg-[#1A1A1A] border-white/10 h-11" 
+                                placeholder="000.000.000-00"
+                              />
                           </div>
-                          <div className="md:col-span-2 space-y-2">
-                              <Label>Complemento</Label>
-                              <Input value={customerData.complement} onChange={e => handleInputChange("complement", e.target.value)} className="bg-[#1A1A1A] border-white/10" />
-                          </div>
-                      </div>
-                      <div className="grid md:grid-cols-3 gap-4">
-                          <div className="md:col-span-2 space-y-2">
-                              <Label>Bairro *</Label>
-                              <Input value={customerData.neighborhood} onChange={e => handleInputChange("neighborhood", e.target.value)} className="bg-[#1A1A1A] border-white/10" />
-                          </div>
-                          <div className="space-y-2">
-                              <Label>UF *</Label>
-                              <Input value={customerData.state} onChange={e => handleInputChange("state", e.target.value.toUpperCase())} maxLength={2} className="bg-[#1A1A1A] border-white/10" />
-                          </div>
-                      </div>
-                      <div className="space-y-2">
-                          <Label>Cidade *</Label>
-                          <Input value={customerData.city} onChange={e => handleInputChange("city", e.target.value)} className="bg-[#1A1A1A] border-white/10" />
                       </div>
                   </CardContent>
               </Card>
 
-              {/* PAGAMENTO */}
+              {/* 2. CUPOM DE DESCONTO (Novo!) */}
+              <Card className="bg-[#0A0A0A] border-white/10">
+                  <CardContent className="p-6">
+                    <div className="flex flex-col gap-2">
+                        <Label className="flex items-center gap-2 text-primary font-medium">
+                            <Tag className="w-4 h-4" /> Tem cupom de desconto?
+                        </Label>
+                        <div className="flex gap-2">
+                            <Input 
+                                value={couponCode}
+                                onChange={(e) => setCouponCode(e.target.value)}
+                                placeholder="Insira o código" 
+                                className="bg-[#1A1A1A] border-white/10 h-11 uppercase"
+                                disabled={isCouponApplied}
+                            />
+                            <Button 
+                                onClick={handleApplyCoupon}
+                                disabled={isCouponApplied || !couponCode}
+                                className="h-11 px-8 bg-white text-black hover:bg-gray-200"
+                            >
+                                {isCouponApplied ? "Aplicado" : "Aplicar"}
+                            </Button>
+                        </div>
+                        {isCouponApplied && (
+                            <p className="text-sm text-green-500 mt-1">
+                                Desconto de R$ {discount.toFixed(2).replace('.', ',')} aplicado com sucesso!
+                            </p>
+                        )}
+                    </div>
+                  </CardContent>
+              </Card>
+
+              {/* 3. PAGAMENTO */}
               <Card className="bg-[#0A0A0A] border-white/10">
                   <CardHeader><CardTitle>Pagamento</CardTitle></CardHeader>
                   <CardContent className="space-y-6">
                       <div className="grid grid-cols-2 gap-4">
-                        <button onClick={() => setPaymentMethod("card")} className={`p-4 rounded border-2 ${paymentMethod === "card" ? "border-primary bg-primary/10" : "border-white/10"}`}>Cartão</button>
-                        <button onClick={() => setPaymentMethod("pix")} className={`p-4 rounded border-2 ${paymentMethod === "pix" ? "border-primary bg-primary/10" : "border-white/10"}`}>PIX</button>
+                        <button onClick={() => setPaymentMethod("card")} className={`p-4 rounded-lg border-2 transition-all ${paymentMethod === "card" ? "border-primary bg-primary/10" : "border-white/10 hover:border-white/20"}`}>Cartão</button>
+                        <button onClick={() => setPaymentMethod("pix")} className={`p-4 rounded-lg border-2 transition-all ${paymentMethod === "pix" ? "border-primary bg-primary/10" : "border-white/10 hover:border-white/20"}`}>PIX</button>
                       </div>
 
-                      {/* Exibição de Erros */}
                       {errorMessage && (
                           <div className="p-4 bg-red-900/20 border border-red-500/50 rounded flex items-center gap-2 text-red-200">
                               <AlertCircle className="w-5 h-5" />
@@ -318,36 +307,53 @@ const Checkout = () => {
                           </div>
                       )}
 
-                      {/* Conteúdo Cartão */}
                       {paymentMethod === "card" && (
-                          <div className="bg-white p-4 rounded">
+                          <div className="bg-white p-4 rounded-lg">
                               {isFormValid ? (
                                   <CardPayment 
-                                      initialization={{ amount: selectedPlan.price }} 
+                                      initialization={{ amount: finalPrice }} 
                                       onSubmit={handleCardPayment}
                                       customization={{ visual: { style: { theme: 'default' } } }}
                                   />
                               ) : (
-                                  <p className="text-black text-center">Preencha todos os dados acima para liberar o cartão.</p>
+                                  <p className="text-black text-center text-sm">Preencha seus dados pessoais acima para liberar o cartão.</p>
                               )}
                           </div>
                       )}
 
-                      {/* Conteúdo PIX */}
                       {paymentMethod === "pix" && (
                           <div className="space-y-4">
                               {!isFormValid ? (
-                                  <p className="text-muted-foreground">Preencha os dados acima para gerar o PIX.</p>
-                              ) : !pixQrCodeBase64 ? (
-                                  <Button onClick={handlePixPayment} disabled={isPixLoading} className="w-full button-gradient">
-                                      {isPixLoading ? <Loader2 className="animate-spin mr-2"/> : "Gerar QR Code PIX"}
+                                  <p className="text-muted-foreground text-sm">Preencha seus dados acima para gerar o PIX.</p>
+                              ) : !pixCopyPaste ? (
+                                  <Button onClick={handlePixPayment} disabled={isPixLoading} className="w-full button-gradient h-12 text-lg">
+                                      {isPixLoading ? <Loader2 className="animate-spin mr-2"/> : `Pagar R$ ${finalPrice.toFixed(2).replace('.', ',')}`}
                                   </Button>
                               ) : (
-                                  <div className="text-center space-y-4">
-                                      <img src={`data:image/png;base64,${pixQrCodeBase64}`} alt="QR Code" className="mx-auto w-48 rounded bg-white"/>
-                                      <div className="flex gap-2">
-                                          <Input readOnly value={pixCopyPaste || ""} className="bg-black font-mono text-xs"/>
-                                          <Button size="icon" onClick={() => {navigator.clipboard.writeText(pixCopyPaste!); toast({title: "Copiado!"})}}><Copy className="w-4"/></Button>
+                                  <div className="text-center space-y-4 animate-in fade-in zoom-in duration-300">
+                                      <div className="p-4 bg-white rounded-lg inline-block">
+                                        {pixQrCodeBase64 ? (
+                                            <img src={`data:image/png;base64,${pixQrCodeBase64}`} alt="QR Code" className="w-48 h-48"/>
+                                        ) : (
+                                            <div className="w-48 h-48 flex items-center justify-center bg-gray-100 text-gray-500 text-xs p-4 border-2 border-dashed border-gray-300">
+                                                Imagem indisponível<br/>Use o código abaixo
+                                            </div>
+                                        )}
+                                      </div>
+                                      
+                                      <div className="space-y-2">
+                                          <Label className="text-xs text-muted-foreground">Código Copia e Cola</Label>
+                                          <div className="flex gap-2">
+                                              <Input readOnly value={pixCopyPaste || ""} className="bg-[#1A1A1A] border-white/10 font-mono text-xs h-10"/>
+                                              <Button size="icon" variant="outline" onClick={() => {navigator.clipboard.writeText(pixCopyPaste!); toast({title: "Copiado!"})}}>
+                                                  <Copy className="w-4 h-4"/>
+                                              </Button>
+                                          </div>
+                                      </div>
+                                      
+                                      <div className="flex items-center justify-center text-green-500 text-sm font-medium gap-2">
+                                          <Check className="w-4 h-4" />
+                                          <span>Aguardando pagamento...</span>
                                       </div>
                                   </div>
                               )}
@@ -360,13 +366,28 @@ const Checkout = () => {
             {/* RESUMO (COLUNA DIREITA) */}
             <div className="lg:col-span-1">
                 <Card className="bg-[#0A0A0A] border-white/10 sticky top-24">
-                    <CardHeader><CardTitle>Resumo</CardTitle></CardHeader>
-                    <CardContent>
-                        <div className="flex justify-between text-xl font-bold">
-                            <span>Total</span>
-                            <span>R$ {selectedPlan.price}</span>
+                    <CardHeader><CardTitle>Resumo do Pedido</CardTitle></CardHeader>
+                    <CardContent className="space-y-4">
+                        <div className="flex justify-between text-sm">
+                            <span className="text-muted-foreground">Plano {selectedPlan.name}</span>
+                            <span>R$ {selectedPlan.price.toFixed(2).replace('.', ',')}</span>
                         </div>
-                        <p className="text-sm text-muted-foreground mt-2">{selectedPlan.name}</p>
+                        
+                        {isCouponApplied && (
+                            <div className="flex justify-between text-sm text-green-500">
+                                <span>Desconto (Cupom)</span>
+                                <span>- R$ {discount.toFixed(2).replace('.', ',')}</span>
+                            </div>
+                        )}
+
+                        <div className="pt-4 border-t border-white/10 flex justify-between text-xl font-bold">
+                            <span>Total</span>
+                            <span>R$ {finalPrice.toFixed(2).replace('.', ',')}</span>
+                        </div>
+                        
+                        <div className="pt-2 text-xs text-muted-foreground">
+                            Cobrança recorrente a cada {selectedPlan.period}.
+                        </div>
                     </CardContent>
                 </Card>
             </div>
