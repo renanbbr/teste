@@ -78,7 +78,8 @@ export const getSubscription = async (req: Request, res: Response) => {
         id: response.id,
         status: response.status,
         payer_email: response.payer_email,
-        plan_id: response.preapproval_plan_id,
+        // CORREÇÃO AQUI: Adicionado "as any" para ignorar erro de tipagem
+        plan_id: (response as any).preapproval_plan_id,
         reason: response.reason,
         init_date: response.init_point,
         auto_recurring: response.auto_recurring
@@ -128,7 +129,8 @@ export const cancelSubscription = async (req: Request, res: Response) => {
 // Listar todas as assinaturas (útil para admin)
 export const listSubscriptions = async (req: Request, res: Response) => {
   try {
-    const response = await preApproval.search();
+    // CORREÇÃO: Passando objeto vazio para evitar erro de chamada
+    const response = await preApproval.search({ options: {} });
     
     res.json({
       success: true,
@@ -143,41 +145,3 @@ export const listSubscriptions = async (req: Request, res: Response) => {
     });
   }
 };
-```
-
----
-
-### 3️⃣ O que cada função faz?
-
-#### 🔹 **createSubscription** - Cria assinatura do cliente
-- **Recebe**: email, plan_id, card_token_id
-- **Valida**: email formato correto, campos obrigatórios
-- **Cria**: assinatura no MP
-- **Retorna**: subscription_id, status
-
-#### 🔹 **getSubscription** - Consulta assinatura
-- **Recebe**: ID da assinatura
-- **Retorna**: Todos os detalhes (status, email, plano)
-
-#### 🔹 **cancelSubscription** - Cancela assinatura
-- **Recebe**: ID da assinatura
-- **Atualiza**: status para "cancelled"
-- **Útil para**: quando cliente quer cancelar
-
-#### 🔹 **listSubscriptions** - Lista todas (admin)
-- **Retorna**: Todas as assinaturas criadas
-- **Útil para**: painel administrativo
-
----
-
-### 4️⃣ Fluxo completo de uma assinatura:
-```
-1. Frontend envia: email + plan_id + card_token_id
-                          ↓
-2. createSubscription valida os dados
-                          ↓
-3. Cria assinatura no Mercado Pago
-                          ↓
-4. MP processa pagamento mensalmente
-                          ↓
-5. Webhook notifica cada pagamento
