@@ -223,7 +223,7 @@ export const webhook = async (req: Request, res: Response) => {
   }
 };
 
-/* -----------------------------------------------------
+/* ----------------------------------------------------
    VALIDAR PAGAMENTO NO MP
 ------------------------------------------------------ */
 export const validatePaymentFromWebhook = async (paymentId: string) => {
