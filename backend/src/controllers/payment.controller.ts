@@ -1,77 +1,38 @@
 import { Request, Response } from "express";
 import { payment } from "../config/mp";
 import { PaymentCreateRequest } from "mercadopago/dist/clients/payment/create/types";
-import crypto from "crypto";
-import { 
-  getSubscriptionByPaymentId, 
-  updateSubscriptionStatus, 
-  createSubscriptionRecord 
+
+// Importações dos seus serviços
+import {
+  getSubscriptionByPaymentId,
+  updateSubscriptionStatus,
+  createSubscriptionRecord
 } from "../services/supabase.service";
-import { 
-  sendPaymentConfirmation 
+import {
+  sendPaymentConfirmation
 } from "../services/email.service";
-
-/* -----------------------------------------------------
-   VALIDAR ASSINATURA HMAC DO WEBHOOK
------------------------------------------------------- */
-const validateWebhookSignature = (req: Request): boolean => {
-  const secret = process.env.MP_WEBHOOK_SECRET;
-  if (!secret) return false;
-
-  const signatureHeader =
-    req.headers["x-signature"] ||
-    req.headers["x-hub-signature"] ||
-    req.headers["x-mercadopago-signature"] ||
-    req.headers["x-meli-signature"] ||
-    req.headers["x-hub-signature-256"];
-
-  if (!signatureHeader) return false;
-
-  const provided = String(signatureHeader).replace(/^sha256=/i, "").trim();
-  const rawBody = Buffer.isBuffer((req as any).body)
-    ? (req as any).body
-    : Buffer.from(JSON.stringify(req.body));
-
-  const calcBase64 = crypto.createHmac("sha256", secret).update(rawBody).digest("base64");
-  const calcHex = crypto.createHmac("sha256", secret).update(rawBody).digest("hex");
-
-  const safeCompare = (a: string, b: string) => {
-    try {
-      const bufA = Buffer.from(a);
-      const bufB = Buffer.from(b);
-      return bufA.length === bufB.length && crypto.timingSafeEqual(bufA, bufB);
-    } catch {
-      return false;
-    }
-  };
-
-  if (provided === calcBase64 || provided === calcHex) return true;
-  if (safeCompare(provided, calcBase64) || safeCompare(provided, calcHex)) return true;
-
-  console.warn("[WEBHOOK] Assinatura inválida");
-  return false;
-};
 
 /* -----------------------------------------------------
    PAGAMENTO COM CARTÃO
 ------------------------------------------------------ */
 export const createCardPayment = async (req: Request, res: Response) => {
   try {
-    const { 
-      transaction_amount, 
-      token, 
-      description, 
-      installments, 
-      payment_method_id, 
-      payer, 
+    const {
+      transaction_amount,
+      token,
+      description,
+      installments,
+      payment_method_id,
+      payer,
       issuer_id,
       name,
       plan_name,
       email
     } = req.body;
 
+    // Validação básica
     if (!transaction_amount || !token || !payer?.email)
-      return res.status(400).json({ error: "transaction_amount, token e payer.email são obrigatórios" });
+      return res.status(400).json({ error: "Dados obrigatórios faltando" });
 
     const customerEmail = email || payer.email;
 
@@ -96,11 +57,11 @@ export const createCardPayment = async (req: Request, res: Response) => {
       requestOptions: { idempotencyKey: `card-${Date.now()}-${token.slice(0, 10)}` }
     });
 
-    console.log("[PAYMENT CARD] Resultado:", { id: result.id, status: result.status });
+    console.log("[PAYMENT CARD] Sucesso:", result.id);
 
     if (result.status === "approved") {
-      // Criar registro no Supabase
       try {
+        // Tenta salvar no Supabase
         await createSubscriptionRecord({
           name: name || "Cliente",
           email: customerEmail,
@@ -112,6 +73,7 @@ export const createCardPayment = async (req: Request, res: Response) => {
           amount: Number(transaction_amount)
         });
 
+        // Tenta enviar email
         await sendPaymentConfirmation(customerEmail, {
           name: name || "Cliente",
           plan: plan_name || "SealClub",
@@ -120,7 +82,7 @@ export const createCardPayment = async (req: Request, res: Response) => {
           method: "card"
         });
       } catch (e: any) {
-        console.warn("[SUPABASE] Falha ao criar registro:", e.message);
+        console.warn("[SUPABASE/EMAIL] Erro pós-venda:", e.message);
       }
     }
 
@@ -133,7 +95,8 @@ export const createCardPayment = async (req: Request, res: Response) => {
 
   } catch (error: any) {
     console.error("[ERROR CARD]", error.message);
-    return res.status(400).json({ error: "Erro no pagamento", details: error.message });
+    const msg = error.cause?.[0]?.description || error.message;
+    return res.status(400).json({ error: "Erro no pagamento", details: msg });
   }
 };
 
@@ -147,9 +110,6 @@ export const createPIX = async (req: Request, res: Response) => {
     if (!email || !identification?.number)
       return res.status(400).json({ error: "Email e CPF são obrigatórios" });
 
-    if (!price || price <= 0)
-      return res.status(400).json({ error: "Valor inválido" });
-
     const result = await payment.create({
       body: {
         transaction_amount: Number(price),
@@ -160,17 +120,16 @@ export const createPIX = async (req: Request, res: Response) => {
           identification: { type: "CPF", number: identification.number }
         }
       },
-      requestOptions: { idempotencyKey: `pix-${Date.now()}-${email}-${price}` }
+      requestOptions: { idempotencyKey: `pix-${Date.now()}-${email}` }
     });
 
     const qr = result.point_of_interaction?.transaction_data;
-    if (!qr?.qr_code) throw new Error("QR Code não gerado pelo Mercado Pago");
 
     return res.json({
       id: result.id,
       status: result.status,
-      qr_code: qr.qr_code,
-      qr_code_base64: qr.qr_code_base64
+      qr_code: qr?.qr_code,
+      qr_code_base64: qr?.qr_code_base64
     });
 
   } catch (error: any) {
@@ -180,80 +139,68 @@ export const createPIX = async (req: Request, res: Response) => {
 };
 
 /* -----------------------------------------------------
-   WEBHOOK (VALIDAÇÃO + ATUALIZAÇÃO)
+   WEBHOOK (SEM VALIDAÇÃO DE ASSINATURA)
 ------------------------------------------------------ */
 export const webhook = async (req: Request, res: Response) => {
+  // 1. Responde OK imediatamente para o MP não ficar tentando de novo
+  res.sendStatus(200);
+
   try {
-    if (!validateWebhookSignature(req)) return res.sendStatus(401);
+    const { type, data } = req.body;
+    console.log(`🔔 Webhook recebido: ${type} - ID: ${data?.id}`);
 
-    let payload: any = (req as any).body;
-    if (Buffer.isBuffer(payload)) payload = JSON.parse(payload.toString());
-
-    const { type, data } = payload;
-
-    console.log("[WEBHOOK] Evento recebido:", type, data?.id);
-
-    if (type === "payment") {
+    // Filtra apenas eventos de pagamento
+    if (type === "payment" || type === "payment.created") {
       const paymentId = data.id;
 
-      const validated = await validatePaymentFromWebhook(paymentId);
-      if (!validated.success) return res.sendStatus(200);
+      // 2. Consulta o pagamento REAL no Mercado Pago (Segurança via API)
+      const paymentInfo = await payment.get({ id: paymentId });
 
-      const subscription = await getSubscriptionByPaymentId(paymentId);
-      if (!subscription) return res.sendStatus(200);
+      console.log(`💰 Status atual: ${paymentInfo.status}`);
 
-      await updateSubscriptionStatus(paymentId, "active");
+      if (paymentInfo.status === "approved") {
+        try {
+          // Tenta atualizar no Supabase
+          const subscription = await getSubscriptionByPaymentId(String(paymentId));
 
-      await sendPaymentConfirmation(subscription.email, {
-        name: subscription.name,
-        plan: subscription.plano,
-        amount: subscription.amount,
-        paymentId,
-        method: subscription.payment_method
-      });
+          if (subscription) {
+            await updateSubscriptionStatus(String(paymentId), "active");
+            console.log("✅ Assinatura ativada!");
 
-      console.log("[WEBHOOK] Processado com sucesso:", paymentId);
+            // Envia e-mail de confirmação
+            await sendPaymentConfirmation(subscription.email, {
+              name: subscription.name,
+              plan: subscription.plano,
+              amount: subscription.amount,
+              paymentId: String(paymentId),
+              method: subscription.payment_method
+            });
+          } else {
+            console.warn("⚠️ Pagamento aprovado, mas não encontrado no banco local.");
+          }
+        } catch (dbError) {
+          console.error("Erro ao processar webhook:", dbError);
+        }
+      }
     }
-
-    return res.sendStatus(200);
-
   } catch (error: any) {
-    console.error("[WEBHOOK ERROR]", error.message);
-    return res.sendStatus(500);
+    console.error("Erro crítico no webhook:", error.message);
   }
 };
 
 /* -----------------------------------------------------
-   VALIDAR PAGAMENTO NO MP
+   CONSULTA DE STATUS (POLLING DO FRONTEND)
 ------------------------------------------------------ */
-export const validatePaymentFromWebhook = async (paymentId: string) => {
-  try {
-    const data = await payment.get({ id: paymentId });
-
-    return {
-      success: data.status === "approved",
-      status: data.status,
-      amount: data.transaction_amount,
-      email: data.payer?.email,
-      id: data.id
-    };
-  } catch (e: any) {
-    console.error("[VALIDATE] Erro:", e.message);
-    return { success: false };
-  }
-};
-
 export const getPaymentStatus = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const paymentInfo = await payment.get({ id });
-    
-    return res.json({ 
-        id: paymentInfo.id, 
-        status: paymentInfo.status, 
-        status_detail: paymentInfo.status_detail 
+    return res.json({
+      id: paymentInfo.id,
+      status: paymentInfo.status,
+      status_detail: paymentInfo.status_detail
     });
-  } catch (error: any) {
+  } catch (error) {
     return res.status(500).json({ error: "Erro ao buscar status" });
   }
 };
