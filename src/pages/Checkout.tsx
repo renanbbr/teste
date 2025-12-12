@@ -3,7 +3,6 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Check, Lock, Loader2, Copy, AlertCircle, Tag, ShieldCheck, CreditCard, QrCode, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
-// Navigation e Footer removidos
 import { initMercadoPago, CardPayment } from "@mercadopago/sdk-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -11,9 +10,9 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 
 const PLANS = {
-  pro: { name: "PRO", price: 0.5, period: "único", description: "Plano básico com acesso a produtos por preço de custo (12 meses)" },
-  tech: { name: "TECH", price: 588, period: "único", description: "Plano intermediário com mais benefícios (12 meses)" },
-  ultra: { name: "ULTRA", price: 948, period: "único", description: "Plano completo com todos os benefícios (12 meses)" }
+  pro: { name: "PRO", price: 0.5, period: "único", description: "Plano básico" },
+  tech: { name: "TECH", price: 588, period: "único", description: "Plano intermediário" },
+  ultra: { name: "ULTRA", price: 948, period: "único", description: "Plano completo" }
 };
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001/api";
@@ -142,6 +141,7 @@ const Checkout = () => {
         const payerCpf = formData.payer?.identification?.number || customerData.cpf.replace(/\D/g, "");
         const payerEmail = formData.payer?.email || customerData.email;
 
+        // payload ajustado para salvar no banco corretamente
         const payload = {
           transaction_amount: finalPrice,
           token: formData.token,
@@ -155,8 +155,10 @@ const Checkout = () => {
             last_name: customerData.name.split(" ").slice(1).join(" ") || "Cliente",
             identification: { type: "CPF", number: payerCpf }
           },
-          name: customerData.name,
-          phone: customerData.phone
+          // Campos Extras para o Supabase
+          product_name: `Pagamento ${selectedPlan.name}`,
+          name_customer: customerData.name,
+          phone_customer: customerData.phone
         };
 
         const res = await fetch(`${API_URL}/card`, {
@@ -184,12 +186,14 @@ const Checkout = () => {
     setErrorMessage(null);
 
     try {
+      // payload corrigido para o backend aceitar o CPF
       const payload = {
-        title: `Pagamento ${selectedPlan.name}`,
+        product_name: `Pagamento ${selectedPlan.name}`,
         price: finalPrice,
         email: customerData.email,
-        identification: { type: "CPF", number: customerData.cpf.replace(/\D/g, "") },
-        name: customerData.name
+        cpf: customerData.cpf.replace(/\D/g, ""), // Envia o CPF limpo (só números)
+        name_customer: customerData.name,
+        phone_customer: customerData.phone
       };
 
       const res = await fetch(`${API_URL}/pix`, {
@@ -218,7 +222,6 @@ const Checkout = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100 text-slate-900 font-sans relative">
 
-      {/* Background Overlay */}
       <motion.div
         initial={{ opacity: 1 }}
         animate={{ opacity: 0 }}
@@ -226,16 +229,12 @@ const Checkout = () => {
         className="fixed inset-0 z-50 bg-black pointer-events-none"
       />
 
-      {/* NAV REMOVIDA AQUI */}
-
-      {/* Ajustei o padding-top (pt-32 para pt-8) para não ficar com um buraco no topo */}
       <div className="container px-4 pt-8 pb-20 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {/* Botão Voltar mantido */}
           <Button variant="ghost" onClick={() => navigate("/#pricing")} className="mb-6 text-slate-600 hover:text-slate-900 hover:bg-slate-200">
             <ArrowLeft className="w-4 h-4 mr-2" /> Voltar
           </Button>
@@ -491,7 +490,6 @@ const Checkout = () => {
           </div>
         </motion.div>
       </div>
-      {/* FOOTER REMOVIDO AQUI */}
     </div>
   );
 };
