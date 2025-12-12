@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Check, Lock, Loader2, Copy, AlertCircle, Tag, ShieldCheck, CreditCard, QrCode, Wallet } from "lucide-react";
+import { ArrowLeft, Check, Lock, Loader2, Copy, AlertCircle, Tag, ShieldCheck, CreditCard, QrCode, Wallet, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -59,16 +59,20 @@ const Checkout = () => {
     if (!selectedPlan) navigate("/#pricing");
   }, [selectedPlan, navigate]);
 
+  // --- VALIDAÇÃO DINÂMICA (CORRIGIDA) ---
   useEffect(() => {
-    const basicInfo =
+    const hasNameAndPhone =
       customerData.name.trim().length > 3 &&
-      customerData.email.includes("@") &&
       customerData.phone.length >= 14;
 
     if (paymentMethod === "pix") {
-      setIsContactValid(basicInfo && customerData.cpf.length >= 14);
+      // PIX exige tudo: Nome, Tel, Email e CPF
+      const hasEmail = customerData.email.includes("@");
+      const hasCPF = customerData.cpf.length >= 14;
+      setIsContactValid(hasNameAndPhone && hasEmail && hasCPF);
     } else {
-      setIsContactValid(basicInfo);
+      // Cartão exige só Nome e Tel (Email e CPF vêm do MP)
+      setIsContactValid(hasNameAndPhone);
     }
   }, [customerData, paymentMethod]);
 
@@ -123,15 +127,14 @@ const Checkout = () => {
   const handleCardPayment = async (formData: any) => {
     if (!selectedPlan) return;
 
-    // --- CORREÇÃO: A validação acontece aqui no clique, não visualmente ---
+    // Valida apenas Nome e Telefone
     if (!isContactValid) {
       toast({
         title: "Faltam dados pessoais",
-        description: "Por favor, preencha seu nome, email e telefone acima para concluir.",
+        description: "Por favor, preencha seu nome e telefone acima.",
         variant: "destructive",
         duration: 5000
       });
-      // Rola a tela para cima para mostrar o que falta
       window.scrollTo({ top: 100, behavior: 'smooth' });
       return;
     }
@@ -140,7 +143,9 @@ const Checkout = () => {
 
     return new Promise<void>(async (resolve, reject) => {
       try {
+        // Tenta pegar CPF e Email do formulário do MP (prioridade) ou do estado local
         const payerCpf = formData.payer?.identification?.number || customerData.cpf.replace(/\D/g, "");
+        const payerEmail = formData.payer?.email || customerData.email;
 
         const payload = {
           transaction_amount: finalPrice,
@@ -150,7 +155,7 @@ const Checkout = () => {
           payment_method_id: formData.payment_method_id,
           issuer_id: formData.issuer_id,
           payer: {
-            email: customerData.email,
+            email: payerEmail, // <--- Aqui está a correção importante
             first_name: customerData.name.split(" ")[0],
             last_name: customerData.name.split(" ").slice(1).join(" ") || "Cliente",
             identification: { type: "CPF", number: payerCpf }
@@ -242,7 +247,7 @@ const Checkout = () => {
 
             <div className="lg:col-span-2 space-y-6">
 
-              {/* ETAPA 1: ESCOLHA DO MÉTODO (COMPACTO) */}
+              {/* ETAPA 1: ESCOLHA DO MÉTODO */}
               <Card className="bg-white border border-slate-200 shadow-sm overflow-hidden">
                 <CardHeader className="bg-slate-50 border-b border-slate-100 py-3 px-6">
                   <CardTitle className="flex items-center gap-2 text-base font-bold text-slate-800">
@@ -251,7 +256,6 @@ const Checkout = () => {
                 </CardHeader>
                 <CardContent className="pt-4 pb-4 px-6">
                   <div className="grid grid-cols-2 gap-3">
-                    {/* BOTÕES COMPACTOS */}
                     <button
                       onClick={() => setPaymentMethod("card")}
                       className={`p-3 rounded-lg border flex items-center justify-center gap-3 transition-all duration-200 group ${paymentMethod === "card"
@@ -285,6 +289,8 @@ const Checkout = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4 pt-4 pb-6 px-6">
+
+                  {/* Linha 1: Nome e Telefone (Sempre visíveis) */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <Label className="text-slate-700 font-medium text-xs uppercase">Nome Completo *</Label>
@@ -296,19 +302,6 @@ const Checkout = () => {
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <Label className="text-slate-700 font-medium text-xs uppercase">E-mail *</Label>
-                      <Input
-                        value={customerData.email}
-                        type="email"
-                        onChange={e => handleInputChange("email", e.target.value)}
-                        className="bg-white border-slate-300 text-slate-900 h-10"
-                        placeholder="seu@email.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-4 items-start">
-                    <div className="space-y-1.5">
                       <Label className="text-slate-700 font-medium text-xs uppercase">Celular (WhatsApp) *</Label>
                       <Input
                         value={customerData.phone}
@@ -318,15 +311,28 @@ const Checkout = () => {
                         placeholder="(00) 00000-0000"
                       />
                     </div>
+                  </div>
 
-                    <AnimatePresence>
-                      {paymentMethod === "pix" && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="space-y-1.5 overflow-hidden"
-                        >
+                  {/* Linha 2: E-mail e CPF (Apenas PIX) */}
+                  <AnimatePresence>
+                    {paymentMethod === "pix" && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="grid md:grid-cols-2 gap-4 overflow-hidden"
+                      >
+                        <div className="space-y-1.5">
+                          <Label className="text-slate-700 font-medium text-xs uppercase">E-mail *</Label>
+                          <Input
+                            value={customerData.email}
+                            type="email"
+                            onChange={e => handleInputChange("email", e.target.value)}
+                            className="bg-white border-slate-300 text-slate-900 h-10"
+                            placeholder="seu@email.com"
+                          />
+                        </div>
+                        <div className="space-y-1.5">
                           <Label className="text-slate-700 font-medium text-xs uppercase">CPF *</Label>
                           <Input
                             value={customerData.cpf}
@@ -335,10 +341,10 @@ const Checkout = () => {
                             className="bg-white border-slate-300 text-slate-900 h-10"
                             placeholder="000.000.000-00"
                           />
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </CardContent>
               </Card>
 
@@ -358,7 +364,7 @@ const Checkout = () => {
                     </div>
                   )}
 
-                  {/* CARTÃO - SEMPRE VISÍVEL (CORREÇÃO PEDIDA) */}
+                  {/* CARTÃO */}
                   {paymentMethod === "card" && (
                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                       <div className="min-h-[400px]">
@@ -380,7 +386,7 @@ const Checkout = () => {
                       {!isContactValid ? (
                         <div className="text-center p-8 bg-slate-50 rounded-xl border border-dashed border-slate-300">
                           <p className="text-slate-500 font-medium text-sm">
-                            Preencha os dados e CPF acima para liberar o botão de gerar Pix.
+                            Preencha todos os dados acima para gerar o QR Code.
                           </p>
                         </div>
                       ) : !pixCopyPaste ? (
@@ -446,6 +452,7 @@ const Checkout = () => {
 
             </div>
 
+            {/* RESUMO */}
             <div className="lg:col-span-1">
               <Card className="bg-white border border-slate-200 shadow-sm sticky top-24">
                 <CardHeader className="bg-slate-50 border-b border-slate-100 py-4">
