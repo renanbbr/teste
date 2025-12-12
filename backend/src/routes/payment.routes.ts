@@ -19,11 +19,7 @@ router.post("/card", createCardPayment);
 // Consultar Status (Polling)
 router.get("/payment/:id", getPaymentStatus);
 
-
-// --- WEBHOOK ---
-// O Mercado Pago envia notificações para cá.
-// Nota: Removi o raw() porque já configuramos express.json() no server.ts 
-// e o seu controller espera receber um objeto JSON, não um Buffer.
+// Webhook para receber notificações de pagamento
 router.post("/webhook", webhook);
 
 // Rota de teste simples para ver se o endpoint responde
