@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Check, Lock, Loader2, Copy, AlertCircle, Tag, ShieldCheck, CreditCard, QrCode, Wallet, Mail } from "lucide-react";
+import { ArrowLeft, Check, Lock, Loader2, Copy, AlertCircle, Tag, ShieldCheck, CreditCard, QrCode, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+// Navigation e Footer removidos
 import { initMercadoPago, CardPayment } from "@mercadopago/sdk-react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
@@ -59,19 +58,17 @@ const Checkout = () => {
     if (!selectedPlan) navigate("/#pricing");
   }, [selectedPlan, navigate]);
 
-  // --- VALIDAÇÃO DINÂMICA (CORRIGIDA) ---
+  // --- VALIDAÇÃO DINÂMICA ---
   useEffect(() => {
     const hasNameAndPhone =
       customerData.name.trim().length > 3 &&
       customerData.phone.length >= 14;
 
     if (paymentMethod === "pix") {
-      // PIX exige tudo: Nome, Tel, Email e CPF
       const hasEmail = customerData.email.includes("@");
       const hasCPF = customerData.cpf.length >= 14;
       setIsContactValid(hasNameAndPhone && hasEmail && hasCPF);
     } else {
-      // Cartão exige só Nome e Tel (Email e CPF vêm do MP)
       setIsContactValid(hasNameAndPhone);
     }
   }, [customerData, paymentMethod]);
@@ -127,7 +124,6 @@ const Checkout = () => {
   const handleCardPayment = async (formData: any) => {
     if (!selectedPlan) return;
 
-    // Valida apenas Nome e Telefone
     if (!isContactValid) {
       toast({
         title: "Faltam dados pessoais",
@@ -143,7 +139,6 @@ const Checkout = () => {
 
     return new Promise<void>(async (resolve, reject) => {
       try {
-        // Tenta pegar CPF e Email do formulário do MP (prioridade) ou do estado local
         const payerCpf = formData.payer?.identification?.number || customerData.cpf.replace(/\D/g, "");
         const payerEmail = formData.payer?.email || customerData.email;
 
@@ -155,7 +150,7 @@ const Checkout = () => {
           payment_method_id: formData.payment_method_id,
           issuer_id: formData.issuer_id,
           payer: {
-            email: payerEmail, // <--- Aqui está a correção importante
+            email: payerEmail,
             first_name: customerData.name.split(" ")[0],
             last_name: customerData.name.split(" ").slice(1).join(" ") || "Cliente",
             identification: { type: "CPF", number: payerCpf }
@@ -223,6 +218,7 @@ const Checkout = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100 text-slate-900 font-sans relative">
 
+      {/* Background Overlay */}
       <motion.div
         initial={{ opacity: 1 }}
         animate={{ opacity: 0 }}
@@ -230,15 +226,16 @@ const Checkout = () => {
         className="fixed inset-0 z-50 bg-black pointer-events-none"
       />
 
-      <Navigation />
+      {/* NAV REMOVIDA AQUI */}
 
-      <div className="container px-4 pt-32 pb-20 max-w-6xl mx-auto">
+      {/* Ajustei o padding-top (pt-32 para pt-8) para não ficar com um buraco no topo */}
+      <div className="container px-4 pt-8 pb-20 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-
+          {/* Botão Voltar mantido */}
           <Button variant="ghost" onClick={() => navigate("/#pricing")} className="mb-6 text-slate-600 hover:text-slate-900 hover:bg-slate-200">
             <ArrowLeft className="w-4 h-4 mr-2" /> Voltar
           </Button>
@@ -494,7 +491,7 @@ const Checkout = () => {
           </div>
         </motion.div>
       </div>
-      <Footer />
+      {/* FOOTER REMOVIDO AQUI */}
     </div>
   );
 };
