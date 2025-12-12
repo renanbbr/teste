@@ -115,20 +115,21 @@ const Checkout = () => {
   // Valor final com desconto
   const finalPrice = selectedPlan ? (selectedPlan.price - discount) : 0;
 
-  // Processamento Cartão
+  // Processamento Cartão CORRIGIDO
   const handleCardPayment = async (formData: any) => {
-    console.log("Card token:", formData.token);
+    console.log("Dados do pagamento:", formData); // Debug
     if (!selectedPlan) return;
     setErrorMessage(null);
 
     return new Promise<void>(async (resolve, reject) => {
       try {
-        // Criar pagamento único no backend
         const payload = {
           transaction_amount: finalPrice,
           token: formData.token,
           description: `Pagamento ${selectedPlan.name}`,
-          installments: 1,
+          installments: formData.installments, // <--- CORREÇÃO AQUI (Usa o que o cliente escolheu)
+          payment_method_id: formData.payment_method_id, // Importante enviar a bandeira
+          issuer_id: formData.issuer_id, // Importante para parcelamento
           payer: {
             email: customerData.email,
             first_name: customerData.name.split(" ")[0],
@@ -138,9 +139,9 @@ const Checkout = () => {
               number: customerData.cpf.replace(/\D/g, "")
             }
           },
+          // Dados extras para seu controle
           name: customerData.name,
-          plan_name: selectedPlan.name,
-          email: customerData.email
+          plan_name: selectedPlan.name
         };
 
         const res = await fetch(`${API_URL}/card`, {
@@ -156,6 +157,7 @@ const Checkout = () => {
         navigate("/checkout/success");
         resolve();
       } catch (error: any) {
+        console.error(error);
         setErrorMessage(error.message || "Erro ao processar pagamento");
         reject();
       }
