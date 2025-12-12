@@ -242,3 +242,18 @@ export const validatePaymentFromWebhook = async (paymentId: string) => {
     return { success: false };
   }
 };
+
+export const getPaymentStatus = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const paymentInfo = await payment.get({ id });
+    
+    return res.json({ 
+        id: paymentInfo.id, 
+        status: paymentInfo.status, 
+        status_detail: paymentInfo.status_detail 
+    });
+  } catch (error: any) {
+    return res.status(500).json({ error: "Erro ao buscar status" });
+  }
+};
