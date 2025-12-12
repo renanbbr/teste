@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 
 const PLANS = {
-  pro: { name: "PRO", price: 348, period: "único", description: "Plano básico com acesso a produtos por preço de custo (12 meses)" },
+  pro: { name: "PRO", price: 0.5, period: "único", description: "Plano básico com acesso a produtos por preço de custo (12 meses)" },
   tech: { name: "TECH", price: 588, period: "único", description: "Plano intermediário com mais benefícios (12 meses)" },
   ultra: { name: "ULTRA", price: 948, period: "único", description: "Plano completo com todos os benefícios (12 meses)" }
 };
