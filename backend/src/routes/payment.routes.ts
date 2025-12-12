@@ -1,29 +1,32 @@
-import { Router, raw } from "express";
-import { createPIX, createCardPayment, getPaymentStatus, webhook } from "../controllers/payment.controller";
-import { createSubscription, getSubscription, cancelSubscription, listSubscriptions, debugSubscription } from "../controllers/subscription.controller";
-import { createPlan } from "../controllers/plan.controller";
+import { Router } from "express";
+import {
+  createPIX,
+  createCardPayment,
+  getPaymentStatus,
+  webhook
+} from "../controllers/payment.controller";
 
 const router = Router();
 
-// PAGAMENTOS ÚNICOS
+// --- PAGAMENTOS ÚNICOS ---
+
+// Criar Pix
 router.post("/pix", createPIX);
+
+// Criar Pagamento Cartão
 router.post("/card", createCardPayment);
+
+// Consultar Status (Polling)
 router.get("/payment/:id", getPaymentStatus);
 
-// ASSINATURAS
-router.post("/subscription", createSubscription);
-router.post("/debug/subscription", debugSubscription);
-router.get("/subscription", listSubscriptions);
-router.get("/subscription/:id", getSubscription);
-router.delete("/subscription/:id", cancelSubscription);
 
-// PLANOS
-router.post("/plan", createPlan);
+// --- WEBHOOK ---
+// O Mercado Pago envia notificações para cá.
+// Nota: Removi o raw() porque já configuramos express.json() no server.ts 
+// e o seu controller espera receber um objeto JSON, não um Buffer.
+router.post("/webhook", webhook);
 
-// WEBHOOK (Mercado Pago notifica mudanças de status)
-// URL para registrar no Mercado Pago: https://BACKEND.com/api/webhook
-// Usar parser raw apenas para esta rota para validar assinatura HMAC
-router.post("/webhook", raw({ type: "application/json" }), webhook);
+// Rota de teste simples para ver se o endpoint responde
 router.get("/webhook/test", (req, res) => {
   res.json({ message: "Webhook endpoint está funcionando" });
 });

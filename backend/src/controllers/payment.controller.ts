@@ -2,12 +2,13 @@ import { Request, Response } from "express";
 import { payment } from "../config/mp";
 import { PaymentCreateRequest } from "mercadopago/dist/clients/payment/create/types";
 
-// Importações dos seus serviços
+// ✅ IMPORTAÇÕES CORRIGIDAS (Vendas em vez de Assinaturas)
 import {
-  getSubscriptionByPaymentId,
-  updateSubscriptionStatus,
-  createSubscriptionRecord
+  createSaleRecord,
+  getSaleByPaymentId,
+  updateSaleStatus
 } from "../services/supabase.service";
+
 import {
   sendPaymentConfirmation
 } from "../services/email.service";
@@ -23,23 +24,26 @@ export const createCardPayment = async (req: Request, res: Response) => {
       description,
       installments,
       payment_method_id,
-      payer,
       issuer_id,
-      name,
-      plan_name,
-      email
+      payer,
+      // Campos customizados do frontend
+      product_name,
+      name_customer, // Nome do cliente
+      phone_customer // Telefone
     } = req.body;
 
     // Validação básica
-    if (!transaction_amount || !token || !payer?.email)
+    if (!transaction_amount || !token || !payer?.email) {
       return res.status(400).json({ error: "Dados obrigatórios faltando" });
+    }
 
-    const customerEmail = email || payer.email;
+    const customerEmail = payer.email;
 
+    // Objeto para o Mercado Pago
     const paymentData: PaymentCreateRequest = {
       transaction_amount: Number(transaction_amount),
       token,
-      description: description || "Compra SealClub",
+      description: description || product_name || "Compra",
       installments: Number(installments) || 1,
       payment_method_id,
       issuer_id,
@@ -52,37 +56,45 @@ export const createCardPayment = async (req: Request, res: Response) => {
       }
     };
 
+    // 1. Cria pagamento no Mercado Pago
     const result = await payment.create({
       body: paymentData,
       requestOptions: { idempotencyKey: `card-${Date.now()}-${token.slice(0, 10)}` }
     });
 
-    console.log("[PAYMENT CARD] Sucesso:", result.id);
+    console.log("[PAYMENT CARD] Processado no MP:", result.id, result.status);
 
-    if (result.status === "approved") {
+    // 2. Se aprovado (ou in_process), salva no Banco
+    if (result.id) {
       try {
-        // Tenta salvar no Supabase
-        await createSubscriptionRecord({
-          name: name || "Cliente",
+        await createSaleRecord({
+          name: name_customer || "Cliente Cartão",
           email: customerEmail,
-          telefone: "",
+          phone: phone_customer || "",
           cpf: payer.identification?.number || "",
-          plano: plan_name || "SealClub",
-          payment_id: String(result.id),
-          payment_method: "card",
+          productName: product_name || description || "Produto",
+          paymentId: String(result.id),
+          paymentMethod: "card",
           amount: Number(transaction_amount)
         });
 
-        // Tenta enviar email
-        await sendPaymentConfirmation(customerEmail, {
-          name: name || "Cliente",
-          plan: plan_name || "SealClub",
-          amount: Number(transaction_amount),
-          paymentId: String(result.id),
-          method: "card"
-        });
+        // Se já aprovou na hora (sem pendência de análise), envia email
+        if (result.status === 'approved') {
+          // Atualiza status no banco pra garantir (embora createSaleRecord já crie pending por padrão)
+          await updateSaleStatus(String(result.id), "approved");
+
+          await sendPaymentConfirmation(customerEmail, {
+            name: name_customer || "Cliente",
+            plan: product_name || "Produto",
+            amount: Number(transaction_amount),
+            paymentId: String(result.id),
+            method: "card"
+          });
+        }
+
       } catch (e: any) {
-        console.warn("[SUPABASE/EMAIL] Erro pós-venda:", e.message);
+        console.warn("[DB ERROR] Venda criada no MP mas falhou ao salvar no banco:", e.message);
+        // Não retorna erro 400 aqui para não confundir o front, pois o pagamento já foi feito.
       }
     }
 
@@ -105,25 +117,52 @@ export const createCardPayment = async (req: Request, res: Response) => {
 ------------------------------------------------------ */
 export const createPIX = async (req: Request, res: Response) => {
   try {
-    const { title, price, email, identification } = req.body;
+    const {
+      product_name,
+      price,
+      email,
+      cpf,
+      name_customer, // Adicionei para salvar no banco
+      phone_customer
+    } = req.body;
 
-    if (!email || !identification?.number)
+    if (!email || !cpf) {
       return res.status(400).json({ error: "Email e CPF são obrigatórios" });
+    }
 
+    // 1. Cria PIX no Mercado Pago
     const result = await payment.create({
       body: {
         transaction_amount: Number(price),
-        description: title || "Pagamento SealClub",
+        description: product_name || "Pagamento PIX",
         payment_method_id: "pix",
         payer: {
           email,
-          identification: { type: "CPF", number: identification.number }
+          identification: { type: "CPF", number: cpf }
         }
       },
       requestOptions: { idempotencyKey: `pix-${Date.now()}-${email}` }
     });
 
     const qr = result.point_of_interaction?.transaction_data;
+
+    // 2. CRUCIAL: Salvar a venda como "pending" no banco AGORA.
+    // Se não salvar agora, quando o webhook chegar, ele não vai achar a venda.
+    try {
+      await createSaleRecord({
+        name: name_customer || "Cliente PIX",
+        email: email,
+        phone: phone_customer || "",
+        cpf: cpf,
+        productName: product_name || "Produto",
+        paymentId: String(result.id),
+        paymentMethod: "pix",
+        amount: Number(price)
+      });
+      console.log("[DB] Pré-venda PIX registrada com sucesso.");
+    } catch (dbError: any) {
+      console.error("[DB ERROR] Erro ao salvar pré-venda PIX:", dbError.message);
+    }
 
     return res.json({
       id: result.id,
@@ -139,62 +178,75 @@ export const createPIX = async (req: Request, res: Response) => {
 };
 
 /* -----------------------------------------------------
-   WEBHOOK (SEM VALIDAÇÃO DE ASSINATURA)
+   WEBHOOK (Atualiza Venda Única)
 ------------------------------------------------------ */
 export const webhook = async (req: Request, res: Response) => {
-  // 1. Responde OK imediatamente para o MP não ficar tentando de novo
+  // Responde rápido para o MP não ficar reenviando (timeout)
   res.sendStatus(200);
 
   try {
-    const { type, data } = req.body;
-    console.log(`🔔 Webhook recebido: ${type} - ID: ${data?.id}`);
+    const { type, data } = req.body; // Se usou express.json() no server.ts, isso funciona direto.
 
-    // Filtra apenas eventos de pagamento
+    // Log básico para debug
     if (type === "payment" || type === "payment.created") {
+      console.log(`🔔 Webhook: Pagamento ${data?.id}`);
+    }
+
+    if (type === "payment") {
       const paymentId = data.id;
 
-      // 2. Consulta o pagamento REAL no Mercado Pago (Segurança via API)
+      // 1. Consulta o status real na API do MP (Segurança)
       const paymentInfo = await payment.get({ id: paymentId });
+      const currentStatus = paymentInfo.status;
 
-      console.log(`💰 Status atual: ${paymentInfo.status}`);
+      console.log(`💰 Check MP ID ${paymentId}: Status ${currentStatus}`);
 
-      if (paymentInfo.status === "approved") {
-        try {
-          // Tenta atualizar no Supabase
-          const subscription = await getSubscriptionByPaymentId(String(paymentId));
+      // 2. Se aprovado, atualiza o banco
+      if (currentStatus === "approved") {
+        const sale = await getSaleByPaymentId(String(paymentId));
 
-          if (subscription) {
-            await updateSubscriptionStatus(String(paymentId), "active");
-            console.log("✅ Assinatura ativada!");
+        if (sale) {
+          // Evita reprocessar se já estiver approved
+          if (sale.status !== 'approved') {
+            await updateSaleStatus(String(paymentId), "approved");
+            console.log("✅ Venda aprovada e atualizada no banco!");
 
-            // Envia e-mail de confirmação
-            await sendPaymentConfirmation(subscription.email, {
-              name: subscription.name,
-              plan: subscription.plano,
-              amount: subscription.amount,
+            // Envia email
+            await sendPaymentConfirmation(sale.customer_email, {
+              name: sale.customer_name,
+              plan: sale.product_name, // Reutilizando a prop 'plan' para nome do produto
+              amount: Number(sale.amount),
               paymentId: String(paymentId),
-              method: subscription.payment_method
+              method: sale.payment_method || "pix"
             });
           } else {
-            console.warn("⚠️ Pagamento aprovado, mas não encontrado no banco local.");
+            console.log("ℹ️ Venda já estava aprovada.");
           }
-        } catch (dbError) {
-          console.error("Erro ao processar webhook:", dbError);
+        } else {
+          // Isso acontece se o passo 2 do createPIX falhou ou se é um pagamento antigo
+          console.warn(`⚠️ Venda não encontrada no banco para o ID ${paymentId}. Verifique se createSaleRecord foi chamado.`);
         }
+      }
+      // Opcional: Tratar 'rejected' ou 'refunded'
+      else if (currentStatus === "rejected" || currentStatus === "cancelled") {
+        await updateSaleStatus(String(paymentId), "rejected");
       }
     }
   } catch (error: any) {
-    console.error("Erro crítico no webhook:", error.message);
+    console.error("❌ Erro crítico no processamento do webhook:", error.message);
   }
 };
 
 /* -----------------------------------------------------
-   CONSULTA DE STATUS (POLLING DO FRONTEND)
+   CONSULTA DE STATUS
 ------------------------------------------------------ */
 export const getPaymentStatus = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const paymentInfo = await payment.get({ id });
+
+    // Opcional: Sincronizar banco se o status diferir
+
     return res.json({
       id: paymentInfo.id,
       status: paymentInfo.status,
