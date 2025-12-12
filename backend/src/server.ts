@@ -1,40 +1,18 @@
-import express, { raw } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import paymentRoutes from "./routes/payment.routes";
 import cors from "cors";
 import dotenv from "dotenv";
 import { testConnection as testSupabase } from "./services/supabase.service";
 import { testEmailConnection } from "./services/email.service";
-import fs from "fs";
-import { webhook } from "./controllers/payment.controller"; // importa direto
+import { webhook } from "./controllers/payment.controller";
 
 dotenv.config();
 
-// Logging to file
-const logFile = "/tmp/backend.log";
-const originalConsoleLog = console.log;
-const originalConsoleError = console.error;
-
-console.log = (...args: any[]) => {
-  const message = `[${new Date().toISOString()}] ${args.join(" ")}\n`;
-  try {
-    fs.appendFileSync(logFile, message);
-  } catch (e) {}
-  originalConsoleLog(...args);
-};
-
-console.error = (...args: any[]) => {
-  const message = `[${new Date().toISOString()}] ERROR: ${args.join(" ")}\n`;
-  try {
-    fs.appendFileSync(logFile, message);
-  } catch (e) {}
-  originalConsoleError(...args);
-};
-
-console.log("MP_ACCESS_TOKEN loaded:", process.env.MP_ACCESS_TOKEN ? "YES" : "NO");
-
 const app = express();
+const PORT = parseInt(process.env.PORT || "3001", 10);
+const HOST = process.env.HOST || "0.0.0.0"; // Importante para deploy
 
-// CORS
+// Configuração de CORS
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:8080").split(",");
 app.use(
   cors({
@@ -43,54 +21,43 @@ app.use(
   })
 );
 
-/*  
-===========================================================
-🚨 WEBHOOK DO MERCADO PAGO
-Precisa vir ANTES do express.json()!
-===========================================================
-*/
-app.post("/api/webhook", raw({ type: "application/json" }), webhook);
-
-// Healthcheck
-app.get("/health", (req, res) => {
-  res.json({ status: "ok", timestamp: new Date().toISOString() });
-});
-
-/*
-===========================================================
-Agora sim ativamos o express.json()
-===========================================================
-*/
+// Habilitar JSON para todas as rotas (incluindo Webhook)
 app.use(express.json());
 
-// Outras rotas
+// --- Rotas ---
+
+// Healthcheck (Para saber se o server está de pé)
+app.get("/health", (req, res) => {
+  res.json({ status: "ok", type: "one-time-payment", timestamp: new Date().toISOString() });
+});
+
+// Rota do Webhook (Mercado Pago envia notificações aqui)
+app.post("/api/webhook", webhook);
+
+// Rotas da API de Pagamento (Criar Pix, Cartão, etc)
 app.use("/api", paymentRoutes);
 
-// Error handler
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  console.error("[ERROR]", err.message, err.stack);
+// Middleware de Tratamento de Erro
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  console.error("[SERVER ERROR]", err.message);
   res.status(err.status || 500).json({
-    error: process.env.NODE_ENV === "production" ? "Erro interno do servidor" : err.message,
+    error: process.env.NODE_ENV === "production" ? "Erro interno" : err.message,
   });
 });
 
-const PORT = parseInt(process.env.PORT || "3001", 10);
-const HOST = process.env.HOST || "0.0.0.0"; // IMPORTANTE para Railway
-
+// Inicialização
 app.listen(PORT, HOST, async () => {
-  console.log(`[SERVER] Backend rodando em http://${HOST}:${PORT}`);
-  console.log(`[ENV] NODE_ENV=${process.env.NODE_ENV || "development"}`);
+  console.log(`\n[SERVER] 🚀 Backend rodando em http://${HOST}:${PORT}`);
 
-  console.log("\n[STARTUP] Verificando dependências...");
+  console.log("[STARTUP] Testando conexões...");
+  const [dbOk, emailOk] = await Promise.all([
+    testSupabase(),
+    testEmailConnection()
+  ]);
 
-  const supabaseOk = await testSupabase();
-  const emailOk = await testEmailConnection();
-
-  if (supabaseOk && emailOk) {
-    console.log("[STARTUP] ✅ Todas as dependências funcionando!\n");
+  if (dbOk && emailOk) {
+    console.log("[STARTUP] ✅ Banco de dados e Email prontos.\n");
   } else {
-    console.warn(
-      "[STARTUP] ⚠️  Algumas dependências podem não estar configuradas corretamente\n"
-    );
+    console.warn("[STARTUP] ⚠️  Algum serviço não conectou corretamente. Verifique logs acima.\n");
   }
 });

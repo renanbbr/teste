@@ -12,60 +12,58 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// Tipo para assinatura no banco
-export interface Subscription {
+// Interface para Venda Única (não tem renovação)
+export interface Sale {
   id: string;
   created_at: string;
-  name: string;
-  telefone: string;
-  cpf: string;
-  email: string;
-  plano: string;
-  status: "pending" | "active" | "cancelled" | "expired";
-  payment_id?: string;
-  payment_method?: "card" | "pix";
-  amount?: number;
-  renewal_date?: string;
-  cancelled_at?: string;
+  customer_name: string;
+  customer_email: string;
+  customer_phone: string;
+  customer_cpf: string;
+  product_name: string; // Nome do produto comprado
+  amount: number;
+  payment_id: string;   // ID do Mercado Pago
+  payment_method: "card" | "pix";
+  status: "pending" | "approved" | "rejected" | "refunded";
 }
 
 /**
- * Criar uma nova assinatura no banco de dados
+ * Cria o registro da venda (Geralmente com status 'pending' aguardando pagamento)
  */
-export const createSubscriptionRecord = async (data: {
+export const createSaleRecord = async (data: {
   name: string;
   email: string;
-  telefone: string;
+  phone: string;
   cpf: string;
-  plano: string;
-  payment_id: string;
-  payment_method: "card" | "pix";
+  productName: string;
   amount: number;
+  paymentId: string;
+  paymentMethod: "card" | "pix";
 }) => {
   try {
-    const { data: subscription, error } = await supabase
-      .from("assinaturas")
+    const { data: sale, error } = await supabase
+      .from("vendas") // Tabela alterada para 'vendas'
       .insert([
         {
-          name: data.name,
-          email: data.email,
-          telefone: data.telefone,
-          cpf: data.cpf,
-          plano: data.plano,
-          status: "approved", // Pagamento aprovado
-          payment_id: data.payment_id,
-          payment_method: data.payment_method,
-          amount: data.amount
+          customer_name: data.name,
+          customer_email: data.email,
+          customer_phone: data.phone,
+          customer_cpf: data.cpf,
+          product_name: data.productName,
+          amount: data.amount,
+          payment_id: data.paymentId,
+          payment_method: data.paymentMethod,
+          status: "pending", // Começa como pendente até o Webhook confirmar
         },
       ])
       .select();
 
     if (error) {
-      throw new Error(`Erro ao criar assinatura: ${error.message}`);
+      throw new Error(`Erro ao criar venda: ${error.message}`);
     }
 
-    console.log("[DB] ✅ Assinatura criada:", subscription?.[0]?.id);
-    return subscription?.[0] as Subscription;
+    console.log("[DB] ✅ Venda registrada (Pendente):", sale?.[0]?.id);
+    return sale?.[0] as Sale;
   } catch (error: any) {
     console.error("[DB ERROR]", error.message);
     throw error;
@@ -73,25 +71,30 @@ export const createSubscriptionRecord = async (data: {
 };
 
 /**
- * Atualizar status de uma assinatura (ex: quando webhook confirma pagamento)
+ * Atualiza o status da venda (Chamado pelo Webhook quando o pagamento cai)
  */
-export const updateSubscriptionStatus = async (
+export const updateSaleStatus = async (
   paymentId: string,
-  status: "active" | "cancelled" | "expired"
+  status: "approved" | "rejected" | "refunded" | "pending"
 ) => {
   try {
     const { data, error } = await supabase
-      .from("assinaturas")
+      .from("vendas")
       .update({ status })
       .eq("payment_id", paymentId)
       .select();
 
     if (error) {
-      throw new Error(`Erro ao atualizar assinatura: ${error.message}`);
+      throw new Error(`Erro ao atualizar venda: ${error.message}`);
     }
 
-    console.log("[DB] ✅ Assinatura atualizada:", data?.[0]?.id, "→", status);
-    return data?.[0] as Subscription;
+    if (data && data.length > 0) {
+      console.log("[DB] 🔄 Status da venda atualizado:", data[0].id, "→", status);
+      return data[0] as Sale;
+    }
+
+    console.warn("[DB] ⚠️ Nenhuma venda encontrada para atualizar com ID:", paymentId);
+    return null;
   } catch (error: any) {
     console.error("[DB ERROR]", error.message);
     throw error;
@@ -99,45 +102,21 @@ export const updateSubscriptionStatus = async (
 };
 
 /**
- * Buscar assinatura por email
+ * Busca venda pelo ID do Pagamento (Útil para o Webhook)
  */
-export const getSubscriptionByEmail = async (email: string) => {
+export const getSaleByPaymentId = async (paymentId: string) => {
   try {
     const { data, error } = await supabase
-      .from("assinaturas")
-      .select()
-      .eq("email", email)
-      .order("created_at", { ascending: false })
-      .limit(1);
-
-    if (error) {
-      throw new Error(`Erro ao buscar assinatura: ${error.message}`);
-    }
-
-    return data?.[0] as Subscription | null;
-  } catch (error: any) {
-    console.error("[DB ERROR]", error.message);
-    return null;
-  }
-};
-
-/**
- * Buscar assinatura por payment_id (útil para webhook)
- */
-export const getSubscriptionByPaymentId = async (paymentId: string) => {
-  try {
-    const { data, error } = await supabase
-      .from("assinaturas")
+      .from("vendas")
       .select()
       .eq("payment_id", paymentId)
       .single();
 
     if (error) {
-      console.warn("[DB] Assinatura não encontrada para payment_id:", paymentId);
       return null;
     }
 
-    return data as Subscription;
+    return data as Sale;
   } catch (error: any) {
     console.error("[DB ERROR]", error.message);
     return null;
@@ -145,69 +124,20 @@ export const getSubscriptionByPaymentId = async (paymentId: string) => {
 };
 
 /**
- * Listar todas as assinaturas ativas
- */
-export const listActiveSubscriptions = async () => {
-  try {
-    const { data, error } = await supabase
-      .from("assinaturas")
-      .select()
-      .eq("status", "active")
-      .order("created_at", { ascending: false });
-
-    if (error) {
-      throw new Error(`Erro ao listar assinaturas: ${error.message}`);
-    }
-
-    return data as Subscription[];
-  } catch (error: any) {
-    console.error("[DB ERROR]", error.message);
-    return [];
-  }
-};
-
-/**
- * Cancelar uma assinatura
- */
-export const cancelSubscriptionRecord = async (paymentId: string) => {
-  try {
-    const { data, error } = await supabase
-      .from("assinaturas")
-      .update({
-        status: "cancelled",
-        cancelled_at: new Date().toISOString(),
-      })
-      .eq("payment_id", paymentId)
-      .select();
-
-    if (error) {
-      throw new Error(`Erro ao cancelar assinatura: ${error.message}`);
-    }
-
-    console.log("[DB] ✅ Assinatura cancelada:", data?.[0]?.id);
-    return data?.[0] as Subscription;
-  } catch (error: any) {
-    console.error("[DB ERROR]", error.message);
-    throw error;
-  }
-};
-
-/**
- * Teste de conexão com Supabase
+ * Teste de conexão
  */
 export const testConnection = async () => {
   try {
-    const { data, error } = await supabase.from("assinaturas").select("id").limit(1);
-
+    // Tenta buscar 1 registro qualquer só para ver se conecta
+    const { error } = await supabase.from("vendas").select("id").limit(1);
     if (error) {
-      console.error("[SUPABASE] ❌ Erro de conexão:", error.message);
+      console.error("[SUPABASE] ❌ Erro de conexão (verifique se a tabela 'vendas' existe):", error.message);
       return false;
     }
-
-    console.log("[SUPABASE] ✅ Conexão estabelecida com sucesso!");
+    console.log("[SUPABASE] ✅ Conexão OK!");
     return true;
   } catch (error: any) {
-    console.error("[SUPABASE] ❌ Erro:", error.message);
+    console.error("[SUPABASE] ❌ Erro crítico:", error.message);
     return false;
   }
 };
