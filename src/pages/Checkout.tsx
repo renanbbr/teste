@@ -30,7 +30,7 @@ const Checkout = () => {
   const planKey = searchParams.get("plan") as keyof typeof PLANS;
   const selectedPlan = planKey && PLANS[planKey] ? PLANS[planKey] : null;
 
-  // 1. ESTADO LIMPO (Apenas dados essenciais)
+  // 1. ESTADO LIMPO
   const [customerData, setCustomerData] = useState({
     name: "",
     email: "",
@@ -46,9 +46,12 @@ const Checkout = () => {
   const [pixCopyPaste, setPixCopyPaste] = useState<string | null>(null);
   const [isPixLoading, setIsPixLoading] = useState(false);
   
+  // --- CORREÇÃO 1: O useState deve ficar AQUI DENTRO ---
+  const [paymentId, setPaymentId] = useState<number | null>(null);
+
   // Estados do Cupom
   const [couponCode, setCouponCode] = useState("");
-  const [discount, setDiscount] = useState(0); // Valor do desconto em R$
+  const [discount, setDiscount] = useState(0); 
   const [isCouponApplied, setIsCouponApplied] = useState(false);
   
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -57,7 +60,7 @@ const Checkout = () => {
     if (!selectedPlan) navigate("/#pricing");
   }, [selectedPlan, navigate]);
 
-  // 2. VALIDAÇÃO SIMPLIFICADA (Nome, Email, Phone, CPF)
+  // Validação
   useEffect(() => {
     const requiredFields = [
       customerData.name, 
@@ -73,35 +76,54 @@ const Checkout = () => {
     if (paymentMethod !== "pix") {
       setPixQrCodeBase64(null);
       setPixCopyPaste(null);
+      setPaymentId(null); // Limpa ID se trocar de aba
     }
   }, [paymentMethod]);
 
-  // Formatações (CPF e Telefone)
+  // --- CORREÇÃO 2: O "Espião" (Polling) ---
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    // Se tem ID de pagamento e estamos na aba PIX, começa a verificar
+    if (paymentMethod === "pix" && paymentId && !isPixLoading) {
+        interval = setInterval(async () => {
+            try {
+                const res = await fetch(`${API_URL}/payment/${paymentId}`);
+                const data = await res.json();
+                
+                if (data.status === "approved") {
+                    clearInterval(interval);
+                    toast({ title: "Pagamento confirmado!", className: "bg-green-600 text-white" });
+                    navigate("/checkout/success");
+                }
+            } catch (error) {
+                console.error("Aguardando confirmação...");
+            }
+        }, 3000); // Verifica a cada 3 segundos
+    }
+
+    return () => clearInterval(interval);
+  }, [paymentMethod, paymentId, isPixLoading, navigate, toast]);
+
+
+  // Formatações
   const formatCPF = (value: string) => {
-    return value
-      .replace(/\D/g, "")
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d{1,2})/, "$1-$2")
-      .replace(/(-\d{2})\d+?$/, "$1");
+    return value.replace(/\D/g, "").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{1,2})/, "$1-$2").replace(/(-\d{2})\d+?$/, "$1");
   };
 
   const formatPhone = (value: string) => {
     const numbers = value.replace(/\D/g, "");
-    return numbers
-      .replace(/(\d{2})(\d)/, "($1) $2")
-      .replace(/(\d{5})(\d)/, "$1-$2")
-      .replace(/(-\d{4})\d+?$/, "$1");
+    return numbers.replace(/(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1-$2").replace(/(-\d{4})\d+?$/, "$1");
   };
 
   const handleInputChange = (field: string, value: string) => {
     setCustomerData(prev => ({ ...prev, [field]: value }));
   };
 
-  // Lógica do Cupom (Front-end mock)
+  // Cupom
   const handleApplyCoupon = () => {
     if (couponCode.toUpperCase() === "SEAL10") {
-        const discountValue = selectedPlan ? selectedPlan.price * 0.10 : 0; // 10%
+        const discountValue = selectedPlan ? selectedPlan.price * 0.10 : 0; 
         setDiscount(discountValue);
         setIsCouponApplied(true);
         toast({ title: "Cupom aplicado!", description: "Desconto de 10% concedido." });
@@ -112,12 +134,10 @@ const Checkout = () => {
     }
   };
 
-  // Valor final com desconto
   const finalPrice = selectedPlan ? (selectedPlan.price - discount) : 0;
 
-  // Processamento Cartão CORRIGIDO
+  // Processamento Cartão
   const handleCardPayment = async (formData: any) => {
-    console.log("Dados do pagamento:", formData); // Debug
     if (!selectedPlan) return;
     setErrorMessage(null);
 
@@ -127,9 +147,9 @@ const Checkout = () => {
           transaction_amount: finalPrice,
           token: formData.token,
           description: `Pagamento ${selectedPlan.name}`,
-          installments: formData.installments, // <--- CORREÇÃO AQUI (Usa o que o cliente escolheu)
-          payment_method_id: formData.payment_method_id, // Importante enviar a bandeira
-          issuer_id: formData.issuer_id, // Importante para parcelamento
+          installments: formData.installments,
+          payment_method_id: formData.payment_method_id,
+          issuer_id: formData.issuer_id,
           payer: {
             email: customerData.email,
             first_name: customerData.name.split(" ")[0],
@@ -139,7 +159,6 @@ const Checkout = () => {
               number: customerData.cpf.replace(/\D/g, "")
             }
           },
-          // Dados extras para seu controle
           name: customerData.name,
           plan_name: selectedPlan.name
         };
@@ -157,7 +176,6 @@ const Checkout = () => {
         navigate("/checkout/success");
         resolve();
       } catch (error: any) {
-        console.error(error);
         setErrorMessage(error.message || "Erro ao processar pagamento");
         reject();
       }
@@ -173,7 +191,7 @@ const Checkout = () => {
     try {
         const payload = {
             title: `Pagamento ${selectedPlan.name}`,
-            price: finalPrice, // Valor com desconto
+            price: finalPrice, 
             email: customerData.email,
             identification: { type: "CPF", number: customerData.cpf.replace(/\D/g, "") }
         };
@@ -190,6 +208,10 @@ const Checkout = () => {
 
         setPixQrCodeBase64(data.qr_code_base64);
         setPixCopyPaste(data.qr_code);
+        
+        // --- CORREÇÃO 3: Salvar o ID aqui para o polling monitorar ---
+        setPaymentId(data.id);
+        
         toast({ title: "QR Code gerado com sucesso!" });
 
     } catch (error: any) {
@@ -213,14 +235,12 @@ const Checkout = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-6">
               
-              {/* 1. DADOS PESSOAIS (Limpo e Organizado) */}
               <Card className="bg-[#0A0A0A] border-white/10">
                   <CardHeader>
                     <CardTitle>Dados Pessoais</CardTitle>
                     <CardDescription>Informe seus dados para contato e nota fiscal</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                      {/* Linha 1: Nome e Email */}
                       <div className="grid md:grid-cols-2 gap-4">
                           <div className="space-y-2">
                               <Label>Nome Completo / Razão Social *</Label>
@@ -242,12 +262,10 @@ const Checkout = () => {
                           </div>
                       </div>
 
-                      {/* Linha 2: Celular e CPF */}
                       <div className="grid md:grid-cols-2 gap-4">
                           <div className="space-y-2">
                               <Label>Celular com DDD *</Label>
                               <div className="relative">
-                                {/* Simulando prefixo visualmente */}
                                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">🇧🇷 +55</span>
                                 <Input 
                                     value={customerData.phone} 
@@ -272,7 +290,6 @@ const Checkout = () => {
                   </CardContent>
               </Card>
 
-              {/* 2. CUPOM DE DESCONTO (Novo!) */}
               <Card className="bg-[#0A0A0A] border-white/10">
                   <CardContent className="p-6">
                     <div className="flex flex-col gap-2">
@@ -304,7 +321,6 @@ const Checkout = () => {
                   </CardContent>
               </Card>
 
-              {/* 3. PAGAMENTO */}
               <Card className="bg-[#0A0A0A] border-white/10">
                   <CardHeader><CardTitle>Pagamento</CardTitle></CardHeader>
                   <CardContent className="space-y-6">
@@ -376,7 +392,6 @@ const Checkout = () => {
               </Card>
             </div>
 
-            {/* RESUMO (COLUNA DIREITA) */}
             <div className="lg:col-span-1">
                 <Card className="bg-[#0A0A0A] border-white/10 sticky top-24">
                     <CardHeader><CardTitle>Resumo do Pedido</CardTitle></CardHeader>
