@@ -1,169 +1,209 @@
-# Welcome to your Lovable project
+# SealClub 🛍️
 
-## Project info
+> **O primeiro clube de compras inteligente do Brasil.**
+> Acesso a produtos Apple e as maiores marcas do mundo com preço de fábrica.
 
-**URL**: https://lovable.dev/projects/92dc0c12-c831-4ed8-9ab7-0f875920f45d
+🔗 **URL do Projeto:** [https://sealclub.com.br](https://sealclub.com.br)
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 💻 Sobre o Projeto
 
-**Use Lovable**
+O **SealClub** é uma plataforma de e-commerce exclusiva que utiliza um sistema de **Checkout Transparente** (Custom Checkout) integrado diretamente à **API v2 do Mercado Pago**.
+O sistema foi projetado para **alta conversão**, eliminando redirecionamentos e garantindo **segurança total** no processamento dos pagamentos.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/92dc0c12-c831-4ed8-9ab7-0f875920f45d) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🚀 Tecnologias Utilizadas
 
-**Use your preferred IDE**
+### Frontend (Client)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+* **React** + **Vite** — Build rápido e leve
+* **TypeScript** — Tipagem estática
+* **Tailwind CSS** + **Shadcn/ui** — Estilização moderna
+* **Mercado Pago SDK React** — Integração segura de cartão e PIX
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Backend (Server)
 
-Follow these steps:
+* **Node.js** + **Express** — API REST
+* **Mercado Pago SDK Node** — Processamento seguro no servidor
+* **Supabase** — PostgreSQL Database & Auth
+* **Nodemailer** — Envio de e-mails transacionais
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## ⚙️ Funcionalidades
 
-# Step 3: Install the necessary dependencies.
-npm i
+* **Venda Única:** Fluxo simplificado para compra de produtos ou planos (sem recorrência complexa).
+* **Pagamento via Cartão:** Processamento seguro com validação de dados sensíveis e retorno imediato.
+* **Pagamento via PIX:** Geração instantânea de QR Code e código Copia e Cola.
+* **Webhook Inteligente:** Escuta notificações do Mercado Pago e aprova pedidos automaticamente após confirmação do pagamento.
+* **Banco de Dados em Tempo Real:** Registro automático de vendas e clientes na tabela `vendas`.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/92dc0c12-c831-4ed8-9ab7-0f875920f45d) and click on Share -> Publish.
-
-## Backend Setup (Pagamentos & Webhooks)
+## 🛠️ Guia de Instalação e Configuração
 
 ### Pré-requisitos
-- Node.js 18+
-- Mercado Pago Account (sandbox)
-- Supabase Project
-- Gmail com App Password (SMTP)
 
-### Instalação Backend
-```sh
+* Node.js **18+**
+* Conta no **Mercado Pago** (Produção ou Sandbox)
+* Projeto criado no **Supabase**
+* Conta de e-mail SMTP (ex: Gmail com App Password)
+
+---
+
+### 1️⃣ Clonar o Repositório
+
+```bash
+git clone https://github.com/seu-usuario/sealclub.git
+cd sealclub
+```
+
+---
+
+### 2️⃣ Configurar o Backend (API)
+
+Entre na pasta do backend e instale as dependências:
+
+```bash
 cd backend
 npm install
 ```
 
-### Configuração de Variáveis de Ambiente
-Copie `backend/.env.example` para `backend/.env` e preencha:
+Crie um arquivo **`.env`** na raiz da pasta `backend`:
 
-```dotenv
-# Mercado Pago (obtenha no painel MP)
-MP_ACCESS_TOKEN=seu_access_token_sandbox
-MP_WEBHOOK_SECRET=seu_webhook_secret
+```env
+# Servidor
+PORT=3001
+HOST=0.0.0.0
+ALLOWED_ORIGINS=http://localhost:5173,https://sealclub.com.br
+
+# Mercado Pago
+MP_ACCESS_TOKEN=seu_access_token_production_ou_sandbox
+MP_WEBHOOK_SECRET=seu_webhook_secret_do_painel
 
 # Supabase
-SUPABASE_URL=https://seu-projeto.supabase.co
-SUPABASE_KEY=sua_anon_key
+SUPABASE_URL=https://seu-id-projeto.supabase.co
+SUPABASE_KEY=sua_chave_anon_ou_service_role
 
-# Email (Gmail + App Password)
+# E-mail (Nodemailer)
 EMAIL_USER=seu_email@gmail.com
-EMAIL_PASSWORD=sua_app_password
-
-# URLs
-BASE_URL=http://localhost:8080
-PORT=3001
+EMAIL_PASSWORD=sua_senha_de_app_gerada_no_google
 ```
 
-### Iniciar Servidor em Desenvolvimento
-```sh
-cd backend
+Rodar o backend em desenvolvimento:
+
+```bash
 npm run dev
 ```
 
-### Testar Integrações (Supabase + SMTP)
-```sh
-cd backend
-npm run test:connections
-```
+---
 
-### Webhooks (Pagamentos Recebidos)
+### 3️⃣ Configurar o Frontend (Interface)
 
-#### 1. Configurar MP_WEBHOOK_SECRET
-O backend valida assinatura HMAC-SHA256 de webhooks do Mercado Pago. Configure `MP_WEBHOOK_SECRET` com o valor gerado no painel MP (Configurações > Webhooks).
+Na raiz do projeto, instale as dependências:
 
-#### 2. Expor Webhook Localmente (Ngrok)
-```sh
-brew install --cask ngrok  # ou download do site
-ngrok http 3000
-```
-Copie a URL HTTPS gerada (ex: `https://abcd1234.ngrok.io`).
-
-#### 3. Configurar URL no Mercado Pago
-- Acesse painel MP (sandbox)
-- Vá em **Configurações > Webhooks**
-- Registre: `https://seu-ngrok-url.ngrok.io/api/webhook`
-- Evento: `payment.created`, `payment.updated`
-
-#### 4. Testar com cURL (Webhook simulado)
 ```bash
-# Gere assinatura (Node.js):
-node -e "const crypto=require('crypto');const s='seu_webhook_secret';const p=JSON.stringify({type:'payment',data:{id:123}});console.log(crypto.createHmac('sha256',s).update(p).digest('base64'))"
-
-# Simule webhook:
-curl -X POST https://seu-ngrok-url.ngrok.io/api/webhook \
-  -H "Content-Type: application/json" \
-  -H "x-signature: sha256=<assinatura_acima>" \
-  -d '{"type":"payment","data":{"id":123}}'
+cd ..
+npm install
 ```
 
-#### 5. Fluxo Completo
-- Cliente realiza pagamento no frontend → Checkout MP
-- MP dispara webhook → `/api/webhook`
-- Backend valida assinatura + consulta MP
-- Atualiza `subscriptions` no Supabase
-- Envia email de confirmação via Gmail
+Crie um arquivo **`.env`** na raiz do frontend:
 
-#### Estrutura de Tabela (Supabase)
+```env
+# URL da API Backend
+VITE_API_URL=http://localhost:3001/api
+
+# Mercado Pago Public Key (Frontend)
+VITE_MERCADOPAGO_PUBLIC_KEY=sua_public_key_aqui
+```
+
+Rodar o frontend:
+
+```bash
+npm run dev
+```
+
+---
+
+## 🗄️ Estrutura do Banco de Dados (Supabase)
+
+Execute o SQL abaixo no **SQL Editor** do Supabase:
+
 ```sql
-CREATE TABLE subscriptions (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  email TEXT NOT NULL,
-  name TEXT NOT NULL,
-  plano TEXT NOT NULL,
-  amount DECIMAL(10, 2),
-  payment_method TEXT,
-  payment_id TEXT UNIQUE,
-  status TEXT DEFAULT 'pending',
-  created_at TIMESTAMP DEFAULT NOW(),
-  updated_at TIMESTAMP DEFAULT NOW()
+create table public.vendas (
+  id uuid default gen_random_uuid() primary key,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+
+  -- Dados do Cliente
+  customer_name text not null,
+  customer_email text not null,
+  customer_phone text,
+  customer_cpf text,
+
+  -- Dados do Produto e Pagamento
+  product_name text not null,
+  amount numeric not null,
+
+  -- Mercado Pago
+  payment_id text not null unique,
+
+  -- Validações
+  payment_method text check (payment_method in ('card', 'pix')),
+  status text check (status in ('pending', 'approved', 'rejected', 'refunded')) default 'pending'
 );
+
+alter table public.vendas enable row level security;
+
+create policy "Enable access for service role" on public.vendas
+  for all
+  using (auth.role() = 'service_role')
+  with check (auth.role() = 'service_role');
 ```
 
-## I want to use a custom domain - is that possible?
+---
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+## 🔄 Configuração de Webhooks (Produção)
+
+1. Acesse o painel do Mercado Pago:
+   **Seus Negócios → Configurações → Webhooks**
+
+2. Crie uma notificação apontando para:
+
+```
+https://api.sealclub.com.br/api/webhook
+```
+
+3. Marque os eventos:
+
+* `payment.created`
+* `payment.updated`
+
+4. Copie o **Secret Key** e configure em `MP_WEBHOOK_SECRET` no backend.
+
+---
+
+## 📁 Estrutura de Pastas
+
+```bash
+sealclub/
+├── src/                  # Frontend (React)
+│   ├── components/       # UI Components (Shadcn)
+│   ├── pages/            # Checkout.tsx, Home, etc
+│   └── ...
+├── backend/              # Backend (Node.js)
+│   ├── src/
+│   │   ├── controllers/  # payment.controller.ts
+│   │   ├── services/     # supabase.service.ts, email.service.ts
+│   │   ├── routes/       # payment.routes.ts
+│   │   └── server.ts     # Entrada da API
+│   └── .env
+└── README.md
+```
+
+---
+
+## 📝 Licença
+
+Todos os direitos reservados à **SealClub**.
