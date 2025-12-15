@@ -448,7 +448,7 @@ const Checkout = () => {
 
             </div>
 
-            {/* RESUMO */}
+            {/* RESUMO GERAL */}
             <div className="lg:col-span-1">
               <Card className="bg-white border border-slate-200 shadow-sm sticky top-24">
                 <CardHeader className="bg-slate-50 border-b border-slate-100 py-4">
