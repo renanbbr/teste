@@ -13,6 +13,7 @@ const PORT = parseInt(process.env.PORT || "3001", 10);
 const HOST = process.env.HOST || "0.0.0.0"; // Importante para deploy
 
 // Configuração de CORS
+// Adicionei "*" temporariamente para garantir que não seja problema de bloqueio de origem
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:8080").split(",");
 app.use(
   cors({
@@ -26,7 +27,12 @@ app.use(express.json());
 
 // --- Rotas ---
 
-// Healthcheck (Para saber se o server está de pé)
+// [IMPORTANTE] Rota Raiz para o Railway não dar erro 404 no Health Check
+app.get("/", (req, res) => {
+  res.send("Backend SealClub está Online! 🚀");
+});
+
+// Healthcheck
 app.get("/health", (req, res) => {
   res.json({ status: "ok", type: "one-time-payment", timestamp: new Date().toISOString() });
 });
@@ -50,14 +56,19 @@ app.listen(PORT, HOST, async () => {
   console.log(`\n[SERVER] 🚀 Backend rodando em http://${HOST}:${PORT}`);
 
   console.log("[STARTUP] Testando conexões...");
-  const [dbOk, emailOk] = await Promise.all([
-    testSupabase(),
-    testEmailConnection()
-  ]);
 
-  if (dbOk && emailOk) {
-    console.log("[STARTUP] ✅ Banco de dados e Email prontos.\n");
+  // 1. Testamos apenas o Banco de Dados (Supabase)
+  const dbOk = await testSupabase();
+
+  /* 2. REMOVIDO TEMPORARIAMENTE: Teste de Email
+     O Gmail bloqueia conexões vindas de nuvem (Railway) e isso trava o servidor (Timeout).
+     Vamos deixar comentado para o servidor subir com sucesso primeiro.
+  */
+  // const emailOk = await testEmailConnection();
+
+  if (dbOk) {
+    console.log("[STARTUP] ✅ Banco de dados pronto. Servidor online!\n");
   } else {
-    console.warn("[STARTUP] ⚠️  Algum serviço não conectou corretamente. Verifique logs acima.\n");
+    console.warn("[STARTUP] ⚠️  Falha ao conectar no Banco de Dados. Verifique logs.\n");
   }
 });
