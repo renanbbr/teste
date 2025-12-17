@@ -119,6 +119,8 @@ const Checkout = () => {
   };
 
   const finalPrice = selectedPlan ? (selectedPlan.price - discount) : 0;
+  // Cálculo da parcela (12x)
+  const installmentPrice = finalPrice / 12;
 
   const handleCardPayment = async (formData: any) => {
     if (!selectedPlan) return;
@@ -141,7 +143,6 @@ const Checkout = () => {
         const payerCpf = formData.payer?.identification?.number || customerData.cpf.replace(/\D/g, "");
         const payerEmail = formData.payer?.email || customerData.email;
 
-        // payload ajustado para salvar no banco corretamente
         const payload = {
           transaction_amount: finalPrice,
           token: formData.token,
@@ -155,7 +156,6 @@ const Checkout = () => {
             last_name: customerData.name.split(" ").slice(1).join(" ") || "Cliente",
             identification: { type: "CPF", number: payerCpf }
           },
-          // Campos Extras para o Supabase
           product_name: `Pagamento ${selectedPlan.name}`,
           name_customer: customerData.name,
           phone_customer: customerData.phone
@@ -186,12 +186,11 @@ const Checkout = () => {
     setErrorMessage(null);
 
     try {
-      // payload corrigido para o backend aceitar o CPF
       const payload = {
         product_name: `Pagamento ${selectedPlan.name}`,
         price: finalPrice,
         email: customerData.email,
-        cpf: customerData.cpf.replace(/\D/g, ""), // Envia o CPF limpo (só números)
+        cpf: customerData.cpf.replace(/\D/g, ""),
         name_customer: customerData.name,
         phone_customer: customerData.phone
       };
@@ -286,7 +285,6 @@ const Checkout = () => {
                 </CardHeader>
                 <CardContent className="space-y-4 pt-4 pb-6 px-6">
 
-                  {/* Linha 1: Nome e Telefone (Sempre visíveis) */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <Label className="text-slate-700 font-medium text-xs uppercase">Nome Completo *</Label>
@@ -309,7 +307,6 @@ const Checkout = () => {
                     </div>
                   </div>
 
-                  {/* Linha 2: E-mail e CPF (Apenas PIX) */}
                   <AnimatePresence>
                     {paymentMethod === "pix" && (
                       <motion.div
@@ -360,7 +357,6 @@ const Checkout = () => {
                     </div>
                   )}
 
-                  {/* CARTÃO */}
                   {paymentMethod === "card" && (
                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                       <div className="min-h-[400px]">
@@ -376,7 +372,6 @@ const Checkout = () => {
                     </div>
                   )}
 
-                  {/* PIX */}
                   {paymentMethod === "pix" && (
                     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                       {!isContactValid ? (
@@ -472,9 +467,17 @@ const Checkout = () => {
                   )}
 
                   <div className="pt-4 border-t border-slate-100 mt-4">
-                    <div className="flex justify-between items-end mb-1">
-                      <span className="text-slate-600 font-medium">Total</span>
-                      <span className="text-3xl font-extrabold text-slate-900">R$ {finalPrice.toFixed(2).replace('.', ',')}</span>
+                    <div className="flex justify-between items-start mb-1">
+                      <span className="text-slate-600 font-medium mt-1">Total</span>
+                      <div className="text-right flex flex-col items-end">
+                        <div className="text-3xl font-extrabold">
+                          <span className="text-slate-900">12x de </span>
+                          <span className="text-indigo-600">R$ {installmentPrice.toFixed(2).replace('.', ',')}</span>
+                        </div>
+                        <span className="text-sm text-slate-500 font-medium mt-1">
+                          ou à vista R$ {finalPrice.toFixed(2).replace('.', ',')}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
