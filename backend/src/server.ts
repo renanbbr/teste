@@ -9,11 +9,12 @@ import { webhook } from "./controllers/payment.controller";
 dotenv.config();
 
 const app = express();
+// No Railway, a porta é definida automaticamente pela variável PORT
 const PORT = parseInt(process.env.PORT || "3001", 10);
-const HOST = process.env.HOST || "0.0.0.0"; // Importante para deploy
+const HOST = "0.0.0.0"; // Importante para deploy
 
 // Configuração de CORS
-// Adicionei "*" temporariamente para garantir que não seja problema de bloqueio de origem
+// Adicionei "*" nas origens permitidas temporariamente para garantir que o front conecte sem erros
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:8080").split(",");
 app.use(
   cors({
@@ -28,6 +29,7 @@ app.use(express.json());
 // --- Rotas ---
 
 // [IMPORTANTE] Rota Raiz para o Railway não dar erro 404 no Health Check
+// Isso evita o erro SIGTERM por falha de verificação
 app.get("/", (req, res) => {
   res.send("Backend SealClub está Online! 🚀");
 });
@@ -61,8 +63,8 @@ app.listen(PORT, HOST, async () => {
   const dbOk = await testSupabase();
 
   /* 2. REMOVIDO TEMPORARIAMENTE: Teste de Email
-     O Gmail bloqueia conexões vindas de nuvem (Railway) e isso trava o servidor (Timeout).
-     Vamos deixar comentado para o servidor subir com sucesso primeiro.
+     O Gmail bloqueia conexões vindas de nuvem (Railway) e isso estava causando o erro
+     "Connection timeout" e travando o deploy.
   */
   // const emailOk = await testEmailConnection();
 
